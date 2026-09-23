@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DNA to Traits Model Builder</title>
+<title>Model Builder</title>
 <style>
   :root {
     --bg: #f7f5f0; --card: #ffffff; --ink: #1d1d1b; --muted: #5b5b57; --line: #cfcac0;
@@ -63,14 +63,14 @@
   PUBLIC PAGE: this file holds tasks and word banks only, never correct answers.
   Open a task with ?item=<id>. With no item, the page lists the tasks.
 */
-const LINKS = [
+const DEFAULT_LINKS = [
   { key: "dna",     label: "DNA (the gene)" },
   { key: "protein", label: "Protein" },
   { key: "cells",   label: "What cells do" },
   { key: "trait",   label: "Trait" }
 ];
 
-const ARROW_Q = [
+const DEFAULT_ARROW_Q = [
   "How does the change in the gene change the protein?",
   "How does the protein change what cells do?",
   "How does what cells do lead to the trait?"
@@ -129,6 +129,37 @@ const TASKS = {
     evidence: ["A", "B", "C", "D"],
     finalQ: "Name each mistake in the student's model. Say why it is a mistake. Then use Evidence C and D to predict what a medicine that helps CFTR fold would do to the lung mucus and to sweat chloride."
   },
+  "muscle-contraction": {
+    kind: "build",
+    unit: "Unit 2.4 Muscular System",
+    title: "Build a model: from nerve to movement",
+    intro: "Build a model of how the brain's signal makes the elbow bend in a biceps curl. Put one card in each box. Some cards do not belong.",
+    links: [
+      { key: "nmj",    label: "Neuromuscular junction" },
+      { key: "fiber",  label: "Inside the muscle fiber" },
+      { key: "sarc",   label: "Inside the sarcomeres" },
+      { key: "muscle", label: "Whole muscle and bone" }
+    ],
+    arrowQs: [
+      "How does the signal get from the junction into the fiber?",
+      "What does the fiber release, and what does it do next?",
+      "How do the sarcomeres make the whole muscle move the arm?"
+    ],
+    bank: [
+      "The motor neuron releases ACh, which binds to receptors on the muscle fiber.",
+      "The signal travels down the T-tubules, and the sarcoplasmic reticulum releases calcium.",
+      "Calcium uncovers binding sites on actin. Myosin heads grab actin and pull, using ATP.",
+      "Sarcomeres shorten, so the biceps shortens and its tendon pulls the forearm up.",
+      "The motor neuron touches the muscle fiber and pushes it.",
+      "The mitochondria release calcium into the sarcomere.",
+      "Actin and myosin shrink, so the sarcomere gets shorter.",
+      "The biceps pushes the forearm up.",
+      "ATP binds to the ACh receptors to start the signal.",
+      "The triceps shortens to bend the elbow."
+    ],
+    evidence: [],
+    finalQ: "The student keeps curling the backpack for 2 minutes. The arm gets weaker and starts to shake. Which box in your model is affected first? Explain why."
+  },
   "sickle-cell": {
     kind: "build",
     practice: true,
@@ -159,13 +190,16 @@ const app = $("#app");
 const params = new URLSearchParams(location.search);
 const id = params.get("item");
 const task = TASKS[id];
+// A task can name its own boxes and arrow questions. Without them it uses DNA, protein, cells, trait.
+const LINKS = (task && task.links) || DEFAULT_LINKS;
+const ARROW_Q = (task && task.arrowQs) || DEFAULT_ARROW_Q;
 
 function store(key, val) { try { if (val === undefined) return JSON.parse(localStorage.getItem(key)); localStorage.setItem(key, JSON.stringify(val)); } catch (e) { return null; } }
 
 if (!task) {
   app.innerHTML = `
-    <p class="eyebrow">Model Builder · Living Earth GATE · Highland</p>
-    <h1>DNA to Traits Model Builder</h1>
+    <p class="eyebrow">Model Builder · Highland</p>
+    <h1>Model Builder</h1>
     <p>Choose the task your teacher gave you.</p>
     <div class="tasks">
       ${Object.entries(TASKS).map(([k, t]) => `<a href="?item=${k}"><strong>${esc(t.title)}</strong><br><span class="hint">${esc(t.intro.split(". ")[0])}.</span></a>`).join("")}
@@ -178,7 +212,7 @@ function render() {
   const saveKey = "mb21-" + id;
   const saved = store(saveKey) || {};
   const state = {
-    slots: saved.slots || Object.assign({ dna: null, protein: null, cells: null, trait: null }, task.start || {}),
+    slots: saved.slots || Object.assign(Object.fromEntries(LINKS.map(l => [l.key, null])), task.start || {}),
     arrows: saved.arrows || Object.assign({}, task.startArrows || {}),
     ev: saved.ev || {},
     final: saved.final || "",
@@ -191,7 +225,7 @@ function render() {
     .sort((a, b) => hash(a) - hash(b));
 
   app.innerHTML = `
-    <p class="eyebrow">Model Builder · Unit 2.1 DNA to Traits${task.practice ? " · Practice" : ""}</p>
+    <p class="eyebrow">Model Builder · ${esc(task.unit || "Unit 2.1 DNA to Traits")}${task.practice ? " · Practice" : ""}</p>
     <h1>${esc(task.title)}</h1>
     <p>${esc(task.intro)}</p>
     <div class="panel">
