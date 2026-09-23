@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DNA to Traits Model Builder</title>
+<style>
+  :root {
+    --bg: #f7f5f0; --card: #ffffff; --ink: #1d1d1b; --muted: #5b5b57; --line: #cfcac0;
+    --accent: #1f5f8b; --accent-soft: #e3eef6; --good: #2e6b34; --warn: #8a4b00; --slot: #fbfaf7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #171816; --card: #22231f; --ink: #eceae4; --muted: #a9a79f; --line: #45453f;
+      --accent: #7db4dd; --accent-soft: #23323d; --good: #8fcf95; --warn: #e6a85a; --slot: #1c1d1a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.5 system-ui, "Segoe UI", Roboto, Arial, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 16px 16px 64px; }
+  .eyebrow { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 8px 0 2px; }
+  h1 { font-size: 26px; line-height: 1.2; margin: 0 0 8px; }
+  h2 { font-size: 19px; margin: 28px 0 8px; }
+  p { margin: 6px 0 10px; }
+  a { color: var(--accent); }
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin: 12px 0; }
+  .tasks a { display: block; padding: 12px 14px; margin: 8px 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: var(--ink); }
+  .tasks a strong { color: var(--accent); }
+  .bank { display: flex; flex-wrap: wrap; gap: 8px; }
+  button { font: inherit; color: inherit; }
+  .chip { text-align: left; background: var(--card); border: 1.5px solid var(--line); border-radius: 8px; padding: 8px 10px; cursor: pointer; max-width: 100%; }
+  .chip[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); outline: 2px solid var(--accent); }
+  .chip.used { display: none; }
+  .hint { font-size: 15px; color: var(--muted); }
+  .slot { background: var(--slot); border: 2px dashed var(--line); border-radius: 10px; padding: 10px 12px; }
+  .slot.filled { border-style: solid; border-color: var(--accent); background: var(--card); }
+  .slot.ready { border-color: var(--accent); }
+  .slot-label { font-size: 13px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+  .slot-body { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 30px; }
+  .slot-body .empty { color: var(--muted); font-style: italic; }
+  .slot button.place, .slot button.remove { border: 1px solid var(--line); background: var(--card); border-radius: 6px; padding: 4px 10px; cursor: pointer; white-space: nowrap; font-size: 15px; }
+  .arrow { margin: 4px 0 4px 18px; padding: 6px 0 6px 18px; border-left: 3px solid var(--accent); }
+  .arrow .tip { color: var(--accent); font-weight: 700; }
+  label { display: block; font-size: 15px; font-weight: 600; margin: 6px 0 4px; }
+  textarea { width: 100%; font: inherit; font-size: 16px; padding: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--ink); resize: vertical; }
+  select { font: inherit; font-size: 16px; padding: 4px 6px; border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--ink); }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .progress { font-size: 15px; color: var(--muted); }
+  .copy { background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 12px 18px; font-weight: 700; cursor: pointer; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .copy { color: #10161b; } }
+  .status { font-weight: 600; color: var(--good); }
+  .status.warn { color: var(--warn); }
+  #fallback { display: none; margin-top: 10px; }
+  .sr { position: absolute; left: -9999px; }
+</style>
+</head>
+<body>
+<main id="app"></main>
+
+<script>
+/*
+  DNA to Traits Model Builder, Living Earth GATE Unit 2.1 (HS-LS1-1).
+  PUBLIC PAGE: this file holds tasks and word banks only, never correct answers.
+  Open a task with ?item=<id>. With no item, the page lists the tasks.
+*/
+const LINKS = [
+  { key: "dna",     label: "DNA (the gene)" },
+  { key: "protein", label: "Protein" },
+  { key: "cells",   label: "What cells do" },
+  { key: "trait",   label: "Trait" }
+];
+
+const ARROW_Q = [
+  "How does the change in the gene change the protein?",
+  "How does the protein change what cells do?",
+  "How does what cells do lead to the trait?"
+];
+
+const TASKS = {
+  "albinism": {
+    kind: "build",
+    title: "Build a model: albinism",
+    intro: "Build a model that explains how a change in the TYR gene leads to white hair and very light skin. Use the evidence in your test question.",
+    bank: [
+      "The base order of the TYR gene is changed.",
+      "Skin cells have different DNA from other body cells.",
+      "Tyrosinase is built with the wrong shape, so it works poorly or not at all.",
+      "Tyrosinase is made of DNA.",
+      "Cells cannot carry out the first step of building melanin, so they make little or none.",
+      "The person does not eat enough tyrosine.",
+      "White hair and very light skin.",
+      "Hair and skin cells stop dividing.",
+      "The TYR gene changes the melanin directly, without any protein.",
+      "Melanin is an enzyme that builds tyrosinase.",
+      "The changed tyrosinase makes extra melanin.",
+      "Too much sunlight damages the skin's color.",
+      "Every cell in the body builds melanin."
+    ],
+    evidence: ["A", "B", "C", "D"],
+    finalQ: "Every cell in a Siamese cat has the same TYR gene. Use your model and Evidence D to explain why the cat has dark ears but a light body."
+  },
+  "cystic-fibrosis": {
+    kind: "fix",
+    title: "Fix a broken model: cystic fibrosis",
+    intro: "A student built this model of cystic fibrosis. It has three mistakes. Fix the model: swap wrong cards for better ones and rewrite any wrong arrow. Then name each mistake in the last box.",
+    start: {
+      dna: "Three bases are deleted from the CFTR gene.",
+      protein: "The CFTR protein has extra amino acids added to it.",
+      cells: "Lung cells build more chloride channels than normal.",
+      trait: "Thick, sticky mucus in the lungs."
+    },
+    startArrows: {
+      "dna-protein": "The deleted bases change the instructions, so the protein is built differently.",
+      "protein-cells": "The protein changes the cell's DNA, so the cell makes more channels.",
+      "cells-trait": "Less chloride moves out, so less water follows and the mucus stays thick."
+    },
+    bank: [
+      "The CFTR protein is missing one amino acid and folds into the wrong shape.",
+      "The CFTR gene is missing from lung cells.",
+      "Lung cells have few working chloride channels in their outer membrane.",
+      "Lung cells make extra mucus because they have more DNA.",
+      "The CFTR protein reaches the membrane but lets in extra water.",
+      "Three amino acids are deleted from the CFTR gene.",
+      "The CFTR protein changes the base order of the gene.",
+      "Lung cells pump out extra water, so the mucus dries out.",
+      "Breathing in thick mucus causes the gene to change.",
+      "Chloride is a protein that folds into the wrong shape."
+    ],
+    evidence: ["A", "B", "C", "D"],
+    finalQ: "Name each mistake in the student's model. Say why it is a mistake. Then predict what a medicine that helps CFTR fold would do to the mucus."
+  },
+  "sickle-cell": {
+    kind: "build",
+    practice: true,
+    title: "Practice: sickle cell",
+    intro: "Practice building the full chain for sickle cell disease. In sickle cell disease, one base is changed in the gene for hemoglobin. Hemoglobin is the protein that carries oxygen in red blood cells.",
+    bank: [
+      "One base in the hemoglobin gene is changed.",
+      "Red blood cells have a different gene than other cells.",
+      "One amino acid in hemoglobin is changed. When oxygen is low, the hemoglobin molecules stick together in long fibers.",
+      "Hemoglobin changes the base order of the gene.",
+      "Red blood cells bend into a stiff sickle shape. They get stuck in small blood vessels and break down early.",
+      "Red blood cells divide faster than normal.",
+      "Episodes of pain, and fewer red blood cells (anemia).",
+      "The person breathes in less oxygen.",
+      "The changed gene bends the red blood cells directly, without changing any protein.",
+      "Hemoglobin is made of bases.",
+      "Sickle-shaped cells carry extra oxygen.",
+      "Every cell in the body bends into a sickle shape."
+    ],
+    evidence: [],
+    finalQ: "Which link in your chain would a medicine need to change to prevent the sickle shape? Explain."
+  }
+};
+
+const $ = (sel, el = document) => el.querySelector(sel);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const app = $("#app");
+const params = new URLSearchParams(location.search);
+const id = params.get("item");
+const task = TASKS[id];
+
+function store(key, val) { try { if (val === undefined) return JSON.parse(localStorage.getItem(key)); localStorage.setItem(key, JSON.stringify(val)); } catch (e) { return null; } }
+
+if (!task) {
+  app.innerHTML = `
+    <p class="eyebrow">Model Builder · Living Earth GATE · Highland</p>
+    <h1>DNA to Traits Model Builder</h1>
+    <p>Choose the task your teacher gave you.</p>
+    <div class="tasks">
+      ${Object.entries(TASKS).map(([k, t]) => `<a href="?item=${k}"><strong>${esc(t.title)}</strong><br><span class="hint">${esc(t.intro.split(". ")[0])}.</span></a>`).join("")}
+    </div>`;
+} else {
+  render();
+}
+
+function render() {
+  const saveKey = "mb21-" + id;
+  const saved = store(saveKey) || {};
+  const state = {
+    slots: saved.slots || Object.assign({ dna: null, protein: null, cells: null, trait: null }, task.start || {}),
+    arrows: saved.arrows || Object.assign({}, task.startArrows || {}),
+    ev: saved.ev || {},
+    final: saved.final || "",
+    picked: null
+  };
+  const pairs = LINKS.slice(0, -1).map((l, i) => l.key + "-" + LINKS[i + 1].key);
+  // Fixed mixed order (same on every load), so correct cards are not grouped or listed first.
+  const hash = s => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+  const allCards = [...new Set([...(Object.values(task.start || {})), ...task.bank])]
+    .sort((a, b) => hash(a) - hash(b));
+
+  app.innerHTML = `
+    <p class="eyebrow">Model Builder · Unit 2.1 DNA to Traits${task.practice ? " · Practice" : ""}</p>
+    <h1>${esc(task.title)}</h1>
+    <p>${esc(task.intro)}</p>
+    <div class="panel">
+      <h2 style="margin-top:0">Word bank</h2>
+      <p class="hint">Tap a card, then tap <b>Place here</b> in a box. Some cards do not belong. To take a card back out, tap <b>Remove</b>.</p>
+      <div class="bank" id="bank"></div>
+    </div>
+    <h2>Your model</h2>
+    <p class="progress" id="progress" aria-live="polite"></p>
+    <div id="chain"></div>
+    <h2>${task.kind === "fix" ? "Mistakes and prediction" : "Last question"}</h2>
+    <label for="final">${esc(task.finalQ)}</label>
+    <textarea id="final" rows="5"></textarea>
+    <h2>Turn it in</h2>
+    <div class="row">
+      <button class="copy" id="copy">Copy my model</button>
+      <span class="status" id="status" aria-live="polite"></span>
+    </div>
+    <p class="hint">Then click in the test's answer box and press Ctrl + V. On a phone, press and hold in the box, then choose Paste.</p>
+    <div id="fallback">
+      <label for="fbtext">Copying did not work. Select all of this text, copy it, and paste it into the answer box.</label>
+      <textarea id="fbtext" rows="10" readonly></textarea>
+    </div>
+    <p class="hint" style="margin-top:24px"><a href="./">All tasks</a></p>`;
+
+  const bank = $("#bank"), chain = $("#chain");
+
+  function save() { store(saveKey, { slots: state.slots, arrows: state.arrows, ev: state.ev, final: state.final }); }
+
+  function drawBank() {
+    const used = new Set(Object.values(state.slots).filter(Boolean));
+    bank.innerHTML = allCards.map((c, i) =>
+      `<button class="chip${used.has(c) ? " used" : ""}" data-i="${i}" aria-pressed="${state.picked === c}">${esc(c)}</button>`).join("")
+      || `<span class="hint">All cards are placed.</span>`;
+    bank.querySelectorAll(".chip").forEach(b => b.onclick = () => {
+      const c = allCards[+b.dataset.i];
+      state.picked = state.picked === c ? null : c;
+      drawAll();
+    });
+  }
+
+  function drawChain() {
+    let html = "";
+    LINKS.forEach((l, i) => {
+      const v = state.slots[l.key];
+      html += `<div class="slot${v ? " filled" : ""}${state.picked && !v ? " ready" : ""}">
+        <div class="slot-label">${i + 1}. ${esc(l.label)}</div>
+        <div class="slot-body">
+          ${v ? `<span>${esc(v)}</span><button class="remove" data-k="${l.key}">Remove</button>`
+              : `<span class="empty">Empty</span>${state.picked ? `<button class="place" data-k="${l.key}">Place here</button>` : ""}`}
+        </div></div>`;
+      if (i < LINKS.length - 1) {
+        const p = pairs[i];
+        html += `<div class="arrow">
+          <span class="tip">↓</span>
+          <label for="a-${p}">${ARROW_Q[i]}</label>
+          <textarea id="a-${p}" data-p="${p}" rows="2">${esc(state.arrows[p] || "")}</textarea>
+          ${task.evidence.length ? `<div class="row"><label for="e-${p}" style="margin:0">Evidence:</label>
+            <select id="e-${p}" data-p="${p}"><option value="">choose</option>${task.evidence.map(e => `<option${state.ev[p] === e ? " selected" : ""}>${e}</option>`).join("")}</select></div>` : ""}
+        </div>`;
+      }
+    });
+    chain.innerHTML = html;
+    chain.querySelectorAll(".place").forEach(b => b.onclick = () => { state.slots[b.dataset.k] = state.picked; state.picked = null; save(); drawAll(); });
+    chain.querySelectorAll(".remove").forEach(b => b.onclick = () => { state.slots[b.dataset.k] = null; save(); drawAll(); });
+    chain.querySelectorAll("textarea").forEach(t => t.oninput = () => { state.arrows[t.dataset.p] = t.value; save(); drawProgress(); });
+    chain.querySelectorAll("select").forEach(s => s.onchange = () => { state.ev[s.dataset.p] = s.value; save(); });
+  }
+
+  function drawProgress() {
+    const boxes = LINKS.filter(l => state.slots[l.key]).length;
+    const arrows = pairs.filter(p => (state.arrows[p] || "").trim()).length;
+    $("#progress").textContent = `${boxes} of 4 boxes filled · ${arrows} of 3 arrows explained`;
+  }
+
+  function drawAll() { drawBank(); drawChain(); drawProgress(); }
+
+  const fin = $("#final");
+  fin.value = state.final;
+  fin.oninput = () => { state.final = fin.value; save(); };
+
+  function modelText() {
+    const lines = [`MY MODEL: ${task.title}`, ""];
+    LINKS.forEach((l, i) => {
+      lines.push(`${i + 1}. ${l.label}: ${state.slots[l.key] || "(empty)"}`);
+      if (i < LINKS.length - 1) {
+        const p = pairs[i];
+        lines.push(`   ↓ How: ${(state.arrows[p] || "").trim() || "(not explained)"}${task.evidence.length ? ` (Evidence: ${state.ev[p] || "none"})` : ""}`);
+      }
+    });
+    lines.push("", `${task.kind === "fix" ? "Mistakes and prediction" : "Last question"}: ${fin.value.trim() || "(not answered)"}`);
+    return lines.join("\n");
+  }
+
+  $("#copy").onclick = async () => {
+    const text = modelText(), status = $("#status");
+    try {
+      await navigator.clipboard.writeText(text);
+      status.className = "status"; status.textContent = "Copied. Now click in the test's answer box and press Ctrl + V.";
+    } catch (e) {
+      const fb = $("#fallback"), ft = $("#fbtext");
+      fb.style.display = "block"; ft.value = text; ft.focus(); ft.select();
+      status.className = "status warn"; status.textContent = "Copy was blocked. Use the box below.";
+    }
+  };
+
+  drawAll();
+}
+</script>
+</body>
+</html>
