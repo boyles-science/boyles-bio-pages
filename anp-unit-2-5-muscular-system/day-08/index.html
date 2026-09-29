@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 8: Muscle Metabolism and Energy Supply</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<style>
+/* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+</style>
+</head>
+<body>
+<div class="stage"><div class="frame" id="frame">
+
+<div class="slide active">
+<div class="topline"></div>
+<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.5 Muscular System &middot; Day 8</div>
+<h1>Muscle Metabolism and Energy Supply</h1>
+<div class="cols" style="margin-top:8px">
+  <div class="col">
+    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dobox">
+      <p>A muscle fiber only stores enough ATP for about one or two seconds of contraction. Predict: how does it keep contracting for a full sprint, or a full marathon?</p>
+    </div>
+  </div>
+  <div class="col" style="flex:0.7">
+    <div class="dolabel" style="margin-top:0">You need today</div>
+    <div class="chips" style="flex-direction:column; align-items:flex-start;">
+      <span class="chip"><b>Chromebook</b></span>
+      <span class="chip"><b>Notebook</b></span>
+      <span class="chip no"><b>Phones</b> &mdash; no</span>
+    </div>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 1 of 15</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Essential question</div>
+<h2>Why do muscles get tired?</h2>
+<p class="bigp">Why do muscles get tired during exercise, and how do they restore energy to keep working?</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 2 of 15</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Objective</div>
+<h2>Today's goal</h2>
+<p class="bigp" style="font-size:24px">Students will be able to explain how muscles generate ATP, by comparing the three energy systems' speed and output, so that they can explain what causes fatigue and oxygen debt.</p>
+<ul>
+  <li>I can explain how muscles generate ATP through creatine phosphate, glycolysis, and aerobic respiration.</li>
+  <li>I can describe what causes muscle fatigue and oxygen debt.</li>
+</ul>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 3 of 15</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">System 1</div>
+<h2>Creatine phosphate</h2>
+<p class="bigp">A quick energy source. It regenerates ATP from phosphate and ADP during short bursts of intense activity.</p>
+<p>Provides <b>1 ATP per creatine phosphate</b>. Occurs for the first <b>~10 seconds</b> of exercise, before other systems kick in.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 4 of 15</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">System 2</div>
+<h2>Glycolysis</h2>
+<p class="bigp">Breaks down glucose into pyruvate, which leads to lactic acid, for a rapid supply of ATP without oxygen.</p>
+<p>Provides <b>2 ATP per glucose</b>. The primary pathway during high-intensity exercise lasting about <b>30&ndash;60 seconds</b>.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 5 of 15</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">System 3</div>
+<h2>Aerobic respiration</h2>
+<p class="bigp">Occurs in the presence of oxygen, generating the most ATP for prolonged, lower-intensity activities. Uses fat and carbohydrates as fuel (and can also use amino acids).</p>
+<p>Yields <b>36&ndash;38 ATP per glucose</b>. Can supply energy long-term, during endurance exercise.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 6 of 15</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">What happens when oxygen runs out?</div>
+<h2>Lactic acid and fatigue</h2>
+<p class="bigp">Lactic acid accumulates, and fatigue sets in.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 7 of 15</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">What happens afterward?</div>
+<h2>Oxygen debt</h2>
+<p class="bigp">"Oxygen debt" occurs as the body restores ATP and removes lactic acid after exercise ends.</p>
+<div class="dobox"><div class="dolabel">Tie to feedback mechanisms</div><p>This is homeostasis and recovery: the body senses the imbalance from exercise and works to restore its resting state.</p></div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 8 of 15</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Watch the shift</div>
+<h2>A runner's ATP sources over time</h2>
+<table>
+<tr><th>Time since start</th><th>Creatine phosphate</th><th>Glycolysis</th><th>Aerobic respiration</th></tr>
+<tr><td>0 to 10 seconds</td><td>60%</td><td>30%</td><td>10%</td></tr>
+<tr><td>10 to 60 seconds</td><td>10%</td><td>60%</td><td>30%</td></tr>
+<tr><td>1 to 3 minutes</td><td>0%</td><td>30%</td><td>70%</td></tr>
+<tr><td>After 10 minutes</td><td>0%</td><td>5%</td><td>95%</td></tr>
+</table>
+<p class="note">Example values, for teaching the pattern.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 9 of 15</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Catch the mistake</div>
+<h2>A classmate's claim</h2>
+<div class="prompt">"The muscle switches to aerobic respiration early on because glycolysis needs oxygen to work."</div>
+<p class="bigp" style="font-size:24px">What is wrong with this claim?</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 10 of 15</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Data collection</div>
+<div class="kicker">Exercise fatigue lab</div>
+<h2>Objective</h2>
+<p class="bigp">Investigate how muscle fatigue develops as ATP and oxygen supplies decrease over time.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 11 of 15</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Do this</div>
+<div class="kicker">Stress ball squeeze test</div>
+<h2>Collect your data</h2>
+<div class="steps">
+  <div class="step"><div class="stepn">1</div><div class="stept">Pair up or work in groups of 2&ndash;4.</div></div>
+  <div class="step"><div class="stepn">2</div><div class="stept">Each student squeezes a stress ball or dynamometer repeatedly for 1 minute while a partner counts repetitions, recording the count every 10 seconds.</div></div>
+  <div class="step"><div class="stepn">3</div><div class="stept">Rest for 1 minute, then repeat 2&ndash;3 times. Graph "time vs. repetitions" for each trial.</div></div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 12 of 15</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Analysis</div>
+<h2>Make sense of your data</h2>
+<ul>
+  <li>What trend do you see in your data over time?</li>
+  <li>Why did your repetitions decrease?</li>
+  <li>Which energy systems were being used at the start vs. toward the end?</li>
+  <li>How could you improve endurance? (Think: oxygen delivery, rest, training.)</li>
+</ul>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 13 of 15</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Exit ticket &middot; notebook</div>
+<h2>Before you leave</h2>
+<div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>Name the three ATP systems in the order they take over during a long run. Then explain what causes oxygen debt and how the body repays it.</p>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 14 of 15</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Turn it in</div>
+<h2>Weekly warm-up and exit ticket page</h2>
+<p class="bigp">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 8</span><span>slide 15 of 15</span></div>
+</div>
+
+</div></div>
+<div class="nav"><span id="counter"></span>
+  <button onclick="step(-1)">&#8592;</button>
+  <button onclick="step(1)">&#8594;</button>
+</div>
+<script>
+// Shared slide-deck script for Unit 2.5 Muscular System lesson decks. Do not fork per day.
+var slides = document.querySelectorAll(".slide");
+var i = 0;
+function show(n) {
+  slides[i].classList.remove("active");
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides[i].classList.add("active");
+  var c = document.getElementById("counter");
+  if (c) c.textContent = (i + 1) + " / " + slides.length;
+}
+function step(d) { show(i + d); }
+function fit() {
+  var s = Math.min(window.innerWidth / 1300, window.innerHeight / 740);
+  document.getElementById("frame").style.transform = "scale(" + s + ")";
+}
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") step(1);
+  if (e.key === "ArrowLeft" || e.key === "PageUp") step(-1);
+});
+window.addEventListener("resize", fit);
+fit(); show(0);
+
+</script>
+</body>
+</html>

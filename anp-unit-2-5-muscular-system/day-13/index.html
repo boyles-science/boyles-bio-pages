@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 13: Muscle Disorders, Part 2</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<style>
+/* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+</style>
+</head>
+<body>
+<div class="stage"><div class="frame" id="frame">
+
+<div class="slide active">
+<div class="topline"></div>
+<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.5 Muscular System &middot; Day 13</div>
+<h1>Muscle Disorders, Part 2</h1>
+<div class="cols" style="margin-top:8px">
+  <div class="col">
+    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dobox">
+      <p>Recall Day 7: what does ACh do, and where does it act? Write what you remember before today's lesson connects it to a disorder.</p>
+    </div>
+  </div>
+  <div class="col" style="flex:0.7">
+    <div class="dolabel" style="margin-top:0">You need today</div>
+    <div class="chips" style="flex-direction:column; align-items:flex-start;">
+      <span class="chip"><b>Chromebook</b></span>
+      <span class="chip"><b>Notebook</b></span>
+      <span class="chip no"><b>Phones</b> &mdash; no</span>
+    </div>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 1 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Essential question</div>
+<h2>Aging, immunity, and muscle</h2>
+<p class="bigp">How do aging and immune system disorders impact muscle strength, control, and overall function?</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 2 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Objective</div>
+<h2>Today's goal</h2>
+<p class="bigp" style="font-size:24px">Students will be able to describe the causes, symptoms, and effects of atrophy, myasthenia gravis, and fibromyalgia, by tracing each back to its underlying cause, so that they can explain how aging and autoimmune disease affect muscle strength and control.</p>
+<ul>
+  <li>I can describe the causes of, symptoms, and effects of muscle atrophy, myasthenia gravis, and fibromyalgia.</li>
+  <li>I can explain how aging and autoimmune diseases affect muscle strength and control.</li>
+</ul>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 3 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Disorder 1</div>
+<h2>Atrophy</h2>
+<ul>
+  <li><b>Cause:</b> disuse, aging, or nerve damage.</li>
+  <li><b>Symptoms:</b> muscle shrinking, weakness, reduced strength.</li>
+  <li><b>Effect on function:</b> decreased muscle mass and power.</li>
+</ul>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 4 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Disorder 2</div>
+<h2>Myasthenia gravis</h2>
+<ul>
+  <li><b>Cause:</b> autoimmune disorder; antibodies block acetylcholine receptors at the neuromuscular junction.</li>
+  <li><b>Symptoms:</b> fatigue, muscle weakness (especially eyes and face), difficulty swallowing.</li>
+  <li><b>Effect on function:</b> impaired nerve signal transmission; muscles tire easily.</li>
+</ul>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 5 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Tracing the effect</div>
+<h2>Why myasthenia gravis weakens muscle</h2>
+<div class="steps">
+  <div class="step"><div class="stepn">1</div><div class="stept">ACh is released normally from the motor neuron.</div></div>
+  <div class="step"><div class="stepn">2</div><div class="stept">Antibodies block many of the receptors, so fewer fibers get the signal.</div></div>
+  <div class="step"><div class="stepn">3</div><div class="stept">Less calcium is released, fewer cross-bridges form, and contraction is weaker.</div></div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 6 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Read the data</div>
+<h2>A repeated stimulus test</h2>
+<table>
+<tr><th>Stimulus</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+<tr><td>Muscle response (% of first)</td><td>100</td><td>88</td><td>79</td><td>74</td><td>72</td></tr>
+</table>
+<p class="note">Sample results, for teaching the pattern.</p>
+<div class="dobox"><div class="dolabel">Turn and talk</div><p>Why does the response get smaller with each stimulus?</p></div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 7 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Real-world case</div>
+<div class="kicker">A treatment, traced through the system</div>
+<h2>Pyridostigmine</h2>
+<p class="bigp">An enzyme normally breaks down ACh in the synaptic cleft within a few thousandths of a second. Pyridostigmine slows that enzyme down.</p>
+<div class="dobox"><div class="dolabel">Turn and talk</div><p>Predict what this does to muscle strength. Explain step by step, from the synaptic cleft to the sarcomere.</p></div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 8 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">A treatment, traced through the system</div>
+<h2>How it helps</h2>
+<div class="steps">
+  <div class="step"><div class="stepn">1</div><div class="stept">ACh stays in the cleft longer before being broken down.</div></div>
+  <div class="step"><div class="stepn">2</div><div class="stept">ACh has more chances to bind the receptors that still work.</div></div>
+  <div class="step"><div class="stepn">3</div><div class="stept">More fibers fire: signal down the T-tubules, calcium released, more cross-bridges form.</div></div>
+</div>
+<p class="note">Strength improves, but this does not cure the disorder &mdash; the antibodies are still there.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 9 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Disorder 3</div>
+<h2>Fibromyalgia</h2>
+<ul>
+  <li><b>Cause:</b> possibly overactive nerve signaling; linked to stress or genetics.</li>
+  <li><b>Symptoms:</b> widespread pain, fatigue, sleep problems, tender points.</li>
+  <li><b>Effect on function:</b> chronic pain and sensitivity; affects movement and endurance.</li>
+</ul>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 10 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Catch the mistake</div>
+<h2>A classmate's claim</h2>
+<div class="prompt">"Pyridostigmine cures myasthenia gravis by stopping the antibodies from attacking the receptors."</div>
+<p class="bigp" style="font-size:24px">What is wrong with this claim? What does the medicine actually change?</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 11 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Turn and talk</div>
+<div class="kicker">Discussion</div>
+<h2>Three questions</h2>
+<ul>
+  <li>Why does myasthenia gravis get worse with activity?</li>
+  <li>Why do astronauts experience atrophy after long space missions?</li>
+  <li>How might fibromyalgia affect daily life even without visible muscle damage?</li>
+</ul>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 12 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Take-home message</div>
+<h2>Aging, immunity, and communication</h2>
+<p class="bigp">Aging and autoimmune conditions can weaken muscles or disrupt communication between nerves and muscle fibers. Maintaining movement, nutrition, and balanced activity supports muscle health and function.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 13 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Take the CFA</div>
+<div class="kicker">CFA 4 &middot; Canvas</div>
+<h2>Now it's your turn</h2>
+<p class="bigp">Open CFA 4 in Canvas. Use evidence to diagnose cases across all disorders from Days 12&ndash;13. Read the feedback after each answer.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 14 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Research project</div>
+<div class="kicker">Muscle disorder slides</div>
+<h2>Directions</h2>
+<p style="margin-top:14px">In pairs, or individually, research one of the following disorders: Muscular Dystrophy, Myasthenia Gravis, Fibromyalgia, Atrophy, ALS (Amyotrophic Lateral Sclerosis), or Tendonitis. Create slides or an infographic to submit.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 15 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Research project</div>
+<h2>Your presentation must include</h2>
+<ol>
+  <li>Disorder name.</li>
+  <li>Cause or mechanism (genetic, autoimmune, injury, or aging-related).</li>
+  <li>Main symptoms.</li>
+  <li>Muscles or systems affected.</li>
+  <li>Current treatments or therapies.</li>
+  <li>How it impacts homeostasis or daily function.</li>
+  <li>Reflection answers (next slide).</li>
+</ol>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 16 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Research project</div>
+<h2>Reflection questions</h2>
+<ul>
+  <li>What do all muscle disorders have in common?</li>
+  <li>How can lifestyle or medical interventions help reduce the effects of aging on muscles?</li>
+  <li>Which disorder do you think has the greatest impact on quality of life? Why?</li>
+</ul>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 17 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Exit ticket &middot; notebook</div>
+<h2>Before you leave</h2>
+<div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>Name today's three disorders. For each, write one fact that tells it apart from the others.</p>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 18 of 19</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Turn it in</div>
+<h2>Weekly warm-up and exit ticket page</h2>
+<p class="bigp">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 13</span><span>slide 19 of 19</span></div>
+</div>
+
+</div></div>
+<div class="nav"><span id="counter"></span>
+  <button onclick="step(-1)">&#8592;</button>
+  <button onclick="step(1)">&#8594;</button>
+</div>
+<script>
+// Shared slide-deck script for Unit 2.5 Muscular System lesson decks. Do not fork per day.
+var slides = document.querySelectorAll(".slide");
+var i = 0;
+function show(n) {
+  slides[i].classList.remove("active");
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides[i].classList.add("active");
+  var c = document.getElementById("counter");
+  if (c) c.textContent = (i + 1) + " / " + slides.length;
+}
+function step(d) { show(i + d); }
+function fit() {
+  var s = Math.min(window.innerWidth / 1300, window.innerHeight / 740);
+  document.getElementById("frame").style.transform = "scale(" + s + ")";
+}
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") step(1);
+  if (e.key === "ArrowLeft" || e.key === "PageUp") step(-1);
+});
+window.addEventListener("resize", fit);
+fit(); show(0);
+
+</script>
+</body>
+</html>

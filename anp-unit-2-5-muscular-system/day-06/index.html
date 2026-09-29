@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 6: Types of Muscle Contraction</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<style>
+/* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+</style>
+</head>
+<body>
+<div class="stage"><div class="frame" id="frame">
+
+<div class="slide active">
+<div class="topline"></div>
+<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.5 Muscular System &middot; Day 6</div>
+<h1>Types of Muscle Contraction</h1>
+<div class="cols" style="margin-top:8px">
+  <div class="col">
+    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dobox">
+      <p>Slowly lower yourself into a chair, paying attention to your thigh muscles. Are they shortening, staying the same length, or lengthening as you sit? Write your prediction.</p>
+    </div>
+  </div>
+  <div class="col" style="flex:0.7">
+    <div class="dolabel" style="margin-top:0">You need today</div>
+    <div class="chips" style="flex-direction:column; align-items:flex-start;">
+      <span class="chip"><b>Chromebook</b></span>
+      <span class="chip"><b>Notebook</b></span>
+      <span class="chip no"><b>Phones</b> &mdash; no</span>
+    </div>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 6</span><span>slide 1 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Objective</div>
+<h2>Today's goal</h2>
+<p class="bigp" style="font-size:24px">Students will be able to tell apart isometric and isotonic contractions, by matching each to a real movement, so that they can explain how the sliding filament theory applies to every type.</p>
+<ul>
+  <li>I can differentiate between isometric and isotonic contractions.</li>
+  <li>I can describe the differences between concentric and eccentric contractions.</li>
+  <li>I can explain how the sliding filament theory applies to different types of contractions.</li>
+</ul>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 6</span><span>slide 2 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">The big split</div>
+<h2>Isometric or isotonic?</h2>
+<p class="bigp">Every muscle contraction falls into one of two categories.</p>
+<table>
+<tr><th>Isometric</th><th>Isotonic</th></tr>
+<tr><td>Tension develops without the muscle changing length.</td><td>The muscle shortens or lengthens while generating force.</td></tr>
+</table>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 6</span><span>slide 3 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Isometric</div>
+<h2>Tension without movement</h2>
+<p class="bigp">Muscle tension develops without changing its length. This is essential for maintaining posture and stabilizing joints during activity.</p>
+<p><b>Example:</b> holding a plank or a wall sit.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 6</span><span>slide 4 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Isotonic &middot; type 1</div>
+<h2>Concentric: the muscle shortens</h2>
+<p class="bigp">Isotonic contractions involve the muscle shortening or lengthening while generating force. In a <b>concentric</b> contraction, the muscle shortens while generating force, allowing movement &mdash; like lifting a weight.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 6</span><span>slide 5 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Isotonic &middot; type 2</div>
+<h2>Eccentric: the muscle lengthens under tension</h2>
+<p class="bigp">The muscle lengthens while still under tension. This happens when lowering weights, where the fibers gradually elongate to control the descent and resist gravity.</p>
+<p><b>Example:</b> the biceps lowering a dumbbell slowly.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 6</span><span>slide 6 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Back to the sliding filament theory</div>
+<h2>Cross-bridges form every time</h2>
+<p class="bigp">Actin and myosin filaments slide past each other to shorten the sarcomere. But even during an <b>isometric</b> contraction, where there is no net shortening, cross-bridges still form &mdash; they just create tension instead of movement.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 6</span><span>slide 7 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Side by side</div>
+<h2>All three, compared</h2>
+<table>
+<tr><th>Type</th><th>What happens to muscle length</th><th>Example</th></tr>
+<tr><td>Isometric</td><td>Stays the same length</td><td>Holding a plank</td></tr>
+<tr><td>Concentric (isotonic)</td><td>Shortens while pulling</td><td>Curling a weight up</td></tr>
+<tr><td>Eccentric (isotonic)</td><td>Lengthens while still pulling</td><td>Lowering a weight slowly</td></tr>
+</table>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 6</span><span>slide 8 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Catch the mistake</div>
+<h2>A classmate's claim</h2>
+<div class="prompt">"During an isometric contraction, no cross-bridges form, because the muscle doesn't move."</div>
+<p class="bigp" style="font-size:24px">What is wrong with this claim?</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 6</span><span>slide 9 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Guided practice</div>
+<div class="kicker">Move it or hold it</div>
+<h2>Pair up with a resistance band or light object</h2>
+<div class="steps">
+  <div class="step"><div class="stepn">1</div><div class="stept"><b>Hold a position (isometric):</b> arm at 90&deg; with a resistance band or weight.</div></div>
+  <div class="step"><div class="stepn">2</div><div class="stept"><b>Lift slowly (concentric):</b> curl the band upward.</div></div>
+  <div class="step"><div class="stepn">3</div><div class="stept"><b>Lower slowly (eccentric):</b> return to start.</div></div>
+</div>
+<p class="note">Record: was the muscle length changing? Was tension felt? Which movement required more control? Think about what is happening to your sarcomeres each time.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 6</span><span>slide 10 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Turn and talk</div>
+<div class="kicker">Check your understanding</div>
+<h2>Name the type</h2>
+<p class="bigp" style="margin-top:20px">You carry a box and hold it steady in front of you while waiting for an elevator. Which type of contraction are your arm muscles doing? Explain why.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 6</span><span>slide 11 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Exit ticket &middot; notebook</div>
+<h2>Before you leave</h2>
+<div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>Muscle contractions come in different forms, but all rely on the same microscopic process &mdash; the sliding filament theory. Name the three types from today and give a movement from your own day, not one used in class.</p>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 6</span><span>slide 12 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Turn it in</div>
+<h2>Weekly warm-up and exit ticket page</h2>
+<p class="bigp">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 6</span><span>slide 13 of 13</span></div>
+</div>
+
+</div></div>
+<div class="nav"><span id="counter"></span>
+  <button onclick="step(-1)">&#8592;</button>
+  <button onclick="step(1)">&#8594;</button>
+</div>
+<script>
+// Shared slide-deck script for Unit 2.5 Muscular System lesson decks. Do not fork per day.
+var slides = document.querySelectorAll(".slide");
+var i = 0;
+function show(n) {
+  slides[i].classList.remove("active");
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides[i].classList.add("active");
+  var c = document.getElementById("counter");
+  if (c) c.textContent = (i + 1) + " / " + slides.length;
+}
+function step(d) { show(i + d); }
+function fit() {
+  var s = Math.min(window.innerWidth / 1300, window.innerHeight / 740);
+  document.getElementById("frame").style.transform = "scale(" + s + ")";
+}
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") step(1);
+  if (e.key === "ArrowLeft" || e.key === "PageUp") step(-1);
+});
+window.addEventListener("resize", fit);
+fit(); show(0);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 9: Muscle Twitch and Contraction Strength</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<style>
+/* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+</style>
+</head>
+<body>
+<div class="stage"><div class="frame" id="frame">
+
+<div class="slide active">
+<div class="topline"></div>
+<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.5 Muscular System &middot; Day 9</div>
+<h1>Muscle Twitch and Contraction Strength</h1>
+<div class="cols" style="margin-top:8px">
+  <div class="col">
+    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dobox">
+      <p>A single nerve signal makes a muscle twitch once, briefly. Predict: if signals arrive faster and faster, does the muscle just twitch faster, or does something else happen?</p>
+    </div>
+  </div>
+  <div class="col" style="flex:0.7">
+    <div class="dolabel" style="margin-top:0">You need today</div>
+    <div class="chips" style="flex-direction:column; align-items:flex-start;">
+      <span class="chip"><b>Chromebook</b></span>
+      <span class="chip"><b>Notebook</b></span>
+      <span class="chip no"><b>Phones</b> &mdash; no</span>
+    </div>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 1 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Essential question</div>
+<h2>Frequency, strength, and movement</h2>
+<p class="bigp">How does the frequency and strength of nerve stimulation affect muscle contraction and movement?</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 2 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Objective</div>
+<h2>Today's goal</h2>
+<p class="bigp" style="font-size:24px">Students will be able to explain how nerve signals control contraction strength, by tracing a twitch's three phases and motor unit recruitment, so that they can predict how a movement becomes smooth and strong.</p>
+<ul>
+  <li>I can describe the phases of a muscle twitch.</li>
+  <li>I can explain how summation, tetanus, and motor unit recruitment affect contraction strength.</li>
+</ul>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 3 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">One stimulus, one twitch</div>
+<h2>The muscle twitch</h2>
+<p class="bigp">A muscle twitch is a brief, <b>involuntary</b> contraction of a muscle fiber (or group of fibers), following a single stimulus such as a nerve impulse.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 4 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Three phases</div>
+<h2>Latent, contraction, relaxation</h2>
+<div class="steps">
+  <div class="step"><div class="stepn">1</div><div class="stept"><b>Latent period.</b> Between the stimulus and the start of contraction &mdash; just a few milliseconds.</div></div>
+  <div class="step"><div class="stepn">2</div><div class="stept"><b>Contraction phase.</b> Muscle fibers shorten, generating force. Its length can vary with fiber type and stimulus strength.</div></div>
+  <div class="step"><div class="stepn">3</div><div class="stept"><b>Relaxation phase.</b> The fibers return to their resting state &mdash; this usually takes longer than the contraction itself.</div></div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 5 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Faster signals</div>
+<h2>Summation and tetanus</h2>
+<p class="bigp"><b>Summation:</b> repeated stimuli arriving before the fiber relaxes combine for a stronger contraction.</p>
+<p><b>Tetanus:</b> if signals come fast enough, the fiber never relaxes at all, producing one steady, strong pull.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 6 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">The functional unit</div>
+<h2>Motor units</h2>
+<p class="bigp">A <b>motor unit</b> is a single motor neuron and all the muscle fibers it controls.</p>
+<p>When the motor neuron fires, it triggers an action potential that stimulates every fiber in its unit at once, causing them to contract together.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 7 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Small vs. large</div>
+<h2>Two kinds of motor units</h2>
+<table>
+<tr><th></th><th>Small motor units</th><th>Large motor units</th></tr>
+<tr><td>Fibers per unit</td><td>Few</td><td>Many</td></tr>
+<tr><td>Best for</td><td>Fine motor control</td><td>Generating force</td></tr>
+<tr><td>Example</td><td>Muscles of the fingers</td><td>Quadriceps</td></tr>
+</table>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 8 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">The size principle</div>
+<h2>Small units fire first</h2>
+<p class="bigp">Motor unit recruitment follows the <b>size principle</b>: smaller motor units are activated first, followed by larger units as more force is needed.</p>
+<p>This gradation lets you make smooth, controlled movements instead of all-or-nothing jerks.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 9 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">What decides contraction strength?</div>
+<h2>Four factors</h2>
+<div class="steps">
+  <div class="step"><div class="stepn">1</div><div class="stept"><b>Recruitment.</b> More motor units firing means a stronger contraction.</div></div>
+  <div class="step"><div class="stepn">2</div><div class="stept"><b>Size.</b> Larger motor units (more fibers) generate more force.</div></div>
+  <div class="step"><div class="stepn">3</div><div class="stept"><b>Frequency.</b> Faster stimulation boosts strength through summation and tetanus.</div></div>
+  <div class="step"><div class="stepn">4</div><div class="stept"><b>Length.</b> A muscle fiber at its optimal length produces the most force.</div></div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 10 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Read the data</div>
+<h2>Signal rate vs. tension</h2>
+<table>
+<tr><th>Signals per second (Hz)</th><th>Tension</th><th>What it looks like</th></tr>
+<tr><td>1</td><td>10</td><td>Separate twitches</td></tr>
+<tr><td>5</td><td>25</td><td>Twitches add up</td></tr>
+<tr><td>10</td><td>40</td><td>Wavy, strong pull</td></tr>
+<tr><td>20</td><td>50</td><td>One smooth, strong pull</td></tr>
+</table>
+<p class="note">Sample results, for teaching the pattern.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 11 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Catch the mistake</div>
+<h2>A classmate's claim</h2>
+<div class="prompt">"At 20 Hz the tension is highest because each individual signal is stronger."</div>
+<p class="bigp" style="font-size:24px">What is wrong with this claim? What is different about the signals at 20 Hz &mdash; their strength, or their timing?</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 12 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Why it matters</div>
+<h2>Shaking and smoothness</h2>
+<p class="bigp">Shaking happens when motor units alternate between firing and fatiguing.</p>
+<p class="bigp">Smooth movement comes from precise recruitment and tetanus, achieved through controlled nerve signaling &mdash; this is how the nervous system controls movement and helps maintain posture.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 13 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Turn and talk</div>
+<div class="kicker">Check your understanding</div>
+<h2>Name the pattern</h2>
+<p class="bigp" style="margin-top:20px">You pick up a pencil, then a heavy backpack. What changes about which motor units are recruited, and in what order?</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 14 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Exit ticket &middot; notebook</div>
+<h2>Before you leave</h2>
+<div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>Contraction strength depends on the frequency of stimulation and the number of fibers activated. Name the three phases of a twitch, and explain the size principle in your own words.</p>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 15 of 16</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Turn it in</div>
+<h2>Weekly warm-up and exit ticket page</h2>
+<p class="bigp">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 9</span><span>slide 16 of 16</span></div>
+</div>
+
+</div></div>
+<div class="nav"><span id="counter"></span>
+  <button onclick="step(-1)">&#8592;</button>
+  <button onclick="step(1)">&#8594;</button>
+</div>
+<script>
+// Shared slide-deck script for Unit 2.5 Muscular System lesson decks. Do not fork per day.
+var slides = document.querySelectorAll(".slide");
+var i = 0;
+function show(n) {
+  slides[i].classList.remove("active");
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides[i].classList.add("active");
+  var c = document.getElementById("counter");
+  if (c) c.textContent = (i + 1) + " / " + slides.length;
+}
+function step(d) { show(i + d); }
+function fit() {
+  var s = Math.min(window.innerWidth / 1300, window.innerHeight / 740);
+  document.getElementById("frame").style.transform = "scale(" + s + ")";
+}
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") step(1);
+  if (e.key === "ArrowLeft" || e.key === "PageUp") step(-1);
+});
+window.addEventListener("resize", fit);
+fit(); show(0);
+
+</script>
+</body>
+</html>

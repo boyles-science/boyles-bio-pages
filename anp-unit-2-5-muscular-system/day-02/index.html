@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 2: Types of Muscle</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<style>
+/* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+</style>
+</head>
+<body>
+<div class="stage"><div class="frame" id="frame">
+
+<div class="slide active">
+<div class="topline"></div>
+<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.5 Muscular System &middot; Day 2</div>
+<h1>Types of Muscle</h1>
+<div class="cols" style="margin-top:8px">
+  <div class="col">
+    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dobox">
+      <p>Your heart has been beating since before you were born, without you ever deciding to make it beat. Predict: is heart muscle the same kind of muscle as your biceps? Why or why not?</p>
+    </div>
+  </div>
+  <div class="col" style="flex:0.7">
+    <div class="dolabel" style="margin-top:0">You need today</div>
+    <div class="chips" style="flex-direction:column; align-items:flex-start;">
+      <span class="chip"><b>Chromebook</b></span>
+      <span class="chip"><b>Notebook</b></span>
+      <span class="chip no"><b>Phones</b> &mdash; no</span>
+    </div>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2</span><span>slide 1 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Objective</div>
+<h2>Today's goal</h2>
+<p class="bigp" style="font-size:26px">Students will be able to tell the three types of muscle tissue apart, by comparing their shape, control, and location, so that they can identify a tissue sample or symptom as skeletal, cardiac, or smooth muscle.</p>
+<ul>
+  <li>I can name the three types of muscle tissue.</li>
+  <li>I can describe each type's shape and whether it is voluntary or involuntary.</li>
+  <li>I can identify where each type is found in the body.</li>
+</ul>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2</span><span>slide 2 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Type 1</div>
+<h2>Skeletal muscle</h2>
+<div class="cols">
+  <div class="col">
+    <ul>
+      <li><b>Voluntary</b> &mdash; you decide when it contracts.</li>
+      <li><b>Striated</b> (striped) under a microscope.</li>
+      <li>Each cell (fiber) has <b>many nuclei</b> &mdash; a fiber forms when many smaller cells fuse together during development.</li>
+      <li>Attaches to bone by tendons and moves the skeleton.</li>
+    </ul>
+  </div>
+  <div class="col" style="flex:0.7">
+    <svg class="diagram svg" viewBox="0 0 300 160" width="100%">
+      <rect x="20" y="60" width="260" height="40" rx="6" fill="#fbe6c8" stroke="#161821" stroke-width="2"/>
+      <g stroke="#161821" stroke-width="3">
+        <line x1="40" y1="60" x2="40" y2="100"/><line x1="60" y1="60" x2="60" y2="100"/>
+        <line x1="80" y1="60" x2="80" y2="100"/><line x1="100" y1="60" x2="100" y2="100"/>
+        <line x1="120" y1="60" x2="120" y2="100"/><line x1="140" y1="60" x2="140" y2="100"/>
+        <line x1="160" y1="60" x2="160" y2="100"/><line x1="180" y1="60" x2="180" y2="100"/>
+        <line x1="200" y1="60" x2="200" y2="100"/><line x1="220" y1="60" x2="220" y2="100"/>
+        <line x1="240" y1="60" x2="240" y2="100"/><line x1="260" y1="60" x2="260" y2="100"/>
+      </g>
+      <circle cx="70" cy="80" r="5" fill="#2b50c8"/><circle cx="130" cy="80" r="5" fill="#2b50c8"/>
+      <circle cx="190" cy="80" r="5" fill="#2b50c8"/><circle cx="250" cy="80" r="5" fill="#2b50c8"/>
+      <text x="150" y="140" text-anchor="middle" font-size="14" font-family="Archivo">long, striped, many nuclei</text>
+    </svg>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2</span><span>slide 3 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Type 2</div>
+<h2>Cardiac muscle</h2>
+<div class="cols">
+  <div class="col">
+    <ul>
+      <li><b>Involuntary</b> &mdash; you do not control it.</li>
+      <li><b>Striated</b>, but cells branch and connect at dark lines (intercalated discs).</li>
+      <li>Each cell usually has <b>one nucleus</b>, occasionally two.</li>
+      <li>Found only in the wall of the heart.</li>
+    </ul>
+  </div>
+  <div class="col" style="flex:0.7">
+    <svg class="diagram svg" viewBox="0 0 300 160" width="100%">
+      <path d="M30 90 L110 90 L140 60 L170 90 L240 90 L270 120 L240 120 L200 120 L170 90" fill="none" stroke="#161821" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M110 90 L140 120 L170 90" fill="none" stroke="#161821" stroke-width="6"/>
+      <line x1="140" y1="60" x2="140" y2="120" stroke="#b23a3a" stroke-width="3"/>
+      <line x1="200" y1="80" x2="200" y2="130" stroke="#b23a3a" stroke-width="3"/>
+      <circle cx="90" cy="90" r="5" fill="#2b50c8"/><circle cx="220" cy="100" r="5" fill="#2b50c8"/>
+      <text x="150" y="150" text-anchor="middle" font-size="14" font-family="Archivo">branched, one nucleus, dark lines</text>
+    </svg>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2</span><span>slide 4 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Type 3</div>
+<h2>Smooth muscle</h2>
+<div class="cols">
+  <div class="col">
+    <ul>
+      <li><b>Involuntary</b> &mdash; you do not control it.</li>
+      <li><b>No stripes</b> under a microscope.</li>
+      <li>Each cell is spindle-shaped, with <b>one nucleus</b>.</li>
+      <li>Rarely tires. Found in the walls of organs and blood vessels (stomach, intestines, bladder).</li>
+    </ul>
+  </div>
+  <div class="col" style="flex:0.7">
+    <svg class="diagram svg" viewBox="0 0 300 160" width="100%">
+      <ellipse cx="90" cy="80" rx="55" ry="16" fill="#fbe6c8" stroke="#161821" stroke-width="2"/>
+      <ellipse cx="190" cy="80" rx="55" ry="16" fill="#fbe6c8" stroke="#161821" stroke-width="2"/>
+      <circle cx="90" cy="80" r="5" fill="#2b50c8"/><circle cx="190" cy="80" r="5" fill="#2b50c8"/>
+      <text x="150" y="140" text-anchor="middle" font-size="14" font-family="Archivo">spindle-shaped, no stripes</text>
+    </svg>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2</span><span>slide 5 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Side by side</div>
+<h2>Compare all three</h2>
+<table>
+<tr><th>Feature</th><th>Skeletal</th><th>Cardiac</th><th>Smooth</th></tr>
+<tr><td>Control</td><td>Voluntary</td><td>Involuntary</td><td>Involuntary</td></tr>
+<tr><td>Stripes</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+<tr><td>Nuclei per cell</td><td>Many</td><td>One</td><td>One</td></tr>
+<tr><td>Where found</td><td>Attached to bone</td><td>Heart wall only</td><td>Organ &amp; vessel walls</td></tr>
+</table>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2</span><span>slide 6 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Case study</div>
+<div class="kicker">Identify the tissue</div>
+<h2>Mystery sample 1</h2>
+<p class="bigp">A tissue sample has cells that branch and connect to each other at dark lines. The cells have stripes. Each cell has one nucleus.</p>
+<div class="dobox"><div class="dolabel">Turn and talk</div><p>Where did this sample most likely come from?</p></div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2</span><span>slide 7 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Case study</div>
+<div class="kicker">Identify the tissue</div>
+<h2>Mystery sample 2</h2>
+<p class="bigp">You do not decide to move food through your intestines. The muscle that does this works slowly for hours without tiring.</p>
+<div class="dobox"><div class="dolabel">Turn and talk</div><p>Which tissue is it, and how do you know?</p></div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2</span><span>slide 8 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Catch the mistake</div>
+<h2>A classmate's claim</h2>
+<div class="prompt">"The biceps brachii and the heart are both striated, so they must be the same type of muscle."</div>
+<p class="bigp" style="font-size:24px">What is wrong with this claim? Name one way skeletal and cardiac muscle differ.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2</span><span>slide 9 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Why it matters</div>
+<h2>Structure fits the job</h2>
+<ul>
+  <li>Skeletal muscle needs to contract fast and on command &mdash; many nuclei support fast protein-making for quick, powerful contractions.</li>
+  <li>Cardiac muscle needs to contract in a steady, connected rhythm &mdash; the branching and intercalated discs let the signal spread cell to cell.</li>
+  <li>Smooth muscle needs to hold a slow squeeze for a long time without tiring &mdash; found wherever the body needs slow, steady pressure.</li>
+</ul>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2</span><span>slide 10 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Turn and talk</div>
+<div class="kicker">Check your understanding</div>
+<h2>Predict the tissue</h2>
+<p class="bigp" style="margin-top:20px">A patient's blood vessel walls need to slowly narrow to raise blood pressure. Which type of muscle does this, and why does it fit the job?</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2</span><span>slide 11 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Exit ticket &middot; notebook</div>
+<h2>Before you leave</h2>
+<div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>Fill in a three-row table: for skeletal, cardiac, and smooth muscle, write whether it is voluntary or involuntary and whether it has stripes.</p>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2</span><span>slide 12 of 13</span></div>
+</div>
+
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Turn it in</div>
+<h2>Weekly warm-up and exit ticket page</h2>
+<p class="bigp">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2</span><span>slide 13 of 13</span></div>
+</div>
+
+</div></div>
+<div class="nav"><span id="counter"></span>
+  <button onclick="step(-1)">&#8592;</button>
+  <button onclick="step(1)">&#8594;</button>
+</div>
+<script>
+// Shared slide-deck script for Unit 2.5 Muscular System lesson decks. Do not fork per day.
+var slides = document.querySelectorAll(".slide");
+var i = 0;
+function show(n) {
+  slides[i].classList.remove("active");
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides[i].classList.add("active");
+  var c = document.getElementById("counter");
+  if (c) c.textContent = (i + 1) + " / " + slides.length;
+}
+function step(d) { show(i + d); }
+function fit() {
+  var s = Math.min(window.innerWidth / 1300, window.innerHeight / 740);
+  document.getElementById("frame").style.transform = "scale(" + s + ")";
+}
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") step(1);
+  if (e.key === "ArrowLeft" || e.key === "PageUp") step(-1);
+});
+window.addEventListener("resize", fit);
+fit(); show(0);
+
+</script>
+</body>
+</html>
