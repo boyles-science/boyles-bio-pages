@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joint Families · A&amp;P 1.4.11</title>
+<style>
+:root { --paper:#FBF7EF; --ink:#26241E; --blue:#1E3FA8; --green:#1F7A32; --gold:#8A6D1C;
+        --tint:#F3EDDF; --line:#D8CFBB; --muted:#6E6858; --red:#C0472E; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; font-size:18px; line-height:1.45; }
+header { padding:14px 16px 8px; border-top:5px solid var(--ink); border-bottom:1px solid var(--ink); }
+header .pub { font:700 13px Arial,sans-serif; letter-spacing:.16em; text-transform:uppercase; }
+h1 { font-size:26px; font-style:italic; font-weight:500; margin:6px 0 2px; line-height:1.15; }
+header p { margin:0; color:var(--muted); font-size:16px; }
+nav { display:flex; gap:6px; padding:10px 16px 0; flex-wrap:wrap; }
+nav button { flex:1 1 22%; min-width:70px; font:700 13px Arial,sans-serif; letter-spacing:.02em; text-transform:uppercase;
+             padding:10px 6px; border:2px solid var(--line); background:#fff; color:var(--muted); cursor:pointer; }
+nav button[aria-selected="true"] { border-color:var(--ink); background:var(--ink); color:var(--paper); }
+main { padding:12px 16px 40px; max-width:900px; margin:0 auto; }
+section { display:none; } section.on { display:block; }
+h2 { font-size:22px; font-style:italic; font-weight:500; margin:8px 0 4px; }
+.do { background:var(--tint); border-left:5px solid var(--blue); padding:8px 12px; margin:8px 0 12px; }
+.do b { color:var(--blue); }
+.stage { background:#fff; border:2px solid var(--ink); padding:6px; }
+svg { display:block; width:100%; height:auto; }
+.picks { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:6px; margin:10px 0; }
+.picks button { font:700 15px Arial,sans-serif; padding:12px 8px; border:2px solid var(--line); background:#fff; cursor:pointer; text-align:left; }
+.picks button[aria-pressed="true"] { border-color:var(--ink); background:var(--tint); }
+.card { background:#fff; border:2px solid var(--ink); padding:10px 14px; min-height:150px; }
+.card h3 { margin:0 0 4px; font-size:22px; color:var(--blue); }
+.card .tag { display:inline-block; font:700 13px Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; background:var(--tint); border:1px solid var(--line); padding:2px 8px; margin:0 6px 6px 0; }
+.card dl { margin:6px 0 0; } .card dt { font:700 13px Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); margin-top:8px; }
+.card dd { margin:2px 0 0; }
+g.hot { cursor:pointer; outline:none; } g.hot circle.dot { fill:#fff; stroke:var(--blue); stroke-width:4; }
+g.hot.sel circle.dot { fill:var(--blue); } g.hot:focus-visible circle.dot { stroke:var(--ink); stroke-width:5; }
+g.hot text { font:700 15px Arial,sans-serif; fill:var(--ink); pointer-events:none; paint-order:stroke; stroke:#fff; stroke-width:5px; stroke-linejoin:round; }
+.fam { display:grid; gap:10px; margin:10px 0; }
+.fam .f { background:#fff; border:2px solid var(--ink); padding:8px 14px; }
+.fam h3 { margin:2px 0; font-size:20px; color:var(--blue); }
+.row { display:grid; grid-template-columns:110px 1fr; gap:8px; align-items:center; margin:6px 0; font:700 13px Arial,sans-serif; letter-spacing:.05em; text-transform:uppercase; }
+.bar { height:16px; background:var(--tint); border:1px solid var(--ink); } .bar i { display:block; height:100%; background:var(--blue); }
+.bar.g i { background:var(--green); }
+.fam p { margin:6px 0 2px; }
+.slider { display:flex; align-items:center; gap:10px; font:700 15px Arial,sans-serif; margin:10px 0; }
+.slider input { flex:1; height:32px; }
+.say { background:#fff; border:2px solid var(--ink); padding:8px 12px; min-height:84px; }
+.say p { margin:4px 0; }
+.small { font-size:15px; color:var(--muted); font-style:italic; }
+button.act { font:700 15px Arial,sans-serif; letter-spacing:.06em; text-transform:uppercase; padding:12px 16px; background:var(--ink); color:var(--paper); border:0; cursor:pointer; margin:6px 6px 0 0; }
+button.act.alt { background:#fff; color:var(--ink); border:2px solid var(--ink); }
+textarea { width:100%; min-height:84px; font:17px Georgia,serif; padding:8px; border:2px solid var(--line); background:#fff; }
+label.q { display:block; font-weight:700; margin-top:12px; }
+.step { display:flex; justify-content:space-between; margin-top:18px; }
+@media (min-width:860px) {
+  main { max-width:1240px; }
+  .cols { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:20px; align-items:start; }
+  .cols .stage svg { max-height:62vh; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="pub">Anatomy · Unit 1.4 · Day 11</div>
+  <h1>Joint families</h1>
+  <p>No supplies needed. You need your notebook, a pencil, and this page.</p>
+</header>
+<nav role="tablist" aria-label="Steps">
+  <button role="tab" aria-selected="true" data-go="0">1 Families</button>
+  <button role="tab" aria-selected="false" data-go="1">2 Stations</button>
+  <button role="tab" aria-selected="false" data-go="2">3 Trade-off</button>
+  <button role="tab" aria-selected="false" data-go="3">4 Write</button>
+</nav>
+<main>
+
+<!-- STEP 1 -->
+<section class="on" id="s0">
+  <h2>Step 1 · Meet the three joint families</h2>
+  <p>A <b>joint</b> is a place where two bones meet. Joints are sorted into three families by how they are built.</p>
+  <div class="do"><b>Do this in your notebook.</b> Finish the sentences in today's <b>Write This</b> column. Use the cards below. Then answer the warm up: <i>Which joint in your body moves the most?</i></div>
+  <div class="fam">
+    <div class="f"><h3>Fibrous joints</h3>
+      <div class="row">Movement<div class="bar"><i style="width:6%"></i></div></div>
+      <div class="row">Stability<div class="bar g"><i style="width:95%"></i></div></div>
+      <p>Little or no movement. Example: the sutures (seams) between skull bones. Built for protection.</p></div>
+    <div class="f"><h3>Cartilaginous joints</h3>
+      <div class="row">Movement<div class="bar"><i style="width:35%"></i></div></div>
+      <div class="row">Stability<div class="bar g"><i style="width:65%"></i></div></div>
+      <p>Limited movement. Example: the discs between the vertebrae (back bones). They absorb force.</p></div>
+    <div class="f"><h3>Synovial joints</h3>
+      <div class="row">Movement<div class="bar"><i style="width:92%"></i></div></div>
+      <div class="row">Stability<div class="bar g"><i style="width:30%"></i></div></div>
+      <p>The most movement. They have a joint cavity (a space inside the joint). Examples: shoulder, elbow, knee.</p></div>
+  </div>
+  <p class="small">The bars show ideas, not real measurements.</p>
+  <div class="step"><span></span><button class="act" data-go="1">Next: Stations →</button></div>
+</section>
+
+<!-- STEP 2 -->
+<section id="s1">
+  <h2>Step 2 · Six joint stations</h2>
+  <p>All six joints here are synovial joints. Each one is a different kind.</p>
+  <div class="do"><b>Do this at each station.</b> <b>Locate</b> it: tap the joint, then find it on your own body. <b>Classify</b> it: read its type. <b>Act it out</b>: move your own joint. <b>Record</b>: add a row to your notebook table.</div>
+  <div class="cols">
+  <div class="L"><div class="stage">
+    <svg id="body" viewBox="0 0 640 440" role="img" aria-label="A body outline and a hand with six joints you can tap: neck, shoulder, elbow, wrist bones, knuckles, and thumb.">
+      <g fill="#E4D9B5" stroke="#26241E" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+        <circle cx="150" cy="60" r="38"/>
+        <rect x="136" y="96" width="28" height="22" rx="6"/>
+        <path d="M88 124 Q150 108 212 124 L222 280 L78 280 Z"/>
+      </g>
+      <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M88 128 L50 220 L28 300 M212 128 L250 220 L272 300 M100 280 L96 420 M200 280 L204 420" stroke="#26241E" stroke-width="30"/>
+        <path d="M88 128 L50 220 L28 300 M212 128 L250 220 L272 300" stroke="#E4D9B5" stroke-width="24"/>
+        <path d="M100 280 L96 420 M200 280 L204 420" stroke="#E4D9B5" stroke-width="24"/>
+      </g>
+      <!-- hand, enlarged -->
+      <g fill="#E4D9B5" stroke="#26241E" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+        <rect x="430" y="270" width="110" height="60" rx="14"/>
+        <rect x="420" y="170" width="24" height="100" rx="10"/><rect x="452" y="150" width="24" height="120" rx="10"/>
+        <rect x="484" y="156" width="24" height="114" rx="10"/><rect x="516" y="178" width="24" height="92" rx="10"/>
+        <path d="M424 300 L372 252 L392 232 L440 276 Z"/>
+        <rect x="440" y="330" width="90" height="70" rx="12"/>
+      </g>
+      <g class="hot" data-j="neck" tabindex="0" role="button" aria-label="Neck"><circle class="dot" cx="150" cy="106" r="15"/><text x="174" y="112">Neck</text></g>
+      <g class="hot" data-j="shoulder" tabindex="0" role="button" aria-label="Shoulder"><circle class="dot" cx="88" cy="132" r="15"/><text x="8" y="108">Shoulder</text></g>
+      <g class="hot" data-j="elbow" tabindex="0" role="button" aria-label="Elbow"><circle class="dot" cx="50" cy="218" r="15"/><text x="72" y="244">Elbow</text></g>
+      <g class="hot" data-j="carpals" tabindex="0" role="button" aria-label="Wrist bones, carpals"><circle class="dot" cx="485" cy="352" r="15"/><text x="508" y="358">Carpals</text></g>
+      <g class="hot" data-j="knuckles" tabindex="0" role="button" aria-label="Knuckles"><circle class="dot" cx="482" cy="262" r="15"/><text x="548" y="268">Knuckles</text></g>
+      <g class="hot" data-j="thumb" tabindex="0" role="button" aria-label="Thumb"><circle class="dot" cx="400" cy="270" r="15"/><text x="330" y="296">Thumb</text></g>
+    </svg>
+  </div></div>
+  <div class="R">
+    <div class="picks" id="picks"></div>
+    <div class="card" id="jinfo"><h3>Tap a joint</h3><p>Tap a dot on the picture or a button. You will see the station steps.</p></div>
+  </div>
+  </div>
+  <div class="do"><b>Notebook table.</b> Make columns: <i>joint</i> · <i>type</i> · <i>movement you felt</i> · <i>why it has that range of movement</i>. Fill in one row per station.</div>
+  <div class="step"><button class="act alt" data-go="0">← Back</button><button class="act" data-go="2">Next: Trade-off →</button></div>
+</section>
+
+<!-- STEP 3 -->
+<section id="s2">
+  <h2>Step 3 · The trade-off</h2>
+  <p>A joint that moves a lot is easier to injure. A joint that is safe cannot move much. Every joint is a trade.</p>
+  <div class="do"><b>Do this.</b> Move the slider from <b>stable</b> to <b>free movement</b>. Read what each family gives up.</div>
+  <div class="slide slider"><span>Stable</span><input id="trade" type="range" min="0" max="2" step="1" value="0" aria-label="From stable to free movement"><span>Free movement</span></div>
+  <div class="say" id="tsay" aria-live="polite"></div>
+  <p><b>Shoulder:</b> the greatest range of motion, and the joint most often dislocated. (To dislocate means to pop out of place.)</p>
+  <div class="step"><button class="act alt" data-go="1">← Back</button><button class="act" data-go="3">Next: Write →</button></div>
+</section>
+
+<!-- STEP 4 -->
+<section id="s3">
+  <h2>Step 4 · Mark, ask, link</h2>
+  <div class="do"><b>Do this.</b> Write your answers in your notebook. You can also type them here. Typing here is a copy for you. Your notebook is what you turn in.</div>
+  <label class="q" for="w1">1. Which joint type allows the greatest range of motion?</label>
+  <textarea id="w1" data-save></textarea>
+  <label class="q" for="w2">2. Mark: star the joint type with the most movement in your notebook. Which joint on your body has it?</label>
+  <textarea id="w2" data-save></textarea>
+  <label class="q" for="w3">3. Ask: which joint type do you need to practice?</label>
+  <textarea id="w3" data-save></textarea>
+  <label class="q" for="w4">4. Link: connect the movement and stability trade-off to shoulder injuries or skull protection.</label>
+  <textarea id="w4" data-save></textarea>
+  <div class="do" style="margin-top:14px"><b>Exit ticket.</b> In your notebook: which joint type is your elbow?</div>
+  <p><b>Next class:</b> Day 12, synovial joints up close.</p>
+  <button class="act" id="copyBtn">Copy my typed answers</button><span id="copied" class="small" role="status"></span>
+  <div class="step"><button class="act alt" data-go="2">← Back</button><span></span></div>
+</section>
+</main>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('nav button')), secs=[].slice.call(document.querySelectorAll('section'));
+  function go(i){
+    secs.forEach(function(s,k){ s.classList.toggle('on',k===i); });
+    tabs.forEach(function(t,k){ t.setAttribute('aria-selected',k===i); });
+    window.scrollTo(0,0);
+  }
+  [].forEach.call(document.querySelectorAll('[data-go]'),function(b){ b.addEventListener('click',function(){ go(+b.dataset.go); }); });
+
+  /* stations */
+  var J={
+    elbow:{n:'Elbow',t:'Hinge',loc:'Where your upper arm bone meets your forearm bones.',move:'It moves like a door hinge: it bends and straightens.',act:'Bend and straighten your arm. Does it move in one direction or many?'},
+    shoulder:{n:'Shoulder',t:'Ball-and-socket',loc:'Where your upper arm bone meets your shoulder blade.',move:'It moves in many directions. It has the greatest range of motion.',act:'Swing your arm in a big circle. Then raise it to the side and to the front.'},
+    neck:{n:'Neck, C1 and C2',t:'Pivot',loc:'The top two neck bones, called C1 and C2.',move:'One bone turns around the other.',act:'Turn your head to look left, then right. Try to nod without turning. Notice what is different from your shoulder.'},
+    carpals:{n:'Carpals',t:'Gliding',loc:'The small bones of your wrist.',move:'Flat surfaces slide over each other. Each one moves only a little.',act:'Move your wrist up, down, and side to side. Feel the small, sliding movements.'},
+    knuckles:{n:'Knuckles',t:'Condyloid',loc:'Where your hand bones meet your finger bones.',move:'They bend and straighten, and they move a little from side to side.',act:'Make a fist, then open it. Spread your fingers apart and bring them back together.'},
+    thumb:{n:'Thumb',t:'Saddle',loc:'Where your thumb meets your wrist.',move:'It moves in more ways than a hinge, which lets your thumb cross your palm.',act:'Touch your thumb to the base of your little finger. Then move it back out.'}
+  };
+  var order=['elbow','shoulder','neck','carpals','knuckles','thumb'], picks=document.getElementById('picks'), info=document.getElementById('jinfo');
+  order.forEach(function(k,i){
+    var b=document.createElement('button'); b.type='button'; b.dataset.j=k; b.setAttribute('aria-pressed','false');
+    b.textContent=(i+1)+'. '+J[k].n; b.addEventListener('click',function(){ pick(k); }); picks.appendChild(b);
+  });
+  function pick(k){
+    var j=J[k];
+    info.innerHTML='<h3>'+j.n+'</h3><span class="tag">Synovial joint</span><span class="tag">'+j.t+'</span>'+
+      '<dl><dt>1 Locate</dt><dd>'+j.loc+' Find it on your own body.</dd>'+
+      '<dt>2 Classify</dt><dd>Type: <b>'+j.t+'</b>. '+j.move+'</dd>'+
+      '<dt>3 Act it out</dt><dd>'+j.act+'</dd>'+
+      '<dt>4 Record</dt><dd>Add a row to your table. Write the evidence for why this joint has its range of movement.</dd></dl>';
+    [].forEach.call(document.querySelectorAll('g.hot'),function(g){ g.classList.toggle('sel',g.dataset.j===k); });
+    [].forEach.call(picks.children,function(b){ b.setAttribute('aria-pressed',b.dataset.j===k); });
+  }
+  [].forEach.call(document.querySelectorAll('g.hot'),function(g){
+    g.addEventListener('click',function(){ pick(g.dataset.j); });
+    g.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pick(g.dataset.j); } });
+  });
+
+  /* trade-off */
+  var T=[
+    '<p><b>Fibrous: the skull sutures.</b> Almost no movement, so the brain stays protected.</p><p>What it gives up: movement.</p>',
+    '<p><b>Cartilaginous: the vertebral discs.</b> A little movement each, so the spine can bend and absorb shock.</p><p>What it gives up: some stability, and a lot of movement.</p>',
+    '<p><b>Synovial: shoulder, elbow, knee.</b> The most movement, because the joint has a cavity.</p><p>What it gives up: stability. More movement often means less stability.</p>'
+  ];
+  var tr=document.getElementById('trade'), ts=document.getElementById('tsay');
+  function drawT(){ ts.innerHTML=T[+tr.value]; } tr.addEventListener('input',drawT); drawT();
+
+  /* writing */
+  var boxes=[].slice.call(document.querySelectorAll('textarea[data-save]'));
+  boxes.forEach(function(t){
+    try{ var v=localStorage.getItem('anp111-'+t.id); if(v) t.value=v; }catch(e){}
+    t.addEventListener('input',function(){ try{ localStorage.setItem('anp111-'+t.id,t.value); }catch(e){} });
+  });
+  var cp=document.getElementById('copied');
+  document.getElementById('copyBtn').addEventListener('click',function(){
+    var txt=boxes.map(function(t,i){ return (i+1)+'. '+t.value; }).join('\n\n');
+    function ok(){ cp.textContent=' Copied.'; }
+    function fallback(){ var t=document.createElement('textarea'); t.value=txt; document.body.appendChild(t); t.select(); try{ document.execCommand('copy'); ok(); }catch(e){ cp.textContent=' Could not copy. Select the text and copy it.'; } document.body.removeChild(t); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok,fallback); } else fallback();
+  });
+})();
+</script>
+</body>
+</html>
