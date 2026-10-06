@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inside a Joint · A&amp;P 1.4.12</title>
+<style>
+:root { --paper:#FBF7EF; --ink:#26241E; --blue:#1E3FA8; --green:#1F7A32; --gold:#8A6D1C;
+        --tint:#F3EDDF; --line:#D8CFBB; --muted:#6E6858; --red:#C0472E; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; font-size:18px; line-height:1.45; }
+header { padding:14px 16px 8px; border-top:5px solid var(--ink); border-bottom:1px solid var(--ink); }
+header .pub { font:700 13px Arial,sans-serif; letter-spacing:.16em; text-transform:uppercase; }
+h1 { font-size:26px; font-style:italic; font-weight:500; margin:6px 0 2px; line-height:1.15; }
+header p { margin:0; color:var(--muted); font-size:16px; }
+nav { display:flex; gap:6px; padding:10px 16px 0; flex-wrap:wrap; }
+nav button { flex:1 1 22%; min-width:70px; font:700 13px Arial,sans-serif; letter-spacing:.02em; text-transform:uppercase;
+             padding:10px 6px; border:2px solid var(--line); background:#fff; color:var(--muted); cursor:pointer; }
+nav button[aria-selected="true"] { border-color:var(--ink); background:var(--ink); color:var(--paper); }
+main { padding:12px 16px 40px; max-width:900px; margin:0 auto; }
+section { display:none; } section.on { display:block; }
+h2 { font-size:22px; font-style:italic; font-weight:500; margin:8px 0 4px; }
+.do { background:var(--tint); border-left:5px solid var(--blue); padding:8px 12px; margin:8px 0 12px; }
+.do b { color:var(--blue); }
+.stage { background:#fff; border:2px solid var(--ink); padding:6px; }
+svg { display:block; width:100%; height:auto; }
+.parts { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:6px; margin:10px 0; }
+.parts button { font:700 15px Arial,sans-serif; padding:12px 8px; border:2px solid var(--line); background:#fff; cursor:pointer; text-align:left; }
+.parts button[aria-pressed="true"] { border-color:var(--ink); background:var(--tint); }
+.sw { display:inline-block; width:12px; height:12px; margin-right:6px; border:1px solid var(--ink); vertical-align:-1px; }
+.card { background:#fff; border:2px solid var(--ink); padding:10px 14px; min-height:150px; }
+.card h3 { margin:0 0 4px; font-size:22px; color:var(--blue); }
+.card .like { font-style:italic; color:var(--muted); }
+.card .tip { margin-top:8px; padding-top:6px; border-top:1px solid var(--line); font-size:16px; }
+g.part { cursor:pointer; outline:none; } svg.dimmed g.part:not(.sel) { opacity:.22; }
+g.part:focus-visible { outline:3px solid var(--ink); }
+.ctrl { display:grid; gap:8px; margin:10px 0; }
+.modes { display:flex; gap:6px; }
+.modes label { flex:1; border:2px solid var(--line); background:#fff; padding:10px; font:700 15px Arial,sans-serif; text-align:center; cursor:pointer; }
+.modes input { position:absolute; opacity:0; }
+.modes input:checked + span { color:var(--blue); }
+.modes label:has(input:checked) { border-color:var(--ink); background:var(--tint); }
+.checks { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:6px; }
+.checks label { display:flex; align-items:center; gap:8px; background:#fff; border:2px solid var(--line); padding:10px; font:700 15px Arial,sans-serif; cursor:pointer; }
+.checks input { width:22px; height:22px; flex:none; }
+.slide { display:flex; align-items:center; gap:10px; font:700 15px Arial,sans-serif; }
+.slide input { flex:1; height:32px; }
+.meters { display:grid; gap:8px; margin:10px 0; }
+.meter { font:700 14px Arial,sans-serif; letter-spacing:.05em; text-transform:uppercase; }
+.bar { height:18px; background:var(--tint); border:1px solid var(--ink); margin-top:3px; }
+.bar i { display:block; height:100%; width:0; background:var(--blue); transition:width .15s; }
+.bar.bad i { background:var(--red); }
+.say { background:#fff; border:2px solid var(--ink); padding:8px 12px; min-height:84px; }
+.say p { margin:4px 0; }
+.small { font-size:15px; color:var(--muted); font-style:italic; }
+button.act { font:700 15px Arial,sans-serif; letter-spacing:.06em; text-transform:uppercase; padding:12px 16px; background:var(--ink); color:var(--paper); border:0; cursor:pointer; margin:6px 6px 0 0; }
+button.act.alt { background:#fff; color:var(--ink); border:2px solid var(--ink); }
+.two { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; margin:10px 0; }
+.two .c { background:#fff; border:2px solid var(--ink); padding:8px 14px; }
+.two .c.g { border-color:var(--green); } .two .c h3 { margin:2px 0; font-size:19px; }
+.two ul { margin:4px 0 6px; padding-left:20px; }
+textarea { width:100%; min-height:84px; font:17px Georgia,serif; padding:8px; border:2px solid var(--line); background:#fff; }
+label.q { display:block; font-weight:700; margin-top:12px; }
+.step { display:flex; justify-content:space-between; margin-top:18px; }
+@media (min-width:860px) {
+  main { max-width:1240px; }
+  .cols { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:20px; align-items:start; }
+  .cols .stage svg { max-height:62vh; }
+  .card { min-height:120px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="pub">Anatomy · Unit 1.4 · Day 12</div>
+  <h1>Inside a joint</h1>
+  <p>No supplies needed. You need your notebook, a pencil, and this page.</p>
+</header>
+<nav role="tablist" aria-label="Steps">
+  <button role="tab" aria-selected="true" data-go="0">1 Label</button>
+  <button role="tab" aria-selected="false" data-go="1">2 Test</button>
+  <button role="tab" aria-selected="false" data-go="2">3 Compare</button>
+  <button role="tab" aria-selected="false" data-go="3">4 Write</button>
+</nav>
+<main>
+
+<!-- STEP 1 -->
+<section class="on" id="s0">
+  <h2>Step 1 · Label the parts of a synovial joint</h2>
+  <p>A <b>synovial joint</b> is a joint with a space inside it that holds fluid. Your knee is one. Your shoulder is another.</p>
+  <div class="do"><b>Do this in your notebook.</b> Draw the joint with a pencil. Tap each part below. Write its name next to your drawing. Then write what it does in your own words.</div>
+  <div class="cols">
+  <div class="L"><div class="stage">
+    <svg id="jsvg" viewBox="0 0 700 470" role="img" aria-label="A cutaway of a synovial joint with two bones, cartilage, fluid, menisci, a capsule, ligaments, and a bursa. Tap a part button below to read about it.">
+      <g id="bones">
+        <path d="M330 10 L470 10 L470 150 Q500 160 500 178 L300 178 Q300 160 330 150 Z" fill="#E4D9B5" stroke="#26241E" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M330 460 L470 460 L470 320 Q500 310 500 292 L300 292 Q300 310 330 320 Z" fill="#E4D9B5" stroke="#26241E" stroke-width="3" stroke-linejoin="round"/>
+        <text x="400" y="80" text-anchor="middle" font-size="20" fill="#6E6858" font-style="italic">bone</text>
+        <text x="400" y="400" text-anchor="middle" font-size="20" fill="#6E6858" font-style="italic">bone</text>
+      </g>
+      <g class="part" id="p-fluid" data-part="fluid" tabindex="0" role="button" aria-label="Synovial fluid">
+        <rect x="312" y="184" width="176" height="104" fill="#CFE2F7"/>
+      </g>
+      <g class="part" id="p-cart" data-part="cart" tabindex="0" role="button" aria-label="Articular cartilage">
+        <path d="M303 176 L497 176" stroke="#1E3FA8" stroke-width="14" stroke-linecap="round"/>
+        <path d="M303 294 L497 294" stroke="#1E3FA8" stroke-width="14" stroke-linecap="round"/>
+      </g>
+      <g class="part" id="p-men" data-part="men" tabindex="0" role="button" aria-label="Menisci">
+        <path d="M306 184 L342 184 L330 214 L310 214 Z" fill="#7F8FC4" stroke="#26241E" stroke-width="2"/>
+        <path d="M494 184 L458 184 L470 214 L490 214 Z" fill="#7F8FC4" stroke="#26241E" stroke-width="2"/>
+        <path d="M306 286 L342 286 L330 258 L310 258 Z" fill="#7F8FC4" stroke="#26241E" stroke-width="2"/>
+        <path d="M494 286 L458 286 L470 258 L490 258 Z" fill="#7F8FC4" stroke="#26241E" stroke-width="2"/>
+      </g>
+      <g class="part" id="p-cap" data-part="cap" tabindex="0" role="button" aria-label="Joint capsule">
+        <path d="M286 150 Q252 236 286 320" stroke="#8A6D1C" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <path d="M514 150 Q548 236 514 320" stroke="#8A6D1C" stroke-width="14" fill="none" stroke-linecap="round"/>
+      </g>
+      <g class="part" id="p-lig" data-part="lig" tabindex="0" role="button" aria-label="Ligaments">
+        <rect x="226" y="110" width="16" height="250" rx="7" fill="#2E9E44" stroke="#26241E" stroke-width="2"/>
+        <rect x="558" y="110" width="16" height="250" rx="7" fill="#2E9E44" stroke="#26241E" stroke-width="2"/>
+      </g>
+      <g class="part" id="p-bur" data-part="bur" tabindex="0" role="button" aria-label="Bursa">
+        <ellipse cx="620" cy="60" rx="46" ry="24" fill="#CFE2F7" stroke="#1E3FA8" stroke-width="3"/>
+      </g>
+    </svg>
+  </div></div>
+  <div class="R"><div class="parts" id="partBtns"></div>
+  <div class="card" id="info"><h3>Tap a part</h3><p>Tap a button or a part of the picture. You will see its name and its job.</p></div></div>
+  </div>
+  <div class="step"><span></span><button class="act" data-go="1">Next: Test it →</button></div>
+</section>
+
+<!-- STEP 2 -->
+<section id="s1">
+  <h2>Step 2 · Test what each part does</h2>
+  <div class="do"><b>Do this.</b> Move the bend slider. Then switch off one part at a time. Watch the meters. In your notebook, write what changed for each part you switch off.</div>
+  <div class="cols">
+  <div class="L">
+  <div class="ctrl">
+    <div class="modes" role="radiogroup" aria-label="What to test">
+      <label><input type="radio" name="mode" value="joint" checked><span>Real joint</span></label>
+      <label><input type="radio" name="mode" value="hinge"><span>Door hinge</span></label>
+    </div>
+  </div>
+  <div class="stage">
+    <svg id="sim" viewBox="0 0 600 380" role="img" aria-label="A model of a joint that bends. Use the controls below.">
+      <rect x="258" y="0" width="84" height="150" rx="10" fill="#E4D9B5" stroke="#26241E" stroke-width="3"/>
+      <g id="hingePin" style="display:none"><circle cx="300" cy="182" r="14" fill="#8F8A7B" stroke="#26241E" stroke-width="3"/></g>
+      <g id="jt">
+        <ellipse id="mFluid" cx="300" cy="183" rx="46" ry="10" fill="#CFE2F7"/>
+        <path id="mMenL" d="M258 154 L286 172 L262 178 Z" fill="#7F8FC4" stroke="#26241E" stroke-width="2"/>
+        <path id="mMenR" d="M342 154 L314 172 L338 178 Z" fill="#7F8FC4" stroke="#26241E" stroke-width="2"/>
+        <path id="mCapL" d="M254 140 Q226 183 254 226" stroke="#8A6D1C" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <path id="mCapR" d="M346 140 Q374 183 346 226" stroke="#8A6D1C" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <line id="mLigL" x1="240" y1="110" x2="240" y2="260" stroke="#2E9E44" stroke-width="8" stroke-linecap="round"/>
+        <line id="mLigR" x1="360" y1="110" x2="360" y2="260" stroke="#2E9E44" stroke-width="8" stroke-linecap="round"/>
+        <g id="lower"><rect x="258" y="192" width="84" height="190" rx="10" fill="#E4D9B5" stroke="#26241E" stroke-width="3"/></g>
+        <path id="mCartU" d="M262 152 L338 152" stroke="#1E3FA8" stroke-width="9" stroke-linecap="round"/>
+        <g id="lowerCart"><path id="mCartL" d="M262 188 L338 188" stroke="#1E3FA8" stroke-width="9" stroke-linecap="round"/></g>
+        <g id="sparks" opacity="0" stroke="#C0472E" stroke-width="4" stroke-linecap="round">
+          <path d="M270 170 l-8 -8 M290 174 l-4 -12 M310 174 l4 -12 M330 170 l8 -8 M300 176 l0 -14"/>
+        </g>
+      </g>
+    </svg>
+  </div></div>
+  <div class="R">
+  <div class="ctrl">
+    <div class="slide"><label for="bend">Bend</label><input id="bend" type="range" min="0" max="120" value="0"><span id="bendv">0°</span></div>
+    <div class="checks" id="jointChecks">
+      <label><input type="checkbox" data-t="cart" checked> Articular cartilage</label>
+      <label><input type="checkbox" data-t="fluid" checked> Synovial fluid</label>
+      <label><input type="checkbox" data-t="men" checked> Menisci</label>
+      <label><input type="checkbox" data-t="cap" checked> Joint capsule</label>
+      <label><input type="checkbox" data-t="lig" checked> Ligaments</label>
+    </div>
+    <div class="checks" id="hingeChecks" style="display:none">
+      <label><input type="checkbox" id="oil"> Add oil from outside</label>
+    </div>
+  </div>
+  <div class="meters">
+    <div class="meter">Rubbing (friction) <span id="rubv"></span><div class="bar bad" id="rubb"><i></i></div></div>
+    <div class="meter">Wobble (loose, unstable) <span id="wobv"></span><div class="bar bad" id="wobb"><i></i></div></div>
+    <div class="meter">Wear from your bends <span id="wearv"></span><div class="bar bad" id="wearb"><i></i></div></div>
+  </div>
+  <div class="say" id="say" aria-live="polite"></div>
+  <button class="act alt" id="resetBtn">Reset test</button>
+  <p class="small">This is a model. The meters show ideas, not real measurements.</p>
+  </div></div>
+  <div class="step"><button class="act alt" data-go="0">← Back</button><button class="act" data-go="2">Next: Compare →</button></div>
+</section>
+
+<!-- STEP 3 -->
+<section id="s2">
+  <h2>Step 3 · Compare a door hinge to a real joint</h2>
+  <div class="do"><b>Do this.</b> Go back to Step 2. Test the <b>Door hinge</b>. Then test the <b>Real joint</b>. Keep bending. Watch the wear meter. Then read the table.</div>
+  <div class="two">
+    <div class="c"><h3>A door hinge</h3>
+      <ul><li>Two flat parts and a pin.</li><li>Needs oil added from outside.</li><li>Wears out. It cannot repair itself.</li></ul></div>
+    <div class="c g"><h3>A real joint</h3>
+      <ul><li>A cartilage cap on each bone end.</li><li>Fluid made inside the joint.</li><li>Capsule, ligaments, bursae, and menisci.</li><li>Living tissue that can respond.</li></ul></div>
+  </div>
+  <div class="do"><b>Do this in your notebook.</b> Make two columns: <i>door hinge</i> and <i>real joint</i>. Write two differences you saw in the test. Write one thing a door hinge cannot do.</div>
+  <p><b>Why injuries matter.</b> A <b>ligament</b> connects bone to bone. A <b>tendon</b> connects muscle to bone. Cartilage has few blood vessels, so damage may heal slowly. Menisci in the knee absorb shock and improve the fit, and they can tear.</p>
+  <div class="step"><button class="act alt" data-go="1">← Back</button><button class="act" data-go="3">Next: Write →</button></div>
+</section>
+
+<!-- STEP 4 -->
+<section id="s3">
+  <h2>Step 4 · Write what real joints have</h2>
+  <div class="do"><b>Do this.</b> Write your answers in your notebook. You can also type them here. Typing here is a copy for you. Your notebook is what you turn in.</div>
+  <label class="q" for="w1">1. Pick two parts of a synovial joint. Name each one and say its job.</label>
+  <textarea id="w1" data-save></textarea>
+  <label class="q" for="w2">2. What happened in the test when you switched off the cartilage and the fluid?</label>
+  <textarea id="w2" data-save></textarea>
+  <label class="q" for="w3">3. What does a real joint have that a simple hinge does not?</label>
+  <textarea id="w3" data-save></textarea>
+  <label class="q" for="w4">4. Name a joint injury you have heard of. Which part of the joint does it hurt?</label>
+  <textarea id="w4" data-save></textarea>
+  <label class="q" for="w5">5. One question I still have about cartilage, bursae, or menisci:</label>
+  <textarea id="w5" data-save></textarea>
+  <div class="do" style="margin-top:14px"><b>Exit ticket.</b> In your notebook, name two structures found in a synovial joint and explain one job.</div>
+  <p><b>Next class:</b> Day 13, bones as levers, and CFA 3 in Canvas.</p>
+  <button class="act" id="copyBtn">Copy my typed answers</button><span id="copied" class="small" role="status"></span>
+  <div class="step"><button class="act alt" data-go="2">← Back</button><span></span></div>
+</section>
+</main>
+
+<script>
+(function(){
+  /* ---------- tabs ---------- */
+  var tabs=[].slice.call(document.querySelectorAll('nav button')), secs=[].slice.call(document.querySelectorAll('section'));
+  function go(i){
+    secs.forEach(function(s,k){ s.classList.toggle('on',k===i); });
+    tabs.forEach(function(t,k){ t.setAttribute('aria-selected',k===i); });
+    window.scrollTo(0,0);
+  }
+  [].forEach.call(document.querySelectorAll('[data-go]'),function(b){ b.addEventListener('click',function(){ go(+b.dataset.go); }); });
+
+  /* ---------- step 1: explore ---------- */
+  var P={
+    cart:{n:'Articular cartilage',c:'#1E3FA8',d:'A smooth, slippery cap on the end of each bone. It reduces friction. Friction is the rubbing force when two surfaces slide against each other.',l:'Like the smooth white cap on the end of a chicken bone.',t:'Cartilage has few blood vessels, so damage may heal slowly.'},
+    fluid:{n:'Synovial fluid',c:'#9CC4EE',d:'A thin liquid inside the joint. It lubricates the joint. To lubricate means to make surfaces slippery. It also nourishes the joint.',l:'Like oil in a machine.',t:''},
+    men:{n:'Menisci',c:'#7F8FC4',d:'Pads in the knee. One pad is a meniscus. Menisci absorb shock and improve the fit between the bones.',l:'Like shock-absorbing pads.',t:'Menisci can tear.'},
+    cap:{n:'Joint capsule',c:'#8A6D1C',d:'A tough sleeve around the joint. It encloses the joint and supports it.',l:'Like a sleeve around the joint.',t:''},
+    lig:{n:'Ligaments',c:'#2E9E44',d:'Strong bands that connect bone to bone. They help keep the joint stable.',l:'Like straps that tie one bone to the next.',t:'Do not mix it up: a tendon connects muscle to bone.'},
+    bur:{n:'Bursa',c:'#CFE2F7',d:'A small sac filled with fluid. A bursa reduces friction. It is a cushion. More than one is called bursae.',l:'Like a small water pillow.',t:''}
+  };
+  var order=['cart','fluid','men','cap','lig','bur'], svg=document.getElementById('jsvg'), info=document.getElementById('info'), btns=document.getElementById('partBtns');
+  order.forEach(function(k){
+    var b=document.createElement('button'); b.type='button'; b.dataset.p=k; b.setAttribute('aria-pressed','false');
+    b.innerHTML='<span class="sw" style="background:'+P[k].c+'"></span>'+P[k].n; b.addEventListener('click',function(){ pick(k); }); btns.appendChild(b);
+  });
+  function pick(k){
+    var p=P[k];
+    info.innerHTML='<h3>'+p.n+'</h3><p>'+p.d+'</p><p class="like">'+p.l+'</p>'+(p.t?'<p class="tip">'+p.t+'</p>':'');
+    svg.classList.add('dimmed');
+    [].forEach.call(svg.querySelectorAll('g.part'),function(g){ g.classList.toggle('sel',g.dataset.part===k); });
+    [].forEach.call(btns.children,function(b){ b.setAttribute('aria-pressed',b.dataset.p===k); });
+  }
+  [].forEach.call(svg.querySelectorAll('g.part'),function(g){
+    g.addEventListener('click',function(){ pick(g.dataset.part); });
+    g.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pick(g.dataset.part); } });
+  });
+
+  /* ---------- step 2: test ---------- */
+  var on={cart:true,fluid:true,men:true,cap:true,lig:true}, mode='joint', oiled=false, wear=0, lastAng=0;
+  var bend=document.getElementById('bend');
+  var el=function(i){ return document.getElementById(i); };
+  function show(id,v){ el(id).style.display=v?'':'none'; }
+  function rub(){ if(mode==='hinge') return oiled?15:70; return 5+(on.cart?0:50)+(on.fluid?0:30)+(on.men?0:7); }
+  function wob(){ if(mode==='hinge') return 10; return 5+(on.lig?0:45)+(on.cap?0:25)+(on.men?0:15); }
+  function bar(b,v){ el(b).firstElementChild.style.width=Math.min(100,v)+'%'; }
+  function say(){
+    var s=[];
+    if(mode==='hinge'){
+      s.push(oiled?'The hinge moves well for now. Someone had to add the oil from outside.':'No oil. The two parts rub, and the hinge cannot make its own oil.');
+      s.push('A hinge wears out. It cannot repair itself.');
+    } else {
+      var any=false;
+      if(!on.cart){ s.push('No cartilage: the bone ends rub on each other.'); any=true; }
+      if(!on.fluid){ s.push('No synovial fluid: nothing makes the surfaces slippery.'); any=true; }
+      if(!on.men){ s.push('No menisci: the bones fit less well, and shock is not absorbed.'); any=true; }
+      if(!on.cap){ s.push('No joint capsule: nothing encloses and supports the joint.'); any=true; }
+      if(!on.lig){ s.push('No ligaments: nothing ties bone to bone, so the joint wobbles.'); any=true; }
+      if(!any) s.push('All parts are in place. The bones glide, and the joint stays steady.');
+    }
+    el('say').innerHTML=s.map(function(t){ return '<p>'+t+'</p>'; }).join('');
+  }
+  function draw(){
+    var a=+bend.value, r=rub(), w=wob(), hinge=mode==='hinge';
+    el('bendv').textContent=a+'°';
+    var dx=(w/100)*14*Math.sin(a/6), dy=(w/100)*6*Math.cos(a/5);
+    el('lower').setAttribute('transform','translate('+dx.toFixed(1)+' '+dy.toFixed(1)+') rotate('+a+' 300 182)');
+    el('lowerCart').setAttribute('transform','translate('+dx.toFixed(1)+' '+dy.toFixed(1)+') rotate('+a+' 300 182)');
+    /* ligaments and capsule follow the lower bone */
+    function rot(x,y){ var t=a*Math.PI/180, X=x-300, Y=y-182; return [300+dx+X*Math.cos(t)-Y*Math.sin(t), 182+dy+X*Math.sin(t)+Y*Math.cos(t)]; }
+    var lo=rot(240,260), ro=rot(360,260);
+    el('mLigL').setAttribute('x2',lo[0].toFixed(1)); el('mLigL').setAttribute('y2',lo[1].toFixed(1));
+    el('mLigR').setAttribute('x2',ro[0].toFixed(1)); el('mLigR').setAttribute('y2',ro[1].toFixed(1));
+    show('mCartU',!hinge&&on.cart); show('lowerCart',!hinge&&on.cart);
+    show('mFluid',!hinge&&on.fluid); show('mMenL',!hinge&&on.men); show('mMenR',!hinge&&on.men);
+    show('mCapL',!hinge&&on.cap); show('mCapR',!hinge&&on.cap); show('mLigL',!hinge&&on.lig); show('mLigR',!hinge&&on.lig);
+    show('hingePin',hinge);
+    el('sparks').setAttribute('opacity',(a>4?Math.min(1,r/70):0).toFixed(2));
+    wear+=Math.abs(a-lastAng)*r/2500; lastAng=a;
+    bar('rubb',r); bar('wobb',w); bar('wearb',wear);
+    el('rubv').textContent=r<25?'· low':r<55?'· medium':'· high';
+    el('wobv').textContent=w<25?'· low':w<55?'· medium':'· high';
+    el('wearv').textContent=wear<10?'· small':wear<40?'· growing':'· large';
+  }
+  bend.addEventListener('input',draw);
+  [].forEach.call(document.querySelectorAll('#jointChecks input'),function(c){ c.addEventListener('change',function(){ on[c.dataset.t]=c.checked; say(); draw(); }); });
+  el('oil').addEventListener('change',function(){ oiled=el('oil').checked; say(); draw(); });
+  [].forEach.call(document.querySelectorAll('input[name=mode]'),function(r){ r.addEventListener('change',function(){
+    mode=r.value; show('jointChecks',mode==='joint'); show('hingeChecks',mode==='hinge'); wear=0; say(); draw(); }); });
+  el('resetBtn').addEventListener('click',function(){
+    on={cart:true,fluid:true,men:true,cap:true,lig:true}; oiled=false; wear=0; lastAng=0; bend.value=0; el('oil').checked=false;
+    [].forEach.call(document.querySelectorAll('#jointChecks input'),function(c){ c.checked=true; }); say(); draw(); });
+  say(); draw();
+
+  /* ---------- step 4: writing (saved only in this browser) ---------- */
+  var boxes=[].slice.call(document.querySelectorAll('textarea[data-save]'));
+  boxes.forEach(function(t){
+    try{ var v=localStorage.getItem('anp112-'+t.id); if(v) t.value=v; }catch(e){}
+    t.addEventListener('input',function(){ try{ localStorage.setItem('anp112-'+t.id,t.value); }catch(e){} });
+  });
+  el('copyBtn').addEventListener('click',function(){
+    var txt=boxes.map(function(t,i){ return (i+1)+'. '+t.value; }).join('\n\n');
+    function ok(){ el('copied').textContent=' Copied.'; }
+    function fallback(){ var t=document.createElement('textarea'); t.value=txt; document.body.appendChild(t); t.select(); try{ document.execCommand('copy'); ok(); }catch(e){ el('copied').textContent=' Could not copy. Select the text and copy it.'; } document.body.removeChild(t); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok,fallback); } else fallback();
+  });
+})();
+</script>
+</body>
+</html>
