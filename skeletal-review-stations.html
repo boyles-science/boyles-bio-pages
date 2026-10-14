@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skeletal Review: Prove It, Fix It</title>
+<!-- Content mirrors the markdown files in the parent folder (00 to 07). Edit the markdown first, then update the STATIONS list below. -->
+<style>
+  :root { --ink:#1a1a1a; --muted:#555; --line:#bbb; --accent:#1c3d99; --good:#1d6b34; --fix:#8a3b00; --bg:#fff; --panel:#f6f6f2; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Georgia, "Times New Roman", serif; font-size:18px; line-height:1.5; color:var(--ink); background:var(--bg); }
+  header { border-top:4px solid var(--ink); border-bottom:1px solid var(--ink); padding:10px 16px; font:700 13px/1.3 Arial, sans-serif; letter-spacing:.08em; text-transform:uppercase; }
+  main { max-width:860px; margin:0 auto; padding:16px; }
+  h1 { font-size:28px; margin:8px 0; font-weight:600; }
+  h2 { font-size:22px; margin:20px 0 8px; }
+  p { margin:8px 0; }
+  .muted { color:var(--muted); font-size:16px; }
+  .eq { border-top:2px solid var(--accent); border-bottom:2px solid var(--accent); padding:10px 0; margin:16px 0; font-style:italic; font-size:21px; }
+  nav.stations { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; margin:12px 0; }
+  button { font:inherit; cursor:pointer; }
+  .st { text-align:left; border:2px solid var(--ink); background:#fff; padding:12px; border-radius:6px; font-size:17px; }
+  .st:hover, .st:focus { background:var(--panel); outline:3px solid var(--accent); outline-offset:1px; }
+  .st .num { font:700 12px Arial, sans-serif; letter-spacing:.08em; color:var(--accent); display:block; }
+  .st .status { font:700 13px Arial, sans-serif; display:block; margin-top:6px; color:var(--muted); }
+  .st.done { border-color:var(--good); }
+  .st.done .status { color:var(--good); }
+  .bar { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 16px; }
+  .btn { border:2px solid var(--ink); background:#fff; padding:8px 14px; border-radius:6px; font-size:16px; }
+  .btn.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .btn:disabled { opacity:.45; cursor:not-allowed; }
+  .btn:hover:not(:disabled), .btn:focus { outline:3px solid var(--accent); outline-offset:1px; }
+  .ican { background:var(--panel); border-left:4px solid var(--accent); padding:10px 14px; margin:10px 0; }
+  .q { border:1px solid var(--line); border-radius:6px; padding:12px 14px; margin:14px 0; }
+  .q .qt { font-weight:700; margin-bottom:6px; }
+  .q .qt span { display:block; font-weight:400; margin-top:4px; }
+  textarea { width:100%; min-height:84px; font:inherit; font-size:17px; padding:8px; border:1px solid var(--ink); border-radius:4px; background:#fff; color:var(--ink); }
+  .ans { background:#eef6ef; border-left:4px solid var(--good); padding:8px 14px; margin:10px 0; }
+  .ans ul { margin:4px 0; padding-left:22px; }
+  .rate { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:8px; }
+  .rate .btn.sel-good { background:var(--good); border-color:var(--good); color:#fff; }
+  .rate .btn.sel-fix { background:var(--fix); border-color:var(--fix); color:#fff; }
+  .fixbox { background:#fdf3ea; border-left:4px solid var(--fix); padding:8px 14px; margin:10px 0; }
+  .fixbox label { display:block; font:700 14px Arial, sans-serif; margin:8px 0 4px; }
+  .fixbox textarea { min-height:56px; }
+  .case { border:1px dashed var(--ink); padding:10px 14px; margin:12px 0; }
+  table { border-collapse:collapse; width:100%; font-size:16px; }
+  th, td { border:1px solid var(--line); padding:6px 8px; text-align:left; }
+  .hidden { display:none; }
+  label.big { font-weight:700; display:block; margin-top:12px; }
+  input[type=text] { width:100%; font:inherit; font-size:17px; padding:8px; border:1px solid var(--ink); border-radius:4px; }
+</style>
+</head>
+<body>
+<header>Anatomy and Physiology &middot; Unit 1.4 &middot; Skeletal review</header>
+<main id="app"></main>
+
+<script>
+"use strict";
+var STATIONS = [
+  { id:1, title:"Bone structure, bone cells, and calcium",
+    ican:"I can explain what bone is made of, which cells build and break it down, and how bone helps keep blood calcium steady.",
+    intro:"Remodeling means bone is always being broken down and rebuilt.",
+    qs:[
+      { q:"Name four jobs (functions) of the skeletal system.",
+        a:["Support and movement, protection of organs, mineral storage (such as calcium), and blood cell production."] },
+      { q:"Compare compact bone and spongy bone. Say how each one's structure helps the bone. Which tissue inside bone makes blood cells?",
+        a:["Compact bone is dense and made of osteons, so it is strong.","Spongy bone has a network of thin beams called trabeculae, so it is light but still supportive.","Red marrow makes blood cells."] },
+      { q:"Three bone cells are osteoblasts, osteoclasts, and osteocytes. Write the job of each one.",
+        a:["Osteoblasts build new bone.","Osteoclasts break down bone.","Osteocytes maintain bone tissue and sense stress."] },
+      { q:"Most long bones start as cartilage that is replaced by bone. Name this process.",
+        a:["Endochondral ossification."] },
+      { q:"Blood calcium drops too low. Parathyroid hormone (PTH) is released. Explain what PTH does to bone and why that restores homeostasis.",
+        sub:"Homeostasis means steady conditions inside the body.",
+        a:["PTH increases the release of calcium from bone into the blood. Osteoclast activity rises.","Blood calcium goes back up to normal."] }
+    ] },
+  { id:2, title:"Axial skeleton",
+    ican:"I can name the parts of the axial skeleton and explain how their structure fits their job.",
+    intro:"The axial skeleton is the bones along the center line of the body.",
+    qs:[
+      { q:"Which group has only axial bones: skull, vertebral column, ribs; or femur, humerus, radius?",
+        a:["Skull, vertebral column, ribs. The other group is limb bones."] },
+      { q:"Cranial bones and facial bones are both in the skull. Explain how their main jobs differ.",
+        a:["Cranial bones protect the brain. Facial bones form the face and the jaw."] },
+      { q:"The lumbar vertebrae (lower back) are larger than the vertebrae in the neck. Explain why, using function. What makes the thoracic vertebrae (middle back) special?",
+        a:["The lumbar vertebrae support much of the body's weight. The thoracic vertebrae attach to ribs."] },
+      { q:"What makes a rib a \"true rib\"?",
+        a:["A true rib attaches directly to the sternum through costal cartilage."] }
+    ] },
+  { id:3, title:"Appendicular skeleton and bone markings",
+    ican:"I can name the bones of the limbs, explain how structure fits function, and explain what bone markings show.",
+    intro:"The appendicular skeleton is the arms, legs, and the girdles that attach them.",
+    qs:[
+      { q:"Which part of the arm is the humerus in? On which side of the forearm is the radius?",
+        a:["The humerus is in the upper arm. The radius is on the thumb side of the forearm."] },
+      { q:"Which lower leg bone bears most of your body weight? What does the patella do for the knee?",
+        a:["The tibia. The patella protects the knee and improves muscle leverage."] },
+      { q:"Define each bone marking: foramen, condyle, fossa.",
+        a:["A foramen is a hole or opening.","A condyle is a rounded joint projection.","A fossa is a shallow depression."] },
+      { q:"Explain why bones have markings.",
+        a:["Markings show where structures attach, pass through, or meet another bone."] }
+    ] },
+  { id:4, title:"Joints and levers",
+    ican:"I can match a joint's structure to how it moves, and describe how the body acts as a lever.",
+    intro:"A joint is a place where two bones meet. A lever is a rigid bar that turns around a fixed point.",
+    qs:[
+      { q:"What are fibrous joints best for? Give one example of where they are found.",
+        a:["Stability with little movement. Example: skull sutures."] },
+      { q:"Which synovial joint allows the greatest range of motion? Which type bends in only one direction? Name one joint of that type.",
+        a:["Ball-and-socket. A hinge joint bends in one direction. The elbow is a hinge joint."] },
+      { q:"What does synovial fluid do for a joint? What do ligaments connect? What do the menisci in the knee do?",
+        a:["Synovial fluid reduces friction during movement. Ligaments connect bone to bone. Menisci absorb shock and improve fit."] },
+      { q:"In a body lever, which part usually acts as the fulcrum (the fixed point)? What does the muscle provide?",
+        a:["The joint is the fulcrum. The muscle provides the effort. The load is what is being moved."] },
+      { q:"Is a biceps curl a first-, second-, or third-class lever?",
+        a:["A third-class lever."] },
+      { q:"The body uses many third-class levers. Explain why.",
+        a:["Third-class levers allow speed and range of motion."] }
+    ] },
+  { id:5, title:"Fractures and disorders",
+    ican:"I can put fracture healing in order and explain what each bone disorder does to bone or joints.",
+    intro:"A fracture is a break in a bone.",
+    qs:[
+      { q:"Put these healing stages in order: bone remodeling, hematoma (blood clot) formation, callus formation. Which one happens first, soon after the break?",
+        a:["Hematoma formation, callus formation, bone remodeling. Hematoma formation happens first."] },
+      { q:"Describe a greenstick fracture. Why is it common in children?",
+        a:["The bone bends and cracks on one side without breaking all the way through. It is common in children because their bones are more flexible."] },
+      { q:"Describe what osteoporosis does to bone. What happens between bone building and bone breakdown?",
+        a:["Osteoporosis makes bones less dense and more fragile. Over time, bone breakdown exceeds bone building."] },
+      { q:"Osteoarthritis and rheumatoid arthritis both affect joints. Explain how their causes differ.",
+        a:["Osteoarthritis comes from wearing down of the cartilage on joint surfaces.","Rheumatoid arthritis is an autoimmune inflammatory disorder, so the body's own immune system attacks the joints."] },
+      { q:"What is scoliosis?",
+        a:["An abnormal sideways curve of the spine."] }
+    ] },
+  { id:6, title:"Forensics and application",
+    ican:"I can use observations from bones to estimate age, sex, and height, and judge how strong the evidence is.",
+    intro:"Forensic means using science to answer questions about evidence. Quantitative evidence uses numbers. Qualitative evidence uses descriptions.",
+    qs:[
+      { q:"What do forensic scientists look at to estimate age at death?",
+        a:["How fused the growth plates and skull sutures are."] },
+      { q:"Which bone is most useful for estimating sex? Which measurement is most useful for estimating height?",
+        a:["The pelvis. The length of the long bones, such as the femur.","Bones can be used to estimate biological sex. They cannot show gender identity."] },
+      { q:"A femur length of 45 centimeters and a description of a skull's shape are two kinds of evidence. Which is quantitative and which is qualitative?",
+        a:["The femur length is quantitative. The skull shape description is qualitative."] },
+      { q:"A team has only one small bone fragment and no other data. Another team has the full skeleton and dental records. Which conclusion is weaker? Explain why.",
+        a:["The single fragment is weaker. One piece gives little data, and nothing else can confirm it.","Several kinds of consistent evidence make a stronger conclusion."] },
+      { q:"What should a good forensic conclusion include?",
+        a:["It should include the evidence and acknowledge uncertainty."] },
+      { q:"Practice case: write a short CER (claim, evidence, reasoning). Was this person an adult or a child when they died?",
+        caseText:["Made up for practice, not a real person. A team finds a complete skeleton and records three observations:","The growth plates in every long bone are fully fused.","The skull sutures are partly closed.","The left radius shows a healed break. The bone has a thick, bumpy area at the old break."],
+        a:["Sample claim: The person was an adult.","Sample evidence: The growth plates were fully fused in every long bone. The skull sutures were partly closed.","Sample reasoning: Long bones lengthen at the growth plates. When the plates fuse, growth in length is finished. Sutures also close as a person ages. Two separate signs agree, so the claim is stronger.","The healed radius shows the person broke the bone earlier in life. The thick, bumpy area is callus that was remodeled."] }
+    ] }
+];
+
+var state = {}; // state[stationId][qIndex] = { shown:bool, rating:"good"|"fix"|null }
+STATIONS.forEach(function (s) { state[s.id] = s.qs.map(function () { return { shown:false, rating:null }; }); });
+var visited = {};
+var app = document.getElementById("app");
+
+function el(tag, attrs, kids) {
+  var e = document.createElement(tag);
+  if (attrs) Object.keys(attrs).forEach(function (k) {
+    if (k === "class") e.className = attrs[k];
+    else if (k === "text") e.textContent = attrs[k];
+    else if (k.slice(0,2) === "on") e.addEventListener(k.slice(2), attrs[k]);
+    else e.setAttribute(k, attrs[k]);
+  });
+  (kids || []).forEach(function (c) { if (c) e.appendChild(c); });
+  return e;
+}
+function clear() { while (app.firstChild) app.removeChild(app.firstChild); window.scrollTo(0,0); }
+function stationDone(s) { return state[s.id].every(function (x) { return x.rating; }); }
+function fixCount(s) { return state[s.id].filter(function (x) { return x.rating === "fix"; }).length; }
+
+function stationGrid() {
+  var grid = el("nav", { class:"stations", "aria-label":"Stations" });
+  STATIONS.forEach(function (s) {
+    var done = stationDone(s);
+    var status = done ? "Finished. Fix it: " + fixCount(s) : (visited[s.id] ? "Started" : "Not started");
+    var b = el("button", { class:"st" + (done ? " done" : ""), onclick:function () { showStation(s.id); } }, [
+      el("span", { class:"num", text:"STATION " + s.id }),
+      el("span", { text:s.title }),
+      el("span", { class:"status", text:status })
+    ]);
+    grid.appendChild(b);
+  });
+  return grid;
+}
+
+function showHome() {
+  clear();
+  app.appendChild(el("h1", { text:"Skeletal review: prove it, fix it" }));
+  app.appendChild(el("p", { text:"Tomorrow is the unit test. Today you find what you can prove and repair what you cannot yet." }));
+  app.appendChild(el("p", { class:"eq", text:"Essential question: Which skeletal system ideas can I prove, and which ones still need repair?" }));
+  app.appendChild(el("h2", { text:"Your plan (25 minutes)" }));
+  var ol = el("ol");
+  ["Prove It (7 min): do the study guide practice questions without notes first.",
+   "Rotate (8 min): visit the six stations. Spend about one minute at each.",
+   "Fix It (5 min): go back to the one station that matches your lowest CFA target and correct it.",
+   "Plan (5 min): write two exact actions for tonight."].forEach(function (t) { ol.appendChild(el("li", { text:t })); });
+  app.appendChild(ol);
+  app.appendChild(el("h2", { text:"Choose your first station" }));
+  app.appendChild(el("p", { class:"muted", text:"Look at your CFA scores from this unit. Click the station for your lowest target. You can move to any station at any time." }));
+  var cfa = el("table");
+  cfa.appendChild(el("tr", null, [ el("th", { text:"Your lowest CFA" }), el("th", { text:"Start at" }) ]));
+  [["CFA 1: bone structure, cells, and calcium","Station 1"],["CFA 2: axial and appendicular skeleton, markings","Station 2 or 3"],["CFA 3: joints and movement","Station 4"],["CFA 4: fractures, disorders, and evidence","Station 5 or 6"]].forEach(function (r) {
+    cfa.appendChild(el("tr", null, [ el("td", { text:r[0] }), el("td", { text:r[1] }) ]));
+  });
+  app.appendChild(cfa);
+  app.appendChild(stationGrid());
+  var bar = el("div", { class:"bar" }, [
+    el("button", { class:"btn primary", onclick:showPlan, text:"Go to my plan and exit ticket" })
+  ]);
+  app.appendChild(bar);
+  app.appendChild(el("p", { class:"muted", text:"Your typing stays on this page only. It is not saved or sent anywhere. If you close the page, it is gone." }));
+}
+
+function showStation(id) {
+  visited[id] = true;
+  var s = STATIONS.filter(function (x) { return x.id === id; })[0];
+  clear();
+  app.appendChild(el("div", { class:"bar" }, [
+    el("button", { class:"btn", onclick:showHome, text:"All stations" }),
+    id > 1 ? el("button", { class:"btn", onclick:function () { showStation(id - 1); }, text:"Previous station" }) : null,
+    id < STATIONS.length ? el("button", { class:"btn", onclick:function () { showStation(id + 1); }, text:"Next station" }) : null
+  ]));
+  app.appendChild(el("h1", { text:"Station " + s.id + ": " + s.title }));
+  app.appendChild(el("p", { class:"ican", text:s.ican }));
+  app.appendChild(el("p", { text:s.intro }));
+  app.appendChild(el("p", { class:"muted", text:"Type your answer first, with no notes. Then click Show answer. Then mark how you did." }));
+
+  s.qs.forEach(function (item, i) {
+    var st = state[s.id][i];
+    var box = el("div", { class:"q" });
+    var qt = el("div", { class:"qt", text:(i + 1) + ". " + item.q });
+    if (item.sub) qt.appendChild(el("span", { text:item.sub }));
+    box.appendChild(qt);
+    if (item.caseText) {
+      var c = el("div", { class:"case" });
+      item.caseText.forEach(function (t, k) { c.appendChild(el("p", { text:(k > 0 ? "• " : "") + t })); });
+      box.appendChild(c);
+    }
+    var ta = el("textarea", { "aria-label":"Your answer to question " + (i + 1) });
+    box.appendChild(ta);
+
+    var ansWrap = el("div");
+    var rateWrap = el("div");
+    var showBtn = el("button", { class:"btn primary", text:"Show answer", disabled:"disabled" });
+    ta.addEventListener("input", function () {
+      if (ta.value.trim().length >= 3) showBtn.removeAttribute("disabled"); else if (!st.shown) showBtn.setAttribute("disabled", "disabled");
+    });
+    function renderAnswer() {
+      while (ansWrap.firstChild) ansWrap.removeChild(ansWrap.firstChild);
+      while (rateWrap.firstChild) rateWrap.removeChild(rateWrap.firstChild);
+      if (!st.shown) return;
+      var a = el("div", { class:"ans" });
+      a.appendChild(el("strong", { text:"Check yourself" }));
+      var ul = el("ul");
+      item.a.forEach(function (t) { ul.appendChild(el("li", { text:t })); });
+      a.appendChild(ul);
+      ansWrap.appendChild(a);
+      var rate = el("div", { class:"rate" });
+      var good = el("button", { class:"btn" + (st.rating === "good" ? " sel-good" : ""), text:"I had it", onclick:function () { st.rating = "good"; renderAnswer(); } });
+      var fix = el("button", { class:"btn" + (st.rating === "fix" ? " sel-fix" : ""), text:"Fix it", onclick:function () { st.rating = "fix"; renderAnswer(); } });
+      rate.appendChild(el("span", { text:"How did you do?" }));
+      rate.appendChild(good); rate.appendChild(fix);
+      rateWrap.appendChild(rate);
+      if (st.rating === "fix") {
+        var fb = el("div", { class:"fixbox" });
+        fb.appendChild(el("strong", { text:"Write your correction" }));
+        [["What I got wrong (one sentence)", ""],["Why it was wrong: the idea I mixed up", ""],["What is true, using structure and function", ""]].forEach(function (p) {
+          fb.appendChild(el("label", { text:p[0] }));
+          fb.appendChild(el("textarea", { "aria-label":p[0] }));
+        });
+        rateWrap.appendChild(fb);
+      }
+    }
+    showBtn.addEventListener("click", function () { st.shown = true; showBtn.setAttribute("disabled", "disabled"); renderAnswer(); });
+    box.appendChild(el("div", { class:"bar" }, [showBtn]));
+    box.appendChild(ansWrap);
+    box.appendChild(rateWrap);
+    app.appendChild(box);
+  });
+
+  app.appendChild(el("div", { class:"bar" }, [
+    el("button", { class:"btn primary", onclick:showHome, text:"Done with this station: back to all stations" }),
+    id < STATIONS.length ? el("button", { class:"btn", onclick:function () { showStation(id + 1); }, text:"Go to station " + (id + 1) }) : null
+  ]));
+}
+
+function showPlan() {
+  clear();
+  app.appendChild(el("div", { class:"bar" }, [ el("button", { class:"btn", onclick:showHome, text:"All stations" }) ]));
+  app.appendChild(el("h1", { text:"Plan, close, and exit ticket" }));
+
+  app.appendChild(el("h2", { text:"Where you stand" }));
+  var tbl = el("table");
+  tbl.appendChild(el("tr", null, [ el("th", { text:"Station" }), el("th", { text:"Questions marked Fix it" }), el("th", { text:"Questions not yet marked" }) ]));
+  STATIONS.forEach(function (s) {
+    var unrated = state[s.id].filter(function (x) { return !x.rating; }).length;
+    tbl.appendChild(el("tr", null, [ el("td", { text:s.id + ". " + s.title }), el("td", { text:String(fixCount(s)) }), el("td", { text:String(unrated) }) ]));
+  });
+  app.appendChild(tbl);
+
+  app.appendChild(el("h2", { text:"Turn and talk (3 min)" }));
+  app.appendChild(el("p", { text:"Tell your partner one correction you made today. Say it out loud. Decide together if you agree, then write it here." }));
+  app.appendChild(el("p", { class:"muted", text:"Be specific. \"The tibia, not the fibula, bears the weight\" is a good answer. \"Everything\" is not." }));
+  app.appendChild(el("textarea", { "aria-label":"Turn and talk check box" }));
+
+  app.appendChild(el("h2", { text:"Plan (5 min): two exact actions" }));
+  app.appendChild(el("p", { class:"muted", text:"An exact action names what you will do and which topic. Example: \"Tonight I will label the whole skeleton from memory, then check it.\"" }));
+  app.appendChild(el("label", { class:"big", text:"Action 1" })); app.appendChild(el("input", { type:"text", "aria-label":"Action 1" }));
+  app.appendChild(el("label", { class:"big", text:"Action 2" })); app.appendChild(el("input", { type:"text", "aria-label":"Action 2" }));
+
+  app.appendChild(el("h2", { text:"Close (6 min): Mark, Ask, Link" }));
+  var ul = el("ul");
+  ["Mark: star two notebook pages to study tonight.","Ask: write the one question you would ask before the test.","Link: connect the unit standard to tomorrow's assessment."].forEach(function (t) { ul.appendChild(el("li", { text:t })); });
+  app.appendChild(ul);
+  app.appendChild(el("label", { class:"big", text:"My one question for before the test" })); app.appendChild(el("input", { type:"text", "aria-label":"One question" }));
+
+  app.appendChild(el("h2", { text:"Exit ticket" }));
+  app.appendChild(el("label", { class:"big", text:"One concept I am confident in is" })); app.appendChild(el("input", { type:"text", "aria-label":"Confident concept" }));
+  app.appendChild(el("label", { class:"big", text:"One concept I still need help with is" })); app.appendChild(el("input", { type:"text", "aria-label":"Help concept" }));
+  app.appendChild(el("p", { class:"ans", text:"Take-home message: Review works best when you prove what you know, fix errors, and study the exact target still missing." }));
+  app.appendChild(el("p", { text:"Next class: Day 18, the skeletal system test in Canvas." }));
+}
+
+showHome();
+</script>
+</body>
+</html>
