@@ -1,10 +1,9 @@
 <!doctype html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Day 2: Types of Muscle</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&amp;family=Source+Serif+4:ital,wght@1,500;1,600&amp;display=swap">
 <style>
 /* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
    Matches the "NotebookLM Lesson - Student Slides" house style already used
@@ -70,320 +69,289 @@ td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
 html, body { height: 100%; background: #16181f; }
 .stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
 .frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
-.frame .slide { display: none; }
-.frame .slide.active { display: block; }
-.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
-  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
-.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
-  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
-
-
 </style>
-</head>
+<style>
+/* Click navigation: click anywhere to go forward, click the left side (or Back) to go back.
+   Works with or without JavaScript, so the same file also works from Canvas Files. */
+html, body { height: 100%; overflow: hidden; }
+.frame .slide { display: none; }
+.frame .slide:target, .frame .slide:has(:target) { display: block; }
+.frame:not(:has(:target)) .slide:first-child { display: block; }
+.frame { transform: scale(min(tan(atan2(100vw, 1300px)), tan(atan2(100vh, 740px)))); }
+.ans-anchor { position: absolute; top: 0; left: 0; }
+.adv { position: absolute; inset: 0; z-index: 20; cursor: pointer; }
+.adv.after-reveal { display: none; }
+.slide:has(.ans-anchor:target) .tkey { display: block; }
+.slide:has(.ans-anchor:target) .adv-reveal { display: none; }
+.slide:has(.ans-anchor:target) .adv.after-reveal { display: block; }
+.back-zone { position: absolute; top: 0; bottom: 0; left: 0; width: 20%; z-index: 25; cursor: w-resize; }
+.back { position: absolute; right: 18px; top: 16px; z-index: 30; background: #2b50c8; color: #ffffff !important;
+  font: 600 14px 'Archivo', Arial, sans-serif; padding: 6px 14px; border-radius: 6px; text-decoration: none; opacity: .9; }
+.back:hover { opacity: 1; }
+figure.micro { margin: 0; }
+figure.micro img { display: block; width: 100%; height: 330px; object-fit: cover; border-radius: 10px; border: 1px solid #d6dae6; }
+figure.micro figcaption { font-size: 16px; line-height: 1.35; color: #161821; margin-top: 8px; }
+figure.micro .credit { font-size: 12px; color: #6b7080; margin-top: 4px; }
+@media print { html, body { height: auto; overflow: visible; } .frame { transform: none; } .frame .slide { display: block !important; }
+  .tkey { display: block; position: static; margin-top: 12px; } .adv, .back, .back-zone { display: none !important; } }
+</style></head>
 <body>
 <div class="stage"><div class="frame" id="frame">
 
-<div class="slide active">
+<div class="slide" id="s1">
 <div class="topline"></div>
-<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</div>
+<div class="kicker">Anatomy &amp; Physiology · Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</div>
 <h1>Types of Muscle</h1>
 <div class="cols" style="margin-top:8px">
-  <div class="col">
-    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
-    <div class="dobox">
-      <p>Your heart has been beating since before you were born, without you ever deciding to make it beat. Predict: is heart muscle the same kind of muscle as your biceps? Why or why not?</p>
-    </div>
-  </div>
-  <div class="col" style="flex:0.7">
-    <div class="dolabel" style="margin-top:0">You need today</div>
-    <div class="chips" style="flex-direction:column; align-items:flex-start;">
-      <span class="chip yes"><b>Chromebook</b> &mdash; yes</span>
-      <span class="chip yes"><b>Notebook</b> &mdash; yes</span>
-      <span class="chip no"><b>Whiteboard &amp; marker</b> &mdash; no</span>
-      <span class="chip no"><b>Phones</b> &mdash; no</span>
-    </div>
-  </div>
+<div class="col">
+<div class="dolabel" style="margin-top:0">Warm-up · notebook</div>
+<div class="dobox">
+<p>Your heart has been beating since before you were born, without you ever deciding to make it beat. Predict: is heart muscle the same kind of muscle as your biceps? Why or why not?</p>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 1 of 18</span></div>
 </div>
+<div class="col" style="flex:0.7">
+<div class="dolabel" style="margin-top:0">You need today</div>
+<div class="chips" style="flex-direction:column; align-items:flex-start;">
+<span class="chip yes"><b>Chromebook</b> — yes</span>
+<span class="chip yes"><b>Notebook</b> — yes</span>
+<span class="chip no"><b>Whiteboard &amp; marker</b> — no</span>
+<span class="chip no"><b>Phones</b> — no</span>
+</div>
+</div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 1 of 18</span></div>
+<a class="adv adv-next" href="#s2" aria-label="Next slide"></a></div>
 
-<div class="slide">
+<div class="slide" id="s2">
 <div class="topline"></div>
 <div class="kicker">Objective</div>
 <h2>Today's goal</h2>
 <p class="bigp" style="font-size:26px">Students will be able to tell the three types of muscle tissue apart, by comparing their shape, control, and location, so that they can identify a tissue sample or symptom as skeletal, cardiac, or smooth muscle.</p>
 <ul>
-  <li>I can name the three types of muscle tissue.</li>
-  <li>I can describe each type's shape and whether it is voluntary or involuntary.</li>
-  <li>I can identify where each type is found in the body.</li>
+<li>I can name the three types of muscle tissue.</li>
+<li>I can describe each type's shape and whether it is voluntary or involuntary.</li>
+<li>I can identify where each type is found in the body.</li>
 </ul>
 <div class="ltarget" style="margin-top:14px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can compare the three muscle types. I give a reason for each difference.</p><p style="margin:2px 0"><b>Key words:</b> skeletal muscle, smooth muscle, cardiac muscle</p><p style="margin:2px 0"><b>Sentence frame:</b> Smooth muscle ____, but skeletal muscle ____. This explains why ____.</p></div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 2 of 18</span></div>
-</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 2 of 18</span></div>
+<a class="adv adv-next" href="#s3" aria-label="Next slide"></a><a class="back-zone" href="#s1" aria-label="Previous slide"></a><a class="back" href="#s1">← Back</a></div>
 
-<div class="slide">
+<div class="slide" id="s3">
 <div class="topline"></div>
 <div class="kicker">Essential question</div>
 <h2>How can you tell the three types of muscle tissue apart?</h2>
 <p class="bigp">Keep this question in mind as you take notes. You will answer it at the end.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 3 of 18</span></div>
-</div>
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 3 of 18</span></div>
+<a class="adv adv-next" href="#s4" aria-label="Next slide"></a><a class="back-zone" href="#s2" aria-label="Previous slide"></a><a class="back" href="#s2">← Back</a></div>
+
+<div class="slide" id="s4">
 <div class="topline"></div>
 <div class="kicker">Type 1</div>
 <h2>Skeletal muscle</h2>
 <div class="cols">
-  <div class="col">
-    <ul>
-      <li><b>Voluntary</b> &mdash; you decide when it contracts.</li>
-      <li><b>Striated</b> (striped) under a microscope.</li>
-      <li>Each cell (fiber) has <b>many nuclei</b> &mdash; a fiber forms when many smaller cells fuse together during development.</li>
-      <li>Attaches to bone by tendons and moves the skeleton.</li>
-    </ul>
-  </div>
-  <div class="col" style="flex:0.7">
-    <svg class="diagram svg" viewBox="0 0 300 160" width="100%">
-      <rect x="20" y="60" width="260" height="40" rx="6" fill="#fbe6c8" stroke="#161821" stroke-width="2"/>
-      <g stroke="#161821" stroke-width="3">
-        <line x1="40" y1="60" x2="40" y2="100"/><line x1="60" y1="60" x2="60" y2="100"/>
-        <line x1="80" y1="60" x2="80" y2="100"/><line x1="100" y1="60" x2="100" y2="100"/>
-        <line x1="120" y1="60" x2="120" y2="100"/><line x1="140" y1="60" x2="140" y2="100"/>
-        <line x1="160" y1="60" x2="160" y2="100"/><line x1="180" y1="60" x2="180" y2="100"/>
-        <line x1="200" y1="60" x2="200" y2="100"/><line x1="220" y1="60" x2="220" y2="100"/>
-        <line x1="240" y1="60" x2="240" y2="100"/><line x1="260" y1="60" x2="260" y2="100"/>
-      </g>
-      <circle cx="70" cy="80" r="5" fill="#2b50c8"/><circle cx="130" cy="80" r="5" fill="#2b50c8"/>
-      <circle cx="190" cy="80" r="5" fill="#2b50c8"/><circle cx="250" cy="80" r="5" fill="#2b50c8"/>
-      <text x="150" y="140" text-anchor="middle" font-size="14" font-family="Archivo">long, striped, many nuclei</text>
-    </svg>
-  </div>
+<div class="col">
+<ul>
+<li><b>Voluntary</b> — you decide when it contracts.</li>
+<li><b>Striated</b> (striped) under a microscope.</li>
+<li>Each cell (fiber) has <b>many nuclei</b> — a fiber forms when many smaller cells fuse together during development.</li>
+<li>Attaches to bone by tendons and moves the skeleton.</li>
+</ul>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 4 of 18</span></div>
+<div class="col" style="flex:0.7">
+<figure class="micro"><img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Skeletal_muscle_-_longitudinal_section.jpg" alt="Light micrograph of skeletal muscle in longitudinal section, showing long fibers with cross-striations"><figcaption>Skeletal muscle (longitudinal section). Look for: long fibers, stripes across them, many nuclei along the edges.</figcaption><div class="credit">Photo: Reytan, CC BY-SA 3.0, via Wikimedia Commons</div></figure>
 </div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 4 of 18</span></div>
+<a class="adv adv-next" href="#s5" aria-label="Next slide"></a><a class="back-zone" href="#s3" aria-label="Previous slide"></a><a class="back" href="#s3">← Back</a></div>
 
-<div class="slide">
+<div class="slide" id="s5">
 <div class="topline"></div>
 <div class="kicker">Type 2</div>
 <h2>Cardiac muscle</h2>
 <div class="cols">
-  <div class="col">
-    <ul>
-      <li><b>Involuntary</b> &mdash; you do not control it.</li>
-      <li><b>Striated</b>, but cells branch and connect at dark lines (intercalated discs).</li>
-      <li>Each cell usually has <b>one nucleus</b>, occasionally two.</li>
-      <li>Found only in the wall of the heart.</li>
-    </ul>
-  </div>
-  <div class="col" style="flex:0.7">
-    <svg class="diagram svg" viewBox="0 0 300 160" width="100%">
-      <path d="M30 90 L110 90 L140 60 L170 90 L240 90 L270 120 L240 120 L200 120 L170 90" fill="none" stroke="#161821" stroke-width="6" stroke-linejoin="round"/>
-      <path d="M110 90 L140 120 L170 90" fill="none" stroke="#161821" stroke-width="6"/>
-      <line x1="140" y1="60" x2="140" y2="120" stroke="#b23a3a" stroke-width="3"/>
-      <line x1="200" y1="80" x2="200" y2="130" stroke="#b23a3a" stroke-width="3"/>
-      <circle cx="90" cy="90" r="5" fill="#2b50c8"/><circle cx="220" cy="100" r="5" fill="#2b50c8"/>
-      <text x="150" y="150" text-anchor="middle" font-size="14" font-family="Archivo">branched, one nucleus, dark lines</text>
-    </svg>
-  </div>
+<div class="col">
+<ul>
+<li><b>Involuntary</b> — you do not control it.</li>
+<li><b>Striated</b>, but cells branch and connect at dark lines (intercalated discs).</li>
+<li>Each cell usually has <b>one nucleus</b>, occasionally two.</li>
+<li>Found only in the wall of the heart.</li>
+</ul>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 5 of 18</span></div>
+<div class="col" style="flex:0.7">
+<figure class="micro"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Glanzstreifen.jpg" alt="Light micrograph of cardiac muscle with an enlarged inset showing an intercalated disc"><figcaption>Cardiac muscle. Look for: branching cells, faint stripes, one central nucleus, dark intercalated discs (see the enlarged box).</figcaption><div class="credit">Photo: Dr. S. Girod and Anton Becker, CC BY 2.5, via Wikimedia Commons</div></figure>
 </div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 5 of 18</span></div>
+<a class="adv adv-next" href="#s6" aria-label="Next slide"></a><a class="back-zone" href="#s4" aria-label="Previous slide"></a><a class="back" href="#s4">← Back</a></div>
 
-<div class="slide">
+<div class="slide" id="s6">
 <div class="topline"></div>
 <div class="kicker">Type 3</div>
 <h2>Smooth muscle</h2>
 <div class="cols">
-  <div class="col">
-    <ul>
-      <li><b>Involuntary</b> &mdash; you do not control it.</li>
-      <li><b>No stripes</b> under a microscope.</li>
-      <li>Each cell is spindle-shaped, with <b>one nucleus</b>.</li>
-      <li>Rarely tires. Found in the walls of organs and blood vessels (stomach, intestines, bladder).</li>
-    </ul>
-  </div>
-  <div class="col" style="flex:0.7">
-    <svg class="diagram svg" viewBox="0 0 300 160" width="100%">
-      <ellipse cx="90" cy="80" rx="55" ry="16" fill="#fbe6c8" stroke="#161821" stroke-width="2"/>
-      <ellipse cx="190" cy="80" rx="55" ry="16" fill="#fbe6c8" stroke="#161821" stroke-width="2"/>
-      <circle cx="90" cy="80" r="5" fill="#2b50c8"/><circle cx="190" cy="80" r="5" fill="#2b50c8"/>
-      <text x="150" y="140" text-anchor="middle" font-size="14" font-family="Archivo">spindle-shaped, no stripes</text>
-    </svg>
-  </div>
+<div class="col">
+<ul>
+<li><b>Involuntary</b> — you do not control it.</li>
+<li><b>No stripes</b> under a microscope.</li>
+<li>Each cell is spindle-shaped, with <b>one nucleus</b>.</li>
+<li>Rarely tires. Found in the walls of organs and blood vessels (stomach, intestines, bladder).</li>
+</ul>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 6 of 18</span></div>
+<div class="col" style="flex:0.7">
+<figure class="micro"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Smooth_muscle_-_histology.jpg/1280px-Smooth_muscle_-_histology.jpg" alt="Light micrograph of smooth muscle showing spindle-shaped cells with elongated nuclei and no striations"><figcaption>Smooth muscle. Look for: spindle-shaped cells, no stripes, one cigar-shaped nucleus per cell.</figcaption><div class="credit">Photo: Juan Carlos Fonseca Mata, CC BY-SA 4.0, via Wikimedia Commons</div></figure>
 </div>
+</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 6 of 18</span></div>
+<a class="adv adv-next" href="#s7" aria-label="Next slide"></a><a class="back-zone" href="#s5" aria-label="Previous slide"></a><a class="back" href="#s5">← Back</a></div>
 
-<div class="slide">
+<div class="slide" id="s7">
 <div class="topline"></div>
 <div class="kicker">Side by side</div>
 <h2>Compare all three</h2>
 <table>
-<tr><th>Feature</th><th>Skeletal</th><th>Cardiac</th><th>Smooth</th></tr>
+<tbody><tr><th>Feature</th><th>Skeletal</th><th>Cardiac</th><th>Smooth</th></tr>
 <tr><td>Control</td><td>Voluntary</td><td>Involuntary</td><td>Involuntary</td></tr>
 <tr><td>Stripes</td><td>Yes</td><td>Yes</td><td>No</td></tr>
 <tr><td>Nuclei per cell</td><td>Many</td><td>One</td><td>One</td></tr>
 <tr><td>Where found</td><td>Attached to bone</td><td>Heart wall only</td><td>Organ &amp; vessel walls</td></tr>
-</table>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 7 of 18</span></div>
-</div>
+</tbody></table>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 7 of 18</span></div>
+<a class="adv adv-next" href="#s8" aria-label="Next slide"></a><a class="back-zone" href="#s6" aria-label="Previous slide"></a><a class="back" href="#s6">← Back</a></div>
 
-<div class="slide">
+<div class="slide" id="s8">
 <div class="topline"></div>
 <div class="demo">Case study</div>
 <div class="kicker">Identify the tissue</div>
 <h2>Mystery sample 1</h2>
 <p class="bigp">A tissue sample has cells that branch and connect to each other at dark lines. The cells have stripes. Each cell has one nucleus.</p>
 <div class="dobox"><div class="dolabel">Turn and talk</div><p>Where did this sample most likely come from?</p></div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 8 of 18</span></div>
-</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 8 of 18</span></div>
+<a class="adv adv-next" href="#s9" aria-label="Next slide"></a><a class="back-zone" href="#s7" aria-label="Previous slide"></a><a class="back" href="#s7">← Back</a></div>
 
-<div class="slide">
+<div class="slide" id="s9">
 <div class="topline"></div>
 <div class="demo">Case study</div>
 <div class="kicker">Identify the tissue</div>
 <h2>Mystery sample 2</h2>
 <p class="bigp">You do not decide to move food through your intestines. The muscle that does this works slowly for hours without tiring.</p>
 <div class="dobox"><div class="dolabel">Turn and talk</div><p>Which tissue is it, and how do you know?</p></div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 9 of 18</span></div>
-</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 9 of 18</span></div>
+<a class="adv adv-next" href="#s10" aria-label="Next slide"></a><a class="back-zone" href="#s8" aria-label="Previous slide"></a><a class="back" href="#s8">← Back</a></div>
 
-<div class="slide">
+<div class="slide" id="s10">
 <div class="topline"></div>
 <div class="kicker">Catch the mistake</div>
 <h2>A classmate's claim</h2>
 <div class="prompt">"The biceps brachii and the heart are both striated, so they must be the same type of muscle."</div>
 <p class="bigp" style="font-size:24px">What is wrong with this claim? Name one way skeletal and cardiac muscle differ.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 10 of 18</span></div>
-</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 10 of 18</span></div>
+<a class="adv adv-next" href="#s11" aria-label="Next slide"></a><a class="back-zone" href="#s9" aria-label="Previous slide"></a><a class="back" href="#s9">← Back</a></div>
 
-<div class="slide">
+<div class="slide" id="s11">
 <div class="topline"></div>
 <div class="kicker">Why it matters</div>
 <h2>Structure fits the job</h2>
 <ul>
-  <li>Skeletal muscle needs to contract fast and on command &mdash; many nuclei support fast protein-making for quick, powerful contractions.</li>
-  <li>Cardiac muscle needs to contract in a steady, connected rhythm &mdash; the branching and intercalated discs let the signal spread cell to cell.</li>
-  <li>Smooth muscle needs to hold a slow squeeze for a long time without tiring &mdash; found wherever the body needs slow, steady pressure.</li>
+<li>Skeletal muscle needs to contract fast and on command — many nuclei support fast protein-making for quick, powerful contractions.</li>
+<li>Cardiac muscle needs to contract in a steady, connected rhythm — the branching and intercalated discs let the signal spread cell to cell.</li>
+<li>Smooth muscle needs to hold a slow squeeze for a long time without tiring — found wherever the body needs slow, steady pressure.</li>
 </ul>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 11 of 18</span></div>
-</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 11 of 18</span></div>
+<a class="adv adv-next" href="#s12" aria-label="Next slide"></a><a class="back-zone" href="#s10" aria-label="Previous slide"></a><a class="back" href="#s10">← Back</a></div>
 
-<div class="slide">
+<div class="slide" id="s12">
 <div class="topline"></div>
 <div class="demo">Turn and talk</div>
 <div class="kicker">Check your understanding</div>
 <h2>Predict the tissue</h2>
 <p class="bigp" style="margin-top:20px">A patient's blood vessel walls need to slowly narrow to raise blood pressure. Which type of muscle does this, and why does it fit the job?</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 12 of 18</span></div>
-</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 12 of 18</span></div>
+<a class="adv adv-next" href="#s13" aria-label="Next slide"></a><a class="back-zone" href="#s11" aria-label="Previous slide"></a><a class="back" href="#s11">← Back</a></div>
 
-<div class="slide">
+<div class="slide" id="s13">
 <div class="topline"></div>
 <div class="demo">If time allows</div>
 <div class="kicker">Partner check, about 6 minutes</div>
 <h2>Feel and decide</h2>
 <div class="steps" style="gap:10px; margin:10px 0">
-  <div class="step"><div class="stepn">1</div><div class="stept"><b>Skeletal.</b> Make a fist and tighten your forearm. Did you decide to do that?</div></div>
-  <div class="step"><div class="stepn">2</div><div class="stept"><b>Cardiac.</b> Find your pulse. Can you decide to stop it?</div></div>
-  <div class="step"><div class="stepn">3</div><div class="stept"><b>Smooth.</b> Think about food moving through your intestines. Can you feel it or control it?</div></div>
+<div class="step"><div class="stepn">1</div><div class="stept"><b>Skeletal.</b> Make a fist and tighten your forearm. Did you decide to do that?</div></div>
+<div class="step"><div class="stepn">2</div><div class="stept"><b>Cardiac.</b> Find your pulse. Can you decide to stop it?</div></div>
+<div class="step"><div class="stepn">3</div><div class="stept"><b>Smooth.</b> Think about food moving through your intestines. Can you feel it or control it?</div></div>
 </div>
 <p class="note">Write voluntary or involuntary for each one. Stay in your place.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 13 of 18</span></div>
-</div>
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 13 of 18</span></div>
+<a class="adv adv-next" href="#s14" aria-label="Next slide"></a><a class="back-zone" href="#s12" aria-label="Previous slide"></a><a class="back" href="#s12">← Back</a></div>
+
+<div class="slide" id="s14">
 <div class="topline"></div>
 <div class="demo">If time allows</div>
 <div class="kicker">Partners, about 8 minutes</div>
 <h2>Sort the situations</h2>
-<table><tr><th>Situation</th><th>Muscle type and one clue</th></tr><tr><td>Chewing a snack</td><td></td></tr><tr><td>Your heart beating while you sleep</td><td></td></tr><tr><td>Your stomach wall squeezing food</td><td></td></tr><tr><td>Kicking a ball</td><td></td></tr><tr><td>A blood vessel narrowing</td><td></td></tr></table>
+<table><tbody><tr><th>Situation</th><th>Muscle type and one clue</th></tr><tr><td>Chewing a snack</td><td></td></tr><tr><td>Your heart beating while you sleep</td><td></td></tr><tr><td>Your stomach wall squeezing food</td><td></td></tr><tr><td>Kicking a ball</td><td></td></tr><tr><td>A blood vessel narrowing</td><td></td></tr></tbody></table>
 <p class="note">Use this frame: I think ____ is ____ muscle because ____ (control, stripes, or location).</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 14 of 18</span></div>
-</div>
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 14 of 18</span></div>
+<a class="adv adv-next" href="#s15" aria-label="Next slide"></a><a class="back-zone" href="#s13" aria-label="Previous slide"></a><a class="back" href="#s13">← Back</a></div>
+
+<div class="slide" id="s15">
 <div class="topline"></div>
 <div class="kicker">After the notes</div>
 <h2>Mark, link, ask</h2>
 <div class="steps">
-  <div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> Underline, circle, or highlight the main ideas in your notes.</div></div>
-  <div class="step"><div class="stepn">2</div><div class="stept"><b>Link.</b> Connect one idea in your notes to something outside your notes.</div></div>
-  <div class="step"><div class="stepn">3</div><div class="stept"><b>Ask.</b> Write one quiz question that your notes can answer and that could be on a test.</div></div>
+<div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> Underline, circle, or highlight the main ideas in your notes.</div></div>
+<div class="step"><div class="stepn">2</div><div class="stept"><b>Link.</b> Connect one idea in your notes to something outside your notes.</div></div>
+<div class="step"><div class="stepn">3</div><div class="stept"><b>Ask.</b> Write one quiz question that your notes can answer and that could be on a test.</div></div>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 15 of 18</span></div>
-</div>
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 15 of 18</span></div>
+<a class="adv adv-next" href="#s16" aria-label="Next slide"></a><a class="back-zone" href="#s14" aria-label="Previous slide"></a><a class="back" href="#s14">← Back</a></div>
+
+<div class="slide" id="s16">
 <div class="topline"></div>
 <div class="kicker">Summarize</div>
 <h2>How can you tell the three types of muscle tissue apart?</h2>
 <p class="bigp">You can tell muscle types apart by their stripes, their nuclei, their shape, and whether you control them. Skeletal muscle is voluntary, striped, and has many nuclei in each cell. Cardiac muscle is involuntary, striped, and branched, with one nucleus. Smooth muscle is involuntary and has no stripes.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 16 of 18</span></div>
-</div>
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 16 of 18</span></div>
+<a class="adv adv-next" href="#s17" aria-label="Next slide"></a><a class="back-zone" href="#s15" aria-label="Previous slide"></a><a class="back" href="#s15">← Back</a></div>
+
+<div class="slide" id="s17">
 <div class="topline"></div>
 <div class="kicker">Take-home message and exit ticket</div>
 <h2>Before you leave</h2>
 <div class="cols" style="margin-top:6px">
-  <div class="col"><div class="dolabel" style="margin-top:0">Take-home message</div><p class="bigp" style="font-size:25px">Each muscle type has a structure that fits its job: fast and on command, steady and connected, or slow and long-lasting.</p></div>
-  <div class="col"><div class="dobox">
-  <div class="dolabel">Write in your notebook</div>
-  <p>Fill in a three-row table: for skeletal, cardiac, and smooth muscle, write whether it is voluntary or involuntary and whether it has stripes.</p>
+<div class="col"><div class="dolabel" style="margin-top:0">Take-home message</div><p class="bigp" style="font-size:25px">Each muscle type has a structure that fits its job: fast and on command, steady and connected, or slow and long-lasting.</p></div>
+<div class="col"><div class="dobox">
+<div class="dolabel">Write in your notebook</div>
+<p>Fill in a three-row table: for skeletal, cardiac, and smooth muscle, write whether it is voluntary or involuntary and whether it has stripes.</p>
 </div></div>
 </div>
 <p class="note">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 17 of 18</span></div>
-</div>
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 17 of 18</span></div>
+<a class="adv adv-next" href="#s18" aria-label="Next slide"></a><a class="back-zone" href="#s16" aria-label="Previous slide"></a><a class="back" href="#s16">← Back</a></div>
+
+<div class="slide" id="s18">
 <div class="topline"></div>
 <div class="kicker">Credits</div>
 <h2>Image and content credits</h2>
 <ul>
-  <li>No images in this deck.</li>
-  <li>Content follows the Unit 2.5 notes, which cite OpenStax Anatomy and Physiology (CC BY 4.0).</li>
+<li>Skeletal muscle micrograph (slide 4): Reytan, CC BY-SA 3.0, via Wikimedia Commons.</li>
+<li>Cardiac muscle micrograph (slide 5): Dr. S. Girod and Anton Becker, CC BY 2.5, via Wikimedia Commons.</li>
+<li>Smooth muscle micrograph (slide 6): Juan Carlos Fonseca Mata, CC BY-SA 4.0, via Wikimedia Commons.</li>
+<li>Content follows the Unit 2.5 notes, which cite OpenStax Anatomy and Physiology (CC BY 4.0).</li>
 </ul>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 2 &middot; Tue, Oct 20</span><span>slide 18 of 18</span></div>
-</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 2 · Tue, Oct 20</span><span>slide 18 of 18</span></div>
+<a class="back-zone" href="#s17" aria-label="Previous slide"></a><a class="back" href="#s17">← Back</a></div>
+
 </div></div>
-<div class="nav"><span id="counter"></span>
-  <button onclick="step(-1)">&#8592;</button>
-  <button onclick="step(1)">&#8594;</button>
-</div>
+
 <script>
-// Shared slide-deck script for Unit 2.5 Muscular System lesson decks. Do not fork per day.
-var slides = document.querySelectorAll(".slide");
-var i = 0;
-function show(n) {
-  slides[i].classList.remove("active");
-  i = Math.max(0, Math.min(slides.length - 1, n));
-  slides[i].classList.add("active");
-  var c = document.getElementById("counter");
-  if (c) c.textContent = (i + 1) + " / " + slides.length;
-}
-function step(d) { show(i + d); }
-function fit() {
-  var s = Math.min(window.innerWidth / 1300, window.innerHeight / 740);
-  document.getElementById("frame").style.transform = "scale(" + s + ")";
-}
+// Keyboard support (works on GitHub Pages; clicking works everywhere).
 document.addEventListener("keydown", function (e) {
-  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") step(1);
-  if (e.key === "ArrowLeft" || e.key === "PageUp") step(-1);
+  var cur = document.querySelector(".slide:target, .slide:has(:target)") || document.querySelector(".frame .slide");
+  if (!cur) return;
+  var link = null;
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") {
+    link = [].find.call(cur.querySelectorAll(".adv"), function (a) { return getComputedStyle(a).display !== "none"; });
+  } else if (e.key === "ArrowLeft" || e.key === "PageUp") { link = cur.querySelector(".back"); }
+  if (link) { e.preventDefault(); location.hash = link.getAttribute("href"); }
 });
-/* clicker support */
-document.addEventListener("keydown", function (e) {
-  if (e.ctrlKey || e.metaKey || e.altKey) return;
-  var t = e.target, tag = t && t.tagName;
-  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || tag === "BUTTON" || tag === "A" || (t && t.isContentEditable)) return;
-  if (e.key === "Enter" || e.key === "ArrowDown") { e.preventDefault(); step(1); }
-  if (e.key === "Backspace" || e.key === "ArrowUp") { e.preventDefault(); step(-1); }
-});
-document.getElementById("frame").addEventListener("click", function (e) {
-  if (e.target.closest("a, button, input, textarea, select, summary, label, details, [onclick]")) return;
-  if (String(window.getSelection())) return;
-  var r = this.getBoundingClientRect();
-  step(e.clientX < r.left + r.width * 0.2 ? -1 : 1);
-});
-window.addEventListener("resize", fit);
-fit(); show(0);
-
-
 </script>
-</body>
-</html>
+</body></html>
