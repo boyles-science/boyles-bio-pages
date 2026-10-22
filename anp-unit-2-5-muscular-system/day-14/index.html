@@ -1,11 +1,188 @@
-<!doctype html>
-<html lang="en">
-<head>
+<!DOCTYPE html>
+<html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Day 14: Integration of Systems, Levers</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&amp;family=Source+Serif+4:ital,wght@1,500;1,600&amp;display=swap">
 <style>
+/* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+/* Part slides: text on the left, scientific figure on the right */
+.partcols { display: flex; gap: 36px; align-items: flex-start; }
+.partcols .ptext { flex: 0 0 470px; }
+.partcols .ptext .bigp { font-size: 27px; }
+.partcols .pfig { flex: 1; min-width: 0; }
+.pimg { display: block; max-width: 100%; max-height: 452px; margin: 0 auto; border: 1px solid #e4e6ee;
+  border-radius: 8px; background: #ffffff; }
+.lookfor { background: #fff8e6; border: 1px solid #f0d9a0; border-radius: 10px; padding: 12px 16px; margin: 14px 0 0; }
+.lookfor .dolabel { color: #9a6a00; }
+.lookfor p { margin: 0; font-size: 19px; }
+/* Lab slides */
+.labtag { display: inline-block; background: #2b50c8; color: #fff; font-weight: 800; letter-spacing: 0.14em;
+  font-size: 15px; text-transform: uppercase; padding: 8px 14px; border-radius: 8px; margin-right: 8px; }
+.swatches { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; margin: 10px 0 0; }
+.sw { display: flex; align-items: center; gap: 10px; font-size: 19px; }
+.sw i { display: inline-block; width: 26px; height: 26px; border-radius: 6px; border: 1.5px solid rgba(0,0,0,0.25); flex: 0 0 26px; }
+.keylist { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin: 8px 0 0; }
+.keylist div { font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.keylist b { display: inline-flex; width: 24px; height: 24px; border-radius: 50%; border: 2px solid #2b50c8; color: #2b50c8;
+  align-items: center; justify-content: center; font-size: 13px; flex: 0 0 24px; }
+.keylist i { display: inline-block; width: 16px; height: 16px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.25); flex: 0 0 16px; }
+table.ex td { font-size: 15px; line-height: 1.3; padding: 5px 10px 5px 0; }
+table.ex th { font-size: 12px; padding: 5px 10px 5px 0; }
+table.ex td:first-child { font-weight: 700; }
+table.blank td { height: 22px; font-size: 16px; line-height: 1.3; padding: 5px 12px 5px 0; }
+table.blank th { font-size: 12px; padding: 5px 12px 5px 0; }
+table.blank td.fill { color: #2b50c8; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+.tkey { display:none; position:absolute; left:48px; right:48px; bottom:64px; z-index:9; background:#ffffff; border:4px solid #2b50c8; border-radius:14px; padding:14px 22px 16px; font:600 26px/1.35 'Archivo', Arial, sans-serif; color:#161821; box-shadow:0 6px 24px rgba(0,0,0,.18); }
+.tkey.shown { display:block; }
+.tkey .tlabel { display:block; color:#2b50c8; font:800 15px 'Archivo', Arial, sans-serif; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+.rv { visibility: hidden; } .rv.rvshown { visibility: visible; } /* reveal one at a time */
+</style><style>
+/* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+.tkey { display:none; position:absolute; left:48px; right:48px; bottom:64px; z-index:9; background:#ffffff; border:4px solid #2b50c8; border-radius:14px; padding:14px 22px 16px; font:600 26px/1.35 'Archivo', Arial, sans-serif; color:#161821; box-shadow:0 6px 24px rgba(0,0,0,.18); }
+.tkey.shown { display:block; }
+.tkey .tlabel { display:block; color:#2b50c8; font:800 15px 'Archivo', Arial, sans-serif; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+</style><style>
 /* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
    Matches the "NotebookLM Lesson - Student Slides" house style already used
    in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
@@ -79,36 +256,70 @@ html, body { height: 100%; background: #16181f; }
 
 
 </style>
-</head>
+<style id="nbtag-css">.nbtag{position:absolute;top:16px;right:72px;z-index:6;font:700 13px/1.2 'Archivo',Arial,sans-serif;letter-spacing:.04em;color:#6b4300;background:#fff4d6;border:1px solid #efd185;border-radius:999px;padding:6px 13px;max-width:640px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.nbkey .kbox{margin-top:18px;border:3px dashed #e0b84a;background:#fffaf0;border-radius:14px;padding:22px 26px;font-size:26px;line-height:1.45}.nbtag.nbno{color:#7b7f8c;background:#f2f3f6;border-color:#dfe2e8;font-weight:600}</style></head>
 <body>
 <div class="stage"><div class="frame" id="frame">
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="slide active">
-<div class="topline"></div>
-<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</div>
+<div class="topline"></div><div class="nbtag">Notebook p. 81 · Warm-up</div>
+<div class="kicker">Anatomy &amp; Physiology · Unit 2.5 Muscular System · Day 14</div>
 <h1>Integration of Systems: Levers</h1>
 <div class="cols" style="margin-top:8px">
   <div class="col">
-    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dolabel" style="margin-top:0">Warm-up · notebook</div>
     <div class="dobox">
-      <p>A seesaw has a pivot point, a push, and a load. Your bones and muscles form the same kind of system. Predict: what part of your elbow acts as the pivot when you do a biceps curl?</p>
+      <p style="font-weight:800; margin-bottom:8px">Bones as machines</p>
+      <p>1. What is atrophy?</p>
+      <p style="margin-top:6px">2. Which muscle bends the elbow? Which straightens it?</p>
     </div>
   </div>
   <div class="col" style="flex:0.7">
     <div class="dolabel" style="margin-top:0">You need today</div>
     <div class="chips" style="flex-direction:column; align-items:flex-start;">
-      <span class="chip yes"><b>Chromebook</b> &mdash; yes</span>
-      <span class="chip yes"><b>Notebook</b> &mdash; yes</span>
-      <span class="chip no"><b>Whiteboard &amp; marker</b> &mdash; no</span>
-      <span class="chip no"><b>Phones</b> &mdash; no</span>
+      <span class="chip"><b>Chromebook</b></span>
+      <span class="chip"><b>Notebook</b></span>
+      <span class="chip no"><b>Phones</b> — no</span>
     </div>
   </div>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 1 of 21</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 1 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 81 · Language Target (already printed)</div>
 <div class="kicker">Objective</div>
 <h2>Today's goal</h2>
 <p class="bigp" style="font-size:26px">Students will be able to classify a body movement as a first-, second-, or third-class lever, by locating the pivot, effort, and load, so that they can connect the muscular and skeletal systems as one working machine.</p>
@@ -117,46 +328,61 @@ html, body { height: 100%; background: #16181f; }
   <li>I can classify a real body movement as one of the three classes.</li>
 </ul>
 <div class="ltarget" style="margin-top:14px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can explain how muscles and bones work together as a lever.</p><p style="margin:2px 0"><b>Key words:</b> lever, muscle, bone, force, movement, pivot, load, effort</p><p style="margin:2px 0"><b>Sentence frame:</b> In this lever, the bone ____ and the muscle ____. This gives ____.</p></div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 2 of 21</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 2 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 81 · Essential Question (already printed)</div>
 <div class="kicker">Essential question</div>
-<h2>How do muscles and bones work together as levers?</h2>
-<p class="bigp">Keep this question in mind as you take notes. You will answer it at the end.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 3 of 21</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
+<h2>How do muscles and bones work together to create movement?</h2>
+<p class="bigp">Today you will see how muscles and bones work together as levers, build all three lever types, and take CFA 4.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 3 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 81 · Phenomenon</div>
+<div class="kicker">Phenomenon</div>
+<h2>A seesaw in your neck</h2>
+<div class="dobox"><div class="dolabel">Try it</div><p>Rise up onto your tiptoes and hold. Where is the pivot point? Where is your weight?</p></div>
+<p class="bigp" style="font-size:24px">Write in your notebook: <b>What I noticed:</b></p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 4 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 81 · Focused Notes: Parts of a lever</div>
+<div class="kicker">Focused notes</div>
+<h2>Parts of a lever</h2>
+<ul style="font-size:26px;line-height:1.5"><li>Every lever has a <b>fulcrum</b> (the pivot), an <b>effort</b> (the push or pull), and a <b>load</b> (what gets moved).</li><li>In your body, the <b>joint</b> is the fulcrum, the <b>muscle</b> is the effort, and the <b>body part or weight</b> is the load.</li><li>Tendons carry the muscle's pull to the bone.</li></ul>
+<div class="dobox"><div class="dolabel">Note only the key idea</div><p>Write the key idea in your own words.</p></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 5 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 81 · Focused Notes: Parts of a lever</div>
 <div class="kicker">The three parts</div>
 <h2>Every lever has three parts</h2>
 <ul>
-  <li>The <b>pivot</b> (fulcrum) &mdash; the fixed point the lever turns around. In the body, a joint.</li>
-  <li>The <b>effort</b> &mdash; the force that moves the lever. In the body, a muscle pulling on a bone.</li>
-  <li>The <b>load</b> &mdash; the weight or resistance being moved. In the body, the body part plus whatever it's carrying.</li>
+  <li>The <b>pivot</b> (fulcrum) — the fixed point the lever turns around. In the body, a joint.</li>
+  <li>The <b>effort</b> — the force that moves the lever. In the body, a muscle pulling on a bone.</li>
+  <li>The <b>load</b> — the weight or resistance being moved. In the body, the body part plus whatever it's carrying.</li>
 </ul>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 4 of 21</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 6 of 35</span></div>
+</div><div class="slide nbkey"><div class="topline"></div><div class="nbtag">Notebook p. 81 · Note Only the Key Idea</div><div class="kicker">Notebook · page 81 · Key Idea box</div><h2>Note only the key idea</h2><p class="bigp" style="font-size:28px">Pause the notes. Find the <b>Key Idea</b> box on <b>page 81</b>, right under <b>“Parts of a lever”</b>.</p><div class="kbox">Write the key idea in your own words: <b>one short sentence</b>, using the blue key words you just filled in.<br><span style="font-size:20px;color:#6b6f7b">No copying a full bullet. Shorter is better.</span></div><div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 7 of 35</span></div></div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 81 · Focused Notes: Three classes of levers</div>
+<div class="kicker">Focused notes</div>
+<h2>Three classes of levers</h2>
+<ul style="font-size:26px;line-height:1.5"><li><b>1st class</b>: the fulcrum is in the middle, like nodding your head.</li><li><b>2nd class</b>: the load is in the middle, like rising onto your tiptoes.</li><li><b>3rd class</b>: the effort is in the middle, like a biceps curl. This is the most common lever in the body.</li></ul>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 8 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 81 · Focused Notes: Three classes of levers</div>
 <div class="kicker">Class 1</div>
 <h2>Pivot in the middle</h2>
 <div class="cols">
   <div class="col">
-    <p class="bigp" style="font-size:23px">The pivot sits between the effort and the load &mdash; like a seesaw.</p>
+    <p class="bigp" style="font-size:23px">The pivot sits between the effort and the load — like a seesaw.</p>
     <p><b>Body example:</b> tipping your head back. The joint at the top of the spine is the pivot, neck muscles pull at the back (effort), and the front of the skull is the load.</p>
   </div>
   <div class="col" style="flex:0.9">
     <svg class="diagram svg" viewBox="0 0 300 160" width="100%">
-      <line x1="30" y1="90" x2="270" y2="90" stroke="#161821" stroke-width="8"/>
-      <polygon points="150,90 135,130 165,130" fill="#2b50c8"/>
-      <line x1="30" y1="90" x2="30" y2="50" stroke="#b23a3a" stroke-width="5" marker-end="url(#arrowload1)"/>
-      <line x1="270" y1="90" x2="270" y2="50" stroke="#2e8b3d" stroke-width="5" marker-end="url(#arroweffort1)"/>
+      <line x1="30" y1="90" x2="270" y2="90" stroke="#161821" stroke-width="8"></line>
+      <polygon points="150,90 135,130 165,130" fill="#2b50c8"></polygon>
+      <line x1="30" y1="90" x2="30" y2="50" stroke="#b23a3a" stroke-width="5" marker-end="url(#arrowload1)"></line>
+      <line x1="270" y1="90" x2="270" y2="50" stroke="#2e8b3d" stroke-width="5" marker-end="url(#arroweffort1)"></line>
       <defs>
-        <marker id="arrowload1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b23a3a" transform="rotate(-90 4 4)"/></marker>
-        <marker id="arroweffort1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2e8b3d" transform="rotate(-90 4 4)"/></marker>
+        <marker id="arrowload1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b23a3a" transform="rotate(-90 4 4)"></path></marker>
+        <marker id="arroweffort1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2e8b3d" transform="rotate(-90 4 4)"></path></marker>
       </defs>
       <text x="30" y="40" text-anchor="middle" font-size="12" font-family="Archivo" fill="#b23a3a" font-weight="700">load</text>
       <text x="270" y="40" text-anchor="middle" font-size="12" font-family="Archivo" fill="#2e8b3d" font-weight="700">effort</text>
@@ -164,27 +390,25 @@ html, body { height: 100%; background: #16181f; }
     </svg>
   </div>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 5 of 21</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 9 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 81 · Focused Notes: Three classes of levers</div>
 <div class="kicker">Class 2</div>
 <h2>Load in the middle</h2>
 <div class="cols">
   <div class="col">
-    <p class="bigp" style="font-size:23px">The load sits between the pivot and the effort &mdash; like a wheelbarrow.</p>
+    <p class="bigp" style="font-size:23px">The load sits between the pivot and the effort — like a wheelbarrow.</p>
     <p><b>Body example:</b> rising onto your tiptoes. The ball of the foot is the pivot, your body weight is the load in the middle, and the calf muscles pulling up on the heel are the effort.</p>
   </div>
   <div class="col" style="flex:0.9">
     <svg class="diagram svg" viewBox="0 0 300 160" width="100%">
-      <line x1="30" y1="90" x2="270" y2="90" stroke="#161821" stroke-width="8"/>
-      <polygon points="30,90 15,130 45,130" fill="#2b50c8"/>
-      <line x1="150" y1="90" x2="150" y2="50" stroke="#b23a3a" stroke-width="5" marker-end="url(#arrowload2)"/>
-      <line x1="270" y1="90" x2="270" y2="50" stroke="#2e8b3d" stroke-width="5" marker-end="url(#arroweffort2)"/>
+      <line x1="30" y1="90" x2="270" y2="90" stroke="#161821" stroke-width="8"></line>
+      <polygon points="30,90 15,130 45,130" fill="#2b50c8"></polygon>
+      <line x1="150" y1="90" x2="150" y2="50" stroke="#b23a3a" stroke-width="5" marker-end="url(#arrowload2)"></line>
+      <line x1="270" y1="90" x2="270" y2="50" stroke="#2e8b3d" stroke-width="5" marker-end="url(#arroweffort2)"></line>
       <defs>
-        <marker id="arrowload2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b23a3a" transform="rotate(-90 4 4)"/></marker>
-        <marker id="arroweffort2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2e8b3d" transform="rotate(-90 4 4)"/></marker>
+        <marker id="arrowload2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b23a3a" transform="rotate(-90 4 4)"></path></marker>
+        <marker id="arroweffort2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2e8b3d" transform="rotate(-90 4 4)"></path></marker>
       </defs>
       <text x="150" y="40" text-anchor="middle" font-size="12" font-family="Archivo" fill="#b23a3a" font-weight="700">load</text>
       <text x="270" y="40" text-anchor="middle" font-size="12" font-family="Archivo" fill="#2e8b3d" font-weight="700">effort</text>
@@ -192,27 +416,25 @@ html, body { height: 100%; background: #16181f; }
     </svg>
   </div>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 6 of 21</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 10 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 81 · Focused Notes: Three classes of levers</div>
 <div class="kicker">Class 3</div>
 <h2>Effort in the middle</h2>
 <div class="cols">
   <div class="col">
-    <p class="bigp" style="font-size:23px">The effort sits between the pivot and the load &mdash; the most common lever type in the body.</p>
+    <p class="bigp" style="font-size:23px">The effort sits between the pivot and the load — the most common lever type in the body.</p>
     <p><b>Body example:</b> a biceps curl. The elbow is the pivot, the biceps brachii pulls in the middle of the forearm (effort), and the hand plus whatever it holds is the load.</p>
   </div>
   <div class="col" style="flex:0.9">
     <svg class="diagram svg" viewBox="0 0 300 160" width="100%">
-      <line x1="30" y1="90" x2="270" y2="90" stroke="#161821" stroke-width="8"/>
-      <polygon points="30,90 15,130 45,130" fill="#2b50c8"/>
-      <line x1="150" y1="90" x2="150" y2="50" stroke="#2e8b3d" stroke-width="5" marker-end="url(#arroweffort3)"/>
-      <line x1="270" y1="90" x2="270" y2="50" stroke="#b23a3a" stroke-width="5" marker-end="url(#arrowload3)"/>
+      <line x1="30" y1="90" x2="270" y2="90" stroke="#161821" stroke-width="8"></line>
+      <polygon points="30,90 15,130 45,130" fill="#2b50c8"></polygon>
+      <line x1="150" y1="90" x2="150" y2="50" stroke="#2e8b3d" stroke-width="5" marker-end="url(#arroweffort3)"></line>
+      <line x1="270" y1="90" x2="270" y2="50" stroke="#b23a3a" stroke-width="5" marker-end="url(#arrowload3)"></line>
       <defs>
-        <marker id="arrowload3" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b23a3a" transform="rotate(-90 4 4)"/></marker>
-        <marker id="arroweffort3" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2e8b3d" transform="rotate(-90 4 4)"/></marker>
+        <marker id="arrowload3" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b23a3a" transform="rotate(-90 4 4)"></path></marker>
+        <marker id="arroweffort3" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2e8b3d" transform="rotate(-90 4 4)"></path></marker>
       </defs>
       <text x="150" y="40" text-anchor="middle" font-size="12" font-family="Archivo" fill="#2e8b3d" font-weight="700">effort</text>
       <text x="270" y="40" text-anchor="middle" font-size="12" font-family="Archivo" fill="#b23a3a" font-weight="700">load</text>
@@ -220,93 +442,47 @@ html, body { height: 100%; background: #16181f; }
     </svg>
   </div>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 7 of 21</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 11 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 81 · Focused Notes: Three classes of levers</div>
 <div class="kicker">Side by side</div>
 <h2>All three classes</h2>
 <table>
-<tr><th>Class</th><th>Order along the lever</th><th>Body example</th></tr>
+<tbody><tr><th>Class</th><th>Order along the lever</th><th>Body example</th></tr>
 <tr><td>First</td><td>Effort, pivot, load</td><td>Tipping your head back</td></tr>
 <tr><td>Second</td><td>Pivot, load, effort</td><td>Rising onto your tiptoes</td></tr>
 <tr><td>Third</td><td>Pivot, effort, load</td><td>Biceps curl</td></tr>
-</table>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 8 of 21</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+</tbody></table>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 12 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 82 · Stop and Think</div>
+<div class="kicker">Stop and think</div>
+<h2>Which class is a calf raise?</h2>
+<div class="prompt">Which class of lever is a calf raise? Where is the load?</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 13 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 81 · Focused Notes: Three classes of levers</div>
 <div class="demo">Turn and talk</div>
 <div class="kicker">Classify it</div>
 <h2>Rising onto your tiptoes</h2>
 <p class="bigp" style="margin-top:20px">The ball of your foot is the pivot. Your body weight is in the middle. Your calf muscles pull up on your heel. Which class of lever is this, and why?</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 9 of 21</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 14 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="kicker">Catch the mistake</div>
 <h2>A classmate's claim</h2>
 <div class="prompt">"The calf raise must be a first-class lever, because the pivot is at one end."</div>
-<p class="bigp" style="font-size:24px">What is wrong with this claim? What actually decides the class &mdash; where the pivot is, or the order of pivot, effort, and load?</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 10 of 21</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">Connecting the systems</div>
-<h2>Muscle and bone, working together</h2>
-<p class="bigp">A lever cannot move without a force. The muscular system supplies that force at each joint.</p>
-<p class="bigp">This is why the muscular and skeletal systems are studied together: bones give the levers their shape, and muscles supply the effort.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 11 of 21</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">Key concepts, mapped</div>
-<h2>The lever system's parts</h2>
-<table>
-<tr><th>Lever term</th><th>Body part</th></tr>
-<tr><td>Fulcrum</td><td>Joints</td></tr>
-<tr><td>Rigid bars</td><td>Bones</td></tr>
-<tr><td>Force providers</td><td>Muscles</td></tr>
-<tr><td>Transmit force from muscle to bone</td><td>Tendons</td></tr>
-<tr><td>Control motion</td><td>Antagonist pairs (e.g., biceps/triceps, quadriceps/hamstrings)</td></tr>
-</table>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 12 of 21</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
-<div class="demo">Try it</div>
-<div class="kicker">Partner activity</div>
-<h2>Find three levers on your own body</h2>
-<p style="margin-top:14px">With a partner, find and demonstrate one movement of each class using your own arms, legs, neck, or feet. For each, name the pivot, effort, and load out loud.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 13 of 21</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
-<div class="demo">Take the CFA</div>
-<div class="kicker">CFA 4 continued &middot; Canvas</div>
-<h2>Now it's your turn</h2>
-<p class="bigp">Finish today's questions on lever classification in Canvas. Read the feedback after each answer.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 14 of 21</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<p class="bigp" style="font-size:24px">What is wrong with this claim? What actually decides the class — where the pivot is, or the order of pivot, effort, and load?</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 15 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="demo">Turn and talk</div>
 <div class="kicker">Check your understanding</div>
 <h2>Classify a new example</h2>
 <p class="bigp" style="margin-top:20px">Nodding your head "yes" and tipping it back both use the joint at the top of your spine as the pivot. Which lever class is this, and what tells you?</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 15 of 21</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 16 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="demo">If time allows</div>
 <div class="kicker">Partners, about 8 minutes</div>
 <h2>Lever hunt</h2>
@@ -316,10 +492,9 @@ html, body { height: 100%; background: #16181f; }
   <div class="step"><div class="stepn">3</div><div class="stept"><b>Classify.</b> Decide the class by asking what sits in the middle.</div></div>
 </div>
 <p class="note">Draw and label if you prefer.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 16 of 21</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 17 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="demo">If time allows</div>
 <div class="kicker">Individual, about 6 minutes</div>
 <h2>Two body levers</h2>
@@ -329,28 +504,101 @@ html, body { height: 100%; background: #16181f; }
   <div class="step"><div class="stepn">3</div><div class="stept"><b>Compare.</b> Tell which class each is, and how you know.</div></div>
 </div>
 <p class="note">Use: The ____ is in the middle, so this is ____ class.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 17 of 21</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 18 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 82 · Focused Notes: Why the body uses 3rd class levers</div>
+<div class="kicker">Focused notes</div>
+<h2>Why the body uses 3rd class levers</h2>
+<ul style="font-size:26px;line-height:1.5"><li>Third-class levers need a lot of muscle force.</li><li>In exchange, they move the hand or foot <b>fast</b> and <b>far</b>.</li><li>That trade gives us speed and range of motion for throwing, running, and kicking.</li></ul>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 19 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 82 · Connect It</div>
+<div class="kicker">Connect it</div>
+<h2>Speed from a 3rd class lever</h2>
+<div class="prompt">Name one sport move that depends on speed from a 3rd class lever.</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 20 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 82 · Focused Notes: Why the body uses 3rd class levers</div>
+<div class="kicker">Connecting the systems</div>
+<h2>Muscle and bone, working together</h2>
+<p class="bigp">A lever cannot move without a force. The muscular system supplies that force at each joint.</p>
+<p class="bigp">This is why the muscular and skeletal systems are studied together: bones give the levers their shape, and muscles supply the effort.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 21 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 82 · Focused Notes: Why the body uses 3rd class levers</div>
+<div class="kicker">Key concepts, mapped</div>
+<h2>The lever system's parts</h2>
+<table>
+<tbody><tr><th>Lever term</th><th>Body part</th></tr>
+<tr><td>Fulcrum</td><td>Joints</td></tr>
+<tr><td>Rigid bars</td><td>Bones</td></tr>
+<tr><td>Force providers</td><td>Muscles</td></tr>
+<tr><td>Transmit force from muscle to bone</td><td>Tendons</td></tr>
+<tr><td>Control motion</td><td>Antagonist pairs (e.g., biceps/triceps, quadriceps/hamstrings)</td></tr>
+</tbody></table>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 22 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 82 · Big Picture: Three Classes of Levers</div>
+<div class="kicker">Big picture: Three Classes of Levers</div>
+<h2>F = fulcrum, E = effort, L = load</h2>
+<table class="blank"><tbody><tr><th style="width:40%">Term / step</th><th>What it means (fill in)</th></tr><tr><td><b>1 First class</b></td><td></td></tr><tr><td><b>2 Second class</b></td><td></td></tr><tr><td><b>3 Third class</b></td><td></td></tr></tbody></table>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 23 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook pp. 83–84 · Lab: Muscle-Bone Lever</div>
+<div class="demo">20 minutes · groups</div>
+<div class="kicker">Lab</div>
+<h2>Muscle-Bone Lever Lab</h2>
+<p class="bigp" style="font-size:25px">Build each lever with a ruler and pencil, then find each one on the skeleton model and on your own body.</p>
+<div class="steps" style="gap:12px; margin:12px 0"><div class="step"><div class="stepn">1</div><div class="stept"><b>Build</b> each lever class with a ruler and pencil; label F, E, and L.</div></div><div class="step"><div class="stepn">2</div><div class="stept"><b>Label</b> the three lever diagrams in your notebook and name the movement.</div></div><div class="step"><div class="stepn">3</div><div class="stept"><b>Find</b> each action on the skeleton model and do it yourself.</div></div><div class="step"><div class="stepn">4</div><div class="stept"><b>Complete</b> the Muscle-Bone Action Match table.</div></div></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 24 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook pp. 83–84 · Lab: Muscle-Bone Lever</div>
+<div class="kicker">Lab · label the levers</div>
+<h2>Where are F, E, and L?</h2>
+<p class="bigp" style="font-size:22px">Label each lever: write F (fulcrum), E (effort), and L (load) in the boxes. Then name the lever class and a body movement that matches it.</p>
+<table class="blank"><tbody><tr><th>Lever</th><th>Where are F, E, and L?</th><th>Class</th><th>Matching body movement</th></tr><tr><td><b>Lever A</b></td><td></td><td></td><td></td></tr><tr><td><b>Lever B</b></td><td></td><td></td><td></td></tr><tr><td><b>Lever C</b></td><td></td><td></td><td></td></tr></tbody></table>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 25 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook pp. 83–84 · Lab: Muscle-Bone Lever</div>
+<div class="kicker">Lab · Muscle-Bone Action Match</div>
+<h2>Complete the action match table</h2>
+<p class="bigp" style="font-size:22px">Complete the Muscle-Bone Action Match table. Use the biceps curl row as your example.</p>
+<table class="blank"><tbody><tr><th>Action</th><th>Muscle(s)</th><th>Bone(s) moved</th><th>Lever class</th><th>Agonist / antagonist pair</th></tr><tr><td><b>Biceps curl</b></td><td>Biceps brachii</td><td>Radius (and ulna)</td><td>Third class</td><td>Biceps brachii / triceps brachii</td></tr><tr><td><b>Rise onto tiptoes</b></td><td></td><td></td><td></td><td></td></tr><tr><td><b>Nod the head</b></td><td></td><td></td><td></td><td></td></tr><tr><td><b>Straighten the knee (kick)</b></td><td></td><td></td><td></td><td></td></tr><tr><td><b>Lift the arm out to the side</b></td><td></td><td></td><td></td><td></td></tr><tr><td><b>Bend the knee</b></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 26 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
+<div class="demo">Try it</div>
+<div class="kicker">Partner activity</div>
+<h2>Find three levers on your own body</h2>
+<p style="margin-top:14px">With a partner, find and demonstrate one movement of each class using your own arms, legs, neck, or feet. For each, name the pivot, effort, and load out loud.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 27 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
+<div class="demo">Take the CFA</div>
+<div class="kicker">CFA 4 continued · Canvas</div>
+<h2>Now it's your turn</h2>
+<p class="bigp">Finish today's questions on lever classification in Canvas. Read the feedback after each answer.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 28 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 84 · Misconception Check</div>
+<div class="kicker">Misconception check · pairs</div>
+<h2>Are the strongest levers the most common in the body?</h2>
+<p class="bigp">Talk with your partner, then write your answer in your notebook.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 29 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 84 · Mark, Ask, Link</div>
 <div class="kicker">After the notes</div>
-<h2>Mark, link, ask</h2>
-<div class="steps">
-  <div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> Underline, circle, or highlight the main ideas in your notes.</div></div>
-  <div class="step"><div class="stepn">2</div><div class="stept"><b>Link.</b> Connect one idea in your notes to something outside your notes.</div></div>
-  <div class="step"><div class="stepn">3</div><div class="stept"><b>Ask.</b> Write one quiz question that your notes can answer and that could be on a test.</div></div>
-</div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 18 of 21</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">Summarize</div>
-<h2>How do muscles and bones work together as levers?</h2>
-<p class="bigp">Bones act as rigid bars, joints act as pivots, and muscles supply the effort. A lever&#39;s class depends on the order of the pivot, the effort, and the load. First class has the pivot in the middle, second class has the load in the middle, and third class has the effort in the middle.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 19 of 21</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
+<h2>Mark, ask, link</h2>
+<div class="steps"> <div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> One pass over your notes: highlight, underline, or circle what matters most.</div></div> <div class="step"><div class="stepn">2</div><div class="stept"><b>Ask.</b> Write one quiz question. Your notes must already answer it.</div></div> <div class="step"><div class="stepn">3</div><div class="stept"><b>Link.</b> Write one connection beyond your notes: "this reminds me of..."</div></div> </div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 30 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 84 · Then the Sum</div>
+<div class="kicker">Then the sum</div>
+<h2>How do muscles and bones work together to move the body?</h2>
+<p class="bigp">Answer in 2-3 sentences in your notebook.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 31 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 84 · Exit Ticket</div>
 <div class="kicker">Take-home message and exit ticket</div>
 <h2>Before you leave</h2>
 <div class="cols" style="margin-top:6px">
@@ -361,9 +609,20 @@ html, body { height: 100%; background: #16181f; }
 </div></div>
 </div>
 <p class="note">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 20 of 21</span></div>
-</div>
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 32 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
+<div class="kicker">Take-home message</div>
+<h2>Muscles and bones as machines</h2>
+<p class="bigp">Muscles and bones form lever systems that power all movement.</p><p class="note"><b>Monday:</b> review day. Check your CFA tracker and bring your questions.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 33 of 35</span></div>
+</div><div class="slide">
+<div class="topline"></div>
+<div class="kicker">Turn it in</div>
+<h2>Weekly warm-up and exit ticket page</h2>
+<p class="bigp">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 34 of 35</span></div>
+</div><div class="slide">
 <div class="topline"></div>
 <div class="kicker">Credits</div>
 <h2>Image and content credits</h2>
@@ -371,13 +630,15 @@ html, body { height: 100%; background: #16181f; }
   <li>No images in this deck.</li>
   <li>Content follows the Unit 2.5 notes, which cite OpenStax Anatomy and Physiology (CC BY 4.0).</li>
 </ul>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 14 &middot; Thu, Nov 5</span><span>slide 21 of 21</span></div>
-</div>
-</div></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 14 · Thu, Nov 5</span><span>slide 35 of 35</span></div>
+</div></div></div>
 <div class="nav"><span id="counter"></span>
-  <button onclick="step(-1)">&#8592;</button>
-  <button onclick="step(1)">&#8594;</button>
+  <button onclick="step(-1)">←</button>
+  <button onclick="step(1)">→</button>
 </div>
+
+
+
 <script>
 // Shared slide-deck script for Unit 2.5 Muscular System lesson decks. Do not fork per day.
 var slides = document.querySelectorAll(".slide");
@@ -416,6 +677,4 @@ window.addEventListener("resize", fit);
 fit(); show(0);
 
 
-</script>
-</body>
-</html>
+</script></body></html>
