@@ -1,10 +1,119 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Day 4: Levels of Muscle Organization</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&amp;family=Source+Serif+4:ital,wght@1,500;1,600&amp;display=swap">
 <style>
+/* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+/* Part slides: text on the left, scientific figure on the right */
+.partcols { display: flex; gap: 36px; align-items: flex-start; }
+.partcols .ptext { flex: 0 0 470px; }
+.partcols .ptext .bigp { font-size: 27px; }
+.partcols .pfig { flex: 1; min-width: 0; }
+.pimg { display: block; max-width: 100%; max-height: 452px; margin: 0 auto; border: 1px solid #e4e6ee;
+  border-radius: 8px; background: #ffffff; }
+.lookfor { background: #fff8e6; border: 1px solid #f0d9a0; border-radius: 10px; padding: 12px 16px; margin: 14px 0 0; }
+.lookfor .dolabel { color: #9a6a00; }
+.lookfor p { margin: 0; font-size: 19px; }
+/* Lab slides */
+.labtag { display: inline-block; background: #2b50c8; color: #fff; font-weight: 800; letter-spacing: 0.14em;
+  font-size: 15px; text-transform: uppercase; padding: 8px 14px; border-radius: 8px; margin-right: 8px; }
+.swatches { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; margin: 10px 0 0; }
+.sw { display: flex; align-items: center; gap: 10px; font-size: 19px; }
+.sw i { display: inline-block; width: 26px; height: 26px; border-radius: 6px; border: 1.5px solid rgba(0,0,0,0.25); flex: 0 0 26px; }
+.keylist { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin: 8px 0 0; }
+.keylist div { font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.keylist b { display: inline-flex; width: 24px; height: 24px; border-radius: 50%; border: 2px solid #2b50c8; color: #2b50c8;
+  align-items: center; justify-content: center; font-size: 13px; flex: 0 0 24px; }
+.keylist i { display: inline-block; width: 16px; height: 16px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.25); flex: 0 0 16px; }
+table.ex td { font-size: 15px; line-height: 1.3; padding: 5px 10px 5px 0; }
+table.ex th { font-size: 12px; padding: 5px 10px 5px 0; }
+table.ex td:first-child { font-weight: 700; }
+table.blank td { height: 22px; font-size: 16px; line-height: 1.3; padding: 5px 12px 5px 0; }
+table.blank th { font-size: 12px; padding: 5px 12px 5px 0; }
+table.blank td.fill { color: #2b50c8; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+.tkey { display:none; position:absolute; left:48px; right:48px; bottom:64px; z-index:9; background:#ffffff; border:4px solid #2b50c8; border-radius:14px; padding:14px 22px 16px; font:600 26px/1.35 'Archivo', Arial, sans-serif; color:#161821; box-shadow:0 6px 24px rgba(0,0,0,.18); }
+.tkey.shown { display:block; }
+.tkey .tlabel { display:block; color:#2b50c8; font:800 15px 'Archivo', Arial, sans-serif; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+.rv { visibility: hidden; } .rv.rvshown { visibility: visible; } /* reveal one at a time */
+</style><style>/* table.blank and lab tag (added) */
+table.blank td { height: 22px; font-size: 16px; line-height: 1.3; padding: 5px 12px 5px 0;}
+table.blank th { font-size: 12px; padding: 5px 12px 5px 0;}
+table.blank td.fill { color: #2b50c8;}
+.labtag { display: inline-block; background: #2b50c8; color: #fff; font-weight: 800; letter-spacing: 0.14em;
+  font-size: 15px; text-transform: uppercase; padding: 8px 14px; border-radius: 8px; margin-right: 8px;}
+</style><style>.labsteps{font-size:21px;line-height:1.45;margin:0 0 0 26px}.labsteps li{margin-bottom:6px}.sfig{margin:0;text-align:center}.sfig img{max-width:100%;display:block;margin:0 auto;border-radius:8px;background:#fff;border:1px solid #e4e6ee;padding:6px;box-sizing:border-box;object-fit:contain}.sfig figcaption{font-size:12px;line-height:1.35;color:#6b6f7b;margin-top:6px}</style><style>
 /* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
    Matches the "NotebookLM Lesson - Student Slides" house style already used
    in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
@@ -78,35 +187,65 @@ html, body { height: 100%; background: #16181f; }
 
 
 </style>
-<style>.sfig{margin:0;text-align:center}.sfig img{max-width:100%;display:block;margin:0 auto;border-radius:8px;background:#fff;border:1px solid #e4e6ee;padding:6px;box-sizing:border-box;object-fit:contain}.sfig figcaption{font-size:12px;line-height:1.35;color:#6b6f7b;margin-top:6px}.slide .cols.figcols{align-items:center}.pairs{display:flex;gap:26px;align-items:flex-start}.pair{flex:1;min-width:0;text-align:center}.pair h3{font-size:17px;margin:0 0 6px;color:#2b50c8;font-weight:800}.pair .nb{height:120px;width:auto;border:1px solid #e4e6ee;border-radius:6px;background:#fff}.pair .down{font-size:13px;color:#6b6f7b;margin:4px 0;letter-spacing:.06em;text-transform:uppercase;font-weight:700}.pair .real{width:100%;height:215px;object-fit:cover;border-radius:8px;border:1px solid #e4e6ee;display:block}.pair .real.contain{object-fit:contain;background:#fff}.pair p{font-size:13.5px;line-height:1.4;margin:6px 0 0;text-align:left}.pair p small{display:block;color:#6b6f7b;font-size:11px;margin-top:3px}.legend{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;font-size:15px;margin-top:10px}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:18px;height:18px;border-radius:4px;border:1px solid #888;display:inline-block}.labsteps{font-size:21px;line-height:1.45;margin:0 0 0 26px}.labsteps li{margin-bottom:6px}</style></head>
+<style>.sfig{margin:0;text-align:center}.sfig img{max-width:100%;display:block;margin:0 auto;border-radius:8px;background:#fff;border:1px solid #e4e6ee;padding:6px;box-sizing:border-box;object-fit:contain}.sfig figcaption{font-size:12px;line-height:1.35;color:#6b6f7b;margin-top:6px}.slide .cols.figcols{align-items:center}.pairs{display:flex;gap:26px;align-items:flex-start}.pair{flex:1;min-width:0;text-align:center}.pair h3{font-size:17px;margin:0 0 6px;color:#2b50c8;font-weight:800}.pair .nb{height:120px;width:auto;border:1px solid #e4e6ee;border-radius:6px;background:#fff}.pair .down{font-size:13px;color:#6b6f7b;margin:4px 0;letter-spacing:.06em;text-transform:uppercase;font-weight:700}.pair .real{width:100%;height:215px;object-fit:cover;border-radius:8px;border:1px solid #e4e6ee;display:block}.pair .real.contain{object-fit:contain;background:#fff}.pair p{font-size:13.5px;line-height:1.4;margin:6px 0 0;text-align:left}.pair p small{display:block;color:#6b6f7b;font-size:11px;margin-top:3px}.legend{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;font-size:15px;margin-top:10px}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:18px;height:18px;border-radius:4px;border:1px solid #888;display:inline-block}.labsteps{font-size:21px;line-height:1.45;margin:0 0 0 26px}.labsteps li{margin-bottom:6px}</style><style id="nbtag-css">.nbtag{position:absolute;top:16px;right:72px;z-index:6;font:700 13px/1.2 'Archivo',Arial,sans-serif;letter-spacing:.04em;color:#6b4300;background:#fff4d6;border:1px solid #efd185;border-radius:999px;padding:6px 13px;max-width:640px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.nbkey .kbox{margin-top:18px;border:3px dashed #e0b84a;background:#fffaf0;border-radius:14px;padding:22px 26px;font-size:26px;line-height:1.45}</style></head>
 <body>
 <div class="stage"><div class="frame" id="frame">
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="slide active">
-<div class="topline"></div>
-<div class="kicker">Anatomy &amp; Physiology · Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</div>
-<h1>Levels of Muscle Organization</h1>
+<div class="topline"></div><div class="nbtag">Notebook p. 21 · Warm-up</div>
+<div class="kicker">Anatomy &amp; Physiology · Unit 2.5 Muscular System · Day 4</div>
+<h1>Levels of Muscular Organization</h1>
 <div class="cols" style="margin-top:8px">
   <div class="col">
     <div class="dolabel" style="margin-top:0">Warm-up · notebook</div>
     <div class="dobox">
-      <p>Without looking back at your notes, list as many parts of a skeletal muscle fiber from Day 3 as you can remember, and what each one does.</p>
+      <p style="font-weight:800; margin-bottom:8px">Threads, ropes, and muscles</p>
+      <p>1. What part of the muscle fiber stores calcium?</p>
+      <p style="margin-top:6px">2. What organelle makes ATP?</p>
     </div>
   </div>
   <div class="col" style="flex:0.7">
     <div class="dolabel" style="margin-top:0">You need today</div>
     <div class="chips" style="flex-direction:column; align-items:flex-start;">
-      <span class="chip yes"><b>Chromebook</b> — yes</span>
-      <span class="chip yes"><b>Notebook</b> — yes</span>
-      <span class="chip no"><b>Whiteboard &amp; marker</b> — no</span>
+      <span class="chip"><b>Chromebook</b></span>
+      <span class="chip"><b>Notebook</b></span>
       <span class="chip no"><b>Phones</b> — no</span>
     </div>
   </div>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 1 of 23</span></div>
-</div>
-
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 1 of 36</span></div>
+</div><div class="slide">
 <div class="topline"></div>
 <div class="kicker">Objective</div>
 <h2>Today's goal</h2>
@@ -115,44 +254,28 @@ html, body { height: 100%; background: #16181f; }
   <li>I can describe the structural organization of muscle from smallest to largest level.</li>
   <li>I can identify and label connective tissue layers: endomysium, perimysium, and epimysium.</li>
   <li>I can differentiate between a muscle fiber, fascicle, and whole muscle.</li>
-</ul>
-<div class="ltarget" style="margin-top:14px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can put the levels of a muscle in order, from smallest to largest.</p><p style="margin:2px 0"><b>Key words:</b> myofilament, muscle fiber, whole muscle, myofilament, myofibril, muscle fiber, fascicle, whole muscle</p><p style="margin:2px 0"><b>Sentence frame:</b> A ____ is made of many ____. Together they form a ____.</p></div>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 2 of 23</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">Essential question</div>
-<h2>How does a muscle build up from tiny filaments to a whole muscle?</h2>
-<p class="bigp">Keep this question in mind as you take notes. You will answer it at the end.</p>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 3 of 23</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
+</ul><div class="ltarget" style="margin-top:14px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can put the levels of a muscle in order, from smallest to largest.</p><p style="margin:2px 0"><b>Key words:</b> myofilament, muscle fiber, whole muscle</p><p style="margin:2px 0"><b>Sentence frame:</b> A ____ is made of many ____. Together they form a ____.</p></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 2 of 36</span></div>
+</div><div class="slide"><div class="topline"></div><div class="kicker">Essential question</div><h2>How is a whole muscle built from smaller parts?</h2><p class="bigp">Today you will put muscle in order from the smallest part to the whole muscle and name the wrapping around each level. Then you will take CFA 1. Keep this question in mind as you take notes. You will answer it at the end.</p><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 3 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook p. 21 · Phenomenon</div><div class="kicker">Phenomenon</div><h2>Why a rope is strong</h2><div class="dobox"><div class="dolabel">Try it</div><p>Try to snap one strand of yarn. Then try a whole bundle. Which is easier?</p></div><p class="bigp" style="font-size:24px">Write in your notebook: <b>What I noticed:</b></p><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 4 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook p. 21 · Focused Notes: From small to large</div><div class="kicker">Focused notes</div><h2>From small to large</h2><ul style="font-size:26px;line-height:1.5"><li><b>Myofilaments</b> are tiny protein strands: <b>actin</b> (thin) and <b>myosin</b> (thick).</li><li>Myofilaments line up in repeating units called <b>sarcomeres</b>. A chain of sarcomeres is a <b>myofibril</b>.</li><li>Many myofibrils fill one <b>muscle fiber</b>. Fibers group into <b>fascicles</b>, and fascicles make the <b>whole muscle</b>.</li></ul><div class="dobox"><div class="dolabel">Note only the key idea</div><p>Write the key idea in your own words.</p></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 5 of 36</span></div></div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 21 · Focused Notes: From small to large</div>
 <div class="kicker">Level 1</div>
 <h2>Myofilaments</h2>
 
-<div class="cols figcols"><div class="col"><p class="bigp">Actin and myosin proteins that slide to cause contraction. The repeating units they form are called sarcomeres.</p></div><div class="col" style="flex: 1.1 1 0%;"><figure class="sfig"><img src="../shared/images/day-04/d4-409d05d9f9.jpg" alt="Diagram of actin and myosin filaments in a sarcomere" style="max-height:470px"><figcaption>Sarcomere: actin (thin) and myosin (thick) filaments, relaxed vs. contracted. David Richfield, CC BY-SA 3.0, via Wikimedia Commons.</figcaption></figure></div></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 4 of 23</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="cols figcols"><div class="col"><p class="bigp">Actin and myosin proteins that slide to cause contraction. The repeating units they form are called sarcomeres.</p></div><div class="col" style="flex: 1.1 1 0%;"><figure class="sfig"><img src="../shared/images/day-04/d4-409d05d9f9.jpg" alt="Diagram of actin and myosin filaments in a sarcomere" style="max-height:470px"><figcaption>Sarcomere: actin (thin) and myosin (thick) filaments, relaxed vs. contracted. David Richfield, CC BY-SA 3.0, via Wikimedia Commons.</figcaption></figure></div></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 6 of 36</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 21 · Focused Notes: From small to large</div>
 <div class="kicker">Level 2</div>
 <h2>Myofibrils</h2>
 
-<div class="cols figcols"><div class="col"><p class="bigp">Long chains of sarcomeres inside a muscle fiber. They run parallel to each other through the length of the fiber.</p></div><div class="col" style="flex: 1.15 1 0%;"><figure class="sfig"><img src="../shared/images/day-04/d4-b580dd3b37.jpg" alt="Muscle fiber cut open to show myofibrils and sarcomere bands" style="max-height:450px"><figcaption>Myofibrils inside a muscle fiber, with repeating sarcomeres. OpenStax <i>Anatomy &amp; Physiology</i>, CC BY 4.0.</figcaption></figure></div></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 5 of 23</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="cols figcols"><div class="col"><p class="bigp">Long chains of sarcomeres inside a muscle fiber. They run parallel to each other through the length of the fiber.</p></div><div class="col" style="flex: 1.15 1 0%;"><figure class="sfig"><img src="../shared/images/day-04/d4-b580dd3b37.jpg" alt="Muscle fiber cut open to show myofibrils and sarcomere bands" style="max-height:450px"><figcaption>Myofibrils inside a muscle fiber, with repeating sarcomeres. OpenStax <i>Anatomy &amp; Physiology</i>, CC BY 4.0.</figcaption></figure></div></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 7 of 36</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 21 · Focused Notes: From small to large</div>
 <div class="kicker">Level 3</div>
 <h2>Muscle fiber (cell)</h2>
 
-<div class="cols figcols"><div class="col"><p class="bigp">An elongated, multinucleated cell that is surrounded by the sarcolemma and contains many myofibrils.</p><figure class="sfig"><img src="../shared/images/day-04/d4-42cb30e7a0.jpg" alt="Light micrograph of striated skeletal muscle" style="max-height:190px"><figcaption>Real skeletal muscle under a microscope (H&amp;E stain): long, striated, multinucleated fibers. Nephron, CC BY-SA 3.0, via Wikimedia Commons.</figcaption></figure></div><div class="col" style="flex: 1 1 0%;"><figure class="sfig"><img src="../shared/images/day-04/d4-faf0e3c10b.jpg" alt="Illustration of a skeletal muscle fiber" style="max-height:440px"><figcaption>Muscle fiber: sarcolemma, nuclei, myofibrils. Blausen Medical (BruceBlaus), CC BY 3.0, via Wikimedia Commons.</figcaption></figure></div></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 6 of 23</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="cols figcols"><div class="col"><p class="bigp">An elongated, multinucleated cell that is surrounded by the sarcolemma and contains many myofibrils.</p><figure class="sfig"><img src="../shared/images/day-04/d4-42cb30e7a0.jpg" alt="Light micrograph of striated skeletal muscle" style="max-height:190px"><figcaption>Real skeletal muscle under a microscope (H&amp;E stain): long, striated, multinucleated fibers. Nephron, CC BY-SA 3.0, via Wikimedia Commons.</figcaption></figure></div><div class="col" style="flex: 1 1 0%;"><figure class="sfig"><img src="../shared/images/day-04/d4-faf0e3c10b.jpg" alt="Illustration of a skeletal muscle fiber" style="max-height:440px"><figcaption>Muscle fiber: sarcolemma, nuclei, myofibrils. Blausen Medical (BruceBlaus), CC BY 3.0, via Wikimedia Commons.</figcaption></figure></div></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 8 of 36</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 21 · Focused Notes: From small to large</div>
 <div class="kicker">Level 4 and 5</div>
 <h2>Fascicle and whole muscle</h2>
 <div class="cols figcols">
@@ -166,32 +289,15 @@ html, body { height: 100%; background: #16181f; }
   <div class="col" style="flex: 1.5 1 0%;"><figure class="sfig"><img src="../shared/images/day-04/d4-51dfd6e2ae.jpg" alt="Skeletal muscle attached to bone, cut to show fascicles and fibers" style="max-height:330px"><figcaption>Whole muscle → fascicle → muscle fiber, attached to bone by a tendon. NCI SEER Training, public domain.</figcaption></figure></div>
 </div>
 <p style="text-align:center; font-weight:700; color:#2b50c8; margin-top:1em;">myofilament → myofibril → muscle fiber → fascicle → whole muscle</p>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 7 of 23</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">Wrapped in connective tissue</div>
-<h2>A wrapper at every level</h2>
-
-<div class="cols figcols"><div class="col"><table>
-<tbody><tr><th>Level wrapped</th><th>Connective tissue</th></tr>
-<tr><td>Muscle fiber</td><td><b>Endomysium</b></td></tr>
-<tr><td>Fascicle</td><td><b>Perimysium</b></td></tr>
-<tr><td>Whole muscle</td><td><b>Epimysium</b></td></tr>
-</tbody></table></div><div class="col" style="flex: 0.9 1 0%;"><figure class="sfig"><img src="../shared/images/day-04/d4-c873f4ceaa.jpg" alt="Three connective tissue layers of skeletal muscle" style="max-height:470px"><figcaption>Epimysium, perimysium, and endomysium. OpenStax <i>Anatomy &amp; Physiology</i>, CC BY 4.0.</figcaption></figure></div></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 8 of 23</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 9 of 36</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 21 · Focused Notes: From small to large</div>
 <div class="kicker">A helpful comparison</div>
 <h2>Muscle is like a cable</h2>
 <p class="bigp">Small wires (myofilaments) form strands (myofibrils), which bundle into cords (fibers and fascicles), which wrap together to form the main cable (whole muscle).</p>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 9 of 23</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 10 of 36</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 21 · Focused Notes: From small to large</div>
 <div class="kicker">Read the diagram</div>
 <h2>The sarcomere, up close</h2>
 <div class="cols figcols">
@@ -201,28 +307,54 @@ html, body { height: 100%; background: #16181f; }
   </div>
   <div class="col" style="flex: 1.1 1 0%;"><figure class="sfig"><div style="display:inline-block;background:#fff;border:1px solid #e4e6ee;border-radius:8px;padding:34px 10px 10px"><div style="position:relative;display:inline-block"><img src="../shared/images/day-04/d4-33bc214728.jpg" alt="Sarcomere relaxed and contracted, with parts marked A to D" style="max-height:330px;border:0;padding:0;border-radius:0;display:block"><div style="position:absolute;left:15.3%;right:15.9%;top:-20px;border-top:3px solid #2b50c8"></div><span style="position:absolute;left:15.3%;top:-27px;height:14px;border-left:3px solid #2b50c8"></span><span style="position:absolute;left:84.1%;top:-27px;height:14px;border-left:3px solid #2b50c8"></span><span style="position:absolute;left:49.7%;top:-3.3%;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:#2b50c8;color:#fff;font:800 15px Archivo,Arial,sans-serif;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.35)">D</span><span style="position:absolute;left:15.3%;top:30%;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:#2b50c8;color:#fff;font:800 15px Archivo,Arial,sans-serif;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.35)">A</span><span style="position:absolute;left:76%;top:5.5%;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:#2b50c8;color:#fff;font:800 15px Archivo,Arial,sans-serif;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.35)">B</span><span style="position:absolute;left:36.9%;top:22%;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:#2b50c8;color:#fff;font:800 15px Archivo,Arial,sans-serif;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.35)">C</span></div></div><figcaption>Sliding filament model, relaxed vs. contracted. OpenStax <i>Anatomy &amp; Physiology</i>, CC BY 4.0 (letters added).</figcaption></figure></div>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 10 of 23</span></div>
-</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 11 of 36</span></div>
+</div><div class="slide nbkey"><div class="topline"></div><div class="nbtag">Notebook p. 21 · Note Only the Key Idea</div><div class="kicker">Notebook · page 21 · Key Idea box</div><h2>Note only the key idea</h2><p class="bigp" style="font-size:28px">Pause the notes. Find the <b>Key Idea</b> box on <b>page 21</b>, right under <b>“From small to large”</b>.</p><div class="kbox">Write the key idea in your own words: <b>one short sentence</b>, using the blue key words you just filled in.<br><span style="font-size:20px;color:#6b6f7b">No copying a full bullet. Shorter is better.</span></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 12 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook p. 21 · Focused Notes: The wrappings</div><div class="kicker">Focused notes</div><h2>The wrappings</h2><ul style="font-size:26px;line-height:1.5"><li>Each level is wrapped in connective tissue, like plastic wrap around a bundle.</li><li><b>Endomysium</b> wraps each fiber. <b>Perimysium</b> wraps each fascicle. <b>Epimysium</b> wraps the whole muscle.</li><li>Memory trick: <b>endo</b> = inside, <b>peri</b> = around, <b>epi</b> = on top.</li></ul><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 13 of 36</span></div></div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 21 · Focused Notes: The wrappings</div>
+<div class="kicker">Wrapped in connective tissue</div>
+<h2>A wrapper at every level</h2>
 
-<div class="slide">
+<div class="cols figcols"><div class="col"><table>
+<tbody><tr><th>Level wrapped</th><th>Connective tissue</th></tr>
+<tr><td>Muscle fiber</td><td><b>Endomysium</b></td></tr>
+<tr><td>Fascicle</td><td><b>Perimysium</b></td></tr>
+<tr><td>Whole muscle</td><td><b>Epimysium</b></td></tr>
+</tbody></table></div><div class="col" style="flex: 0.9 1 0%;"><figure class="sfig"><img src="../shared/images/day-04/d4-c873f4ceaa.jpg" alt="Three connective tissue layers of skeletal muscle" style="max-height:470px"><figcaption>Epimysium, perimysium, and endomysium. OpenStax <i>Anatomy &amp; Physiology</i>, CC BY 4.0.</figcaption></figure></div></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 14 of 36</span></div>
+</div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook p. 22 · Stop and Think</div><div class="kicker">Stop and think</div><h2>Which wrapping would you cut through first if you sliced into a muscle?</h2><p class="bigp">Write your answer in your notebook.</p><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 15 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook p. 22 · Focused Notes: Wrappings become tendons</div><div class="kicker">Focused notes</div><h2>Wrappings become tendons</h2><ul style="font-size:26px;line-height:1.5"><li>At the ends of a muscle, all the wrappings join together to form a <b>tendon</b>.</li><li>The tendon attaches the muscle to the bone.</li><li>When the muscle shortens, the tendon pulls the bone and you move.</li></ul><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 16 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook p. 22 · Connect It</div><div class="kicker">Connect it</div><h2>Why can a torn tendon stop you from moving a joint, even if the muscle is fine?</h2><p class="bigp">Write your answer in your notebook.</p><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 17 of 36</span></div></div><div class="slide">
 <div class="topline"></div>
 <div class="demo">Turn and talk</div>
 <div class="kicker">Check your understanding</div>
 <h2>Order them</h2>
 <p class="bigp" style="margin-top:20px">Put these in order from smallest to largest: fascicle, myofilament, whole muscle, muscle fiber, myofibril. Then name the connective tissue wrapping the fascicle.</p>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 11 of 23</span></div>
-</div>
-
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 18 of 36</span></div>
+</div><div class="slide">
 <div class="topline"></div>
 <div class="kicker">Catch the mistake</div>
 <h2>A classmate's claim</h2>
 <div class="prompt">"A fascicle is a bundle of myofibrils."</div>
 <p class="bigp" style="font-size:24px">What is wrong with this claim? What is a fascicle actually a bundle of?</p>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 12 of 23</span></div>
-</div><div class="slide"><div class="topline"></div><div class="kicker">Lab · 20 minutes · groups</div><h2>Muscle-in-Layers Model</h2><div class="cols" style="align-items:flex-start"><div class="col" style="flex:1.4"><ol class="labsteps"><li>Use paper strips as myofilaments and bundle them into a myofibril.</li><li>Group myofibrils into a fiber and wrap it (endomysium).</li><li>Bundle fibers into a fascicle (perimysium), then fascicles into a muscle (epimysium).</li><li>Label each level and explain it to another group.</li></ol></div><div class="col"><p><b style="color:#2b50c8">Materials</b><br>Paper strips (about 20 per group), yarn or string, tape, markers.</p><p><b style="color:#2b50c8">Notebook</b><br>Lab pages 23–24.</p></div></div><figure class="sfig"><img src="../shared/images/day-04/d4-1907ab7ad4.png" alt="Notebook diagram of five zoom panels, colored" style="max-height:190px"><figcaption>Your notebook diagram (page 23), colored: red = muscle, yellow = connective tissue wrapping.</figcaption></figure><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 13 of 23</span></div></div><div class="slide"><div class="topline"></div><div class="kicker">Lab · notebook page 23</div><h2>Zoom in, panel by panel</h2><p class="bigp" style="font-size:22px;max-width:none">Panels 1 to 5 zoom in from the whole muscle down to the filaments. Name each panel, then name the three wrappings (a, b, c).</p><figure class="sfig"><img src="../shared/images/day-04/d4-1907ab7ad4.png" alt="Notebook diagram of five zoom panels, colored" style="max-height:300px"><figcaption>Notebook diagram, colored to match real tissue.</figcaption></figure><div class="legend"><span><i style="background:#d9605a"></i>Muscle tissue</span><span><i style="background:#f6e3a0"></i>Connective tissue wrapping</span><span><i style="background:#fbcf9a"></i>Sarcoplasm</span><span><i style="background:#b06a3b"></i>Myofibrils</span><span><i style="background:#7b3f8c"></i>Myosin (thick)</span><span><i style="background:#2e9a3e"></i>Actin (thin)</span></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 14 of 23</span></div></div><div class="slide"><div class="topline"></div><div class="kicker">What it really looks like</div><h2>From notebook to body: panels 1–3</h2><div class="pairs"><div class="pair"><h3>Panel 1 · Whole muscle</h3><img class="nb" src="../shared/images/day-04/d4-19efdf3b30.png" alt="Notebook panel 1, colored"><div class="down">↓ in the body</div><img class="real contain" src="../shared/images/day-04/d4-6ca1f68066.jpg" alt="Biceps brachii highlighted on the arm"><p>The biceps is one whole muscle, with a tendon at each end. Its outer covering is the epimysium (a).<small>Gray's <i>Anatomy</i> (1918), H. V. Carter, public domain.</small></p></div><div class="pair"><h3>Panel 2 · Fascicles</h3><img class="nb" src="../shared/images/day-04/d4-8fd2f4baad.png" alt="Notebook panel 2, colored"><div class="down">↓ in the body</div><img class="real " src="../shared/images/day-04/d4-f1bb445804.jpg" alt="Skeletal muscle cut across, 100x, showing bundles"><p>Muscle cut across (100x). Each pink bundle is a fascicle. The pale spaces between bundles hold the perimysium (b).<small>Berkshire Community College Bioscience Image Library, CC0.</small></p></div><div class="pair"><h3>Panel 3 · Muscle fibers</h3><img class="nb" src="../shared/images/day-04/d4-104f8c84fc.png" alt="Notebook panel 3, colored"><div class="down">↓ in the body</div><img class="real " src="../shared/images/day-04/d4-19863d506b.jpg" alt="Skeletal muscle cut across, 200x, showing individual fibers"><p>Closer (200x). Each small pink shape is one muscle fiber. The thin lines between fibers are endomysium (c).<small>Berkshire Community College Bioscience Image Library, CC0.</small></p></div></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 15 of 23</span></div></div><div class="slide"><div class="topline"></div><div class="kicker">What it really looks like</div><h2>From notebook to body: panels 4–5</h2><div class="pairs"><div class="pair"><h3>Panel 4 · Myofibrils</h3><img class="nb" src="../shared/images/day-04/d4-74e551bbcc.png" alt="Notebook panel 4, colored"><div class="down">↓ in the body</div><img class="real " src="../shared/images/day-04/d4-44101d2166.jpg" alt="Electron micrograph of human skeletal muscle showing myofibrils"><p>Electron microscope view inside one fiber. The long parallel strands are myofibrils. The dark lines across them are Z-discs, one at each end of a sarcomere.<small>Louisa Howard, Dartmouth Electron Microscope Facility, public domain.</small></p></div><div class="pair"><h3>Panel 5 · Myofilaments</h3><img class="nb" src="../shared/images/day-04/d4-44a18b5958.png" alt="Notebook panel 5, colored"><div class="down">↓ in the body</div><img class="real " src="../shared/images/day-04/d4-33133a3846.jpg" alt="Higher-magnification electron micrograph of sarcomeres"><p>Even closer. The darker A band is where thick myosin filaments overlap actin. The lighter I band holds only thin actin filaments, anchored at the Z-disc.<small>Louisa Howard, Dartmouth Electron Microscope Facility, public domain.</small></p></div><div class="pair" style="flex:0.9;text-align:left;padding-top:28px"><h3 style="text-align:left">Notice</h3><p style="font-size:17px">The notebook drawings are simplified. Real tissue is packed tight and stained pink or gray, but the same pattern repeats at every level: bundles inside bundles, each with its own wrapper.</p></div></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 16 of 23</span></div></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 19 of 36</span></div>
+</div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook p. 22 · Big Picture: Muscle in Layers</div><div class="kicker">Big picture: Muscle in Layers</div><h2>Smallest to largest</h2><table class="blank"><tbody><tr><th style="width:40%">Term / step</th><th>What it means (fill in)</th></tr><tr><td><b>Myofilament</b></td><td></td></tr><tr><td><b>Myofibril</b></td><td></td></tr><tr><td><b>Muscle fiber</b></td><td></td></tr><tr><td><b>Fascicle</b></td><td></td></tr><tr><td><b>Whole muscle</b></td><td></td></tr></tbody></table><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 20 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook pp. 23–24 · Lab: Muscle-In-Layers Model</div><div class="kicker">Lab · 20 minutes · groups of 3–4 · Part 1 of 2</div><h2>Muscle-in-Layers Model: Build it</h2>
+<p style="font-size:19px;line-height:1.4;margin:-8px 0 14px">Build a model muscle from the <b>smallest level up</b>. Paper strips are the muscle parts. Yarn is the connective tissue wrapping. Build first (about 10 min). Don't wrap anything until a step tells you to.</p>
+<div class="cols" style="align-items:flex-start;gap:34px"><div class="col" style="flex:1.55"><ol class="labsteps" style="font-size:19px;line-height:1.4">
+<li><b style="color:#2b50c8">Myofilaments.</b> Count out 24 paper strips. Each strip is one myofilament. Write <b>A</b> (actin, thin) on 12 strips and <b>M</b> (myosin, thick) on the other 12.</li>
+<li><b style="color:#2b50c8">Myofibrils.</b> Stack 3 strips, mixing A and M. Tape them together around the middle. <b>Make 8.</b></li>
+<li><b style="color:#2b50c8">Muscle fibers + endomysium.</b> Hold 2 myofibrils side by side. Wrap a <b>short</b> yarn piece around them 3 times and tie it. <b>Make 4.</b> This yarn is the endomysium.</li>
+<li><b style="color:#2b50c8">Fascicles + perimysium.</b> Hold 2 fibers together. Wrap them with a <b>medium</b> yarn piece and tie it. <b>Make 2.</b> This yarn is the perimysium.</li>
+<li><b style="color:#2b50c8">Whole muscle + epimysium.</b> Hold both fascicles together. Wrap the <b>long</b> yarn piece around the outside and tie it. This yarn is the epimysium.</li>
+</ol></div><div class="col"><div style="background:#fff;border:1px solid #e4e6ee;border-radius:10px;padding:14px 18px;font-size:17px;line-height:1.45"><b style="color:#2b50c8">Materials (per group)</b><br>24 paper strips (about 1 in × 8 in)<br>Yarn, about 3 yd total, cut into:<br>&nbsp;• 4 short (12 in) = endomysium<br>&nbsp;• 2 medium (18 in) = perimysium<br>&nbsp;• 1 long (24 in) = epimysium<br>Tape, 1 marker, 6 paper tags</div>
+<div style="background:#fff;border:1px solid #e4e6ee;border-radius:10px;padding:14px 18px;font-size:17px;line-height:1.45;margin-top:12px"><b style="color:#2b50c8">Check your count</b><br>24 myofilaments → 8 myofibrils → 4 fibers → 2 fascicles → 1 muscle<br>7 yarn wraps in total</div></div></div>
 
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 21 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook pp. 23–24 · Lab: Muscle-In-Layers Model</div><div class="kicker">Lab · 20 minutes · groups of 3–4 · Part 2 of 2</div><h2>Tag it, explain it, record it</h2>
+<div class="cols" style="align-items:flex-start;gap:34px"><div class="col" style="flex:1.55"><ol class="labsteps" start="6" style="font-size:19px;line-height:1.4">
+<li><b style="color:#2b50c8">Make a tendon.</b> At one end of your muscle, twist all the yarn ends together. This is where the wrappings join to form a tendon.</li>
+<li><b style="color:#2b50c8">Tag every level.</b> Write a paper tag for each level and tape it on one example: <b>myofilament, myofibril, muscle fiber, fascicle, whole muscle, tendon.</b> On the fiber, fascicle, and muscle tags, also write the wrapping name.</li>
+<li><b style="color:#2b50c8">Explain it (about 5 min).</b> Pair up with another group. Each person explains one level using the frame below. Then listen while they explain theirs.</li>
+<li><b style="color:#2b50c8">Record it (about 5 min).</b> In your notebook, page 23: name panels 1–5 and wrappings a–c, then fill in the table (it continues on page 24). On page 24, write one sentence you used to explain your model.</li>
+</ol>
+<div class="prompt" style="font-size:19px;margin-top:10px">A ____ is made of many ____. It is wrapped in ____.</div></div>
+<div class="col"><div style="background:#fff;border:1px solid #e4e6ee;border-radius:10px;padding:14px 18px;font-size:17px;line-height:1.45"><b style="color:#2b50c8">You're done when…</b><br>☐ All 6 levels are tagged<br>☐ All 3 wrappings are named on the tags<br>☐ Everyone in your group explained one level<br>☐ Notebook pages 23–24 are filled in</div>
+<figure class="sfig" style="margin-top:12px"><img src="https://boyles-science.github.io/boyles-bio-pages/anp-unit-2-5-muscular-system/shared/images/day-04/d4-1907ab7ad4.png" alt="Notebook diagram of five zoom panels, colored" style="max-height:150px"><figcaption>Your notebook diagram (page 23), colored: red = muscle, yellow = connective tissue wrapping.</figcaption></figure></div></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 22 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook pp. 23–24 · Lab: Muscle-In-Layers Model</div><div class="kicker">Lab · notebook page 23</div><h2>Zoom in, panel by panel</h2><p class="bigp" style="font-size:22px;max-width:none">Panels 1 to 5 zoom in from the whole muscle down to the filaments. Name each panel, then name the three wrappings (a, b, c).</p><figure class="sfig"><img src="../shared/images/day-04/d4-1907ab7ad4.png" alt="Notebook diagram of five zoom panels, colored" style="max-height:300px"><figcaption>Notebook diagram, colored to match real tissue.</figcaption></figure><div class="legend"><span><i style="background:#d9605a"></i>Muscle tissue</span><span><i style="background:#f6e3a0"></i>Connective tissue wrapping</span><span><i style="background:#fbcf9a"></i>Sarcoplasm</span><span><i style="background:#b06a3b"></i>Myofibrils</span><span><i style="background:#7b3f8c"></i>Myosin (thick)</span><span><i style="background:#2e9a3e"></i>Actin (thin)</span></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 23 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook pp. 23–24 · Lab: Muscle-In-Layers Model</div><div class="kicker">What it really looks like</div><h2>From notebook to body: panels 1–3</h2><div class="pairs"><div class="pair"><h3>Panel 1 · Whole muscle</h3><img class="nb" src="../shared/images/day-04/d4-19efdf3b30.png" alt="Notebook panel 1, colored"><div class="down">↓ in the body</div><img class="real contain" src="../shared/images/day-04/d4-6ca1f68066.jpg" alt="Biceps brachii highlighted on the arm"><p>The biceps is one whole muscle, with a tendon at each end. Its outer covering is the epimysium (a).<small>Gray's <i>Anatomy</i> (1918), H. V. Carter, public domain.</small></p></div><div class="pair"><h3>Panel 2 · Fascicles</h3><img class="nb" src="../shared/images/day-04/d4-8fd2f4baad.png" alt="Notebook panel 2, colored"><div class="down">↓ in the body</div><img class="real " src="../shared/images/day-04/d4-f1bb445804.jpg" alt="Skeletal muscle cut across, 100x, showing bundles"><p>Muscle cut across (100x). Each pink bundle is a fascicle. The pale spaces between bundles hold the perimysium (b).<small>Berkshire Community College Bioscience Image Library, CC0.</small></p></div><div class="pair"><h3>Panel 3 · Muscle fibers</h3><img class="nb" src="../shared/images/day-04/d4-104f8c84fc.png" alt="Notebook panel 3, colored"><div class="down">↓ in the body</div><img class="real " src="../shared/images/day-04/d4-19863d506b.jpg" alt="Skeletal muscle cut across, 200x, showing individual fibers"><p>Closer (200x). Each small pink shape is one muscle fiber. The thin lines between fibers are endomysium (c).<small>Berkshire Community College Bioscience Image Library, CC0.</small></p></div></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 24 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook pp. 23–24 · Lab: Muscle-In-Layers Model</div><div class="kicker">What it really looks like</div><h2>From notebook to body: panels 4–5</h2><div class="pairs"><div class="pair"><h3>Panel 4 · Myofibrils</h3><img class="nb" src="../shared/images/day-04/d4-74e551bbcc.png" alt="Notebook panel 4, colored"><div class="down">↓ in the body</div><img class="real " src="../shared/images/day-04/d4-44101d2166.jpg" alt="Electron micrograph of human skeletal muscle showing myofibrils"><p>Electron microscope view inside one fiber. The long parallel strands are myofibrils. The dark lines across them are Z-discs, one at each end of a sarcomere.<small>Louisa Howard, Dartmouth Electron Microscope Facility, public domain.</small></p></div><div class="pair"><h3>Panel 5 · Myofilaments</h3><img class="nb" src="../shared/images/day-04/d4-44a18b5958.png" alt="Notebook panel 5, colored"><div class="down">↓ in the body</div><img class="real " src="../shared/images/day-04/d4-33133a3846.jpg" alt="Higher-magnification electron micrograph of sarcomeres"><p>Even closer. The darker A band is where thick myosin filaments overlap actin. The lighter I band holds only thin actin filaments, anchored at the Z-disc.<small>Louisa Howard, Dartmouth Electron Microscope Facility, public domain.</small></p></div><div class="pair" style="flex:0.9;text-align:left;padding-top:28px"><h3 style="text-align:left">Notice</h3><p style="font-size:17px">The notebook drawings are simplified. Real tissue is packed tight and stained pink or gray, but the same pattern repeats at every level: bundles inside bundles, each with its own wrapper.</p></div></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 25 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook pp. 23–24 · Lab: Muscle-In-Layers Model</div><div class="kicker"><span class="labtag">Lab</span>Part 2 · Complete the table</div><h2 style="margin-bottom:12px">Complete the table</h2><p style="font-size:20px;margin-bottom:6px">Complete the table using the myofilament row as your example.</p><table class="blank"><tbody><tr><th>Level</th><th>Description</th><th>Connective tissue</th><th>Function</th></tr><tr><td><b>Myofilament</b></td><td class="fill">Tiny protein strands: actin (thin) and myosin (thick)</td><td class="fill">None</td><td class="fill">Slide past each other to shorten the sarcomere</td></tr><tr><td><b>Myofibril</b></td><td></td><td></td><td></td></tr><tr><td><b>Muscle fiber</b></td><td></td><td></td><td></td></tr><tr><td><b>Fascicle</b></td><td></td><td></td><td></td></tr><tr><td><b>Whole muscle</b></td><td></td><td></td><td></td></tr><tr><td><b>Tendon</b></td><td></td><td></td><td></td></tr></tbody></table><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 26 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook pp. 23–24 · Lab: Muscle-In-Layers Model</div><div class="kicker"><span class="labtag">Lab</span>Part 3 · Reflect</div><h2 style="margin-bottom:12px">Explain your model</h2><p class="bigp">Explain your paper-and-string model to another group. Write one sentence you used about how the levels are wrapped.</p><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 27 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook p. 24 · Misconception Check</div><div class="kicker">Misconception check · pairs</div><h2>Does the whole muscle get shorter because the proteins shrink?</h2><p class="bigp">Talk with your partner, then write your answer in your notebook.</p><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 28 of 36</span></div></div><div class="slide">
 <div class="topline"></div>
 <div class="demo">Take the CFA</div>
 <div class="kicker">CFA 1 · Canvas</div>
@@ -232,10 +364,8 @@ html, body { height: 100%; background: #16181f; }
   <div class="step"><div class="stepn">2</div><div class="stept">Answer from what you know. Read the feedback after each question.</div></div>
   <div class="step"><div class="stepn">3</div><div class="stept">It does not count for a grade the way the unit test will. Your score sorts you into a station.</div></div>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 17 of 23</span></div>
-</div>
-
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 29 of 36</span></div>
+</div><div class="slide">
 <div class="topline"></div>
 <div class="demo">If time allows</div>
 <div class="kicker">Groups of five, about 6 minutes</div>
@@ -246,9 +376,8 @@ html, body { height: 100%; background: #16181f; }
   <div class="step"><div class="stepn">3</div><div class="stept"><b>Line up.</b> Stand in order from smallest to largest. Check another group's line.</div></div>
 </div>
 <p class="note">Do not use your notes until you have lined up once.</p>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 18 of 23</span></div>
-</div>
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 30 of 36</span></div>
+</div><div class="slide">
 <div class="topline"></div>
 <div class="demo">If time allows</div>
 <div class="kicker">Individual or pairs, about 7 minutes</div>
@@ -259,41 +388,14 @@ html, body { height: 100%; background: #16181f; }
   <div class="step"><div class="stepn">3</div><div class="stept"><b>Check the wrappers.</b> Name what wraps a fiber, a fascicle, and a whole muscle.</div></div>
 </div>
 <p class="note">Draw and label if you prefer.</p>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 19 of 23</span></div>
-</div>
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 31 of 36</span></div>
+</div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook p. 24 · Mark, Ask, Link</div><div class="kicker">After the notes</div><h2>Mark, ask, link</h2><div class="steps"><div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> One pass over your notes: highlight, underline, or circle what matters most.</div></div><div class="step"><div class="stepn">2</div><div class="stept"><b>Ask.</b> Write one quiz question. Your notes must already answer it.</div></div><div class="step"><div class="stepn">3</div><div class="stept"><b>Link.</b> Write one connection beyond your notes: "this reminds me of..."</div></div></div><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 32 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook pp. 23–24 · Lab: Muscle-In-Layers Model</div><div class="kicker">Then the sum</div><h2>How does building muscle in layers make it both strong and flexible?</h2><p class="bigp">Answer in 2-3 sentences in your notebook.</p><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 33 of 36</span></div></div><div class="slide"><div class="topline"></div><div class="nbtag">Notebook p. 24 · Exit Ticket</div><div class="kicker">Take-home message and exit ticket</div><h2>Before you leave</h2><div class="cols" style="margin-top:6px"><div class="col"><div class="dolabel" style="margin-top:0">Take-home message</div><p class="bigp" style="font-size:25px">Muscles are organized in levels, and the sarcomere is the basic unit of contraction.</p></div><div class="col"><div class="dobox"><div class="dolabel">Exit ticket · from memory</div><p style="margin:0 0 6px">1. Put in order, smallest to largest: fascicle, myofibril, whole muscle, fiber, myofilament.</p><p style="margin:0 0 6px">2. Define sarcomere.</p><p style="margin:0 0 6px">3. What connective tissue wraps a fascicle?</p></div></div></div><p class="note"><b>Monday: what actually happens inside a sarcomere when a muscle contracts?</b></p><div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 34 of 36</span></div></div><div class="slide">
 <div class="topline"></div>
-<div class="kicker">After the notes</div>
-<h2>Mark, link, ask</h2>
-<div class="steps">
-  <div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> Underline, circle, or highlight the main ideas in your notes.</div></div>
-  <div class="step"><div class="stepn">2</div><div class="stept"><b>Link.</b> Connect one idea in your notes to something outside your notes.</div></div>
-  <div class="step"><div class="stepn">3</div><div class="stept"><b>Ask.</b> Write one quiz question that your notes can answer and that could be on a test.</div></div>
-</div>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 20 of 23</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">Summarize</div>
-<h2>How does a muscle build up from tiny filaments to a whole muscle?</h2>
-<p class="bigp">Muscle is built in five levels. Myofilaments form myofibrils, myofibrils fill a muscle fiber, fibers bundle into fascicles, and fascicles make up the whole muscle. Endomysium, perimysium, and epimysium wrap the fiber, the fascicle, and the whole muscle.</p>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 21 of 23</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">Take-home message and exit ticket</div>
-<h2>Before you leave</h2>
-<div class="cols" style="margin-top:6px">
-  <div class="col"><div class="dolabel" style="margin-top:0">Take-home message</div><p class="bigp" style="font-size:25px">Tiny events add up. Many small sliding events at every level produce one coordinated movement.</p></div>
-  <div class="col"><div class="dobox">
-  <div class="dolabel">Write in your notebook</div>
-  <p>The sarcomere is the basic unit of contraction. Name the five levels of skeletal muscle structure in order, smallest to largest, and circle the one wrapped in perimysium.</p>
-</div></div>
-</div>
-<p class="note">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 22 of 23</span></div>
-</div>
-<div class="slide">
+<div class="kicker">Turn it in</div>
+<h2>Weekly warm-up and exit ticket page</h2>
+<p class="bigp">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 35 of 36</span></div>
+</div><div class="slide">
 <div class="topline"></div>
 <div class="kicker">Credits</div>
 <h2>Image and content credits</h2>
@@ -301,13 +403,15 @@ html, body { height: 100%; background: #16181f; }
   
   <li>Content follows the Unit 2.5 notes, which cite OpenStax Anatomy and Physiology (CC BY 4.0).</li>
 </ul>
-<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 23 of 23</span></div>
-</div>
-</div></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 4 · Thu, Oct 22</span><span>slide 36 of 36</span></div>
+</div></div></div>
 <div class="nav"><span id="counter"></span>
   <button onclick="step(-1)">←</button>
   <button onclick="step(1)">→</button>
 </div>
+
+
+
 <script>
 // Shared slide-deck script for Unit 2.5 Muscular System lesson decks. Do not fork per day.
 var slides = document.querySelectorAll(".slide");
@@ -346,7 +450,4 @@ window.addEventListener("resize", fit);
 fit(); show(0);
 
 
-</script>
-
-
-</body></html>
+</script></body></html>
