@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 5: Synapses and Neurotransmitters</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<style>
+/* Shared slide-deck style for Unit 2.5 Muscular System and Unit 2.6 Nervous System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+
+</style>
+</head>
+<body>
+<div class="stage"><div class="frame" id="frame">
+
+<div class="slide active">
+<div class="topline"></div>
+<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</div>
+<h1>Synapses and Neurotransmitters</h1>
+<div class="cols" style="margin-top:8px">
+  <div class="col">
+    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dobox"><p>Look back at the Muscular System unit. Write the name of the chemical that crosses the gap between a motor neuron and a muscle fiber.</p></div>
+  </div>
+  <div class="col" style="flex:0.7">
+    <div class="dolabel" style="margin-top:0">You need today</div>
+    <div class="chips" style="flex-direction:column; align-items:flex-start;"><span class="chip yes"><b>Chromebook</b> &mdash; yes</span><span class="chip yes"><b>Notebook</b> &mdash; yes</span><span class="chip yes"><b>Scrap paper</b> &mdash; yes</span><span class="chip yes"><b>Small cup</b> &mdash; yes</span></div>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 1 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Objective</div>
+<h2>Today's goal</h2>
+<p class="bigp" style="font-size:24px">Students will be able to describe the steps of a chemical synapse, by modeling neurotransmitter release and sorting the steps, so that they can explain how a signal crosses from one cell to the next.</p>
+<ul><li>I can put the steps of a chemical synapse in order.</li><li>I can explain how neurotransmitters excite or inhibit the next cell.</li></ul>
+<div class="ltarget" style="margin-top:10px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can explain how a signal crosses a synapse.</p><p style="margin:2px 0"><b>Key words:</b> synapse, neurotransmitter, receptor, vesicle, cleft</p><p style="margin:2px 0"><b>Sentence frame:</b> The signal crosses the synapse when ____ is released and binds to ____.</p></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 2 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Essential question</div>
+<h2>How does a signal get from one neuron to the next?</h2>
+<p class="bigp">Neurons do not touch. A <b>synapse</b> is the tiny gap where one cell passes a signal to another.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 3 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">The synapse</div>
+<h2>Where cells meet</h2>
+<ul><li>The <b>presynaptic</b> cell sends the signal. Its axon terminal holds <b>vesicles</b>, small sacs of neurotransmitter.</li><li>The <b>synaptic cleft</b> is the gap.</li><li>The <b>postsynaptic</b> cell receives the signal. It has <b>receptors</b> that neurotransmitters fit into.</li><li>The neuromuscular junction is a synapse.</li></ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 4 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Diagram</div>
+<h2>A chemical synapse</h2>
+<svg viewBox="0 0 760 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of a chemical synapse: an axon terminal with vesicles, a synaptic cleft with neurotransmitter, and receptors on the receiving cell" style="width:100%;height:auto;display:block;font-family:Archivo,Arial,Helvetica,sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="13" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#161821"/></marker></defs><path d="M150 20 L490 20 Q540 20 540 70 L540 130 Q540 170 490 170 L150 170 Q100 170 100 130 L100 70 Q100 20 150 20 Z" fill="#dbe4fb" stroke="#161821" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><circle cx="200" cy="60" r="17" fill="#fff" stroke="#2b50c8" stroke-width="2"/><circle cx="194" cy="56" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="205" cy="55" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="200" cy="66" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="260" cy="95" r="17" fill="#fff" stroke="#2b50c8" stroke-width="2"/><circle cx="254" cy="91" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="265" cy="90" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="260" cy="101" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="330" cy="70" r="17" fill="#fff" stroke="#2b50c8" stroke-width="2"/><circle cx="324" cy="66" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="335" cy="65" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="330" cy="76" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="400" cy="105" r="17" fill="#fff" stroke="#2b50c8" stroke-width="2"/><circle cx="394" cy="101" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="405" cy="100" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="400" cy="111" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="450" cy="60" r="17" fill="#fff" stroke="#2b50c8" stroke-width="2"/><circle cx="444" cy="56" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="455" cy="55" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="450" cy="66" r="3" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><rect x="290" y="152" width="80" height="20" rx="4" fill="#ffd1c2" stroke="#c0392b" stroke-width="2"/><text x="330" y="166" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">Ca²⁺ channel</text><path d="M100 250 L540 250" fill="none" stroke="#161821" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><rect x="100" y="252" width="440" height="60" rx="0" fill="#efe9dc" stroke="#8a7a55" stroke-width="2"/><path d="M154 250 Q170 232 186 250" fill="#bcd0ff" stroke="#2b50c8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M254 250 Q270 232 286 250" fill="#bcd0ff" stroke="#2b50c8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M354 250 Q370 232 386 250" fill="#bcd0ff" stroke="#2b50c8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M454 250 Q470 232 486 250" fill="#bcd0ff" stroke="#2b50c8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><circle cx="260" cy="196" r="4" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="290" cy="212" r="4" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="370" cy="200" r="4" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="395" cy="225" r="4" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="165" cy="200" r="4" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="270" cy="244" r="4" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><circle cx="370" cy="244" r="4" fill="#c2571a" stroke="#c2571a" stroke-width="1"/><line x1="330" y1="125" x2="330" y2="186" stroke="#c2571a" stroke-width="2.5" marker-end="url(#ah)"/><circle cx="125" cy="45" r="13" fill="#2b50c8" stroke="#2b50c8" stroke-width="1"/><text x="125" y="50" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">1</text><circle cx="262" cy="162" r="13" fill="#2b50c8" stroke="#2b50c8" stroke-width="1"/><text x="262" y="167" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">2</text><circle cx="356" cy="132" r="13" fill="#2b50c8" stroke="#2b50c8" stroke-width="1"/><text x="356" y="137" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">3</text><circle cx="215" cy="232" r="13" fill="#2b50c8" stroke="#2b50c8" stroke-width="1"/><text x="215" y="237" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">4</text><circle cx="480" cy="212" r="13" fill="#2b50c8" stroke="#2b50c8" stroke-width="1"/><text x="480" y="217" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">5</text><text x="560" y="60" text-anchor="start" font-size="15" font-weight="700" fill="#161821">Axon terminal</text><text x="560" y="78" text-anchor="start" font-size="14" font-weight="500" fill="#161821">(sending neuron)</text><text x="560" y="112" text-anchor="start" font-size="14" font-weight="500" fill="#161821">Vesicles hold</text><text x="560" y="130" text-anchor="start" font-size="14" font-weight="500" fill="#161821">neurotransmitter</text><text x="560" y="212" text-anchor="start" font-size="15" font-weight="700" fill="#161821">Synaptic cleft</text><text x="560" y="262" text-anchor="start" font-size="14" font-weight="500" fill="#161821">Receptors on the</text><text x="560" y="280" text-anchor="start" font-size="14" font-weight="500" fill="#161821">receiving cell</text><text x="560" y="306" text-anchor="start" font-size="13" font-weight="500" fill="#161821" font-style="italic">(neuron or muscle fiber)</text></svg>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 5 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Five steps</div>
+<h2>How the signal crosses</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept">An action potential reaches the axon terminal.</div></div><div class="step"><div class="stepn">2</div><div class="stept">Calcium ions (Ca²⁺) enter the terminal.</div></div><div class="step"><div class="stepn">3</div><div class="stept">Vesicles release neurotransmitter into the cleft.</div></div><div class="step"><div class="stepn">4</div><div class="stept">Neurotransmitter binds to receptors on the receiving cell.</div></div><div class="step"><div class="stepn">5</div><div class="stept">The neurotransmitter is cleared away.</div></div></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 6 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Excite or inhibit</div>
+<h2>Two kinds of signals</h2>
+<ul><li>An <b>excitatory</b> signal makes the next cell more likely to fire.</li><li>An <b>inhibitory</b> signal makes it less likely to fire.</li><li>The receiving cell adds up all the signals it gets.</li><li>If the total reaches threshold, it fires an action potential.</li></ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 7 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Neurotransmitters</div>
+<h2>Five to know</h2>
+<table><tr><th>Neurotransmitter</th><th>One job</th></tr><tr><td>Acetylcholine (ACh)</td><td>Moves skeletal muscle; helps memory</td></tr><tr><td>Dopamine</td><td>Movement and the reward pathway</td></tr><tr><td>Serotonin</td><td>Mood and sleep</td></tr><tr><td>GABA</td><td>The main inhibitory neurotransmitter</td></tr><tr><td>Glutamate</td><td>The main excitatory neurotransmitter</td></tr></table>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 8 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Ending the signal</div>
+<h2>Clearing the cleft</h2>
+<ul><li>An <b>enzyme</b> can break neurotransmitter down.</li><li>A <b>pump</b> can take it back into the sending cell. This is called <b>reuptake</b>.</li><li>Some neurotransmitter drifts away.</li><li>If it is not cleared, the receiving cell keeps getting the signal.</li></ul><p class="note">Many medicines and drugs work by changing one of these five steps. You will see examples in Lesson 10.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 9 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Sort it out</div>
+<div class="kicker">Name the step</div>
+<h2>Which step is it?</h2>
+<p>Say which of the five steps each event is. Then check with a partner.</p>
+<table>
+<tr><th>Example</th><th>Answer</th></tr>
+<tr><td>An action potential reaches the axon terminal</td><td>?</td></tr><tr><td>Calcium ions enter the axon terminal</td><td>?</td></tr><tr><td>Vesicles release neurotransmitter into the cleft</td><td>?</td></tr><tr><td>Neurotransmitter binds to receptors</td><td>?</td></tr><tr><td>An enzyme breaks down the neurotransmitter</td><td>?</td></tr>
+</table>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 10 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Partner stations</div>
+<div class="kicker">Paper-ball model</div>
+<h2>Model a synapse</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept"><b>Trial 1.</b> One person is the sending cell with 5 paper balls (neurotransmitter). Another holds a cup (the receptors) 50 cm away. Toss all 5 balls. Count how many land in the cup.</div></div><div class="step"><div class="stepn">2</div><div class="stept"><b>Trial 2: blocked receptors.</b> Cover half of the cup opening with a notebook. Toss 5 balls again. Count the balls that land in the cup.</div></div><div class="step"><div class="stepn">3</div><div class="stept"><b>Trial 3: more neurotransmitter.</b> Toss 10 balls with the cup open. Count again.</div></div></div>
+
+<p class="note">Use soft paper balls and toss gently. About 3 minutes for each trial.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 11 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">If time allows</div>
+<div class="kicker">Add summation</div>
+<h2>Change one thing</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept">Use two sending cells at the same time. Both toss 5 balls at one cup.</div></div><div class="step"><div class="stepn">2</div><div class="stept">Decide how many balls the cup needs to count as "firing." This is the threshold.</div></div><div class="step"><div class="stepn">3</div><div class="stept">Explain how two senders add up in the model.</div></div></div>
+<p class="note">You may count and record for your group instead.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 12 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Record and explain</div>
+<h2>What did you notice?</h2>
+<div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>1. Write the number of balls in the cup for each trial.</p><p>2. Write which model part each object stands for.</p><p>3. Finish this sentence. Use your counts as evidence.</p>
+  <p class="say" style="margin:6px 0">When the receptors were blocked, ____ because ____.</p>
+</div>
+<div class="chips"><span class="chip"><b>receptor</b></span><span class="chip"><b>vesicle</b></span><span class="chip"><b>cleft</b></span><span class="chip"><b>threshold</b></span><span class="chip"><b>reuptake</b></span></div>
+<p class="note">You may draw the model and label it instead.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 13 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">After the notes</div>
+<h2>Mark, link, ask</h2>
+<div class="steps">
+  <div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> Underline, circle, or highlight the main ideas in your notes.</div></div>
+  <div class="step"><div class="stepn">2</div><div class="stept"><b>Link.</b> Connect one idea in your notes to something outside your notes.</div></div>
+  <div class="step"><div class="stepn">3</div><div class="stept"><b>Ask.</b> Write one quiz question that your notes can answer and that could be on a test.</div></div>
+</div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 14 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Summarize</div>
+<h2>How does a signal get from one neuron to the next?</h2>
+<p class="bigp">A synapse is the gap where one cell passes a signal to another. An action potential opens calcium channels. Vesicles release neurotransmitter into the cleft. Neurotransmitter binds receptors and excites or inhibits the next cell. Enzymes and pumps then clear it away.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 15 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Take-home message and exit ticket</div>
+<h2>Before you leave</h2>
+<div class="cols" style="margin-top:6px">
+  <div class="col"><div class="dolabel" style="margin-top:0">Take-home message</div><p class="bigp" style="font-size:25px">A synapse changes an electrical signal into a chemical one, and back into an electrical one.</p></div>
+  <div class="col"><div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>List the five steps of a synapse in order. Then explain what happens if the receptors are blocked.</p>
+</div></div>
+</div>
+<p class="note">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 16 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Credits</div>
+<h2>Image and content credits</h2>
+<ul>
+  <li>All diagrams in this deck were drawn for this lesson. They are simplified.</li>
+  <li>Topics follow the Unit 2.6 Nervous System outline in the A&amp;P Scope and Sequence.</li>
+</ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 5 &middot; Fri, Nov 20</span><span>slide 17 of 17</span></div>
+</div>
+</div></div>
+<div class="nav"><span id="counter"></span>
+  <button onclick="step(-1)">&#8592;</button>
+  <button onclick="step(1)">&#8594;</button>
+</div>
+<script>
+// Shared slide-deck script for Unit 2.5 Muscular System and Unit 2.6 Nervous System lesson decks. Do not fork per day.
+var slides = document.querySelectorAll(".slide");
+var i = 0;
+function show(n) {
+  slides[i].classList.remove("active");
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides[i].classList.add("active");
+  var c = document.getElementById("counter");
+  if (c) c.textContent = (i + 1) + " / " + slides.length;
+}
+function step(d) { show(i + d); }
+function fit() {
+  var s = Math.min(window.innerWidth / 1300, window.innerHeight / 740);
+  document.getElementById("frame").style.transform = "scale(" + s + ")";
+}
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") step(1);
+  if (e.key === "ArrowLeft" || e.key === "PageUp") step(-1);
+});
+/* clicker support */
+document.addEventListener("keydown", function (e) {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  var t = e.target, tag = t && t.tagName;
+  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || tag === "BUTTON" || tag === "A" || (t && t.isContentEditable)) return;
+  if (e.key === "Enter" || e.key === "ArrowDown") { e.preventDefault(); step(1); }
+  if (e.key === "Backspace" || e.key === "ArrowUp") { e.preventDefault(); step(-1); }
+});
+document.getElementById("frame").addEventListener("click", function (e) {
+  if (e.target.closest("a, button, input, textarea, select, summary, label, details, [onclick]")) return;
+  if (String(window.getSelection())) return;
+  var r = this.getBoundingClientRect();
+  step(e.clientX < r.left + r.width * 0.2 ? -1 : 1);
+});
+window.addEventListener("resize", fit);
+fit(); show(0);
+
+
+</script>
+</body>
+</html>

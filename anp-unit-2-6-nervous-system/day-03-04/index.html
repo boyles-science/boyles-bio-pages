@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 3 / Day 4: The Action Potential</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<style>
+/* Shared slide-deck style for Unit 2.5 Muscular System and Unit 2.6 Nervous System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+
+</style>
+</head>
+<body>
+<div class="stage"><div class="frame" id="frame">
+
+<div class="slide active">
+<div class="topline"></div>
+<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</div>
+<h1>The Action Potential</h1>
+<div class="cols" style="margin-top:8px">
+  <div class="col">
+    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dobox"><p>At a stadium, a crowd does "the wave." Write how the wave moves around the stadium. No one runs around it. How might that be like a nerve signal?</p></div>
+  </div>
+  <div class="col" style="flex:0.7">
+    <div class="dolabel" style="margin-top:0">You need today</div>
+    <div class="chips" style="flex-direction:column; align-items:flex-start;"><span class="chip yes"><b>Chromebook</b> &mdash; yes</span><span class="chip yes"><b>Notebook</b> &mdash; yes</span><span class="chip yes"><b>Pencil</b> &mdash; yes</span><span class="chip no"><b>Phones</b> &mdash; no</span></div>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</span><span>slide 1 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Objective</div>
+<h2>Today's goal</h2>
+<p class="bigp" style="font-size:24px">Students will be able to describe the stages of an action potential in order, by reading a graph and predicting what happens, so that they can explain why a neuron fires.</p>
+<ul><li>I can describe the resting neuron and the stages of an action potential in order.</li><li>I can explain what threshold means.</li></ul>
+<div class="ltarget" style="margin-top:10px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can explain how a neuron fires and how the signal travels.</p><p style="margin:2px 0"><b>Key words:</b> resting potential, threshold, depolarization, repolarization, action potential</p><p style="margin:2px 0"><b>Sentence frame:</b> When the membrane reaches ____, ____ channels open and ____ moves in.</p></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</span><span>slide 2 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Essential question</div>
+<h2>How does a neuron turn a change in charge into a signal that travels?</h2>
+<p class="bigp">A neuron signal is an <b>action potential</b>. It is a quick change in the electrical charge across the axon's membrane.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</span><span>slide 3 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Resting neuron</div>
+<h2>The neuron at rest</h2>
+<ul><li>The inside of a resting neuron is negative compared with the outside. It is about <b>-70 mV</b>.</li><li><b>mV</b> means millivolt, one thousandth of a volt.</li><li>The <b>sodium-potassium pump</b> moves 3 sodium ions (Na⁺) out and 2 potassium ions (K⁺) in.</li><li>Some K⁺ also leaks out. This keeps the inside negative.</li></ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</span><span>slide 4 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Threshold and depolarization</div>
+<h2>The neuron fires</h2>
+<ul><li>A stimulus opens a few Na⁺ channels. The inside becomes a little less negative.</li><li>At the <b>threshold</b>, about -55 mV, many Na⁺ channels open.</li><li>Na⁺ rushes in. The inside becomes positive, up to about +30 mV.</li><li>This is <b>depolarization</b>.</li></ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</span><span>slide 5 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Reading the graph</div>
+<h2>One action potential</h2>
+<div class="cols" style="margin-top:4px"><div class="col" style="flex:0.9"><ul><li><b>1</b> Resting, about -70 mV.</li><li><b>2</b> Depolarization: Na⁺ enters.</li><li><b>3</b> Repolarization: K⁺ leaves.</li><li><b>4</b> Hyperpolarization: a dip below -70 mV.</li><li><b>5</b> Back to resting.</li></ul></div><div class="col" style="flex:1.7"><svg viewBox="0 0 700 370" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Graph of an action potential: membrane potential rises from -70 millivolts past a threshold of -55, peaks near +30, falls below resting, and returns to -70" style="width:100%;height:auto;display:block;font-family:Archivo,Arial,Helvetica,sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="13" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#161821"/></marker></defs><line x1="90" y1="300.0" x2="620" y2="300.0" stroke="#c8c8d0" stroke-width="1" stroke-dasharray="4 4"/><text x="80" y="305.0" text-anchor="end" font-size="14" font-weight="500" fill="#161821">-80</text><line x1="90" y1="277.5" x2="620" y2="277.5" stroke="#c8c8d0" stroke-width="1"/><text x="80" y="282.5" text-anchor="end" font-size="14" font-weight="500" fill="#161821">-70</text><line x1="90" y1="243.75" x2="620" y2="243.75" stroke="#c8c8d0" stroke-width="1"/><text x="80" y="248.75" text-anchor="end" font-size="14" font-weight="500" fill="#161821">-55</text><line x1="90" y1="120.0" x2="620" y2="120.0" stroke="#c8c8d0" stroke-width="1" stroke-dasharray="4 4"/><text x="80" y="125.0" text-anchor="end" font-size="14" font-weight="500" fill="#161821">0</text><line x1="90" y1="52.5" x2="620" y2="52.5" stroke="#c8c8d0" stroke-width="1" stroke-dasharray="4 4"/><text x="80" y="57.5" text-anchor="end" font-size="14" font-weight="500" fill="#161821">+30</text><line x1="90" y1="30" x2="90" y2="300" stroke="#161821" stroke-width="2"/><line x1="90" y1="320" x2="620" y2="320" stroke="#161821" stroke-width="2"/><line x1="90" y1="243.75" x2="620" y2="243.75" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="7 5"/><text x="624" y="248.75" text-anchor="start" font-size="13" font-weight="500" fill="#c0392b">Threshold</text><line x1="90" y1="277.5" x2="620" y2="277.5" stroke="#2e8b3d" stroke-width="1.6" stroke-dasharray="7 5"/><text x="624" y="282.5" text-anchor="start" font-size="13" font-weight="500" fill="#2e8b3d">Resting</text><path d="M90.0 277.5 L93.7 277.5 L98.4 277.7 L104.0 277.8 L110.3 278.0 L117.2 278.2 L124.5 278.4 L132.0 278.6 L139.5 278.8 L147.1 278.8 L154.4 278.8 L161.3 278.7 L167.7 278.4 L173.4 278.1 L178.3 277.5 L182.5 276.8 L186.3 275.9 L189.6 274.8 L192.7 273.6 L195.4 272.3 L197.9 270.9 L200.1 269.5 L202.2 268.0 L204.2 266.5 L206.1 265.0 L207.9 263.5 L209.8 262.1 L211.7 260.8 L213.7 259.5 L215.7 258.5 L217.6 257.7 L219.4 257.1 L221.2 256.7 L222.9 256.3 L224.5 255.9 L226.1 255.4 L227.6 254.8 L229.1 253.9 L230.5 252.8 L231.8 251.3 L233.2 249.3 L234.5 246.8 L235.7 243.8 L237.0 240.1 L238.1 236.1 L239.1 231.7 L240.1 226.8 L241.0 221.7 L241.8 216.2 L242.7 210.4 L243.5 204.4 L244.3 198.2 L245.1 191.8 L246.0 185.2 L247.0 178.6 L247.9 171.8 L249.0 165.0 L250.1 157.6 L251.3 149.4 L252.4 140.4 L253.6 130.9 L254.8 121.0 L256.0 111.1 L257.3 101.3 L258.6 91.8 L259.9 82.8 L261.2 74.5 L262.5 67.1 L263.9 60.8 L265.3 55.9 L266.7 52.5 L268.1 50.5 L269.5 49.6 L270.9 49.7 L272.4 50.7 L273.9 52.5 L275.4 55.1 L276.9 58.4 L278.4 62.3 L280.0 66.6 L281.7 71.4 L283.4 76.5 L285.1 81.9 L286.9 87.4 L288.8 93.0 L290.7 99.1 L292.7 106.0 L294.7 113.7 L296.8 121.9 L299.0 130.6 L301.2 139.7 L303.4 149.0 L305.6 158.4 L307.9 167.7 L310.3 177.0 L312.6 185.9 L314.9 194.5 L317.3 202.6 L319.7 210.0 L322.0 217.1 L324.4 224.1 L326.8 231.0 L329.2 237.9 L331.6 244.5 L334.0 251.0 L336.5 257.2 L339.0 263.2 L341.5 268.9 L344.1 274.2 L346.8 279.1 L349.5 283.5 L352.2 287.5 L355.0 291.0 L357.8 293.9 L360.7 296.2 L363.6 298.0 L366.5 299.3 L369.4 300.3 L372.4 300.8 L375.4 301.1 L378.5 301.2 L381.7 301.1 L385.0 300.8 L388.4 300.6 L391.9 300.3 L395.4 300.1 L399.2 300.0 L403.0 299.9 L407.0 299.7 L411.1 299.3 L415.3 298.8 L419.6 298.2 L424.0 297.5 L428.4 296.8 L433.0 296.0 L437.5 295.1 L442.2 294.3 L446.8 293.4 L451.5 292.6 L456.3 291.8 L461.0 291.0 L465.7 290.2 L470.5 289.4 L475.2 288.6 L480.0 287.7 L484.9 286.8 L489.7 285.9 L494.7 285.0 L499.7 284.1 L504.8 283.2 L509.9 282.4 L515.2 281.6 L520.6 280.9 L526.1 280.3 L531.7 279.8 L537.6 279.3 L544.1 278.9 L551.0 278.6 L558.2 278.4 L565.5 278.2 L572.9 278.0 L580.2 277.9 L587.4 277.8 L594.2 277.8 L600.7 277.7 L606.6 277.7 L611.9 277.6 L616.4 277.6 L620.0 277.5" fill="none" stroke="#2b50c8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><line x1="90.0" y1="320" x2="90.0" y2="326" stroke="#161821" stroke-width="1.5"/><text x="90.0" y="344" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">0</text><line x1="178.33333333333331" y1="320" x2="178.33333333333331" y2="326" stroke="#161821" stroke-width="1.5"/><text x="178.33333333333331" y="344" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">1</text><line x1="266.66666666666663" y1="320" x2="266.66666666666663" y2="326" stroke="#161821" stroke-width="1.5"/><text x="266.66666666666663" y="344" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">2</text><line x1="355.0" y1="320" x2="355.0" y2="326" stroke="#161821" stroke-width="1.5"/><text x="355.0" y="344" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">3</text><line x1="443.3333333333333" y1="320" x2="443.3333333333333" y2="326" stroke="#161821" stroke-width="1.5"/><text x="443.3333333333333" y="344" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">4</text><line x1="531.6666666666667" y1="320" x2="531.6666666666667" y2="326" stroke="#161821" stroke-width="1.5"/><text x="531.6666666666667" y="344" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">5</text><line x1="620.0" y1="320" x2="620.0" y2="326" stroke="#161821" stroke-width="1.5"/><text x="620.0" y="344" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">6</text><text x="355.0" y="368" text-anchor="middle" font-size="15" font-weight="700" fill="#161821">Time (milliseconds)</text><text transform="translate(20 165.0) rotate(-90)" text-anchor="middle" font-size="15" font-weight="700" fill="#161821">Membrane potential (mV)</text><circle cx="129.75" cy="255.5" r="13" fill="#2b50c8" stroke="#2b50c8" stroke-width="1"/><text x="129.75" y="260.5" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">1</text><circle cx="244.58333333333334" cy="141.0" r="13" fill="#2b50c8" stroke="#2b50c8" stroke-width="1"/><text x="244.58333333333334" y="146.0" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">2</text><circle cx="315.25" cy="125.25" r="13" fill="#2b50c8" stroke="#2b50c8" stroke-width="1"/><text x="315.25" y="130.25" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">3</text><circle cx="408.0" cy="266.25" r="13" fill="#2b50c8" stroke="#2b50c8" stroke-width="1"/><text x="408.0" y="271.25" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">4</text><circle cx="558.1666666666666" cy="255.5" r="13" fill="#2b50c8" stroke="#2b50c8" stroke-width="1"/><text x="558.1666666666666" y="260.5" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">5</text></svg></div></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</span><span>slide 6 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Sort it out</div>
+<div class="kicker">Name the stage</div>
+<h2>Which stage is it?</h2>
+<p>Name the stage of an action potential for each event. Then check with a partner.</p>
+<table>
+<tr><th>Example</th><th>Answer</th></tr>
+<tr><td>The membrane reaches about -55 mV</td><td>?</td></tr><tr><td>Na⁺ channels open and Na⁺ enters</td><td>?</td></tr><tr><td>K⁺ channels open and K⁺ leaves</td><td>?</td></tr><tr><td>The membrane dips below -70 mV</td><td>?</td></tr><tr><td>The pump and leak channels restore -70 mV</td><td>?</td></tr>
+</table>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</span><span>slide 7 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Partner stations</div>
+<div class="kicker">Read the graph</div>
+<h2>Graph stations</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept"><b>Label it.</b> Draw the graph axes in your notebook. Mark and label resting, threshold, the peak, and the dip below resting.</div></div><div class="step"><div class="stepn">2</div><div class="stept"><b>Read it.</b> Use the graph. About what is the membrane potential at 2 milliseconds? At 3.5 milliseconds? Write each value.</div></div><div class="step"><div class="stepn">3</div><div class="stept"><b>Predict it.</b> A stimulus raises the membrane only to -60 mV. What happens? Explain using the word threshold.</div></div></div>
+
+<p class="note">About 3 minutes for each check.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</span><span>slide 8 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">If time allows</div>
+<div class="kicker">Explain it</div>
+<h2>Explain it to a partner</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept">Cover the slide. Explain the five stages of the graph to your partner.</div></div><div class="step"><div class="stepn">2</div><div class="stept">Switch. Listen for a stage that was missed.</div></div><div class="step"><div class="stepn">3</div><div class="stept">Write the stage you missed on a sticky note or in your notebook.</div></div></div>
+<p class="note">You may draw the graph instead of explaining out loud.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</span><span>slide 9 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Record and explain</div>
+<h2>What did you notice?</h2>
+<div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>1. Write the values you read at 2 ms and at 3.5 ms.</p><p>2. Write what happens if a stimulus stops at -60 mV.</p><p>3. Finish this sentence. Use the graph as evidence.</p>
+  <p class="say" style="margin:6px 0">A neuron fires only when ____ because ____.</p>
+</div>
+<div class="chips"><span class="chip"><b>threshold</b></span><span class="chip"><b>depolarization</b></span><span class="chip"><b>repolarization</b></span><span class="chip"><b>resting</b></span><span class="chip"><b>millivolt</b></span></div>
+<p class="note">You may draw the graph and label it instead.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</span><span>slide 10 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">After the notes</div>
+<h2>Mark, link, ask</h2>
+<div class="steps">
+  <div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> Underline, circle, or highlight the main ideas in your notes.</div></div>
+  <div class="step"><div class="stepn">2</div><div class="stept"><b>Link.</b> Connect one idea in your notes to something outside your notes.</div></div>
+  <div class="step"><div class="stepn">3</div><div class="stept"><b>Ask.</b> Write one quiz question that your notes can answer and that could be on a test.</div></div>
+</div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</span><span>slide 11 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Summarize</div>
+<h2>How does a neuron turn a change in charge into a signal that travels?</h2>
+<p class="bigp">A neuron at rest is about -70 mV inside. A stimulus that reaches threshold, about -55 mV, opens Na⁺ channels, and Na⁺ rushes in. The inside becomes positive. Then the membrane returns toward rest.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</span><span>slide 12 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Take-home message and exit ticket</div>
+<h2>Before you leave</h2>
+<div class="cols" style="margin-top:6px">
+  <div class="col"><div class="dolabel" style="margin-top:0">Take-home message</div><p class="bigp" style="font-size:25px">A neuron fires only if the stimulus reaches threshold.</p></div>
+  <div class="col"><div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>Describe a resting neuron. Then list the stages of an action potential in order.</p>
+</div></div>
+</div>
+<p class="note">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</span><span>slide 13 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo" style="background:#b42318">Stop here</div>
+<div class="kicker">End of Day 3</div>
+<h2>Stop here for today</h2>
+<p class="bigp">Collect the exit tickets. Day 4 starts on the next slide.</p>
+
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 3 &middot; Wed, Nov 18</span><span>slide 14 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo" style="background:#b42318">Start here</div><div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.6 Nervous System &middot; Day 4 &middot; Thu, Nov 19</div>
+<h1>The Action Potential, continued</h1>
+<div class="cols" style="margin-top:8px">
+  <div class="col">
+    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dobox"><p>Yesterday you read an action potential graph. Write the five stages in order from memory. Then check your notes.</p></div>
+  </div>
+  <div class="col" style="flex:0.7">
+    <div class="dolabel" style="margin-top:0">You need today</div>
+    <div class="chips" style="flex-direction:column; align-items:flex-start;"><span class="chip yes"><b>Chromebook</b> &mdash; yes</span><span class="chip yes"><b>Notebook</b> &mdash; yes</span><span class="chip yes"><b>Stopwatch (Chromebook)</b> &mdash; yes</span><span class="chip no"><b>Phones</b> &mdash; no</span></div>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 4 &middot; Thu, Nov 19</span><span>slide 15 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Objective</div>
+<h2>Today's goal</h2>
+<p class="bigp" style="font-size:24px">Students will be able to explain how channels, all-or-none firing, and myelin shape an action potential, by modeling a signal relay, so that they can explain why myelin speeds the signal.</p>
+<ul><li>I can explain the roles of the sodium and potassium channels.</li><li>I can explain how myelin makes a signal travel faster.</li></ul>
+<div class="ltarget" style="margin-top:10px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can explain how a neuron fires and how the signal travels.</p><p style="margin:2px 0"><b>Key words:</b> all or none, refractory period, node, myelin, saltatory conduction</p><p style="margin:2px 0"><b>Sentence frame:</b> The signal travels faster in a myelinated axon because ____.</p></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 4 &middot; Thu, Nov 19</span><span>slide 16 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Channels</div>
+<h2>Two kinds of gated channels</h2>
+<div class="cols" style="margin-top:4px"><div class="col" style="flex:0.9"><ul><li><b>Sodium channels</b> open first. Na⁺ goes in.</li><li>They then become inactive.</li><li><b>Potassium channels</b> open a little later. K⁺ goes out.</li><li>The pump and leak channels then restore -70 mV.</li></ul></div><div class="col" style="flex:1.6"><svg viewBox="0 0 660 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three panels of a cell membrane: at rest both channels are closed; during depolarization sodium channels open and sodium enters; during repolarization potassium channels open and potassium leaves" style="width:100%;height:auto;display:block;font-family:Archivo,Arial,Helvetica,sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="13" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#161821"/></marker></defs><rect x="10" y="10" width="200" height="28" rx="6" fill="#2b50c8" stroke="#2b50c8" stroke-width="1"/><text x="110" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Resting</text><rect x="10" y="150" width="200" height="40" rx="0" fill="#efe9dc" stroke="#8a7a55" stroke-width="2"/><rect x="50" y="150" width="36" height="40" rx="0" fill="#bcd0ff" stroke="#2b50c8" stroke-width="2"/><rect x="134" y="150" width="36" height="40" rx="0" fill="#ffd9bf" stroke="#c2571a" stroke-width="2"/><text x="110" y="66" text-anchor="middle" font-size="13" font-weight="500" fill="#161821" font-style="italic">Outside the axon</text><text x="110" y="264" text-anchor="middle" font-size="13" font-weight="500" fill="#161821" font-style="italic">Inside the axon</text><text x="110" y="288" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Inside is negative (-70 mV)</text><text x="110" y="308" text-anchor="middle" font-size="13" font-weight="500" fill="#161821">Channels closed</text><text x="68" y="134" text-anchor="middle" font-size="12" font-weight="500" fill="#161821" font-style="italic">closed</text><text x="152" y="134" text-anchor="middle" font-size="12" font-weight="500" fill="#161821" font-style="italic">closed</text><rect x="56" y="230" width="24" height="0" rx="0" fill="none" stroke="none" stroke-width="0"/><text x="68" y="234" text-anchor="middle" font-size="12" font-weight="700" fill="#161821">Na⁺ channel</text><text x="152" y="234" text-anchor="middle" font-size="12" font-weight="700" fill="#161821">K⁺ channel</text><rect x="230" y="10" width="200" height="28" rx="6" fill="#2b50c8" stroke="#2b50c8" stroke-width="1"/><text x="330" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Depolarization</text><rect x="230" y="150" width="200" height="40" rx="0" fill="#efe9dc" stroke="#8a7a55" stroke-width="2"/><rect x="270" y="150" width="36" height="40" rx="0" fill="#bcd0ff" stroke="#2b50c8" stroke-width="2"/><rect x="354" y="150" width="36" height="40" rx="0" fill="#ffd9bf" stroke="#c2571a" stroke-width="2"/><text x="330" y="66" text-anchor="middle" font-size="13" font-weight="500" fill="#161821" font-style="italic">Outside the axon</text><text x="330" y="264" text-anchor="middle" font-size="13" font-weight="500" fill="#161821" font-style="italic">Inside the axon</text><text x="330" y="288" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Inside becomes positive</text><text x="330" y="308" text-anchor="middle" font-size="13" font-weight="500" fill="#161821">Na⁺ channels open</text><line x1="288" y1="112" x2="288" y2="214" stroke="#2b50c8" stroke-width="3" marker-end="url(#ah)"/><text x="288" y="100" text-anchor="middle" font-size="14" font-weight="700" fill="#2b50c8">Na⁺ in</text><text x="372" y="134" text-anchor="middle" font-size="12" font-weight="500" fill="#161821" font-style="italic">closed</text><rect x="276" y="230" width="24" height="0" rx="0" fill="none" stroke="none" stroke-width="0"/><text x="288" y="234" text-anchor="middle" font-size="12" font-weight="700" fill="#161821">Na⁺ channel</text><text x="372" y="234" text-anchor="middle" font-size="12" font-weight="700" fill="#161821">K⁺ channel</text><rect x="450" y="10" width="200" height="28" rx="6" fill="#2b50c8" stroke="#2b50c8" stroke-width="1"/><text x="550" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Repolarization</text><rect x="450" y="150" width="200" height="40" rx="0" fill="#efe9dc" stroke="#8a7a55" stroke-width="2"/><rect x="490" y="150" width="36" height="40" rx="0" fill="#bcd0ff" stroke="#2b50c8" stroke-width="2"/><rect x="574" y="150" width="36" height="40" rx="0" fill="#ffd9bf" stroke="#c2571a" stroke-width="2"/><text x="550" y="66" text-anchor="middle" font-size="13" font-weight="500" fill="#161821" font-style="italic">Outside the axon</text><text x="550" y="264" text-anchor="middle" font-size="13" font-weight="500" fill="#161821" font-style="italic">Inside the axon</text><text x="550" y="288" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Inside turns negative again</text><text x="550" y="308" text-anchor="middle" font-size="13" font-weight="500" fill="#161821">K⁺ channels open</text><line x1="592" y1="214" x2="592" y2="112" stroke="#c2571a" stroke-width="3" marker-end="url(#ah)"/><text x="592" y="100" text-anchor="middle" font-size="14" font-weight="700" fill="#c2571a">K⁺ out</text><text x="508" y="134" text-anchor="middle" font-size="12" font-weight="500" fill="#161821" font-style="italic">inactive</text><rect x="496" y="230" width="24" height="0" rx="0" fill="none" stroke="none" stroke-width="0"/><text x="508" y="234" text-anchor="middle" font-size="12" font-weight="700" fill="#161821">Na⁺ channel</text><text x="592" y="234" text-anchor="middle" font-size="12" font-weight="700" fill="#161821">K⁺ channel</text></svg></div></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 4 &middot; Thu, Nov 19</span><span>slide 17 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">All or none</div>
+<h2>Fire completely, or not at all</h2>
+<ul><li>An action potential is <b>all or none</b>. It always has the same size.</li><li>A stronger stimulus does not make a bigger action potential. It makes more action potentials each second.</li><li>After firing, a neuron has a short <b>refractory period</b>. It cannot fire again right away.</li><li>This keeps the signal moving in one direction.</li></ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 4 &middot; Thu, Nov 19</span><span>slide 18 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Traveling down the axon</div>
+<h2>Myelin speeds the signal</h2>
+<div class="cols" style="margin-top:4px"><div class="col" style="flex:0.9"><ul><li>In an axon with myelin, ions can cross the membrane only at the nodes.</li><li>The action potential <b>jumps</b> from node to node. This is called <b>saltatory conduction</b>.</li><li>This is much faster than a signal that moves along every part of the membrane.</li><li>A thicker axon also carries signals faster.</li></ul></div><div class="col" style="flex:1.5"><svg viewBox="0 0 660 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An axon with myelin segments and nodes of Ranvier; arrows show the action potential jumping from node to node" style="width:100%;height:auto;display:block;font-family:Archivo,Arial,Helvetica,sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="13" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#161821"/></marker></defs><line x1="30" y1="110" x2="640" y2="110" stroke="#5b6b9a" stroke-width="6"/><rect x="60" y="88" width="100" height="44" rx="16" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><rect x="190" y="88" width="100" height="44" rx="16" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><rect x="320" y="88" width="100" height="44" rx="16" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><rect x="450" y="88" width="100" height="44" rx="16" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><circle cx="165" cy="110" r="9" fill="#ffd1c2" stroke="#c0392b" stroke-width="2"/><circle cx="295" cy="110" r="9" fill="#ffd1c2" stroke="#c0392b" stroke-width="2"/><circle cx="425" cy="110" r="9" fill="#ffd1c2" stroke="#c0392b" stroke-width="2"/><circle cx="555" cy="110" r="9" fill="#ffd1c2" stroke="#c0392b" stroke-width="2"/><path d="M165 80 Q230.0 20 295 80" fill="none" stroke="#c0392b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ah)"/><path d="M295 80 Q360.0 20 425 80" fill="none" stroke="#c0392b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ah)"/><text x="235" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#c0392b">The signal jumps from node to node</text><text x="110" y="164" text-anchor="middle" font-size="15" font-weight="700" fill="#161821">Myelin</text><line x1="110" y1="150" x2="110" y2="134" stroke="#161821" stroke-width="1.2"/><text x="295" y="190" text-anchor="middle" font-size="15" font-weight="700" fill="#161821">Node of Ranvier</text><line x1="295" y1="176" x2="295" y2="122" stroke="#161821" stroke-width="1.2"/><text x="470" y="170" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">Myelin blocks ion flow, so an action potential</text><text x="470" y="189" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">forms only at the nodes.</text></svg></div></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 4 &middot; Thu, Nov 19</span><span>slide 19 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Sort it out</div>
+<div class="kicker">Name the term</div>
+<h2>Which term is it?</h2>
+<p>Name the term for each description. Then check with a partner.</p>
+<table>
+<tr><th>Example</th><th>Answer</th></tr>
+<tr><td>An action potential that always has the same size</td><td>?</td></tr><tr><td>The short time when a neuron cannot fire again</td><td>?</td></tr><tr><td>The signal jumping from node to node</td><td>?</td></tr><tr><td>Channels that open at a certain voltage</td><td>?</td></tr><tr><td>The pump that moves 3 Na⁺ out and 2 K⁺ in</td><td>?</td></tr>
+</table>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 4 &middot; Thu, Nov 19</span><span>slide 20 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Partner stations</div>
+<div class="kicker">Signal relay</div>
+<h2>Model a nerve signal</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept"><b>Round 1.</b> Make a circle of six students. Each person gently squeezes the next person's hand when they feel a squeeze. Time one trip around the circle with the Chromebook stopwatch. You may tap the desk instead.</div></div><div class="step"><div class="stepn">2</div><div class="stept"><b>Round 2: myelin model.</b> Now only every second person is a node. Each node taps the next node, two people away. The people in between stay still. Time it.</div></div><div class="step"><div class="stepn">3</div><div class="stept"><b>Compare.</b> Divide each time by the number of people who passed the signal. Which model was faster?</div></div></div>
+
+<p class="note">Do each round twice and use the faster time. You may time and record for your group instead.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 4 &middot; Thu, Nov 19</span><span>slide 21 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">If time allows</div>
+<div class="kicker">Add a rule</div>
+<h2>Change one thing</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept">Repeat round 1 with a rule: nobody can pass the signal again for 2 seconds after passing it.</div></div><div class="step"><div class="stepn">2</div><div class="stept">Watch what happens if two signals start at the same time.</div></div><div class="step"><div class="stepn">3</div><div class="stept">Explain how this rule is like a refractory period.</div></div></div>
+<p class="note">You may watch and record for your group instead.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 4 &middot; Thu, Nov 19</span><span>slide 22 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Record and explain</div>
+<h2>What did you notice?</h2>
+<div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>1. Write your times for round 1 and round 2.</p><p>2. Write the time for each person to pass the signal.</p><p>3. Finish this sentence. Use your times as evidence.</p>
+  <p class="say" style="margin:6px 0">The myelin model was ____ because ____.</p>
+</div>
+<div class="chips"><span class="chip"><b>threshold</b></span><span class="chip"><b>depolarization</b></span><span class="chip"><b>node</b></span><span class="chip"><b>myelin</b></span><span class="chip"><b>all or none</b></span></div>
+<p class="note">You may draw the path of the signal instead of writing.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 4 &middot; Thu, Nov 19</span><span>slide 23 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">After the notes</div>
+<h2>Mark, link, ask</h2>
+<div class="steps">
+  <div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> Underline, circle, or highlight the main ideas in your notes.</div></div>
+  <div class="step"><div class="stepn">2</div><div class="stept"><b>Link.</b> Connect one idea in your notes to something outside your notes.</div></div>
+  <div class="step"><div class="stepn">3</div><div class="stept"><b>Ask.</b> Write one quiz question that your notes can answer and that could be on a test.</div></div>
+</div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 4 &middot; Thu, Nov 19</span><span>slide 24 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Summarize</div>
+<h2>How does a neuron turn a change in charge into a signal that travels?</h2>
+<p class="bigp">Sodium channels open first, then potassium channels. An action potential is all or none. A neuron has a short refractory period after it fires. Myelin makes the signal jump from node to node, so it travels faster.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 4 &middot; Thu, Nov 19</span><span>slide 25 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Take-home message and exit ticket</div>
+<h2>Before you leave</h2>
+<div class="cols" style="margin-top:6px">
+  <div class="col"><div class="dolabel" style="margin-top:0">Take-home message</div><p class="bigp" style="font-size:25px">An action potential is all or none. It travels as a wave of ion movement, and myelin makes it faster.</p></div>
+  <div class="col"><div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>Put these in order: K⁺ leaves, Na⁺ enters, threshold, return to rest. Then explain how myelin speeds an action potential.</p>
+</div></div>
+</div>
+<p class="note">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 4 &middot; Thu, Nov 19</span><span>slide 26 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Credits</div>
+<h2>Image and content credits</h2>
+<ul>
+  <li>All diagrams in this deck were drawn for this lesson. They are simplified.</li>
+  <li>Topics follow the Unit 2.6 Nervous System outline in the A&amp;P Scope and Sequence.</li>
+</ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 4 &middot; Thu, Nov 19</span><span>slide 27 of 27</span></div>
+</div>
+</div></div>
+<div class="nav"><span id="counter"></span>
+  <button onclick="step(-1)">&#8592;</button>
+  <button onclick="step(1)">&#8594;</button>
+</div>
+<script>
+// Shared slide-deck script for Unit 2.5 Muscular System and Unit 2.6 Nervous System lesson decks. Do not fork per day.
+var slides = document.querySelectorAll(".slide");
+var i = 0;
+function show(n) {
+  slides[i].classList.remove("active");
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides[i].classList.add("active");
+  var c = document.getElementById("counter");
+  if (c) c.textContent = (i + 1) + " / " + slides.length;
+}
+function step(d) { show(i + d); }
+function fit() {
+  var s = Math.min(window.innerWidth / 1300, window.innerHeight / 740);
+  document.getElementById("frame").style.transform = "scale(" + s + ")";
+}
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") step(1);
+  if (e.key === "ArrowLeft" || e.key === "PageUp") step(-1);
+});
+/* clicker support */
+document.addEventListener("keydown", function (e) {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  var t = e.target, tag = t && t.tagName;
+  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || tag === "BUTTON" || tag === "A" || (t && t.isContentEditable)) return;
+  if (e.key === "Enter" || e.key === "ArrowDown") { e.preventDefault(); step(1); }
+  if (e.key === "Backspace" || e.key === "ArrowUp") { e.preventDefault(); step(-1); }
+});
+document.getElementById("frame").addEventListener("click", function (e) {
+  if (e.target.closest("a, button, input, textarea, select, summary, label, details, [onclick]")) return;
+  if (String(window.getSelection())) return;
+  var r = this.getBoundingClientRect();
+  step(e.clientX < r.left + r.width * 0.2 ? -1 : 1);
+});
+window.addEventListener("resize", fit);
+fit(); show(0);
+
+
+</script>
+</body>
+</html>

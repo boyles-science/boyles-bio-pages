@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 6 / Day 7: The Brain</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<style>
+/* Shared slide-deck style for Unit 2.5 Muscular System and Unit 2.6 Nervous System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+
+</style>
+</head>
+<body>
+<div class="stage"><div class="frame" id="frame">
+
+<div class="slide active">
+<div class="topline"></div>
+<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</div>
+<h1>The Brain</h1>
+<div class="cols" style="margin-top:8px">
+  <div class="col">
+    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dobox"><p>Write one thing your brain did in the last five minutes without you noticing. Then write one thing you chose to do.</p></div>
+  </div>
+  <div class="col" style="flex:0.7">
+    <div class="dolabel" style="margin-top:0">You need today</div>
+    <div class="chips" style="flex-direction:column; align-items:flex-start;"><span class="chip yes"><b>Chromebook</b> &mdash; yes</span><span class="chip yes"><b>Notebook</b> &mdash; yes</span><span class="chip no"><b>Phones</b> &mdash; no</span></div>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 1 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Objective</div>
+<h2>Today's goal</h2>
+<p class="bigp" style="font-size:24px">Students will be able to name the main parts of the cerebrum and the four lobes and match each to its job, by solving short cases, so that they can explain how damage to one lobe changes what a person can do.</p>
+<ul><li>I can name the main regions of the brain.</li><li>I can match each lobe of the cerebrum to its job.</li></ul>
+<div class="ltarget" style="margin-top:10px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can explain what each region of the brain does.</p><p style="margin:2px 0"><b>Key words:</b> cerebrum, cerebral cortex, corpus callosum, lobe, hemisphere</p><p style="margin:2px 0"><b>Sentence frame:</b> Damage to the ____ lobe would cause trouble with ____ because ____.</p></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 2 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Essential question</div>
+<h2>How does each part of the brain contribute to what you do?</h2>
+<p class="bigp">The brain has regions with different jobs. They work together.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 3 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Brain regions</div>
+<h2>A side view of the brain</h2>
+<div style="width:640px;margin:0 auto"><svg viewBox="0 0 640 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Side view of the brain showing the cerebrum, corpus callosum, thalamus, hypothalamus, cerebellum, midbrain, pons, medulla oblongata, and spinal cord" style="width:100%;height:auto;display:block;font-family:Archivo,Arial,Helvetica,sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="13" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#161821"/></marker></defs><path d="M120 210 C95 160 110 90 190 60 C260 35 380 40 440 85 C490 125 495 190 450 225 C420 245 330 250 250 245 C190 245 150 240 120 210 Z" fill="#f3d9d4" stroke="#161821" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M170 100 C210 80 250 95 280 80" fill="none" stroke="#b08a84" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M150 150 C200 130 240 150 290 130 C320 118 350 125 380 110" fill="none" stroke="#b08a84" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M140 195 C190 175 230 195 280 180 C330 165 380 180 430 165" fill="none" stroke="#b08a84" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M300 70 C330 90 320 120 350 135" fill="none" stroke="#b08a84" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M220 100 C240 120 230 150 250 165" fill="none" stroke="#b08a84" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M180 140 C230 112 330 112 400 140 C330 130 250 130 180 150 Z" fill="#fff6c9" stroke="#9a8a2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /><ellipse cx="290" cy="175" rx="28" ry="16" fill="#cfe3ff" stroke="#2b50c8" stroke-width="2"/><ellipse cx="280" cy="205" rx="18" ry="10" fill="#d8f0d0" stroke="#2e8b3d" stroke-width="2"/><path d="M370 250 C380 225 450 225 490 250 C510 275 490 305 440 312 C400 315 365 295 370 250 Z" fill="#e7defc" stroke="#6a4fb0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M385 255 C420 247 460 247 495 257" fill="none" stroke="#6a4fb0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /><path d="M385 270 C420 262 460 262 495 272" fill="none" stroke="#6a4fb0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /><path d="M385 285 C420 277 460 277 495 287" fill="none" stroke="#6a4fb0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /><path d="M385 300 C420 292 460 292 495 302" fill="none" stroke="#6a4fb0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /><path d="M270 220 L318 220 L322 252 L268 252 Z" fill="#fde2b8" stroke="#c2571a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /><ellipse cx="295" cy="276" rx="34" ry="24" fill="#fbd0a0" stroke="#c2571a" stroke-width="2"/><path d="M270 296 L322 296 L316 350 L276 350 Z" fill="#f8c58a" stroke="#c2571a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /><path d="M276 350 L316 350 L312 395 L280 395 Z" fill="#e6e6ea" stroke="#8a8a95" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /><text x="70" y="36" text-anchor="start" font-size="16" font-weight="700" fill="#161821">Cerebrum</text><line x1="150" y1="42" x2="200" y2="75" stroke="#161821" stroke-width="1.2"/><text x="80" y="120" text-anchor="start" font-size="15" font-weight="700" fill="#161821">Corpus callosum</text><line x1="150" y1="125" x2="200" y2="138" stroke="#161821" stroke-width="1.2"/><text x="60" y="262" text-anchor="start" font-size="15" font-weight="700" fill="#161821">Thalamus</text><line x1="125" y1="258" x2="268" y2="180" stroke="#161821" stroke-width="1.2"/><text x="40" y="300" text-anchor="start" font-size="15" font-weight="700" fill="#161821">Hypothalamus</text><line x1="130" y1="296" x2="265" y2="208" stroke="#161821" stroke-width="1.2"/><text x="520" y="190" text-anchor="start" font-size="16" font-weight="700" fill="#161821">Cerebellum</text><line x1="515" y1="196" x2="470" y2="235" stroke="#161821" stroke-width="1.2"/><text x="410" y="305" text-anchor="start" font-size="1" font-weight="500" fill="#161821"></text><text x="120" y="350" text-anchor="start" font-size="15" font-weight="700" fill="#161821">Midbrain</text><line x1="190" y1="346" x2="270" y2="236" stroke="#161821" stroke-width="1.2"/><text x="150" y="382" text-anchor="start" font-size="15" font-weight="700" fill="#161821">Pons</text><line x1="190" y1="376" x2="262" y2="278" stroke="#161821" stroke-width="1.2"/><text x="380" y="350" text-anchor="start" font-size="15" font-weight="700" fill="#161821">Medulla oblongata</text><line x1="376" y1="346" x2="318" y2="322" stroke="#161821" stroke-width="1.2"/><text x="360" y="410" text-anchor="start" font-size="15" font-weight="700" fill="#161821">Spinal cord</text><line x1="356" y1="405" x2="318" y2="385" stroke="#161821" stroke-width="1.2"/><text x="20" y="420" text-anchor="start" font-size="13" font-weight="500" fill="#555" font-style="italic">Front</text><text x="600" y="420" text-anchor="end" font-size="13" font-weight="500" fill="#555" font-style="italic">Back</text></svg></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 4 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">The cerebrum</div>
+<h2>The largest part</h2>
+<ul><li>The <b>cerebrum</b> has a left and a right half, called <b>hemispheres</b>.</li><li>The <b>corpus callosum</b> is a band of axons that connects them.</li><li>The outer layer is the <b>cerebral cortex</b>. Its folds give it a large surface area.</li><li>The cortex handles thinking, senses, and voluntary movement.</li></ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 5 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">The four lobes</div>
+<h2>Lobes of the cerebrum</h2>
+<div style="width:640px;margin:0 auto"><svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Side view of the brain with the frontal, parietal, occipital, and temporal lobes, the cerebellum, and the brain stem" style="width:100%;height:auto;display:block;font-family:Archivo,Arial,Helvetica,sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="13" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#161821"/></marker></defs><path d="M110 230 C80 170 100 100 170 66 C210 46 250 44 290 52 L300 215 C240 225 160 255 110 230 Z" fill="#cfe0ff" stroke="#161821" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M290 52 C340 48 400 60 440 92 C400 120 360 140 340 215 L300 215 Z" fill="#d8f0d0" stroke="#161821" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M440 92 C500 130 515 190 480 235 C450 235 400 225 340 215 C360 140 400 120 440 92 Z" fill="#ffe7b3" stroke="#161821" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M110 230 C160 255 240 225 300 215 L340 215 C400 225 450 235 480 235 C470 262 430 285 360 290 C290 296 200 290 150 262 C128 250 118 242 110 230 Z" fill="#f5d0d8" stroke="#161821" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M290 52 L300 215" fill="none" stroke="#161821" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M150 250 C220 235 280 232 340 215" fill="none" stroke="#161821" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M400 262 C420 252 470 262 480 285 C470 318 430 330 395 318 C380 300 385 275 400 262 Z" fill="#e7defc" stroke="#6a4fb0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M330 290 L370 290 L378 340 L346 360 L330 330 Z" fill="#fbd0a0" stroke="#c2571a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><text x="190" y="150" text-anchor="middle" font-size="17" font-weight="700" fill="#161821">Frontal lobe</text><text x="190" y="172" text-anchor="middle" font-size="13" font-weight="500" fill="#161821">movement planning,</text><text x="190" y="188" text-anchor="middle" font-size="13" font-weight="500" fill="#161821">reasoning, speech</text><text x="352" y="118" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Parietal lobe</text><text x="346" y="140" text-anchor="middle" font-size="13" font-weight="500" fill="#161821">touch, position</text><text x="455" y="190" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Occipital</text><text x="455" y="208" text-anchor="middle" font-size="13" font-weight="500" fill="#161821">lobe: vision</text><text x="235" y="266" text-anchor="middle" font-size="15" font-weight="700" fill="#161821">Temporal lobe</text><text x="235" y="288" text-anchor="middle" font-size="13" font-weight="500" fill="#161821">hearing, memory</text><text x="445" y="345" text-anchor="start" font-size="15" font-weight="700" fill="#161821">Cerebellum</text><line x1="440" y1="340" x2="430" y2="325" stroke="#161821" stroke-width="1.2"/><text x="290" y="380" text-anchor="start" font-size="15" font-weight="700" fill="#161821">Brain stem</text><line x1="336" y1="370" x2="350" y2="350" stroke="#161821" stroke-width="1.2"/><text x="272" y="38" text-anchor="middle" font-size="13" font-weight="500" fill="#444" font-style="italic">Central sulcus</text><text x="80" y="40" text-anchor="start" font-size="13" font-weight="500" fill="#555" font-style="italic">Front</text><text x="540" y="40" text-anchor="end" font-size="13" font-weight="500" fill="#555" font-style="italic">Back</text></svg></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 6 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Sort it out</div>
+<div class="kicker">Name the part</div>
+<h2>Which part is it?</h2>
+<p>Name the part of the cerebrum for each job. Then check with a partner.</p>
+<table>
+<tr><th>Example</th><th>Answer</th></tr>
+<tr><td>Receives signals from the eyes</td><td>?</td></tr><tr><td>Plans movement and handles reasoning</td><td>?</td></tr><tr><td>Processes touch and body position</td><td>?</td></tr><tr><td>Handles hearing and memory</td><td>?</td></tr><tr><td>A band of axons that connects the two hemispheres</td><td>?</td></tr>
+</table>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 7 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Partner stations</div>
+<div class="kicker">Match the lobe</div>
+<h2>Case stations</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept"><b>Case cards.</b> Read the three cases below. Name the lobe for each. The cases are made up for practice.<br>A. A bicycle crash injures the back of the head. The patient has trouble seeing.<br>B. After a stroke, the patient understands speech but cannot form words.<br>C. After a blow to the side of the head, the patient has trouble remembering new events.</div></div><div class="step"><div class="stepn">2</div><div class="stept"><b>Draw it.</b> Draw the side view of the brain in your notebook. Label the four lobes.</div></div><div class="step"><div class="stepn">3</div><div class="stept"><b>Quiz your partner.</b> Name a job. Your partner names the lobe. Do six.</div></div></div>
+
+<p class="note">About 3 minutes for each check.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 8 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">If time allows</div>
+<div class="kicker">Make a rule</div>
+<h2>Trade rules</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept">Write one short memory trick for each lobe.</div></div><div class="step"><div class="stepn">2</div><div class="stept">Trade tricks with a partner.</div></div><div class="step"><div class="stepn">3</div><div class="stept">Pick the best one and write it down.</div></div></div>
+<p class="note">You may draw your trick instead of writing it.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 9 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Record and explain</div>
+<h2>What did you notice?</h2>
+<div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>1. Write the lobe for each case card.</p><p>2. Write which job belongs to each lobe.</p><p>3. Finish this sentence. Use a case card as evidence.</p>
+  <p class="say" style="margin:6px 0">Damage to the ____ lobe causes ____ because the lobe controls ____.</p>
+</div>
+<div class="chips"><span class="chip"><b>frontal</b></span><span class="chip"><b>parietal</b></span><span class="chip"><b>temporal</b></span><span class="chip"><b>occipital</b></span><span class="chip"><b>cortex</b></span></div>
+<p class="note">You may draw and label instead.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 10 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">After the notes</div>
+<h2>Mark, link, ask</h2>
+<div class="steps">
+  <div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> Underline, circle, or highlight the main ideas in your notes.</div></div>
+  <div class="step"><div class="stepn">2</div><div class="stept"><b>Link.</b> Connect one idea in your notes to something outside your notes.</div></div>
+  <div class="step"><div class="stepn">3</div><div class="stept"><b>Ask.</b> Write one quiz question that your notes can answer and that could be on a test.</div></div>
+</div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 11 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Summarize</div>
+<h2>How does each part of the brain contribute to what you do?</h2>
+<p class="bigp">The cerebrum has two hemispheres joined by the corpus callosum. Its outer layer is the cerebral cortex. Each hemisphere has four lobes: frontal, parietal, temporal, and occipital. Each lobe has its own jobs.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 12 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Take-home message and exit ticket</div>
+<h2>Before you leave</h2>
+<div class="cols" style="margin-top:6px">
+  <div class="col"><div class="dolabel" style="margin-top:0">Take-home message</div><p class="bigp" style="font-size:25px">Damage to a lobe shows what that lobe does.</p></div>
+  <div class="col"><div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>Name the four lobes of the cerebrum. Give one job for each.</p>
+</div></div>
+</div>
+<p class="note">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 13 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo" style="background:#b42318">Stop here</div>
+<div class="kicker">End of Day 6</div>
+<h2>Stop here for today</h2>
+<p class="bigp">Collect the exit tickets. Day 7 starts on the next slide.</p>
+
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 14 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo" style="background:#b42318">Start here</div><div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</div>
+<h1>The Brain, continued</h1>
+<div class="cols" style="margin-top:8px">
+  <div class="col">
+    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dobox"><p>Yesterday you matched jobs to the four lobes. Write each lobe and one job from memory. Then check your notes.</p></div>
+  </div>
+  <div class="col" style="flex:0.7">
+    <div class="dolabel" style="margin-top:0">You need today</div>
+    <div class="chips" style="flex-direction:column; align-items:flex-start;"><span class="chip yes"><b>Chromebook</b> &mdash; yes</span><span class="chip yes"><b>Notebook</b> &mdash; yes</span><span class="chip yes"><b>Wall space for balance</b> &mdash; yes</span><span class="chip no"><b>Phones</b> &mdash; no</span></div>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 15 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Objective</div>
+<h2>Today's goal</h2>
+<p class="bigp" style="font-size:24px">Students will be able to name the deeper brain regions and how the brain is protected, by testing balance and coordination, so that they can explain what the cerebellum and brain stem do.</p>
+<ul><li>I can match the thalamus, hypothalamus, cerebellum, and brain stem to their jobs.</li><li>I can name three ways the brain is protected.</li></ul>
+<div class="ltarget" style="margin-top:10px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can explain what each region of the brain does.</p><p style="margin:2px 0"><b>Key words:</b> thalamus, hypothalamus, cerebellum, brain stem, cerebrospinal fluid</p><p style="margin:2px 0"><b>Sentence frame:</b> The ____ controls ____, so damage there would cause ____.</p></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 16 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Deeper parts</div>
+<h2>Below the cerebrum</h2>
+<ul><li>The <b>thalamus</b> relays sensory signals to the cortex.</li><li>The <b>hypothalamus</b> controls body temperature, hunger, and thirst. It also controls the pituitary gland.</li><li>The <b>cerebellum</b> coordinates balance and smooth movement.</li><li>The <b>brain stem</b> (midbrain, pons, medulla) controls breathing, heart rate, and blood pressure.</li></ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 17 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Protection</div>
+<h2>Keeping the brain safe</h2>
+<ul><li>The <b>skull</b> surrounds the brain.</li><li><b>Meninges</b> are three membranes: dura mater, arachnoid mater, and pia mater.</li><li><b>Cerebrospinal fluid</b> (CSF) cushions the brain and spinal cord.</li><li>The <b>blood-brain barrier</b> controls which substances reach the brain.</li></ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 18 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Gray and white matter</div>
+<h2>Two kinds of tissue</h2>
+<ul><li><b>Gray matter</b> is mostly cell bodies and dendrites. It forms the cortex.</li><li><b>White matter</b> is mostly myelinated axons. It forms the pathways inside.</li><li>The brain uses about one fifth of your body's oxygen. It is only a small part of your body weight.</li></ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 19 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Sort it out</div>
+<div class="kicker">Name the region</div>
+<h2>Which region is it?</h2>
+<p>Name the region or fluid for each job. Then check with a partner.</p>
+<table>
+<tr><th>Example</th><th>Answer</th></tr>
+<tr><td>Controls breathing and heart rate</td><td>?</td></tr><tr><td>Balance and smooth movement</td><td>?</td></tr><tr><td>Relays sensory signals to the cortex</td><td>?</td></tr><tr><td>Controls hunger, thirst, and temperature</td><td>?</td></tr><tr><td>Cushions the brain and spinal cord</td><td>?</td></tr>
+</table>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 20 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Partner stations</div>
+<div class="kicker">Test and match</div>
+<h2>Brain stations</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept"><b>Balance.</b> Stand next to a wall on one foot for 20 seconds with your eyes open. Then try 10 seconds with your eyes closed. Your partner stands close and spots you.</div></div><div class="step"><div class="stepn">2</div><div class="stept"><b>Coordination.</b> Touch your nose, then your partner's finger, then your nose again. Repeat 10 times as fast as you can without missing.</div></div><div class="step"><div class="stepn">3</div><div class="stept"><b>Case card.</b> A patient has shaking hands, an unsteady walk, and misses the nose when trying to touch it. Name the region. The case is made up for practice.</div></div></div>
+
+<p class="note">Stop if you feel dizzy. About 3 minutes for each check.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 21 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">If time allows</div>
+<div class="kicker">Change one thing</div>
+<h2>Balance with a change</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept">Repeat the balance test with one change: a quiet room, then a noisy room.</div></div><div class="step"><div class="stepn">2</div><div class="stept">Or repeat with your head tilted up.</div></div><div class="step"><div class="stepn">3</div><div class="stept">Write which change made balance harder, and guess why.</div></div></div>
+<p class="note">You may watch and record for your partner instead.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 22 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Record and explain</div>
+<h2>What did you notice?</h2>
+<div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>1. Write how long you balanced with eyes open and closed.</p><p>2. Write what changed with your eyes closed.</p><p>3. Finish this sentence. Use the balance result as evidence.</p>
+  <p class="say" style="margin:6px 0">Balance got ____ with my eyes closed because ____.</p>
+</div>
+<div class="chips"><span class="chip"><b>cerebellum</b></span><span class="chip"><b>cortex</b></span><span class="chip"><b>brain stem</b></span><span class="chip"><b>hypothalamus</b></span><span class="chip"><b>lobe</b></span></div>
+<p class="note">You may draw and label the brain instead.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 23 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">After the notes</div>
+<h2>Mark, link, ask</h2>
+<div class="steps">
+  <div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> Underline, circle, or highlight the main ideas in your notes.</div></div>
+  <div class="step"><div class="stepn">2</div><div class="stept"><b>Link.</b> Connect one idea in your notes to something outside your notes.</div></div>
+  <div class="step"><div class="stepn">3</div><div class="stept"><b>Ask.</b> Write one quiz question that your notes can answer and that could be on a test.</div></div>
+</div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 24 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Summarize</div>
+<h2>How does each part of the brain contribute to what you do?</h2>
+<p class="bigp">The thalamus relays sensory signals. The hypothalamus controls temperature, hunger, and thirst. The cerebellum coordinates balance. The brain stem controls breathing and heart rate. The skull, meninges, cerebrospinal fluid, and blood-brain barrier protect the brain.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 25 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Take-home message and exit ticket</div>
+<h2>Before you leave</h2>
+<div class="cols" style="margin-top:6px">
+  <div class="col"><div class="dolabel" style="margin-top:0">Take-home message</div><p class="bigp" style="font-size:25px">One brain, many regions. Damage to a region shows what that region does.</p></div>
+  <div class="col"><div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>Pick two regions of the brain. Name each one and give its job. Then name one way the brain is protected.</p>
+</div></div>
+</div>
+<p class="note">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 26 of 27</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Credits</div>
+<h2>Image and content credits</h2>
+<ul>
+  <li>All diagrams in this deck were drawn for this lesson. They are simplified.</li>
+  <li>Topics follow the Unit 2.6 Nervous System outline in the A&amp;P Scope and Sequence.</li>
+</ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 27 of 27</span></div>
+</div>
+</div></div>
+<div class="nav"><span id="counter"></span>
+  <button onclick="step(-1)">&#8592;</button>
+  <button onclick="step(1)">&#8594;</button>
+</div>
+<script>
+// Shared slide-deck script for Unit 2.5 Muscular System and Unit 2.6 Nervous System lesson decks. Do not fork per day.
+var slides = document.querySelectorAll(".slide");
+var i = 0;
+function show(n) {
+  slides[i].classList.remove("active");
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides[i].classList.add("active");
+  var c = document.getElementById("counter");
+  if (c) c.textContent = (i + 1) + " / " + slides.length;
+}
+function step(d) { show(i + d); }
+function fit() {
+  var s = Math.min(window.innerWidth / 1300, window.innerHeight / 740);
+  document.getElementById("frame").style.transform = "scale(" + s + ")";
+}
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") step(1);
+  if (e.key === "ArrowLeft" || e.key === "PageUp") step(-1);
+});
+/* clicker support */
+document.addEventListener("keydown", function (e) {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  var t = e.target, tag = t && t.tagName;
+  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || tag === "BUTTON" || tag === "A" || (t && t.isContentEditable)) return;
+  if (e.key === "Enter" || e.key === "ArrowDown") { e.preventDefault(); step(1); }
+  if (e.key === "Backspace" || e.key === "ArrowUp") { e.preventDefault(); step(-1); }
+});
+document.getElementById("frame").addEventListener("click", function (e) {
+  if (e.target.closest("a, button, input, textarea, select, summary, label, details, [onclick]")) return;
+  if (String(window.getSelection())) return;
+  var r = this.getBoundingClientRect();
+  step(e.clientX < r.left + r.width * 0.2 ? -1 : 1);
+});
+window.addEventListener("resize", fit);
+fit(); show(0);
+
+
+</script>
+</body>
+</html>

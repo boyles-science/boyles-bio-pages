@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 2: Neurons and Neuroglia</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<style>
+/* Shared slide-deck style for Unit 2.5 Muscular System and Unit 2.6 Nervous System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+
+</style>
+</head>
+<body>
+<div class="stage"><div class="frame" id="frame">
+
+<div class="slide active">
+<div class="topline"></div>
+<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</div>
+<h1>Neurons and Neuroglia</h1>
+<div class="cols" style="margin-top:8px">
+  <div class="col">
+    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dobox"><p>Your brain sends a message to your big toe. In one or two sentences, write how you think the message travels.</p></div>
+  </div>
+  <div class="col" style="flex:0.7">
+    <div class="dolabel" style="margin-top:0">You need today</div>
+    <div class="chips" style="flex-direction:column; align-items:flex-start;"><span class="chip yes"><b>Chromebook</b> &mdash; yes</span><span class="chip yes"><b>Notebook</b> &mdash; yes</span><span class="chip yes"><b>Pencil</b> &mdash; yes</span><span class="chip no"><b>Phones</b> &mdash; no</span></div>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 1 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Objective</div>
+<h2>Today's goal</h2>
+<p class="bigp" style="font-size:24px">Students will be able to name the parts of a neuron and the types of neuroglia, by labeling a neuron and sorting cells by their jobs, so that they can explain how a neuron is built to carry a signal.</p>
+<ul><li>I can label the parts of a neuron and state the job of each part.</li><li>I can tell sensory, motor, and interneurons apart, and name the main types of neuroglia.</li></ul>
+<div class="ltarget" style="margin-top:10px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can explain how a neuron is built to carry a signal.</p><p style="margin:2px 0"><b>Key words:</b> neuron, dendrite, axon, myelin, neuroglia</p><p style="margin:2px 0"><b>Sentence frame:</b> A neuron carries a signal because its ____ does ____.</p></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 2 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Essential question</div>
+<h2>How is a neuron built to carry a signal?</h2>
+<p class="bigp">Neurons are the cells that carry signals. Neuroglia are the cells that support and protect them.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 3 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Neuron structure</div>
+<h2>The parts of a neuron</h2>
+<div class="cols" style="margin-top:4px"><div class="col" style="flex:0.9"><ul><li><b>Dendrites</b> receive signals from other cells.</li><li>The <b>cell body</b> holds the nucleus.</li><li>The <b>axon</b> carries the signal away from the cell body.</li><li><b>Axon terminals</b> release neurotransmitters, chemicals that pass the signal to the next cell.</li></ul><p class="note">Nodes of Ranvier are shown for interest. They are nice to know, but you do not need to memorize them.</p></div><div class="col" style="flex:1.4"><svg viewBox="0 0 660 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of a neuron with dendrites, cell body, nucleus, myelin sheath, node of Ranvier, axon, and axon terminals" style="width:100%;height:auto;display:block;font-family:Archivo,Arial,Helvetica,sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="13" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#161821"/></marker></defs><path d="M112 134 C88 118 70 104 40 96" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M72 108 C62 94 52 82 32 72" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M106 150 C80 150 58 152 26 150" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M112 166 C88 182 70 198 40 206" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M72 192 C62 206 52 220 32 232" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M128 184 C120 208 110 228 94 254" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M132 117 C124 92 118 72 100 48" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><ellipse cx="150" cy="150" rx="46" ry="40" fill="#dbe4fb" stroke="#161821" stroke-width="2"/><circle cx="150" cy="150" r="15" fill="#9fb4ee" stroke="#161821" stroke-width="2"/><rect x="194" y="147" width="352" height="6" rx="0" fill="#5b6b9a" stroke="#5b6b9a" stroke-width="1"/><rect x="248" y="134" width="46" height="32" rx="12" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><rect x="308" y="134" width="46" height="32" rx="12" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><rect x="368" y="134" width="46" height="32" rx="12" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><rect x="428" y="134" width="46" height="32" rx="12" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><rect x="488" y="134" width="46" height="32" rx="12" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><path d="M546 150 L584 118" fill="none" stroke="#5b6b9a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><circle cx="590" cy="112" r="9" fill="#dbe4fb" stroke="#161821" stroke-width="2"/><path d="M546 150 L596 150" fill="none" stroke="#5b6b9a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><circle cx="604" cy="150" r="9" fill="#dbe4fb" stroke="#161821" stroke-width="2"/><path d="M546 150 L584 182" fill="none" stroke="#5b6b9a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><circle cx="590" cy="188" r="9" fill="#dbe4fb" stroke="#161821" stroke-width="2"/><text x="60" y="28" text-anchor="start" font-size="16" font-weight="700" fill="#161821">Dendrites</text><line x1="80" y1="34" x2="66" y2="96" stroke="#161821" stroke-width="1.2"/><text x="150" y="236" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Cell body</text><line x1="150" y1="222" x2="150" y2="192" stroke="#161821" stroke-width="1.2"/><text x="205" y="78" text-anchor="start" font-size="16" font-weight="700" fill="#161821">Nucleus</text><line x1="190" y1="84" x2="160" y2="138" stroke="#161821" stroke-width="1.2"/><text x="300" y="100" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Myelin sheath</text><line x1="330" y1="106" x2="330" y2="134" stroke="#161821" stroke-width="1.2"/><text x="380" y="230" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Node of Ranvier (nice to know)</text><line x1="358" y1="214" x2="358" y2="154" stroke="#161821" stroke-width="1.2"/><text x="520" y="290" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Axon</text><line x1="520" y1="274" x2="540" y2="156" stroke="#161821" stroke-width="1.2"/><text x="596" y="250" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Axon terminals</text><line x1="596" y1="236" x2="592" y2="200" stroke="#161821" stroke-width="1.2"/></svg></div></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 4 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Insulation</div>
+<h2>Myelin: the fast lane</h2>
+<ul><li><b>Myelin</b> is a fatty layer that wraps around many axons.</li><li>Myelin works like the plastic around a wire. It keeps the signal inside the axon.</li><li><b>Nodes of Ranvier</b> are the small gaps between myelin sections. This is nice to know. You do not need to remember the name.</li><li>Myelinated axons carry signals much faster than bare axons. You will see how in the next lessons.</li></ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 5 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Three kinds of neurons</div>
+<h2>Sensory, inter, and motor</h2>
+<div class="cols" style="margin-top:4px"><div class="col" style="flex:0.9"><ul><li><b>Sensory neurons</b> carry signals from receptors toward the brain and spinal cord.</li><li><b>Interneurons</b> connect neurons inside the central nervous system.</li><li><b>Motor neurons</b> carry commands away to muscles and glands.</li></ul></div><div class="col" style="flex:1.5"><svg viewBox="0 0 660 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three neuron types: a sensory neuron that carries signals toward the brain and spinal cord, an interneuron inside the central nervous system, and a motor neuron that carries commands to a muscle" style="width:100%;height:auto;display:block;font-family:Archivo,Arial,Helvetica,sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="13" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#161821"/></marker></defs><circle cx="30" cy="120" r="8" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><line x1="38" y1="120" x2="100" y2="120" stroke="#5b6b9a" stroke-width="4"/><path d="M100 120 L130 120" fill="none" stroke="#5b6b9a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><ellipse cx="115" cy="98" rx="18" ry="15" fill="#dbe4fb" stroke="#161821" stroke-width="2"/><circle cx="115" cy="98" r="6" fill="#9fb4ee" stroke="#161821" stroke-width="1.5"/><path d="M115 113 L115 120" fill="none" stroke="#5b6b9a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><line x1="130" y1="120" x2="205" y2="120" stroke="#5b6b9a" stroke-width="4" marker-end="url(#ah)"/><text x="30" y="152" text-anchor="start" font-size="14" font-weight="500" fill="#161821">Receptor</text><text x="100" y="235" text-anchor="middle" font-size="17" font-weight="700" fill="#161821">Sensory neuron</text><text x="100" y="257" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">Carries signals toward</text><text x="100" y="275" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">the brain and spinal cord</text><path d="M300 100 L278 78" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M300 120 L270 120" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M302 140 L280 162" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><ellipse cx="320" cy="120" rx="22" ry="20" fill="#dbe4fb" stroke="#161821" stroke-width="2"/><circle cx="320" cy="120" r="7" fill="#9fb4ee" stroke="#161821" stroke-width="1.5"/><path d="M342 120 L388 120" fill="none" stroke="#5b6b9a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><path d="M388 120 L408 100" fill="none" stroke="#5b6b9a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M388 120 L410 140" fill="none" stroke="#5b6b9a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><text x="340" y="235" text-anchor="middle" font-size="17" font-weight="700" fill="#161821">Interneuron</text><text x="340" y="257" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">Connects neurons</text><text x="340" y="275" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">inside the CNS</text><path d="M508 104 L485 84" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M504 120 L478 120" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M508 136 L486 158" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><ellipse cx="530" cy="120" rx="24" ry="21" fill="#dbe4fb" stroke="#161821" stroke-width="2"/><circle cx="530" cy="120" r="8" fill="#9fb4ee" stroke="#161821" stroke-width="1.5"/><line x1="554" y1="120" x2="606" y2="120" stroke="#5b6b9a" stroke-width="4"/><rect x="608" y="104" width="34" height="32" rx="6" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><text x="625" y="160" text-anchor="middle" font-size="13" font-weight="500" fill="#161821">Muscle</text><text x="540" y="235" text-anchor="middle" font-size="17" font-weight="700" fill="#161821">Motor neuron</text><text x="540" y="257" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">Carries commands away</text><text x="540" y="275" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">from the CNS</text></svg></div></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 6 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Neuroglia</div>
+<h2>The support cells</h2>
+<div class="cols" style="margin-top:4px"><div class="col" style="flex:0.9"><ul><li><b>Neuroglia</b> (also called glial cells) do not carry signals.</li><li>They support, feed, and protect neurons.</li><li>There are more than a few types. Four are shown here.</li></ul></div><div class="col" style="flex:1.6"><svg viewBox="0 0 720 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four types of neuroglia: astrocyte, oligodendrocyte, microglia, and Schwann cell, each with its job" style="width:100%;height:auto;display:block;font-family:Archivo,Arial,Helvetica,sans-serif"><path d="M85 110 L133 110" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><circle cx="133" cy="110" r="5" fill="#9fb4ee" stroke="#161821" stroke-width="1.5"/><path d="M85 110 L119 144" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><circle cx="119" cy="144" r="5" fill="#9fb4ee" stroke="#161821" stroke-width="1.5"/><path d="M85 110 L85 158" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><circle cx="85" cy="158" r="5" fill="#9fb4ee" stroke="#161821" stroke-width="1.5"/><path d="M85 110 L51 144" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><circle cx="51" cy="144" r="5" fill="#9fb4ee" stroke="#161821" stroke-width="1.5"/><path d="M85 110 L37 110" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><circle cx="37" cy="110" r="5" fill="#9fb4ee" stroke="#161821" stroke-width="1.5"/><path d="M85 110 L51 76" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><circle cx="51" cy="76" r="5" fill="#9fb4ee" stroke="#161821" stroke-width="1.5"/><path d="M85 110 L85 62" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><circle cx="85" cy="62" r="5" fill="#9fb4ee" stroke="#161821" stroke-width="1.5"/><path d="M85 110 L119 76" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><circle cx="119" cy="76" r="5" fill="#9fb4ee" stroke="#161821" stroke-width="1.5"/><circle cx="85" cy="110" r="15" fill="#dbe4fb" stroke="#161821" stroke-width="2"/><text x="85" y="205" text-anchor="middle" font-size="17" font-weight="700" fill="#161821">Astrocyte</text><text x="85" y="226" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">CNS. Supports neurons.</text><text x="85" y="244" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">Helps form the</text><text x="85" y="262" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">blood-brain barrier.</text><line x1="185" y1="150" x2="400" y2="150" stroke="#5b6b9a" stroke-width="4"/><rect x="215" y="138" width="48" height="24" rx="10" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><rect x="285" y="138" width="48" height="24" rx="10" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><rect x="355" y="138" width="48" height="24" rx="10" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><circle cx="290" cy="70" r="17" fill="#dbe4fb" stroke="#161821" stroke-width="2"/><path d="M290 87 C290 110 239 112 239 138" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M290 87 C290 110 309 112 309 138" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M290 87 C290 110 379 112 379 138" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><text x="292" y="205" text-anchor="middle" font-size="17" font-weight="700" fill="#161821">Oligodendrocyte</text><text x="292" y="226" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">CNS. Makes myelin</text><text x="292" y="244" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">for several axons.</text><path d="M470 100 Q490 99 498 110" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M470 100 Q479 109 475 130" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M470 100 Q463 102 444 115" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M470 100 Q463 86 444 85" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M470 100 Q479 79 475 70" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M470 100 Q489 86 496 85" fill="none" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><ellipse cx="470" cy="100" rx="13" ry="10" fill="#dbe4fb" stroke="#161821" stroke-width="2"/><circle cx="480" cy="106" r="5" fill="#7a7a85" stroke="#161821" stroke-width="1"/><text x="470" y="205" text-anchor="middle" font-size="17" font-weight="700" fill="#161821">Microglia</text><text x="470" y="226" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">CNS. Clears</text><text x="470" y="244" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">debris and defends</text><text x="470" y="262" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">against germs.</text><line x1="585" y1="150" x2="690" y2="150" stroke="#5b6b9a" stroke-width="4"/><rect x="600" y="136" width="70" height="28" rx="12" fill="#f6d9a8" stroke="#c2571a" stroke-width="2"/><ellipse cx="635" cy="126" rx="18" ry="10" fill="#dbe4fb" stroke="#161821" stroke-width="2"/><text x="640" y="205" text-anchor="middle" font-size="17" font-weight="700" fill="#161821">Schwann cell</text><text x="640" y="226" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">PNS. Makes myelin</text><text x="640" y="244" text-anchor="middle" font-size="14" font-weight="500" fill="#161821">for one axon.</text></svg></div></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 7 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">More neuroglia</div>
+<h2>Two more to know</h2>
+<ul><li><b>Ependymal cells</b> line the fluid-filled spaces in the brain. They help make cerebrospinal fluid, which cushions the brain.</li><li><b>Satellite cells</b> surround neuron cell bodies in the peripheral nervous system.</li><li>A <b>ganglion</b> is a cluster of neuron cell bodies outside the central nervous system.</li></ul><p class="note">The central nervous system has astrocytes, oligodendrocytes, microglia, and ependymal cells. The peripheral nervous system has Schwann cells and satellite cells.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 8 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">A fact worth knowing</div>
+<h2>One cell can be over a meter long</h2>
+<p class="bigp">A single motor neuron can reach from the spinal cord to the foot. Its axon can be over one meter long.</p><p>Most mature neurons cannot divide. Because of this, damage to nerve tissue can be hard to repair.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 9 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Sort it out</div>
+<div class="kicker">Name the cell</div>
+<h2>Which cell is it?</h2>
+<p>Name each cell from its job. Then compare with your partner.</p>
+<table>
+<tr><th>Example</th><th>Answer</th></tr>
+<tr><td>Makes myelin for several axons in the brain</td><td>?</td></tr><tr><td>Carries a signal from your fingertip toward the spinal cord</td><td>?</td></tr><tr><td>Clears debris after an injury in the brain</td><td>?</td></tr><tr><td>Carries a command to a muscle in your leg</td><td>?</td></tr><tr><td>Wraps one axon in a nerve of your arm with myelin</td><td>?</td></tr>
+</table>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 10 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Partner stations</div>
+<div class="kicker">Draw it, match it, sort it</div>
+<h2>Neuron stations</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept"><b>Draw it.</b> Close your slides. Draw a neuron in your notebook. Label the dendrites, cell body, nucleus, axon, myelin, and axon terminals. Then check your drawing against the diagram.</div></div><div class="step"><div class="stepn">2</div><div class="stept"><b>Match it.</b> Your partner reads the job of a part. You name the part. Use only the parts you labeled. Swap after five parts.</div></div><div class="step"><div class="stepn">3</div><div class="stept"><b>Sort it.</b> Your partner reads a description. You say which of these it is: sensory neuron, motor neuron, interneuron, astrocyte, oligodendrocyte, microglia, or Schwann cell. Do at least six.</div></div></div>
+
+<p class="note">Stay in your seat. About 3 minutes for each check.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 11 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">If time allows</div>
+<div class="kicker">Make a rule</div>
+<h2>Tell them apart</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept">Write one short rule to tell a sensory neuron from a motor neuron.</div></div><div class="step"><div class="stepn">2</div><div class="stept">Write one short rule to tell a neuron from a neuroglial cell.</div></div><div class="step"><div class="stepn">3</div><div class="stept">Trade rules with a partner. Try to find an exception.</div></div></div>
+<p class="note">You may draw your rule instead of writing it.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 12 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Record and explain</div>
+<h2>What did you notice?</h2>
+<div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>1. Write your labeled neuron.</p><p>2. Write the job of each part.</p><p>3. Finish this sentence.</p>
+  <p class="say" style="margin:6px 0">A neuron is built to carry a signal because its ____ does ____, and its ____ does ____.</p>
+</div>
+<div class="chips"><span class="chip"><b>dendrite</b></span><span class="chip"><b>axon</b></span><span class="chip"><b>myelin</b></span><span class="chip"><b>cell body</b></span><span class="chip"><b>neuroglia</b></span></div>
+<p class="note">You may draw and label instead of writing the jobs.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 13 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">After the notes</div>
+<h2>Mark, link, ask</h2>
+<div class="steps">
+  <div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> Underline, circle, or highlight the main ideas in your notes.</div></div>
+  <div class="step"><div class="stepn">2</div><div class="stept"><b>Link.</b> Connect one idea in your notes to something outside your notes.</div></div>
+  <div class="step"><div class="stepn">3</div><div class="stept"><b>Ask.</b> Write one quiz question that your notes can answer and that could be on a test.</div></div>
+</div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 14 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Summarize</div>
+<h2>How is a neuron built to carry a signal?</h2>
+<p class="bigp">Neurons carry signals. A neuron has dendrites that receive signals, a cell body, and an axon that carries the signal away. Myelin speeds the signal. Sensory, inter, and motor neurons do different jobs. Neuroglia support and protect neurons.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 15 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Take-home message and exit ticket</div>
+<h2>Before you leave</h2>
+<div class="cols" style="margin-top:6px">
+  <div class="col"><div class="dolabel" style="margin-top:0">Take-home message</div><p class="bigp" style="font-size:25px">Neurons carry the signal. Neuroglia keep the neurons working. A neuron's shape matches its job.</p></div>
+  <div class="col"><div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>Name three parts of a neuron and the job of each. Then name one type of neuroglia and what it does.</p>
+</div></div>
+</div>
+<p class="note">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 16 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Credits</div>
+<h2>Image and content credits</h2>
+<ul>
+  <li>All diagrams in this deck were drawn for this lesson. They are simplified.</li>
+  <li>Topics follow the Unit 2.6 Nervous System outline in the A&amp;P Scope and Sequence.</li>
+</ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 2 &middot; Tue, Nov 17</span><span>slide 17 of 17</span></div>
+</div>
+</div></div>
+<div class="nav"><span id="counter"></span>
+  <button onclick="step(-1)">&#8592;</button>
+  <button onclick="step(1)">&#8594;</button>
+</div>
+<script>
+// Shared slide-deck script for Unit 2.5 Muscular System and Unit 2.6 Nervous System lesson decks. Do not fork per day.
+var slides = document.querySelectorAll(".slide");
+var i = 0;
+function show(n) {
+  slides[i].classList.remove("active");
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides[i].classList.add("active");
+  var c = document.getElementById("counter");
+  if (c) c.textContent = (i + 1) + " / " + slides.length;
+}
+function step(d) { show(i + d); }
+function fit() {
+  var s = Math.min(window.innerWidth / 1300, window.innerHeight / 740);
+  document.getElementById("frame").style.transform = "scale(" + s + ")";
+}
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") step(1);
+  if (e.key === "ArrowLeft" || e.key === "PageUp") step(-1);
+});
+/* clicker support */
+document.addEventListener("keydown", function (e) {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  var t = e.target, tag = t && t.tagName;
+  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || tag === "BUTTON" || tag === "A" || (t && t.isContentEditable)) return;
+  if (e.key === "Enter" || e.key === "ArrowDown") { e.preventDefault(); step(1); }
+  if (e.key === "Backspace" || e.key === "ArrowUp") { e.preventDefault(); step(-1); }
+});
+document.getElementById("frame").addEventListener("click", function (e) {
+  if (e.target.closest("a, button, input, textarea, select, summary, label, details, [onclick]")) return;
+  if (String(window.getSelection())) return;
+  var r = this.getBoundingClientRect();
+  step(e.clientX < r.left + r.width * 0.2 ? -1 : 1);
+});
+window.addEventListener("resize", fit);
+fit(); show(0);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 9: The Senses</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<style>
+/* Shared slide-deck style for Unit 2.5 Muscular System and Unit 2.6 Nervous System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+
+</style>
+</head>
+<body>
+<div class="stage"><div class="frame" id="frame">
+
+<div class="slide active">
+<div class="topline"></div>
+<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</div>
+<h1>The Senses</h1>
+<div class="cols" style="margin-top:8px">
+  <div class="col">
+    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dobox"><p>List the five senses. Then write one sense that is not on that list, such as balance or pain.</p></div>
+  </div>
+  <div class="col" style="flex:0.7">
+    <div class="dolabel" style="margin-top:0">You need today</div>
+    <div class="chips" style="flex-direction:column; align-items:flex-start;"><span class="chip yes"><b>Chromebook</b> &mdash; yes</span><span class="chip yes"><b>Notebook</b> &mdash; yes</span><span class="chip yes"><b>2 pencils</b> &mdash; yes</span><span class="chip no"><b>Phones</b> &mdash; no</span></div>
+  </div>
+</div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 1 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Objective</div>
+<h2>Today's goal</h2>
+<p class="bigp" style="font-size:24px">Students will be able to describe how receptors turn stimuli into signals, by testing three senses, so that they can explain how the eye and ear detect light and sound.</p>
+<ul><li>I can name the main types of sensory receptors.</li><li>I can explain how the eye detects light and the ear detects sound.</li></ul>
+<div class="ltarget" style="margin-top:10px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can explain how a sense organ detects a stimulus.</p><p style="margin:2px 0"><b>Key words:</b> receptor, retina, cochlea, photoreceptor, stimulus</p><p style="margin:2px 0"><b>Sentence frame:</b> The ____ detects ____ and sends a signal to the ____.</p></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 2 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Essential question</div>
+<h2>How do your senses turn the world into signals?</h2>
+<p class="bigp">A <b>stimulus</b> is a change that a sense organ can detect, such as light, sound, or touch.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 3 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Receptors</div>
+<h2>Types of sensory receptors</h2>
+<table><tr><th>Receptor type</th><th>Detects</th></tr><tr><td>Mechanoreceptor</td><td>Pressure, touch, stretch, sound</td></tr><tr><td>Thermoreceptor</td><td>Temperature change</td></tr><tr><td>Nociceptor</td><td>Tissue damage (pain)</td></tr><tr><td>Photoreceptor</td><td>Light</td></tr><tr><td>Chemoreceptor</td><td>Chemicals in the nose, tongue, and blood</td></tr></table><p class="note"><b>General senses</b> are spread through the body, such as touch and pain. <b>Special senses</b> have their own organs: vision, hearing, taste, smell, and balance.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 4 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">The eye</div>
+<h2>Structures of the eye</h2>
+<div style="width:760px;margin:0 auto"><svg viewBox="0 0 660 375" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cross section of the eye showing the cornea, iris, pupil, lens, vitreous humor, retina, fovea, optic nerve, and sclera, with light rays focusing on the retina" style="width:100%;height:auto;display:block;font-family:Archivo,Arial,Helvetica,sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="13" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#161821"/></marker></defs><line x1="20" y1="130" x2="473" y2="190" stroke="#e0a070" stroke-width="1.6"/><line x1="20" y1="190" x2="473" y2="190" stroke="#e0a070" stroke-width="1.6"/><line x1="20" y1="250" x2="473" y2="190" stroke="#e0a070" stroke-width="1.6"/><circle cx="350" cy="190" r="135" fill="#f7f6f0" stroke="#161821" stroke-width="3"/><path d="M238 108 Q172 190 238 272 Q218 190 238 108 Z" fill="#bfe0ff" stroke="#2b50c8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M262 112 L262 160" fill="none" stroke="#8a5a2e" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" /><path d="M262 220 L262 268" fill="none" stroke="#8a5a2e" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" /><ellipse cx="284" cy="190" rx="15" ry="44" fill="#fff3b0" stroke="#8a7a20" stroke-width="2.5"/><path d="M345 62 A128 128 0 0 1 345 318" fill="none" stroke="#c2571a" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" /><circle cx="473" cy="190" r="6" fill="#161821" stroke="#161821" stroke-width="1"/><path d="M470 232 L545 292" fill="none" stroke="#5b6b9a" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" /><text x="385" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#444">Vitreous humor</text><text x="385" y="218" text-anchor="middle" font-size="13" font-weight="500" fill="#444">(clear jelly)</text><text x="130" y="70" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Cornea</text><line x1="140" y1="76" x2="208" y2="130" stroke="#161821" stroke-width="1.2"/><text x="268" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Iris</text><line x1="268" y1="46" x2="264" y2="108" stroke="#161821" stroke-width="1.2"/><text x="120" y="330" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Pupil</text><line x1="138" y1="320" x2="258" y2="194" stroke="#161821" stroke-width="1.2"/><text x="300" y="345" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Lens</text><line x1="300" y1="331" x2="288" y2="236" stroke="#161821" stroke-width="1.2"/><text x="470" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Retina</text><line x1="468" y1="46" x2="462" y2="110" stroke="#161821" stroke-width="1.2"/><text x="560" y="170" text-anchor="start" font-size="16" font-weight="700" fill="#161821">Fovea</text><line x1="556" y1="166" x2="482" y2="188" stroke="#161821" stroke-width="1.2"/><text x="585" y="318" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Optic nerve</text><line x1="560" y1="305" x2="540" y2="292" stroke="#161821" stroke-width="1.2"/><text x="400" y="355" text-anchor="middle" font-size="14" font-weight="500" fill="#444">Sclera (white of the eye)</text><line x1="400" y1="340" x2="380" y2="322" stroke="#161821" stroke-width="1.2"/><text x="30" y="100" text-anchor="start" font-size="14" font-weight="500" fill="#a05a20" font-style="italic">Light</text></svg></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 5 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Vision</div>
+<h2>How you see</h2>
+<ul><li>Light enters through the <b>cornea</b> and <b>pupil</b>. The <b>iris</b> changes the pupil size.</li><li>The <b>lens</b> focuses the light onto the <b>retina</b>.</li><li><b>Rods</b> work in dim light. <b>Cones</b> detect color and detail. Most cones are at the <b>fovea</b>.</li><li>The <b>optic nerve</b> carries signals to the brain. The brain makes the image.</li></ul><p class="note">The image on the retina is upside down. The brain turns it right-side up.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 6 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Corrective lenses</div>
+<h2>Fixing focus</h2>
+<ul><li>In <b>nearsightedness</b>, the image focuses in front of the retina. A concave lens fixes it.</li><li>In <b>farsightedness</b>, the image focuses behind the retina. A convex lens fixes it.</li><li>The lens changes shape to focus near and far objects.</li></ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 7 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">The ear</div>
+<h2>Hearing and balance</h2>
+<div style="width:760px;margin:0 auto"><svg viewBox="0 0 650 335" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cross section of the ear: outer ear with pinna and ear canal, eardrum, middle ear with three tiny bones, and inner ear with cochlea, semicircular canals, and auditory nerve" style="width:100%;height:auto;display:block;font-family:Archivo,Arial,Helvetica,sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="13" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#161821"/></marker></defs><rect x="10" y="40" width="175" height="260" rx="0" fill="#e8f0ff" stroke="none" stroke-width="0"/><rect x="185" y="40" width="170" height="260" rx="0" fill="#e6f5e1" stroke="none" stroke-width="0"/><rect x="355" y="40" width="285" height="260" rx="0" fill="#efe6fb" stroke="none" stroke-width="0"/><text x="97" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#2b50c8">Outer ear</text><text x="270" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#2e8b3d">Middle ear</text><text x="497" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#6a4fb0">Inner ear</text><path d="M70 80 C20 80 20 200 70 215 C95 222 95 200 80 190 C60 175 62 120 85 112 C95 105 90 82 70 80 Z" fill="#f3d9d4" stroke="#161821" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M88 140 L195 140" fill="none" stroke="#161821" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M88 168 L195 168" fill="none" stroke="#161821" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M195 132 Q203 154 195 176" fill="none" stroke="#c0392b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><ellipse cx="228" cy="152" rx="13" ry="10" fill="#fff3b0" stroke="#8a7a20" stroke-width="2"/><ellipse cx="262" cy="146" rx="11" ry="15" fill="#fff3b0" stroke="#8a7a20" stroke-width="2"/><ellipse cx="296" cy="152" rx="12" ry="7" fill="#fff3b0" stroke="#8a7a20" stroke-width="2"/><path d="M203 154 L216 152" fill="none" stroke="#8a7a20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M239 150 L251 148" fill="none" stroke="#8a7a20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M273 148 L285 151" fill="none" stroke="#8a7a20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M308 152 L345 156" fill="none" stroke="#8a7a20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path d="M345 140 L345 176" fill="none" stroke="#2b50c8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" /><ellipse cx="430" cy="100" rx="26" ry="38" fill="none" stroke="#6a4fb0" stroke-width="5" transform="rotate(20 430 100)"/><ellipse cx="470" cy="96" rx="34" ry="24" fill="none" stroke="#6a4fb0" stroke-width="5" transform="rotate(-25 470 96)"/><ellipse cx="500" cy="120" rx="24" ry="36" fill="none" stroke="#6a4fb0" stroke-width="5" transform="rotate(40 500 120)"/><ellipse cx="448" cy="160" rx="22" ry="16" fill="#e3d6fa" stroke="#6a4fb0" stroke-width="3"/><path d="M360 215 C360 180 470 175 485 215 C498 250 440 285 410 262 C385 245 410 218 430 225 C442 232 438 245 428 246" fill="none" stroke="#6a4fb0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" /><path d="M490 232 C530 230 570 240 625 215" fill="none" stroke="#5b6b9a" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" /><text x="30" y="270" text-anchor="start" font-size="15" font-weight="700" fill="#161821">Pinna</text><line x1="50" y1="256" x2="60" y2="205" stroke="#161821" stroke-width="1.2"/><text x="140" y="96" text-anchor="middle" font-size="15" font-weight="700" fill="#161821">Ear canal</text><line x1="140" y1="102" x2="140" y2="138" stroke="#161821" stroke-width="1.2"/><text x="210" y="102" text-anchor="middle" font-size="15" font-weight="700" fill="#161821">Eardrum</text><line x1="205" y1="108" x2="198" y2="132" stroke="#161821" stroke-width="1.2"/><text x="268" y="224" text-anchor="middle" font-size="15" font-weight="700" fill="#161821">Ossicles</text><text x="268" y="242" text-anchor="middle" font-size="13" font-weight="500" fill="#161821">(3 tiny bones)</text><line x1="262" y1="196" x2="262" y2="164" stroke="#161821" stroke-width="1.2"/><text x="358" y="122" text-anchor="middle" font-size="14" font-weight="700" fill="#161821">Oval window</text><line x1="366" y1="128" x2="348" y2="144" stroke="#161821" stroke-width="1.2"/><text x="420" y="320" text-anchor="middle" font-size="16" font-weight="700" fill="#161821">Cochlea</text><line x1="420" y1="305" x2="420" y2="282" stroke="#161821" stroke-width="1.2"/><text x="566" y="172" text-anchor="middle" font-size="14" font-weight="700" fill="#161821">Semicircular canals</text><line x1="540" y1="158" x2="520" y2="132" stroke="#161821" stroke-width="1.2"/><text x="568" y="278" text-anchor="middle" font-size="14" font-weight="700" fill="#161821">Auditory nerve</text><line x1="566" y1="264" x2="566" y2="244" stroke="#161821" stroke-width="1.2"/></svg></div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 8 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Hearing, smell, and taste</div>
+<h2>Other special senses</h2>
+<ul><li>Sound waves move the <b>eardrum</b>. The three <b>ossicles</b> pass the vibration to the <b>cochlea</b>, where hair cells make signals.</li><li><b>Semicircular canals</b> in the inner ear detect head movement for balance.</li><li><b>Smell</b> receptors in the nose connect directly to the brain's smell center.</li><li><b>Taste buds</b> detect five tastes: sweet, sour, salty, bitter, and umami.</li></ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 9 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Sort it out</div>
+<div class="kicker">Name the receptor type</div>
+<h2>Which receptor is it?</h2>
+<p>Name the receptor type for each stimulus. Then check with a partner.</p>
+<table>
+<tr><th>Example</th><th>Answer</th></tr>
+<tr><td>Detects light in the retina</td><td>?</td></tr><tr><td>Detects pressure on your skin</td><td>?</td></tr><tr><td>Detects odor molecules in the nose</td><td>?</td></tr><tr><td>Detects a hot surface</td><td>?</td></tr><tr><td>Detects tissue damage</td><td>?</td></tr>
+</table>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 10 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Partner stations</div>
+<div class="kicker">Test your senses</div>
+<h2>Sense stations</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept"><b>Blind spot.</b> Close your left eye. Look at the cross on the figure below with your right eye. Move closer or farther from the screen until the dot disappears.</div></div><div class="step"><div class="stepn">2</div><div class="stept"><b>Two-point test.</b> Your partner touches the eraser ends of two pencils, 1 cm apart, to your fingertip. Say "one" or "two." Repeat on your forearm. Your eyes are closed.</div></div><div class="step"><div class="stepn">3</div><div class="stept"><b>Sound direction.</b> Close your eyes. Your partner snaps fingers at different places around your head. Point to the sound. Then cover one ear and try again.</div></div></div>
+<div style="width:58%;margin:0 auto"><svg viewBox="0 0 600 122" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A cross on the left and a dot on the right for the blind spot test" style="width:100%;height:auto;display:block;font-family:Archivo,Arial,Helvetica,sans-serif"><rect x="2" y="2" width="596" height="116" rx="8" fill="#fff" stroke="#bbb" stroke-width="2"/><line x1="100" y1="60" x2="140" y2="60" stroke="#161821" stroke-width="5"/><line x1="120" y1="40" x2="120" y2="80" stroke="#161821" stroke-width="5"/><circle cx="470" cy="60" r="15" fill="#161821" stroke="#161821" stroke-width="1"/><text x="120" y="106" text-anchor="middle" font-size="14" font-weight="700" fill="#161821">Cross</text><text x="470" y="106" text-anchor="middle" font-size="14" font-weight="700" fill="#161821">Dot</text></svg></div>
+<p class="note">Touch gently with the erasers only. About 3 minutes for each check.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 11 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">If time allows</div>
+<div class="kicker">Change one thing</div>
+<h2>Change it and compare</h2>
+<div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept">Repeat the two-point test on the back of your hand.</div></div><div class="step"><div class="stepn">2</div><div class="stept">Compare the fingertip, hand, and forearm.</div></div><div class="step"><div class="stepn">3</div><div class="stept">Write where you felt two points most easily, and guess why.</div></div></div>
+<p class="note">You may watch and record instead.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 12 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Record and explain</div>
+<h2>What did you notice?</h2>
+<div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>1. Write what happened at the blind spot.</p><p>2. Write where you could tell two points apart.</p><p>3. Finish this sentence. Use your results as evidence.</p>
+  <p class="say" style="margin:6px 0">My ____ was more sensitive than my ____ because ____.</p>
+</div>
+<div class="chips"><span class="chip"><b>receptor</b></span><span class="chip"><b>retina</b></span><span class="chip"><b>cochlea</b></span><span class="chip"><b>stimulus</b></span><span class="chip"><b>density</b></span></div>
+<p class="note">You may draw and label instead.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 13 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">After the notes</div>
+<h2>Mark, link, ask</h2>
+<div class="steps">
+  <div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> Underline, circle, or highlight the main ideas in your notes.</div></div>
+  <div class="step"><div class="stepn">2</div><div class="stept"><b>Link.</b> Connect one idea in your notes to something outside your notes.</div></div>
+  <div class="step"><div class="stepn">3</div><div class="stept"><b>Ask.</b> Write one quiz question that your notes can answer and that could be on a test.</div></div>
+</div>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 14 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Summarize</div>
+<h2>How do your senses turn the world into signals?</h2>
+<p class="bigp">Sensory receptors turn stimuli into nerve signals. The eye focuses light on the retina, where photoreceptors make signals. The ear turns sound into vibrations, and hair cells in the cochlea make signals. Smell and taste use chemoreceptors. Skin has several kinds of receptors.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 15 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Take-home message and exit ticket</div>
+<h2>Before you leave</h2>
+<div class="cols" style="margin-top:6px">
+  <div class="col"><div class="dolabel" style="margin-top:0">Take-home message</div><p class="bigp" style="font-size:25px">Every sense works the same way: a receptor detects a stimulus and starts a signal. The brain makes the experience.</p></div>
+  <div class="col"><div class="dobox">
+  <div class="dolabel">Write in your notebook</div>
+  <p>Pick one sense. Name the receptor type, the stimulus, and the organ that detects it. Then explain what the brain does with the signal.</p>
+</div></div>
+</div>
+<p class="note">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 16 of 17</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Credits</div>
+<h2>Image and content credits</h2>
+<ul>
+  <li>All diagrams in this deck were drawn for this lesson. They are simplified.</li>
+  <li>Topics follow the Unit 2.6 Nervous System outline in the A&amp;P Scope and Sequence.</li>
+</ul>
+<div class="foot"><span>Unit 2.6 Nervous System &middot; Day 9 &middot; Thu, Dec 3</span><span>slide 17 of 17</span></div>
+</div>
+</div></div>
+<div class="nav"><span id="counter"></span>
+  <button onclick="step(-1)">&#8592;</button>
+  <button onclick="step(1)">&#8594;</button>
+</div>
+<script>
+// Shared slide-deck script for Unit 2.5 Muscular System and Unit 2.6 Nervous System lesson decks. Do not fork per day.
+var slides = document.querySelectorAll(".slide");
+var i = 0;
+function show(n) {
+  slides[i].classList.remove("active");
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides[i].classList.add("active");
+  var c = document.getElementById("counter");
+  if (c) c.textContent = (i + 1) + " / " + slides.length;
+}
+function step(d) { show(i + d); }
+function fit() {
+  var s = Math.min(window.innerWidth / 1300, window.innerHeight / 740);
+  document.getElementById("frame").style.transform = "scale(" + s + ")";
+}
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") step(1);
+  if (e.key === "ArrowLeft" || e.key === "PageUp") step(-1);
+});
+/* clicker support */
+document.addEventListener("keydown", function (e) {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  var t = e.target, tag = t && t.tagName;
+  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || tag === "BUTTON" || tag === "A" || (t && t.isContentEditable)) return;
+  if (e.key === "Enter" || e.key === "ArrowDown") { e.preventDefault(); step(1); }
+  if (e.key === "Backspace" || e.key === "ArrowUp") { e.preventDefault(); step(-1); }
+});
+document.getElementById("frame").addEventListener("click", function (e) {
+  if (e.target.closest("a, button, input, textarea, select, summary, label, details, [onclick]")) return;
+  if (String(window.getSelection())) return;
+  var r = this.getBoundingClientRect();
+  step(e.clientX < r.left + r.width * 0.2 ? -1 : 1);
+});
+window.addEventListener("resize", fit);
+fit(); show(0);
+
+
+</script>
+</body>
+</html>
