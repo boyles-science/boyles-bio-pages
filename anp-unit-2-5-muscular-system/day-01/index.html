@@ -1,11 +1,188 @@
-<!doctype html>
-<html lang="en">
-<head>
+<!DOCTYPE html>
+<html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Day 1: Functions of the Muscular System</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&amp;family=Source+Serif+4:ital,wght@1,500;1,600&amp;display=swap">
 <style>
+/* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+/* Part slides: text on the left, scientific figure on the right */
+.partcols { display: flex; gap: 36px; align-items: flex-start; }
+.partcols .ptext { flex: 0 0 470px; }
+.partcols .ptext .bigp { font-size: 27px; }
+.partcols .pfig { flex: 1; min-width: 0; }
+.pimg { display: block; max-width: 100%; max-height: 452px; margin: 0 auto; border: 1px solid #e4e6ee;
+  border-radius: 8px; background: #ffffff; }
+.lookfor { background: #fff8e6; border: 1px solid #f0d9a0; border-radius: 10px; padding: 12px 16px; margin: 14px 0 0; }
+.lookfor .dolabel { color: #9a6a00; }
+.lookfor p { margin: 0; font-size: 19px; }
+/* Lab slides */
+.labtag { display: inline-block; background: #2b50c8; color: #fff; font-weight: 800; letter-spacing: 0.14em;
+  font-size: 15px; text-transform: uppercase; padding: 8px 14px; border-radius: 8px; margin-right: 8px; }
+.swatches { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; margin: 10px 0 0; }
+.sw { display: flex; align-items: center; gap: 10px; font-size: 19px; }
+.sw i { display: inline-block; width: 26px; height: 26px; border-radius: 6px; border: 1.5px solid rgba(0,0,0,0.25); flex: 0 0 26px; }
+.keylist { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin: 8px 0 0; }
+.keylist div { font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.keylist b { display: inline-flex; width: 24px; height: 24px; border-radius: 50%; border: 2px solid #2b50c8; color: #2b50c8;
+  align-items: center; justify-content: center; font-size: 13px; flex: 0 0 24px; }
+.keylist i { display: inline-block; width: 16px; height: 16px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.25); flex: 0 0 16px; }
+table.ex td { font-size: 15px; line-height: 1.3; padding: 5px 10px 5px 0; }
+table.ex th { font-size: 12px; padding: 5px 10px 5px 0; }
+table.ex td:first-child { font-weight: 700; }
+table.blank td { height: 22px; font-size: 16px; line-height: 1.3; padding: 5px 12px 5px 0; }
+table.blank th { font-size: 12px; padding: 5px 12px 5px 0; }
+table.blank td.fill { color: #2b50c8; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+.tkey { display:none; position:absolute; left:48px; right:48px; bottom:64px; z-index:9; background:#ffffff; border:4px solid #2b50c8; border-radius:14px; padding:14px 22px 16px; font:600 26px/1.35 'Archivo', Arial, sans-serif; color:#161821; box-shadow:0 6px 24px rgba(0,0,0,.18); }
+.tkey.shown { display:block; }
+.tkey .tlabel { display:block; color:#2b50c8; font:800 15px 'Archivo', Arial, sans-serif; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+.rv { visibility: hidden; } .rv.rvshown { visibility: visible; } /* reveal one at a time */
+</style><style>
+/* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+.tkey { display:none; position:absolute; left:48px; right:48px; bottom:64px; z-index:9; background:#ffffff; border:4px solid #2b50c8; border-radius:14px; padding:14px 22px 16px; font:600 26px/1.35 'Archivo', Arial, sans-serif; color:#161821; box-shadow:0 6px 24px rgba(0,0,0,.18); }
+.tkey.shown { display:block; }
+.tkey .tlabel { display:block; color:#2b50c8; font:800 15px 'Archivo', Arial, sans-serif; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+</style><style>
 /* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
    Matches the "NotebookLM Lesson - Student Slides" house style already used
    in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
@@ -79,35 +256,60 @@ html, body { height: 100%; background: #16181f; }
 
 
 </style>
-</head>
+<style id="nbtag-css">.nbtag{position:absolute;top:16px;right:72px;z-index:6;font:700 13px/1.2 'Archivo',Arial,sans-serif;letter-spacing:.04em;color:#6b4300;background:#fff4d6;border:1px solid #efd185;border-radius:999px;padding:6px 13px;max-width:640px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.nbkey .kbox{margin-top:18px;border:3px dashed #e0b84a;background:#fffaf0;border-radius:14px;padding:22px 26px;font-size:26px;line-height:1.45}</style></head>
 <body>
 <div class="stage"><div class="frame" id="frame">
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="slide active">
-<div class="topline"></div>
-<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</div>
+<div class="topline"></div><div class="nbtag">Notebook p. 5 · Warm-up</div>
+<div class="kicker">Anatomy &amp; Physiology · Unit 2.5 Muscular System · Day 1</div>
 <h1>Functions of the Muscular System</h1>
 <div class="cols" style="margin-top:8px">
   <div class="col">
-    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
-    <div class="dobox">
-      <p>List three things you have done with your muscles in the last hour, without thinking about it. For each one, guess: was it movement, or something else?</p>
-    </div>
+    <div class="dolabel" style="margin-top:0">Warm-up · notebook</div>
+    <div class="dobox"><p style="margin:0 0 6px"><b>Your body is moving right now</b></p><p>1. Name one thing your body is doing right now that uses a muscle.</p><p style="margin-top:6px">2. Which of those did you choose to do?</p></div>
   </div>
   <div class="col" style="flex:0.7">
     <div class="dolabel" style="margin-top:0">You need today</div>
     <div class="chips" style="flex-direction:column; align-items:flex-start;">
-      <span class="chip yes"><b>Chromebook</b> &mdash; yes</span>
-      <span class="chip yes"><b>Notebook</b> &mdash; yes</span>
-      <span class="chip no"><b>Whiteboard &amp; marker</b> &mdash; no</span>
-      <span class="chip no"><b>Phones</b> &mdash; no</span>
+      <span class="chip"><b>Chromebook</b></span>
+      <span class="chip"><b>Notebook</b></span>
+      <span class="chip no"><b>Phones</b> — no</span>
     </div>
   </div>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 1 of 17</span></div>
-</div>
-
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 1 of 32</span></div>
+</div><div class="slide">
 <div class="topline"></div>
 <div class="kicker">Objective</div>
 <h2>Today's goal</h2>
@@ -117,54 +319,48 @@ html, body { height: 100%; background: #16181f; }
   <li>I can identify a real example of each function.</li>
 </ul>
 <div class="ltarget" style="margin-top:14px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can explain what the body could not do without muscles.</p><p style="margin:2px 0"><b>Key words:</b> muscle, movement, posture, homeostasis</p><p style="margin:2px 0"><b>Sentence frame:</b> Without muscles, I could not ____ because ____.</p></div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 2 of 17</span></div>
-</div>
-
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 2 of 32</span></div>
+</div><div class="slide">
 <div class="topline"></div>
 <div class="kicker">Essential question</div>
-<h2>What does the muscular system actually do for you?</h2>
-<p class="bigp">The muscular system is crucial for movement and maintaining posture. It also helps you breathe, regulate body temperature, and perform daily activities efficiently.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 3 of 17</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<h2>What would happen if humans had no muscles?</h2>
+<p class="bigp">Today you will find out that muscles do much more than lift and move. You will sort real actions into the five jobs of the muscular system. Keep this question in mind as you take notes. You will answer it at the end.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 3 of 32</span></div>
+</div><div class="slide"> <div class="topline"></div><div class="nbtag">Notebook p. 5 · Phenomenon</div> <div class="kicker">Phenomenon</div> <h2>Shivering in the cold</h2> <div class="dobox"><div class="dolabel">Try it</div><p>Squeeze your fist as hard as you can for 20 seconds. Then feel your forearm. What changed?</p></div> <p class="bigp" style="font-size:24px">Write in your notebook: <b>What I noticed:</b></p> <div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 4 of 32</span></div> </div><div class="slide"> <div class="topline"></div><div class="nbtag">Notebook p. 5 · Focused Notes: Muscles only pull</div> <div class="kicker">Focused notes</div> <h2>Muscles only pull</h2> <ul style="font-size:26px;line-height:1.5"><li>A <b>muscle</b> works by getting shorter. We call that <b>contracting</b>.</li><li>When a muscle contracts, it pulls on whatever it is attached to.</li><li>Muscles can pull, but they can never push. So they work in pairs: one pulls a bone one way, and its partner pulls it back.</li></ul> <div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 5 of 32</span></div> </div><div class="slide"> <div class="topline"></div><div class="nbtag">Notebook p. 5 · Stop and Think</div> <div class="kicker">Stop and think</div> <h2>Which side pulled?</h2> <div class="prompt">Bend your arm. Which side of your arm pulled? What pulls it straight again?</div> <div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 6 of 32</span></div> </div><div class="slide"> <div class="topline"></div><div class="nbtag">Notebook p. 5 · Focused Notes: Jobs 1 and 2: movement and posture</div> <div class="kicker">Focused notes</div> <h2>Jobs 1 and 2: movement and posture</h2> <ul style="font-size:26px;line-height:1.5"><li><b>Movement</b>: skeletal muscles pull on bones so you can walk, write, and wave.</li><li><b>Posture</b>: even when you sit still, muscles hold your head up and keep your joints steady.</li><li>If those muscles relaxed all at once, you would slump over.</li></ul> <div class="dobox"><div class="dolabel">Note only the key idea</div><p>Write the key idea in your own words.</p></div> <div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 7 of 32</span></div> </div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 5 · Focused Notes: Jobs 1 and 2: movement and posture</div>
 <div class="kicker">Function 1 and 2</div>
 <h2>Movement and posture</h2>
 <ul>
   <li><b>Movement:</b> muscle contraction involves the shortening of muscle fibers, allowing movement and support for the body. Nerve signals transmit electrical impulses that control muscle contraction and relaxation, for precise movements.</li>
   <li><b>Posture:</b> muscles hold your joints steady and keep you stable while sitting or standing.</li>
 </ul>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 4 of 17</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 8 of 32</span></div>
+</div><div class="slide nbkey"><div class="topline"></div><div class="nbtag">Notebook p. 6 · Note Only the Key Idea</div><div class="kicker">Notebook · page 6 · Key Idea box</div><h2>Note only the key idea</h2><p class="bigp" style="font-size:28px">Pause the notes. Find the <b>Key Idea</b> box on <b>page 6</b>, right under <b>“Jobs 1 and 2: movement and posture”</b>.</p><div class="kbox">Write the key idea in your own words: <b>one short sentence</b>, using the blue key words you just filled in.<br><span style="font-size:20px;color:#6b6f7b">No copying a full bullet. Shorter is better.</span></div><div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 9 of 32</span></div></div><div class="slide"> <div class="topline"></div><div class="nbtag">Notebook p. 6 · Focused Notes: Job 3: heat</div> <div class="kicker">Focused notes</div> <h2>Job 3: heat</h2> <ul style="font-size:26px;line-height:1.5"><li>Every time a muscle contracts, it gives off <b>heat</b>.</li><li>About 85% of your body heat comes from muscles working.</li><li>That is why you shiver in the cold: fast contractions make extra heat to warm you up.</li></ul> <div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 10 of 32</span></div> </div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 6 · Focused Notes: Job 3: heat</div>
 <div class="kicker">Function 3</div>
 <h2>Heat production</h2>
 <p class="bigp">Muscle contractions release heat as a byproduct of ATP use, which helps maintain body temperature. Shivering muscles generate extra heat to keep the body warm in cold conditions.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 5 of 17</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 11 of 32</span></div>
+</div><div class="slide"> <div class="topline"></div><div class="nbtag">Notebook p. 6 · Connect It</div> <div class="kicker">Connect it</div> <h2>Warm after running?</h2> <div class="prompt">Why do you feel warm after running, even on a cold day?</div> <div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 12 of 32</span></div> </div><div class="slide"> <div class="topline"></div><div class="nbtag">Notebook p. 6 · Focused Notes: Jobs 4 and 5: circulation and digestion</div> <div class="kicker">Focused notes</div> <h2>Jobs 4 and 5: circulation and digestion</h2> <ul style="font-size:26px;line-height:1.5"><li>Some muscles work without you thinking about them.</li><li><b>Cardiac muscle</b> in your heart pumps blood all day, every day. That is <b>circulation</b>.</li><li><b>Smooth muscle</b> in your stomach and intestines squeezes food along. That is <b>digestion</b>.</li></ul> <div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 13 of 32</span></div> </div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 6 · Focused Notes: Jobs 4 and 5: circulation and digestion</div>
 <div class="kicker">Function 4</div>
 <h2>Circulation</h2>
 <p class="bigp">Cardiac muscle contractions pump blood throughout the body, delivering oxygen and nutrients. Smooth muscles in blood vessel walls regulate circulation by constricting or relaxing to control blood flow.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 6 of 17</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 14 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 6 · Focused Notes: Jobs 4 and 5: circulation and digestion</div>
 <div class="kicker">Function 5</div>
 <h2>Moving substances through the body</h2>
-<p class="bigp">Smooth muscles in the digestive tract contract rhythmically &mdash; called <b>peristalsis</b> &mdash; to move food along. These involuntary contractions break down and propel food so nutrients can be absorbed.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 7 of 17</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<p class="bigp">Smooth muscles in the digestive tract contract rhythmically — called <b>peristalsis</b> — to move food along. These involuntary contractions break down and propel food so nutrients can be absorbed.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 15 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 6 · Focused Notes: Jobs 4 and 5: circulation and digestion</div>
+<div class="kicker">Function 5</div>
+<h2>Digestion: moving substances through the body</h2>
+<p class="bigp">Smooth muscles in the digestive tract contract rhythmically — called <b>peristalsis</b> — to move food along. These involuntary contractions break down and propel food so nutrients can be absorbed.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 16 of 32</span></div>
+</div><div class="slide"> <div class="topline"></div><div class="nbtag">Notebook p. 6 · Stop and Think</div> <div class="kicker">Stop and think</div> <h2>Which job could wait an hour?</h2> <div class="prompt">Which of the five jobs could your body survive without for one hour? Which could it not?</div> <div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 17 of 32</span></div> </div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 6 · Focused Notes: Jobs 4 and 5: circulation and digestion</div>
 <div class="kicker">Voluntary vs. involuntary</div>
 <h2>Who's in control?</h2>
 <p class="bigp">Muscles are classified as <b>voluntary</b>, which we control, or <b>involuntary</b>, which function automatically.</p>
@@ -172,36 +368,30 @@ html, body { height: 100%; background: #16181f; }
   <li>Skeletal muscles are under our control and move the body by contracting and relaxing.</li>
   <li>Smooth and cardiac muscles function automatically to regulate processes like digestion, circulation, and heartbeat.</li>
 </ul>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 8 of 17</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 18 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 6 · Focused Notes: Jobs 4 and 5: circulation and digestion</div>
 <div class="kicker">A number worth knowing</div>
 <h2>Muscle is about 40% of your body weight</h2>
 <p class="bigp">Regular exercise significantly improves muscle strength and endurance. It also helps prevent muscle atrophy and age-related decline.</p>
-<p>Proper nutrition &mdash; including protein &mdash; is vital for muscle repair and growth.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 9 of 17</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<p>Proper nutrition — including protein — is vital for muscle repair and growth.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 19 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 6 · Focused Notes: Jobs 4 and 5: circulation and digestion</div>
 <div class="demo">Sort it out</div>
 <div class="kicker">Name the function</div>
 <h2>Why do you shiver?</h2>
-<p>When you get cold, you shiver without deciding to &mdash; your skeletal muscles squeeze and relax many times each second. Which function is that? Then sort the rest.</p>
+<p>When you get cold, you shiver without deciding to — your skeletal muscles squeeze and relax many times each second. Which function is that? Then sort the rest.</p>
 <table>
-<tr><th>Example</th><th>Function</th></tr>
+<tbody><tr><th>Example</th><th>Function</th></tr>
 <tr><td>Shivering in a cold room</td><td>?</td></tr>
 <tr><td>Standing at attention without swaying</td><td>?</td></tr>
 <tr><td>Kicking a soccer ball</td><td>?</td></tr>
 <tr><td>Your heart pumping blood</td><td>?</td></tr>
 <tr><td>Food moving through your intestines</td><td>?</td></tr>
-</table>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 10 of 17</span></div>
-</div>
-
-<div class="slide">
+</tbody></table>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 20 of 32</span></div>
+</div><div class="slide">
 <div class="topline"></div>
 <div class="demo">Partner stations</div>
 <div class="kicker">Three quick checks</div>
@@ -212,10 +402,8 @@ html, body { height: 100%; background: #16181f; }
   <div class="step"><div class="stepn">3</div><div class="stept"><b>Heat.</b> Rub your palms together hard for 20 seconds. Then press them against your cheeks.</div></div>
 </div>
 <p class="note">Stay in your place. Sit down if you feel dizzy. About 1 minute for each check.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 11 of 17</span></div>
-</div>
-
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 21 of 32</span></div>
+</div><div class="slide">
 <div class="topline"></div>
 <div class="demo">If time allows</div>
 <div class="kicker">Switch partners' jobs, then change one thing</div>
@@ -226,10 +414,8 @@ html, body { height: 100%; background: #16181f; }
   <div class="step"><div class="stepn">3</div><div class="stept"><b>Pulse:</b> march in place for 30 seconds. Then count your pulse for 15 seconds.</div></div>
 </div>
 <p class="note">You may watch and record for your partner instead. Stop and sit if you feel dizzy.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 12 of 17</span></div>
-</div>
-
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 22 of 32</span></div>
+</div><div class="slide">
 <div class="topline"></div>
 <div class="kicker">Record and explain</div>
 <h2>What did you notice?</h2>
@@ -244,42 +430,27 @@ html, body { height: 100%; background: #16181f; }
   <span class="chip"><b>posture</b></span><span class="chip"><b>pulse</b></span><span class="chip"><b>contract</b></span><span class="chip"><b>heat</b></span><span class="chip"><b>movement</b></span>
 </div>
 <p class="note">You may draw and label instead of writing the observations.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 13 of 17</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">After the notes</div>
-<h2>Mark, link, ask</h2>
-<div class="steps">
-  <div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> Underline, circle, or highlight the main ideas in your notes.</div></div>
-  <div class="step"><div class="stepn">2</div><div class="stept"><b>Link.</b> Connect one idea in your notes to something outside your notes.</div></div>
-  <div class="step"><div class="stepn">3</div><div class="stept"><b>Ask.</b> Write one quiz question that your notes can answer and that could be on a test.</div></div>
-</div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 14 of 17</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">Summarize</div>
-<h2>What does the muscular system actually do for you?</h2>
-<p class="bigp">The muscular system does much more than move your body. Skeletal muscle moves bones and holds your posture. Muscle contraction also releases heat, cardiac and smooth muscle move blood, and smooth muscle moves food along the digestive tract.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 15 of 17</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 23 of 32</span></div>
+</div><div class="slide"> <div class="topline"></div><div class="nbtag">Notebook p. 6 · Big Picture: The Five Jobs of Muscle</div> <div class="kicker">Big picture: The Five Jobs of Muscle</div> <h2>Every lesson this unit connects back to at least one of these jobs</h2> <table><tbody><tr><th style="padding:5px 12px 5px 0;font-size:12px;width:40%">Term / step</th><th style="padding:5px 12px 5px 0;font-size:12px">What it means (fill in)</th></tr><tr><td style="font-size:19px;line-height:1.3;padding:5px 12px 5px 0;height:22px"><b>M - Movement</b></td><td style="font-size:19px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:19px;line-height:1.3;padding:5px 12px 5px 0;height:22px"><b>P - Posture</b></td><td style="font-size:19px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:19px;line-height:1.3;padding:5px 12px 5px 0;height:22px"><b>H - Heat</b></td><td style="font-size:19px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:19px;line-height:1.3;padding:5px 12px 5px 0;height:22px"><b>C - Circulation</b></td><td style="font-size:19px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:19px;line-height:1.3;padding:5px 12px 5px 0;height:22px"><b>D - Digestion</b></td><td style="font-size:19px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr></tbody></table> <div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 24 of 32</span></div> </div><div class="slide"> <div class="topline"></div><div class="nbtag">Notebook p. 7 · Lab: Movement Inventory</div> <div class="demo">20 minutes · groups</div> <div class="kicker">Lab</div> <h2>Movement Inventory</h2> <p class="bigp" style="font-size:25px">Your group gets a stack of movement cards. For each one, decide who is in control and which job it is doing.</p> <div class="steps" style="gap:12px; margin:12px 0"><div class="step"><div class="stepn">1</div><div class="stept">Read each movement card with your group.</div></div> <div class="step"><div class="stepn">2</div><div class="stept">Decide if the action is <b>voluntary</b> (you control it) or <b>involuntary</b> (automatic).</div></div> <div class="step"><div class="stepn">3</div><div class="stept">Identify the muscle type doing the work: skeletal, smooth, or cardiac.</div></div> <div class="step"><div class="stepn">4</div><div class="stept">Match each action to one of the five functions and defend one choice on your whiteboard.</div></div></div> <div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 25 of 32</span></div> </div><div class="slide"> <div class="topline"></div><div class="nbtag">Notebook p. 7 · Lab: Movement Inventory</div> <div class="kicker">Lab · Movement Inventory</div> <h2 style="margin-bottom:10px;font-size:36px">Record each card</h2> <p style="font-size:19px;margin:0 0 4px">Use the 12 movement cards on the cut-apart page at the end of today's section. Record each action, who is in control, the muscle type, and the function it does.</p><table><tbody><tr><th style="padding:5px 12px 5px 0;font-size:12px;width:40%">Action</th><th style="padding:5px 12px 5px 0;font-size:12px">Voluntary or involuntary</th><th style="padding:5px 12px 5px 0;font-size:12px">Muscle type</th><th style="padding:5px 12px 5px 0;font-size:12px">Function</th></tr><tr><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px">1. Writing your name</td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px">2. Your heart pumping blood</td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px">3. Your stomach squeezing food along</td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px">4. Shivering when you are cold</td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px">5. Sitting up straight on purpose</td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px">6. Blood vessels narrowing in the cold</td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px">7. Kicking a soccer ball</td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px">8. Food moving through your intestines</td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px">9. Your heart rate speeding up when you run</td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px">10. Your teeth chattering</td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px">11. Smiling at a friend</td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr><tr><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px">12. Standing at attention without moving</td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td><td style="font-size:14px;line-height:1.3;padding:5px 12px 5px 0;height:22px"></td></tr></tbody></table><p style="font-size:19px;margin:6px 0 0"><b>Pick one card and defend the function you chose with a reason.</b></p> <div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 26 of 32</span></div> </div><div class="slide"> <div class="topline"></div><div class="nbtag">Notebook p. 7 · Misconception Check</div> <div class="kicker">Misconception check · pairs</div> <h2>Do muscles only matter when you exercise?</h2> <p class="bigp">Talk with your partner, then write your answer in your notebook.</p> <div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 27 of 32</span></div> </div><div class="slide"> <div class="topline"></div><div class="nbtag">Notebook p. 7 · Mark, Ask, Link</div> <div class="kicker">After the notes</div> <h2>Mark, ask, link</h2> <div class="steps" style="gap:12px; margin:12px 0"><div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> One pass over your notes: highlight, underline, or circle what matters most.</div></div> <div class="step"><div class="stepn">2</div><div class="stept"><b>Ask.</b> Write one quiz question. Your notes must already answer it.</div></div> <div class="step"><div class="stepn">3</div><div class="stept"><b>Link.</b> Write one connection beyond your notes: "this reminds me of..."</div></div></div> <div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 28 of 32</span></div> </div><div class="slide"> <div class="topline"></div><div class="nbtag">Notebook p. 8 · Then the Sum</div> <div class="kicker">Then the sum</div> <h2>What would happen if humans had no muscles?</h2> <p class="bigp">Answer the essential question in 2-3 sentences: why could your body not survive without muscle?</p> <div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 29 of 32</span></div> </div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 8 · Exit Ticket</div>
 <div class="kicker">Take-home message and exit ticket</div>
 <h2>Before you leave</h2>
 <div class="cols" style="margin-top:6px">
   <div class="col"><div class="dolabel" style="margin-top:0">Take-home message</div><p class="bigp" style="font-size:25px">Every job of muscle comes from the same action: muscle cells contracting. What changes is which type of muscle does the job, and where it is.</p></div>
   <div class="col"><div class="dobox">
   <div class="dolabel">Write in your notebook</div>
-  <p>Muscles do much more than move your body &mdash; they keep you upright, pump your blood, help you breathe and digest, and even create heat to keep you warm. Name two functions and give a real example of each, not from today's slides.</p>
+  <p>Muscles do much more than move your body — they keep you upright, pump your blood, help you breathe and digest, and even create heat to keep you warm. Name two functions and give a real example of each, not from today's slides.</p>
 </div></div>
 </div>
 <p class="note">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 16 of 17</span></div>
-</div>
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 30 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div>
+<div class="kicker">Turn it in</div>
+<h2>Weekly warm-up and exit ticket page</h2>
+<p class="bigp">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 31 of 32</span></div>
+</div><div class="slide">
 <div class="topline"></div>
 <div class="kicker">Credits</div>
 <h2>Image and content credits</h2>
@@ -287,13 +458,15 @@ html, body { height: 100%; background: #16181f; }
   <li>No images in this deck.</li>
   <li>Content follows the Unit 2.5 notes, which cite OpenStax Anatomy and Physiology (CC BY 4.0).</li>
 </ul>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 1 &middot; Mon, Oct 19</span><span>slide 17 of 17</span></div>
-</div>
-</div></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 1 · Mon, Oct 19</span><span>slide 32 of 32</span></div>
+</div></div></div>
 <div class="nav"><span id="counter"></span>
-  <button onclick="step(-1)">&#8592;</button>
-  <button onclick="step(1)">&#8594;</button>
+  <button onclick="step(-1)">←</button>
+  <button onclick="step(1)">→</button>
 </div>
+
+
+
 <script>
 // Shared slide-deck script for Unit 2.5 Muscular System lesson decks. Do not fork per day.
 var slides = document.querySelectorAll(".slide");
@@ -332,6 +505,4 @@ window.addEventListener("resize", fit);
 fit(); show(0);
 
 
-</script>
-</body>
-</html>
+</script></body></html>
