@@ -1,11 +1,188 @@
-<!doctype html>
-<html lang="en">
-<head>
+<!DOCTYPE html>
+<html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Day 12: Muscle Disorders</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&amp;family=Source+Serif+4:ital,wght@1,500;1,600&amp;display=swap">
 <style>
+/* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+/* Part slides: text on the left, scientific figure on the right */
+.partcols { display: flex; gap: 36px; align-items: flex-start; }
+.partcols .ptext { flex: 0 0 470px; }
+.partcols .ptext .bigp { font-size: 27px; }
+.partcols .pfig { flex: 1; min-width: 0; }
+.pimg { display: block; max-width: 100%; max-height: 452px; margin: 0 auto; border: 1px solid #e4e6ee;
+  border-radius: 8px; background: #ffffff; }
+.lookfor { background: #fff8e6; border: 1px solid #f0d9a0; border-radius: 10px; padding: 12px 16px; margin: 14px 0 0; }
+.lookfor .dolabel { color: #9a6a00; }
+.lookfor p { margin: 0; font-size: 19px; }
+/* Lab slides */
+.labtag { display: inline-block; background: #2b50c8; color: #fff; font-weight: 800; letter-spacing: 0.14em;
+  font-size: 15px; text-transform: uppercase; padding: 8px 14px; border-radius: 8px; margin-right: 8px; }
+.swatches { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; margin: 10px 0 0; }
+.sw { display: flex; align-items: center; gap: 10px; font-size: 19px; }
+.sw i { display: inline-block; width: 26px; height: 26px; border-radius: 6px; border: 1.5px solid rgba(0,0,0,0.25); flex: 0 0 26px; }
+.keylist { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin: 8px 0 0; }
+.keylist div { font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.keylist b { display: inline-flex; width: 24px; height: 24px; border-radius: 50%; border: 2px solid #2b50c8; color: #2b50c8;
+  align-items: center; justify-content: center; font-size: 13px; flex: 0 0 24px; }
+.keylist i { display: inline-block; width: 16px; height: 16px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.25); flex: 0 0 16px; }
+table.ex td { font-size: 15px; line-height: 1.3; padding: 5px 10px 5px 0; }
+table.ex th { font-size: 12px; padding: 5px 10px 5px 0; }
+table.ex td:first-child { font-weight: 700; }
+table.blank td { height: 22px; font-size: 16px; line-height: 1.3; padding: 5px 12px 5px 0; }
+table.blank th { font-size: 12px; padding: 5px 12px 5px 0; }
+table.blank td.fill { color: #2b50c8; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+.tkey { display:none; position:absolute; left:48px; right:48px; bottom:64px; z-index:9; background:#ffffff; border:4px solid #2b50c8; border-radius:14px; padding:14px 22px 16px; font:600 26px/1.35 'Archivo', Arial, sans-serif; color:#161821; box-shadow:0 6px 24px rgba(0,0,0,.18); }
+.tkey.shown { display:block; }
+.tkey .tlabel { display:block; color:#2b50c8; font:800 15px 'Archivo', Arial, sans-serif; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+.rv { visibility: hidden; } .rv.rvshown { visibility: visible; } /* reveal one at a time */
+</style><style>
+/* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+.tkey { display:none; position:absolute; left:48px; right:48px; bottom:64px; z-index:9; background:#ffffff; border:4px solid #2b50c8; border-radius:14px; padding:14px 22px 16px; font:600 26px/1.35 'Archivo', Arial, sans-serif; color:#161821; box-shadow:0 6px 24px rgba(0,0,0,.18); }
+.tkey.shown { display:block; }
+.tkey .tlabel { display:block; color:#2b50c8; font:800 15px 'Archivo', Arial, sans-serif; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+</style><style>
 /* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
    Matches the "NotebookLM Lesson - Student Slides" house style already used
    in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
@@ -79,44 +256,73 @@ html, body { height: 100%; background: #16181f; }
 
 
 </style>
-</head>
+<style id="nbtag-css">.nbtag{position:absolute;top:16px;right:72px;z-index:6;font:700 13px/1.2 'Archivo',Arial,sans-serif;letter-spacing:.04em;color:#6b4300;background:#fff4d6;border:1px solid #efd185;border-radius:999px;padding:6px 13px;max-width:640px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.nbkey .kbox{margin-top:18px;border:3px dashed #e0b84a;background:#fffaf0;border-radius:14px;padding:22px 26px;font-size:26px;line-height:1.45}.nbtag.nbno{color:#7b7f8c;background:#f2f3f6;border-color:#dfe2e8;font-weight:600}</style></head>
 <body>
 <div class="stage"><div class="frame" id="frame">
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="slide active">
-<div class="topline"></div>
-<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</div>
-<h1>Muscle Disorders</h1>
+<div class="topline"></div><div class="nbtag">Notebook p. 71 · Warm-up</div>
+<div class="kicker">Anatomy &amp; Physiology · Unit 2.5 Muscular System · Day 12</div>
+<h1>Muscle Disorders (Part 1)</h1>
 <div class="cols" style="margin-top:8px">
   <div class="col">
-    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dolabel" style="margin-top:0">Warm-up · notebook</div>
     <div class="dobox">
-      <p>Name one time you or someone you know had sore, cramping, or weak muscles. What do you think caused it?</p>
+      <p style="font-weight:800; margin-bottom:8px">When muscles get hurt</p>
+      <p>1. What is the antagonist of the biceps brachii?</p>
+      <p style="margin-top:6px">2. Have you ever had a cramp or a pulled muscle? What did it feel like?</p>
     </div>
   </div>
   <div class="col" style="flex:0.7">
     <div class="dolabel" style="margin-top:0">You need today</div>
     <div class="chips" style="flex-direction:column; align-items:flex-start;">
-      <span class="chip yes"><b>Chromebook</b> &mdash; yes</span>
-      <span class="chip yes"><b>Notebook</b> &mdash; yes</span>
-      <span class="chip no"><b>Whiteboard &amp; marker</b> &mdash; no</span>
-      <span class="chip no"><b>Phones</b> &mdash; no</span>
+      <span class="chip"><b>Chromebook</b></span>
+      <span class="chip"><b>Notebook</b></span>
+      <span class="chip no"><b>Phones</b> — no</span>
     </div>
   </div>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 1 of 19</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 1 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 71 · Essential Question (already printed)</div>
 <div class="kicker">Essential question</div>
-<h2>When muscle goes wrong</h2>
-<p class="bigp">What happens when muscles weaken, fail to contract properly, or lose the ability to repair themselves?</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 2 of 19</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<h2>What happens when muscles are injured or weaken over time?</h2>
+<p class="bigp">Today you will act as a doctor and use symptoms and causes to diagnose three muscle disorders. Keep this question in mind as you take notes. You will answer it at the end.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 2 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 71 · Language Target (already printed)</div>
 <div class="kicker">Objective</div>
 <h2>Today's goal</h2>
 <p class="bigp" style="font-size:24px">Students will be able to describe the causes and symptoms of common muscle disorders, by analyzing case data, so that they can explain how genetics, overuse, or disease disrupts muscle structure and function.</p>
@@ -125,19 +331,73 @@ html, body { height: 100%; background: #16181f; }
   <li>I can analyze real-world case data to diagnose a muscular condition.</li>
 </ul>
 <div class="ltarget" style="margin-top:14px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can explain how an injury or a disease changes a muscle.</p><p style="margin:2px 0"><b>Key words:</b> disorder, injury, weakness, muscular dystrophy, strain, cramp, atrophy</p><p style="margin:2px 0"><b>Sentence frame:</b> This disorder affects the ____, so the muscle ____.</p></div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 3 of 19</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 3 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 71 · Phenomenon</div>
+<div class="kicker">Phenomenon</div>
+<h2>Three patients walk in.</h2>
+<div class="dobox"><div class="dolabel">Try it</div><p>Read the three patient stories on your case card. Circle every symptom you see.</p></div>
+<p class="bigp" style="font-size:24px">Write in your notebook: <b>What I noticed:</b></p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 4 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 71 · Focused Notes: Muscle strain</div>
 <div class="kicker">Classifying disorders</div>
 <h2>Three broad causes</h2>
 <p class="bigp">Muscle disorders impair muscle function, leading to weakness, fatigue, or pain. They can be classified into: <b>inherited</b> conditions, <b>autoimmune</b> diseases, and <b>acquired</b> disorders (from injury or overuse).</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 4 of 19</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 5 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 71 · Focused Notes: Muscle strain</div>
+<div class="kicker">Focused notes</div>
+<h2>Muscle strain</h2>
+<ul style="font-size:26px;line-height:1.5"><li>A <b>strain</b> is a tear in muscle fibers from overstretching or overuse. People call it a <b>pulled muscle</b>.</li><li>Symptoms: sudden sharp pain, swelling, and weakness.</li><li>Treatment: <b>rest, ice, compression, elevation</b>, then slow stretching and strengthening.</li></ul>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 6 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 71 · Focused Notes: Muscle strain</div>
+<div class="kicker">Acquired · injury</div>
+<h2>Muscle strain (pulled muscle)</h2>
+<ul>
+  <li><b>Cause:</b> overstretching or tearing of muscle fibers.</li>
+  <li><b>Symptoms:</b> pain, swelling, reduced mobility, tenderness.</li>
+  <li><b>Treatment:</b> R.I.C.E. — Rest, Ice, Compression, Elevation.</li>
+</ul>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 7 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 71 · Stop and Think</div>
+<div class="kicker">Stop and think</div>
+<h2>Spot the strain</h2>
+<div class="prompt">Which patient on your card most likely has a strain?</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 8 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 71 · Focused Notes: Muscle cramp</div>
+<div class="kicker">Focused notes</div>
+<h2>Muscle cramp</h2>
+<ul style="font-size:26px;line-height:1.5"><li>A <b>cramp</b> is a sudden, painful contraction that you cannot control.</li><li>Common causes: tired muscles, <b>dehydration</b>, or low <b>electrolytes</b> like sodium and potassium.</li><li>Treatment: gently stretch, drink fluids, and rest the muscle.</li></ul>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 9 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 71 · Focused Notes: Muscle cramp</div>
+<div class="kicker">Acquired · involuntary</div>
+<h2>Muscle cramps</h2>
+<ul>
+  <li><b>Cause:</b> involuntary contractions from dehydration, fatigue, or electrolyte imbalance.</li>
+  <li><b>Symptoms:</b> sharp pain, tightness, temporary loss of function.</li>
+  <li><b>Prevention:</b> proper hydration, stretching, and warm-up.</li>
+</ul>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 10 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 72 · Connect It</div>
+<div class="kicker">Connect it</div>
+<h2>Cramps on a hot day</h2>
+<div class="prompt">Why would a cramp be more likely on a hot day?</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 11 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 72 · Focused Notes: Muscular dystrophy</div>
+<div class="kicker">Focused notes</div>
+<h2>Muscular dystrophy</h2>
+<ul style="font-size:26px;line-height:1.5"><li><b>Muscular dystrophy</b> is a <b>genetic</b> disorder. The most common type is missing a protein called <b>dystrophin</b>.</li><li>Without it, muscle fibers are damaged each time they contract and slowly break down.</li><li>Symptoms: weakness that gets worse over time. There is no cure yet, but therapy helps.</li></ul>
+<div class="dobox"><div class="dolabel">Note only the key idea</div><p>Write the key idea in your own words.</p></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 12 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 72 · Focused Notes: Muscular dystrophy</div>
 <div class="kicker">Inherited</div>
 <h2>Muscular dystrophy (MD)</h2>
 <ul>
@@ -145,97 +405,65 @@ html, body { height: 100%; background: #16181f; }
   <li><b>Symptoms:</b> progressive muscle weakness, loss of mobility, respiratory and cardiac complications.</li>
   <li><b>Connection:</b> homeostasis is disrupted as muscles lose strength and coordination.</li>
 </ul>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 5 of 19</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">Acquired &middot; injury</div>
-<h2>Muscle strain (pulled muscle)</h2>
-<ul>
-  <li><b>Cause:</b> overstretching or tearing of muscle fibers.</li>
-  <li><b>Symptoms:</b> pain, swelling, reduced mobility, tenderness.</li>
-  <li><b>Treatment:</b> R.I.C.E. &mdash; Rest, Ice, Compression, Elevation.</li>
-</ul>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 6 of 19</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">Acquired &middot; involuntary</div>
-<h2>Muscle cramps</h2>
-<ul>
-  <li><b>Cause:</b> involuntary contractions from dehydration, fatigue, or electrolyte imbalance.</li>
-  <li><b>Symptoms:</b> sharp pain, tightness, temporary loss of function.</li>
-  <li><b>Prevention:</b> proper hydration, stretching, and warm-up.</li>
-</ul>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 7 of 19</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 13 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 72 · Focused Notes: Muscular dystrophy</div>
 <div class="kicker">A fourth condition</div>
 <h2>Atrophy</h2>
-<p class="bigp">Muscle fibers shrink from disuse &mdash; not disease. Common after a limb is in a cast, or after very little muscle use, like an astronaut in low gravity.</p>
+<p class="bigp">Muscle fibers shrink from disuse — not disease. Common after a limb is in a cast, or after very little muscle use, like an astronaut in low gravity.</p>
 <p>Dystrophin and the nerve signal are both normal. Unlike the other disorders today, it is <b>reversible</b> with exercise.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 8 of 19</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 14 of 32</span></div>
+</div><div class="slide nbkey"><div class="topline"></div><div class="nbtag">Notebook p. 72 · Note Only the Key Idea</div><div class="kicker">Notebook · page 72 · Key Idea box</div><h2>Note only the key idea</h2><p class="bigp" style="font-size:28px">Pause the notes. Find the <b>Key Idea</b> box on <b>page 72</b>, right under <b>“Muscular dystrophy”</b>.</p><div class="kbox">Write the key idea in your own words: <b>one short sentence</b>, using the blue key words you just filled in.<br><span style="font-size:20px;color:#6b6f7b">No copying a full bullet. Shorter is better.</span></div><div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 15 of 32</span></div></div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 72 · Big Picture: Muscle Clinic Reference</div>
+<div class="kicker">Big picture: Muscle Clinic Reference</div>
+<h2>Cause, symptoms, and treatment</h2>
+<table class="blank"><tbody><tr><th style="width:18%"></th><th style="width:27%">Strain</th><th style="width:27%">Cramp</th><th>Muscular dystrophy</th></tr><tr><td><b>Cause</b></td><td>Overstretch / overuse</td><td>Fatigue, dehydration, electrolytes</td><td>Genetic (no dystrophin)</td></tr><tr><td><b>Symptoms</b></td><td>Sharp pain, swelling</td><td>Sudden hard, painful muscle</td><td>Progressive weakness</td></tr><tr><td><b>Treatment</b></td><td>Rest, ice, compression, elevation</td><td>Stretch, hydrate</td><td>Therapy; no cure yet</td></tr></tbody></table>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 16 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="demo">Case study</div>
 <div class="kicker">Diagnose it</div>
 <h2>Case A</h2>
 <p class="bigp">A soccer player runs hard for 80 minutes on a hot day. Suddenly one calf becomes hard and very painful. There is no swelling. The pain eases after stretching and drinking a sports drink.</p>
 <div class="dobox"><div class="dolabel">Turn and talk</div><p>Which disorder is this, and what evidence supports it?</p></div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 9 of 19</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 17 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="demo">Case study</div>
 <div class="kicker">Diagnose it</div>
 <h2>Case B</h2>
 <p class="bigp">An astronaut returns from 6 months in space. Her leg muscles are smaller and weaker than before. A muscle sample shows normal dystrophin and a normal nerve signal.</p>
 <div class="dobox"><div class="dolabel">Turn and talk</div><p>Which disorder is this, and what rules out muscular dystrophy?</p></div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 10 of 19</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 18 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="kicker">Catch the mistake</div>
 <h2>A classmate's claim</h2>
 <div class="prompt">"The soccer player's calf might be the start of muscular dystrophy, since the muscle suddenly got hard."</div>
 <p class="bigp" style="font-size:24px">What is wrong with this claim? What does the sudden timing rule out?</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 11 of 19</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 19 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="demo">Partner activity</div>
 <div class="kicker">Sort the clues</div>
 <h2>Which disorder?</h2>
 <table>
-<tr><th>Clue</th><th>Disorder</th></tr>
+<tbody><tr><th>Clue</th><th>Disorder</th></tr>
 <tr><td>Missing dystrophin, runs in the family</td><td>?</td></tr>
 <tr><td>Sudden tear, swelling, from an injury</td><td>?</td></tr>
 <tr><td>Six weeks in a cast, now smaller and weaker</td><td>?</td></tr>
 <tr><td>Sudden, painful, hard muscle after heavy sweating</td><td>?</td></tr>
-</table>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 12 of 19</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+</tbody></table>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 20 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="demo">Turn and talk</div>
 <div class="kicker">Check your understanding</div>
 <h2>Support your claim</h2>
 <p class="bigp" style="margin-top:20px">A patient's muscle sample is missing dystrophin, and a genetic test finds a mutation in the dystrophin gene. Which disorder is this? Name two pieces of evidence.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 13 of 19</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 21 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="demo">If time allows</div>
 <div class="kicker">Individual, about 7 minutes</div>
 <h2>Write a case</h2>
@@ -245,54 +473,86 @@ html, body { height: 100%; background: #16181f; }
   <div class="step"><div class="stepn">3</div><div class="stept"><b>Check.</b> Make sure the clues match only one disorder.</div></div>
 </div>
 <p class="note">This is a practice case, not a real patient.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 14 of 19</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 22 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="demo">If time allows</div>
 <div class="kicker">Partners, about 7 minutes</div>
-<h2>Solve a partner&#x27;s case</h2>
+<h2>Solve a partner's case</h2>
 <div class="steps" style="gap:10px; margin:10px 0">
   <div class="step"><div class="stepn">1</div><div class="stept"><b>Claim.</b> Name the disorder.</div></div>
   <div class="step"><div class="stepn">2</div><div class="stept"><b>Evidence.</b> Quote two clues from the case.</div></div>
   <div class="step"><div class="stepn">3</div><div class="stept"><b>Reasoning.</b> Explain why the clues fit that disorder and not another.</div></div>
 </div>
 <p class="note">Use: I think this is ____ because the case says ____.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 15 of 19</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">After the notes</div>
-<h2>Mark, link, ask</h2>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 23 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 73 · Lab: Muscle Clinic Case Studies</div>
+<div class="kicker">Lab · 20 minutes · groups</div>
+<h2>Muscle Clinic Case Studies</h2>
+<p class="bigp" style="font-size:22px">With your partner, diagnose each patient. Cite at least two pieces of evidence and suggest a treatment.</p>
 <div class="steps">
-  <div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> Underline, circle, or highlight the main ideas in your notes.</div></div>
-  <div class="step"><div class="stepn">2</div><div class="stept"><b>Link.</b> Connect one idea in your notes to something outside your notes.</div></div>
-  <div class="step"><div class="stepn">3</div><div class="stept"><b>Ask.</b> Write one quiz question that your notes can answer and that could be on a test.</div></div>
+<div class="step"><div class="stepn">1</div><div class="stept">Read each patient case with your partner.</div></div>
+<div class="step"><div class="stepn">2</div><div class="stept">Underline the symptoms and circle the likely cause.</div></div>
+<div class="step"><div class="stepn">3</div><div class="stept">Diagnose the patient and cite at least two pieces of evidence.</div></div>
+<div class="step"><div class="stepn">4</div><div class="stept">Recommend a treatment and explain how it helps.</div></div>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 16 of 19</span></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 24 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 73 · Lab: Muscle Clinic Case Studies</div>
+<div class="kicker">Lab · Muscle Clinic Case Studies</div>
+<h2 style="margin-bottom:8px">Diagnose each patient</h2>
+<p style="font-size:20px;margin:0 0 6px">Use the Muscle Clinic Reference table from today's notes. Diagnose each patient, cite at least two pieces of evidence, and recommend a treatment.</p>
+<table class="blank"><tbody><tr><th style="width:22%">Patient</th><th style="width:22%">Diagnosis</th><th style="width:28%">Evidence (at least two)</th><th>Treatment and how it helps</th></tr><tr><td style="height:80px"><b>A. Dani, age 16, sprinter</b></td><td style="height:80px"></td><td style="height:80px"></td><td style="height:80px"></td></tr><tr><td style="height:80px"><b>B. Marcus, age 14</b></td><td style="height:80px"></td><td style="height:80px"></td><td style="height:80px"></td></tr><tr><td style="height:80px"><b>C. Linda, age 52, gardener</b></td><td style="height:80px"></td><td style="height:80px"></td><td style="height:80px"></td></tr></tbody></table>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 25 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 73 · Lab: Muscle Clinic Case Studies</div>
+<div class="kicker">Lab · Muscle Clinic Case Studies</div>
+<h2>Not an injury</h2>
+<div class="prompt">Which of the three disorders is NOT caused by an injury or overuse, and how do you know?</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 26 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 73 · Misconception Check</div>
+<div class="kicker">Misconception check · pairs</div>
+<h2>Are all muscle disorders caused by injury?</h2>
+<p class="bigp">Talk with your partner, then write your answer in your notebook.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 27 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 73 · Mark, Ask, Link</div>
+<div class="kicker">After the notes · 5 min · solo</div>
+<h2>Mark, ask, link</h2>
+<div class="steps">
+<div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> One pass over your notes: highlight, underline, or circle what matters most.</div></div>
+<div class="step"><div class="stepn">2</div><div class="stept"><b>Ask.</b> Write one quiz question. Your notes must already answer it.</div></div>
+<div class="step"><div class="stepn">3</div><div class="stept"><b>Link.</b> Write one connection beyond your notes: "this reminds me of..."</div></div>
 </div>
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">Summarize</div>
-<h2>When muscle goes wrong</h2>
-<p class="bigp">Muscles can fail from inherited, autoimmune, or acquired causes. Muscular dystrophy is inherited and caused by missing dystrophin. A strain is a tear from overstretching, a cramp is an involuntary contraction, and atrophy is shrinking from disuse. Case data tells the disorders apart.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 17 of 19</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 28 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 74 · Then the Sum</div>
+<div class="kicker">Then the sum</div>
+<h2>How do muscle disorders get in the way of movement and homeostasis?</h2>
+<p class="bigp">Answer in 2-3 sentences in your notebook.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 29 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 74 · Exit Ticket</div>
 <div class="kicker">Take-home message and exit ticket</div>
 <h2>Before you leave</h2>
 <div class="cols" style="margin-top:6px">
   <div class="col"><div class="dolabel" style="margin-top:0">Take-home message</div><p class="bigp" style="font-size:25px">To work out a muscle problem, ask what changed: the protein, an injury, the fluids and electrolytes, or the amount of use.</p></div>
   <div class="col"><div class="dobox">
   <div class="dolabel">Write in your notebook</div>
-  <p>Muscle disorders can arise from genetic defects, overuse, or disease &mdash; each disrupting normal muscle contraction and the body's balance and movement. Name today's four disorders, and one fact that tells each apart from the others.</p>
+  <p>Muscle disorders can arise from genetic defects, overuse, or disease — each disrupting normal muscle contraction and the body's balance and movement. Name today's four disorders, and one fact that tells each apart from the others.</p>
 </div></div>
 </div>
 <p class="note">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 18 of 19</span></div>
-</div>
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 30 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div>
+<div class="kicker">Turn it in</div>
+<h2>Weekly warm-up and exit ticket page</h2>
+<p class="bigp">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 31 of 32</span></div>
+</div><div class="slide">
 <div class="topline"></div>
 <div class="kicker">Credits</div>
 <h2>Image and content credits</h2>
@@ -300,13 +560,15 @@ html, body { height: 100%; background: #16181f; }
   <li>No images in this deck.</li>
   <li>Content follows the Unit 2.5 notes, which cite OpenStax Anatomy and Physiology (CC BY 4.0).</li>
 </ul>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 12 &middot; Tue, Nov 3</span><span>slide 19 of 19</span></div>
-</div>
-</div></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 12 · Tue, Nov 3</span><span>slide 32 of 32</span></div>
+</div></div></div>
 <div class="nav"><span id="counter"></span>
-  <button onclick="step(-1)">&#8592;</button>
-  <button onclick="step(1)">&#8594;</button>
+  <button onclick="step(-1)">←</button>
+  <button onclick="step(1)">→</button>
 </div>
+
+
+
 <script>
 // Shared slide-deck script for Unit 2.5 Muscular System lesson decks. Do not fork per day.
 var slides = document.querySelectorAll(".slide");
@@ -345,6 +607,4 @@ window.addEventListener("resize", fit);
 fit(); show(0);
 
 
-</script>
-</body>
-</html>
+</script></body></html>
