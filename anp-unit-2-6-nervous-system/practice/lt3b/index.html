@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice: Reflexes, Senses, and Disorders</title>
+<style>
+:root{--ink:#161821;--bg:#fff;--blue:#2b50c8;--ok:#1b6e2f;--okbg:#e6f4ea;--bad:#a12a1a;--badbg:#fdeceb;--part:#7a5a00;--partbg:#fff4d6}
+*{box-sizing:border-box}body{margin:0;font:18px/1.45 Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{font-size:26px;margin:4px 0 2px}h2{font-size:21px;margin:18px 0 6px}
+.tag{display:inline-block;background:var(--blue);color:#fff;border-radius:6px;padding:2px 10px;font-size:15px;font-weight:700;letter-spacing:.04em}
+.note{color:#444;font-size:16px}
+.ev{border:1.5px solid #bbb;border-radius:8px;padding:10px 14px;margin:10px 0}
+.ev p{margin:6px 0}.ev b{color:var(--blue)}
+.opt{display:block;width:100%;text-align:left;font:inherit;background:#fff;border:2px solid #9aa3b8;border-radius:8px;padding:10px 12px;margin:8px 0;cursor:pointer}
+.opt:hover{border-color:var(--blue)}
+.fb{margin:6px 0 2px;padding:8px 12px;border-radius:8px;font-size:17px}
+.ok{background:var(--okbg);border:2px solid var(--ok)}.bad{background:var(--badbg);border:2px solid var(--bad)}.part{background:var(--partbg);border:2px solid var(--part)}
+.opt.ok,.opt.bad,.opt.part{cursor:default}
+label.chk{display:flex;gap:10px;align-items:flex-start;border:2px solid #9aa3b8;border-radius:8px;padding:10px 12px;margin:8px 0}
+label.chk input{width:22px;height:22px;margin-top:3px}
+button.go{font:inherit;font-weight:700;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:10px 18px;margin:10px 0;cursor:pointer}
+button.go:disabled{background:#aab;cursor:not-allowed}
+.steps{display:flex;gap:6px;margin:10px 0}.steps span{flex:1;height:8px;border-radius:4px;background:#d5d9e6}.steps span.on{background:var(--blue)}.steps span.done{background:var(--ok)}
+.sum{border:2px solid var(--blue);border-radius:10px;padding:12px 16px;margin:12px 0}
+a{color:var(--blue)}
+</style></head><body><div class="wrap">
+<span class="tag" id="mode"></span>
+<h1>Practice: Reflexes, Senses, and Disorders</h1>
+<p class="note">Read the case. Then build a claim, evidence, and reasoning. You get feedback right away. Cases are made up for practice.</p>
+<div id="app"></div>
+<p class="note" id="switch"></p>
+</div>
+<script>
+var DATA={"support": [{"title": "The hot pan", "intro": "A person touches a hot pan and pulls the hand away. This case is made up for practice.", "evidence": [["A", "The hand moves away in about 0.1 second."], ["B", "The person feels pain a moment after the hand moves."], ["C", "The sensory neuron enters the spinal cord. An interneuron passes the signal to a motor neuron."], ["D", "The motor neuron makes the arm muscles contract."]], "claim": {"q": "Step 1. Where is the response decided?", "opts": [["In the spinal cord, as a reflex", "best", "Yes. The spinal cord is the integration center for a reflex."], ["In the cerebral cortex, as a choice", "wrong", "Not this one. The hand moved before the person felt pain, so the cortex did not decide first."], ["In the muscle itself", "wrong", "Not this one. The muscle is the effector. It needs a motor neuron to tell it to contract."], ["In the eye", "wrong", "Not this one. The eye is not involved in this reflex."]]}, "evid": {"q": "Step 2. Which pieces of evidence support the claim? Select all that apply. Then press Check.", "items": [["A", true, "Yes. A very fast response points to a reflex."], ["B", true, "Yes. Pain is felt after the movement, so the brain was informed later."], ["C", true, "Yes. The interneuron in the spinal cord is the integration center."], ["D", false, "This does not support the claim about where it was decided. It describes the effector, not the integration center."]]}, "reason": {"q": "Step 3. Which reasoning connects the evidence to the claim?", "opts": [["The signal goes in on a sensory neuron and the spinal cord sends the command out on a motor neuron. The brain is told afterward, so the response is faster than a choice.", "best", "Yes. It follows the reflex arc and explains the speed."], ["The signal goes to the brain, which decides to pull away. The brain is faster than the spinal cord.", "wrong", "Not quite. A choice through the brain is slower than a reflex."], ["The muscle senses the heat and pulls away on its own.", "wrong", "Not quite. A reflex needs the full arc: receptor, sensory neuron, integration center, motor neuron, and effector."]]}}, {"title": "Blurry distance vision", "intro": "A student sees close objects clearly but distant objects blurry. This case is made up for practice.", "evidence": [["A", "Light from distant objects focuses in front of the retina."], ["B", "The student sees close objects clearly."], ["C", "The eye is slightly longer than usual from front to back."], ["D", "Glasses with concave lenses make distant objects clear."]], "claim": {"q": "Step 1. What is the student's condition?", "opts": [["Nearsightedness", "best", "Yes. Nearsighted people see near objects clearly and far objects blurry."], ["Farsightedness", "wrong", "Not this one. In farsightedness, near objects are blurry and light focuses behind the retina."], ["A damaged optic nerve", "wrong", "Not this one. The problem is where the light focuses, not the nerve."], ["A damaged cochlea", "wrong", "Not this one. The cochlea is in the ear."]]}, "evid": {"q": "Step 2. Which pieces of evidence support the claim? Select all that apply. Then press Check.", "items": [["A", true, "Yes. Focus in front of the retina is nearsightedness."], ["B", true, "Yes. Near vision is clear."], ["C", true, "Yes. A long eyeball focuses light in front of the retina."], ["D", true, "Yes. A concave lens fixes nearsightedness."]]}, "reason": {"q": "Step 3. Which reasoning connects the evidence to the claim?", "opts": [["Light from far objects focuses before it reaches the retina, so the image on the retina is blurry. A concave lens spreads the light so it focuses on the retina.", "best", "Yes. It explains the cause and the fix."], ["Light from far objects focuses behind the retina. A convex lens fixes it.", "wrong", "Not quite. That describes farsightedness."], ["The rods stop working, so far objects are blurry.", "wrong", "Not quite. Rods work in dim light. The cause here is where the light focuses."]]}}], "stretch": [{"title": "Fever and a stiff neck", "intro": "A teen is very sick. This case is made up for practice.", "evidence": [["A", "The teen has a high fever, a severe headache, and a stiff neck."], ["B", "The symptoms began over 2 days with no injury to the head."], ["C", "A lab test finds bacteria in the fluid around the brain and spinal cord."], ["D", "The teen's arms and legs have normal strength."], ["E", "The teen's friends are in good health."]], "claim": {"q": "Step 1. Which condition is most likely?", "opts": [["Meningitis", "best", "Yes. Fever, headache, stiff neck, and bacteria in the fluid fit meningitis."], ["A concussion", "wrong", "Not this one. A concussion follows a blow to the head."], ["Multiple sclerosis", "wrong", "Not this one. MS is an immune attack on myelin, and it does not come with bacteria and fever."], ["Cerebral palsy", "wrong", "Not this one. Cerebral palsy is a movement disorder caused by brain damage before or soon after birth."]]}, "evid": {"q": "Step 2. Which pieces of evidence support the claim? Select all that apply. Then press Check.", "items": [["A", true, "Yes. These are classic signs."], ["B", true, "Yes. No head injury argues against a concussion."], ["C", true, "Yes. Bacteria in the fluid around the brain fit meningitis."], ["D", false, "This does not support the claim. Normal strength does not point to meningitis."], ["E", false, "This does not support the claim. The health of friends does not tell you the teen's condition."]]}, "reason": {"q": "Step 3. Which reasoning connects the evidence to the claim?", "opts": [["Meningitis is inflammation of the meninges. Bacteria in the fluid around the brain would cause fever, headache, and a stiff neck.", "best", "Yes. It links the condition to the structure and the signs."], ["Meningitis is a loss of myelin, which slows signals and causes fever.", "wrong", "Not quite. That describes MS, and it would not cause fever."], ["Meningitis happens when the brain moves inside the skull, which causes a stiff neck.", "wrong", "Not quite. That describes a concussion."]]}, "extra": {"q": "Step 4. Why would this be treated as an emergency?", "opts": [["Bacterial meningitis can spread quickly and harm the brain, so it needs treatment right away.", "best", "Yes. Quick medical care is important."], ["Meningitis always goes away on its own, but it hurts.", "wrong", "Not quite. Bacterial meningitis can be life-threatening."], ["It only affects the muscles of the neck.", "wrong", "Not quite. Meningitis affects the membranes around the brain and spinal cord."]]}}]};
+var q=new URLSearchParams(location.search);var mode=(q.get('mode')==='stretch')?'stretch':'support';
+var list=DATA[mode];var si=0,step=0,miss=[0,0,0,0];var app=document.getElementById('app');
+document.getElementById('mode').textContent=(mode==='stretch'?'Stretch':'Support')+' practice';
+document.getElementById('switch').innerHTML=mode==='stretch'?'Want more guidance? <a href="?mode=support">Open the Support page</a>.':'Ready for a harder case? <a href="?mode=stretch">Open the Stretch page</a>.';
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function stepsBar(n,cur){var h='<div class="steps" aria-hidden="true">';for(var i=0;i<n;i++)h+='<span class="'+(i<cur?'done':(i===cur?'on':''))+'"></span>';return h+'</div>'}
+function render(){var s=list[si];var h='<h2>Case '+(si+1)+' of '+list.length+': '+esc(s.title)+'</h2><p>'+esc(s.intro)+'</p><div class="ev">';
+ s.evidence.forEach(function(e){h+='<p><b>Evidence '+e[0]+'.</b> '+esc(e[1])+'</p>'});h+='</div>';
+ var n=s.extra?4:3;h+=stepsBar(n,step);
+ var kinds=['claim','evid','reason','extra'];var k=kinds[step];
+ if(k==='evid'){h+=evidStep(s)}else{h+=choiceStep(s[k],k)}
+ app.innerHTML=h;}
+function shuf(n){var a=[];for(var i=0;i<n;i++)a.push(i);for(var j=n-1;j>0;j--){var r=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[r];a[r]=t}return a}
+function choiceStep(c,k){var h='<h2>'+esc(c.q)+'</h2><div id="opts">';shuf(c.opts.length).forEach(function(i){var o=c.opts[i];h+='<button class="opt" data-i="'+i+'" onclick="pick(\''+k+'\','+i+')">'+esc(o[0])+'</button><div id="fb'+i+'"></div>'});return h+'</div><button class="go" id="next" disabled onclick="nextStep()">Next</button>'}
+function pick(k,i){var s=list[si];var c=s[k];var o=c.opts[i];var cls=o[1]==='best'?'ok':(o[1]==='partial'?'part':'bad');
+ var btn=document.querySelector('.opt[data-i="'+i+'"]');btn.className='opt '+cls;
+ document.getElementById('fb'+i).innerHTML='<div class="fb '+cls+'" role="status">'+esc(o[2])+'</div>';
+ if(o[1]==='best'){document.getElementById('next').disabled=false;document.querySelectorAll('.opt').forEach(function(b){b.onclick=null})}
+ else{miss[step]++;btn.onclick=null}}
+function evidStep(s){var e=s.evid;var h='<h2>'+esc(e.q)+'</h2><div id="chk">';e.items.forEach(function(it,i){var ev=s.evidence.filter(function(x){return x[0]===it[0]})[0];h+='<label class="chk"><input type="checkbox" value="'+i+'"><span><b>Evidence '+it[0]+'.</b> '+esc(ev[1])+'</span></label><div id="ef'+i+'"></div>'});
+ return h+'</div><button class="go" onclick="checkEvid()">Check</button><div id="evsum"></div><button class="go" id="next" disabled onclick="nextStep()">Next</button>'}
+function checkEvid(){var s=list[si];var e=s.evid;var allok=true;
+ document.querySelectorAll('#chk input').forEach(function(inp){var i=+inp.value;var it=e.items[i];var on=inp.checked;var good=(on===it[1]);if(!good)allok=false;
+  var cls=good?'ok':'bad';var msg=good?(it[1]?'Supports the claim. ':'Correctly left out. '):(it[1]?'You missed this one. ':'This one does not belong. ');
+  document.getElementById('ef'+i).innerHTML='<div class="fb '+cls+'" role="status">'+msg+esc(it[2])+'</div>'});
+ var sum=document.getElementById('evsum');
+ if(allok){sum.innerHTML='<div class="fb ok" role="status"><b>All correct.</b></div>';document.getElementById('next').disabled=false}
+ else{miss[step]++;sum.innerHTML='<div class="fb bad" role="status"><b>Not yet.</b> Read the feedback above, change your choices, and press Check again.</div>'}}
+function nextStep(){var s=list[si];var n=s.extra?4:3;step++;if(step>=n){summary();return}render();window.scrollTo(0,0)}
+function summary(){var s=list[si];var n=s.extra?4:3;var first=0;for(var i=0;i<n;i++)if(miss[i]===0)first++;
+ var h='<h2>Case '+(si+1)+' done: '+esc(s.title)+'</h2><div class="sum"><p><b>You got '+first+' of '+n+' steps right on the first try.</b></p>';
+ h+='<p>'+(first===n?'Strong work.':(first>=n-1?'Almost there. Review the step you missed.':'Go back over the lesson notes, then try the next case.'))+'</p></div>';
+ if(si+1<list.length){h+='<button class="go" onclick="again()">Next case</button>'}else{h+='<p>That was the last case on this page.</p><p><button class="go" onclick="location.reload()">Start over</button></p>'}
+ app.innerHTML=h;window.scrollTo(0,0)}
+function again(){si++;step=0;miss=[0,0,0,0];render();window.scrollTo(0,0)}
+render();
+</script></body></html>

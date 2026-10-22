@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice: Neurons and Neuroglia</title>
+<style>
+:root{--ink:#161821;--bg:#fff;--blue:#2b50c8;--ok:#1b6e2f;--okbg:#e6f4ea;--bad:#a12a1a;--badbg:#fdeceb;--part:#7a5a00;--partbg:#fff4d6}
+*{box-sizing:border-box}body{margin:0;font:18px/1.45 Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{font-size:26px;margin:4px 0 2px}h2{font-size:21px;margin:18px 0 6px}
+.tag{display:inline-block;background:var(--blue);color:#fff;border-radius:6px;padding:2px 10px;font-size:15px;font-weight:700;letter-spacing:.04em}
+.note{color:#444;font-size:16px}
+.ev{border:1.5px solid #bbb;border-radius:8px;padding:10px 14px;margin:10px 0}
+.ev p{margin:6px 0}.ev b{color:var(--blue)}
+.opt{display:block;width:100%;text-align:left;font:inherit;background:#fff;border:2px solid #9aa3b8;border-radius:8px;padding:10px 12px;margin:8px 0;cursor:pointer}
+.opt:hover{border-color:var(--blue)}
+.fb{margin:6px 0 2px;padding:8px 12px;border-radius:8px;font-size:17px}
+.ok{background:var(--okbg);border:2px solid var(--ok)}.bad{background:var(--badbg);border:2px solid var(--bad)}.part{background:var(--partbg);border:2px solid var(--part)}
+.opt.ok,.opt.bad,.opt.part{cursor:default}
+label.chk{display:flex;gap:10px;align-items:flex-start;border:2px solid #9aa3b8;border-radius:8px;padding:10px 12px;margin:8px 0}
+label.chk input{width:22px;height:22px;margin-top:3px}
+button.go{font:inherit;font-weight:700;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:10px 18px;margin:10px 0;cursor:pointer}
+button.go:disabled{background:#aab;cursor:not-allowed}
+.steps{display:flex;gap:6px;margin:10px 0}.steps span{flex:1;height:8px;border-radius:4px;background:#d5d9e6}.steps span.on{background:var(--blue)}.steps span.done{background:var(--ok)}
+.sum{border:2px solid var(--blue);border-radius:10px;padding:12px 16px;margin:12px 0}
+a{color:var(--blue)}
+</style></head><body><div class="wrap">
+<span class="tag" id="mode"></span>
+<h1>Practice: Neurons and Neuroglia</h1>
+<p class="note">Read the case. Then build a claim, evidence, and reasoning. You get feedback right away. Cases are made up for practice.</p>
+<div id="app"></div>
+<p class="note" id="switch"></p>
+</div>
+<script>
+var DATA={"support": [{"title": "Numb fingers and slow signals", "intro": "A patient has numb fingers. This case is made up for practice.", "evidence": [["A", "The patient feels little in the fingers. The muscles of the hand are not weak."], ["B", "A nerve test shows signals in the finger nerve travel at 25 meters per second. A healthy nerve carries them at 60."], ["C", "A scan shows the axons are intact. The myelin around them is thin."], ["D", "When a doctor stimulates the hand muscles directly, they contract normally."]], "claim": {"q": "Step 1. Which part of the nerve cells is damaged?", "opts": [["The myelin around the axons", "best", "Yes. Thin myelin fits the slow signals and the intact axons."], ["The cell bodies", "wrong", "Not this one. The scan shows the axons are intact, and the problem is the speed of the signal, not whether neurons are alive."], ["The axon terminals", "wrong", "Not this one. Axon terminals release neurotransmitter. The evidence is about the speed of the signal along the axon."], ["The dendrites", "wrong", "Not this one. Dendrites receive signals. The evidence is about the signal moving along the axon."]]}, "evid": {"q": "Step 2. Which pieces of evidence support the claim that the myelin is damaged? Select all that apply. Then press Check.", "items": [["A", true, "Yes. Numbness means signals are not reaching the brain well."], ["B", true, "Yes. Slow signals are what thin myelin causes."], ["C", true, "Yes. It says the myelin is thin and the axons are intact."], ["D", false, "This does not support the claim. It rules out a muscle problem, but it does not show anything about myelin."]]}, "reason": {"q": "Step 3. Which reasoning connects the evidence to the claim?", "opts": [["Myelin insulates the axon, and the signal jumps from node to node. With thin myelin, the signal travels more slowly, so the brain gets weak or late signals from the fingers.", "best", "Yes. It links the structure (myelin) to the function (signal speed)."], ["Myelin carries the signal itself, so thin myelin means the signal is too weak to feel.", "partial", "Partly right. Myelin matters for signals, but it does not carry them. The axon carries the signal. Myelin insulates it and speeds it."], ["Myelin makes neurotransmitter, so thin myelin means less neurotransmitter.", "wrong", "Not quite. Neurons make neurotransmitter and release it at the axon terminals. Myelin insulates the axon."]]}}, {"title": "After a head injury", "intro": "A person has a head injury. Cells near the injury change. This case is made up for practice.", "evidence": [["A", "Near the injury, small cells with short branches move toward the damaged area."], ["B", "The cells take in pieces of damaged cells. They clear the debris."], ["C", "The number of these cells increases near the injury."], ["D", "Neurons farther from the injury still work normally."]], "claim": {"q": "Step 1. Which type of neuroglia is acting?", "opts": [["Microglia", "best", "Yes. Microglia clear debris and defend the CNS."], ["Oligodendrocytes", "wrong", "Not this one. Oligodendrocytes make myelin in the CNS."], ["Schwann cells", "wrong", "Not this one. Schwann cells are in the peripheral nervous system and make myelin."], ["Astrocytes", "partial", "Astrocytes support neurons and help form the blood-brain barrier. They do not mainly clear debris."]]}, "evid": {"q": "Step 2. Which pieces of evidence support the claim? Select all that apply. Then press Check.", "items": [["A", true, "Yes. Small cells with short branches match microglia."], ["B", true, "Yes. Cleaning up debris is the job of microglia."], ["C", true, "Yes. More microglia gather where damage is."], ["D", false, "This does not support the claim. It tells you about distant neurons, not what the cells near the injury are doing."]]}, "reason": {"q": "Step 3. Which reasoning connects the evidence to the claim?", "opts": [["Microglia clear debris and defend the CNS, so they move to damaged tissue and take in damaged cell pieces.", "best", "Yes. It links the cell's job to what the evidence shows."], ["Microglia make myelin, so they move to damaged tissue to rebuild it.", "wrong", "Not quite. Oligodendrocytes make myelin in the CNS."], ["Microglia carry signals, so they move to damaged tissue to restore the signal.", "wrong", "Not quite. Neurons carry signals. Neuroglia support and protect them."]]}}], "stretch": [{"title": "A long axon to the foot", "intro": "A scientist studies one neuron. This case is made up for practice.", "evidence": [["A", "The cell body is in the gray matter of the lumbar spinal cord."], ["B", "The axon leaves the spinal cord through the ventral root. It is about 1 meter long and ends on muscle fibers in the foot."], ["C", "The axon is wrapped in myelin made by Schwann cells."], ["D", "The axon is thin and branches near the muscle."], ["E", "The scientist works in a lab with bright lights."]], "claim": {"q": "Step 1. What type of neuron is it?", "opts": [["A motor neuron", "best", "Yes. It carries commands from the CNS to muscle fibers."], ["A sensory neuron", "wrong", "Not this one. Sensory neurons carry signals toward the CNS."], ["An interneuron", "wrong", "Not this one. Interneurons connect neurons inside the CNS and do not leave it."], ["A microglial cell", "wrong", "Not this one. Microglia are neuroglia and do not carry signals."]]}, "evid": {"q": "Step 2. Which pieces of evidence support the claim? Select all that apply. Then press Check.", "items": [["A", true, "Yes. Motor neuron cell bodies are in the spinal cord's gray matter (ventral horn)."], ["B", true, "Yes. Leaving by the ventral root and ending on muscle fibers means it carries commands out."], ["C", false, "This does not decide the type. Both sensory and motor neurons can be myelinated by Schwann cells in the PNS."], ["D", false, "This does not decide the type. Thickness and branching do not tell you motor from sensory."], ["E", false, "This has nothing to do with the neuron's type."]]}, "reason": {"q": "Step 3. Which reasoning connects the evidence to the claim?", "opts": [["The cell body is in the spinal cord and the axon leaves the CNS and ends on muscle. A neuron that carries commands out to a muscle is a motor neuron.", "best", "Yes. It uses the location and direction of the signal."], ["The axon is long and myelinated. All long myelinated neurons are motor neurons.", "wrong", "Not quite. Sensory neurons can also be long and myelinated. The direction of the signal decides the type."], ["The cell body is in the spinal cord. All neurons with cell bodies in the spinal cord are interneurons.", "wrong", "Not quite. Motor neurons also have cell bodies in the spinal cord. This axon leaves the CNS."]]}, "extra": {"q": "Step 4. Predict. Why does this long axon need myelin?", "opts": [["Myelin speeds the signal along a long axon, so commands reach the foot quickly.", "best", "Yes. Myelin makes the signal jump from node to node, which saves time over a long distance."], ["Myelin gives the neuron its nucleus.", "wrong", "Not quite. The nucleus is in the cell body."], ["Myelin lets the axon make new neurotransmitters.", "wrong", "Not quite. Neurotransmitter is released at the axon terminals."]]}}]};
+var q=new URLSearchParams(location.search);var mode=(q.get('mode')==='stretch')?'stretch':'support';
+var list=DATA[mode];var si=0,step=0,miss=[0,0,0,0];var app=document.getElementById('app');
+document.getElementById('mode').textContent=(mode==='stretch'?'Stretch':'Support')+' practice';
+document.getElementById('switch').innerHTML=mode==='stretch'?'Want more guidance? <a href="?mode=support">Open the Support page</a>.':'Ready for a harder case? <a href="?mode=stretch">Open the Stretch page</a>.';
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function stepsBar(n,cur){var h='<div class="steps" aria-hidden="true">';for(var i=0;i<n;i++)h+='<span class="'+(i<cur?'done':(i===cur?'on':''))+'"></span>';return h+'</div>'}
+function render(){var s=list[si];var h='<h2>Case '+(si+1)+' of '+list.length+': '+esc(s.title)+'</h2><p>'+esc(s.intro)+'</p><div class="ev">';
+ s.evidence.forEach(function(e){h+='<p><b>Evidence '+e[0]+'.</b> '+esc(e[1])+'</p>'});h+='</div>';
+ var n=s.extra?4:3;h+=stepsBar(n,step);
+ var kinds=['claim','evid','reason','extra'];var k=kinds[step];
+ if(k==='evid'){h+=evidStep(s)}else{h+=choiceStep(s[k],k)}
+ app.innerHTML=h;}
+function shuf(n){var a=[];for(var i=0;i<n;i++)a.push(i);for(var j=n-1;j>0;j--){var r=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[r];a[r]=t}return a}
+function choiceStep(c,k){var h='<h2>'+esc(c.q)+'</h2><div id="opts">';shuf(c.opts.length).forEach(function(i){var o=c.opts[i];h+='<button class="opt" data-i="'+i+'" onclick="pick(\''+k+'\','+i+')">'+esc(o[0])+'</button><div id="fb'+i+'"></div>'});return h+'</div><button class="go" id="next" disabled onclick="nextStep()">Next</button>'}
+function pick(k,i){var s=list[si];var c=s[k];var o=c.opts[i];var cls=o[1]==='best'?'ok':(o[1]==='partial'?'part':'bad');
+ var btn=document.querySelector('.opt[data-i="'+i+'"]');btn.className='opt '+cls;
+ document.getElementById('fb'+i).innerHTML='<div class="fb '+cls+'" role="status">'+esc(o[2])+'</div>';
+ if(o[1]==='best'){document.getElementById('next').disabled=false;document.querySelectorAll('.opt').forEach(function(b){b.onclick=null})}
+ else{miss[step]++;btn.onclick=null}}
+function evidStep(s){var e=s.evid;var h='<h2>'+esc(e.q)+'</h2><div id="chk">';e.items.forEach(function(it,i){var ev=s.evidence.filter(function(x){return x[0]===it[0]})[0];h+='<label class="chk"><input type="checkbox" value="'+i+'"><span><b>Evidence '+it[0]+'.</b> '+esc(ev[1])+'</span></label><div id="ef'+i+'"></div>'});
+ return h+'</div><button class="go" onclick="checkEvid()">Check</button><div id="evsum"></div><button class="go" id="next" disabled onclick="nextStep()">Next</button>'}
+function checkEvid(){var s=list[si];var e=s.evid;var allok=true;
+ document.querySelectorAll('#chk input').forEach(function(inp){var i=+inp.value;var it=e.items[i];var on=inp.checked;var good=(on===it[1]);if(!good)allok=false;
+  var cls=good?'ok':'bad';var msg=good?(it[1]?'Supports the claim. ':'Correctly left out. '):(it[1]?'You missed this one. ':'This one does not belong. ');
+  document.getElementById('ef'+i).innerHTML='<div class="fb '+cls+'" role="status">'+msg+esc(it[2])+'</div>'});
+ var sum=document.getElementById('evsum');
+ if(allok){sum.innerHTML='<div class="fb ok" role="status"><b>All correct.</b></div>';document.getElementById('next').disabled=false}
+ else{miss[step]++;sum.innerHTML='<div class="fb bad" role="status"><b>Not yet.</b> Read the feedback above, change your choices, and press Check again.</div>'}}
+function nextStep(){var s=list[si];var n=s.extra?4:3;step++;if(step>=n){summary();return}render();window.scrollTo(0,0)}
+function summary(){var s=list[si];var n=s.extra?4:3;var first=0;for(var i=0;i<n;i++)if(miss[i]===0)first++;
+ var h='<h2>Case '+(si+1)+' done: '+esc(s.title)+'</h2><div class="sum"><p><b>You got '+first+' of '+n+' steps right on the first try.</b></p>';
+ h+='<p>'+(first===n?'Strong work.':(first>=n-1?'Almost there. Review the step you missed.':'Go back over the lesson notes, then try the next case.'))+'</p></div>';
+ if(si+1<list.length){h+='<button class="go" onclick="again()">Next case</button>'}else{h+='<p>That was the last case on this page.</p><p><button class="go" onclick="location.reload()">Start over</button></p>'}
+ app.innerHTML=h;window.scrollTo(0,0)}
+function again(){si++;step=0;miss=[0,0,0,0];render();window.scrollTo(0,0)}
+render();
+</script></body></html>
