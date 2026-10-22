@@ -1,11 +1,188 @@
-<!doctype html>
-<html lang="en">
-<head>
+<!DOCTYPE html>
+<html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Day 10: Types of Skeletal Muscle Fibers</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&amp;family=Source+Serif+4:ital,wght@1,500;1,600&amp;display=swap">
 <style>
+/* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+/* Part slides: text on the left, scientific figure on the right */
+.partcols { display: flex; gap: 36px; align-items: flex-start; }
+.partcols .ptext { flex: 0 0 470px; }
+.partcols .ptext .bigp { font-size: 27px; }
+.partcols .pfig { flex: 1; min-width: 0; }
+.pimg { display: block; max-width: 100%; max-height: 452px; margin: 0 auto; border: 1px solid #e4e6ee;
+  border-radius: 8px; background: #ffffff; }
+.lookfor { background: #fff8e6; border: 1px solid #f0d9a0; border-radius: 10px; padding: 12px 16px; margin: 14px 0 0; }
+.lookfor .dolabel { color: #9a6a00; }
+.lookfor p { margin: 0; font-size: 19px; }
+/* Lab slides */
+.labtag { display: inline-block; background: #2b50c8; color: #fff; font-weight: 800; letter-spacing: 0.14em;
+  font-size: 15px; text-transform: uppercase; padding: 8px 14px; border-radius: 8px; margin-right: 8px; }
+.swatches { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; margin: 10px 0 0; }
+.sw { display: flex; align-items: center; gap: 10px; font-size: 19px; }
+.sw i { display: inline-block; width: 26px; height: 26px; border-radius: 6px; border: 1.5px solid rgba(0,0,0,0.25); flex: 0 0 26px; }
+.keylist { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin: 8px 0 0; }
+.keylist div { font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.keylist b { display: inline-flex; width: 24px; height: 24px; border-radius: 50%; border: 2px solid #2b50c8; color: #2b50c8;
+  align-items: center; justify-content: center; font-size: 13px; flex: 0 0 24px; }
+.keylist i { display: inline-block; width: 16px; height: 16px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.25); flex: 0 0 16px; }
+table.ex td { font-size: 15px; line-height: 1.3; padding: 5px 10px 5px 0; }
+table.ex th { font-size: 12px; padding: 5px 10px 5px 0; }
+table.ex td:first-child { font-weight: 700; }
+table.blank td { height: 22px; font-size: 16px; line-height: 1.3; padding: 5px 12px 5px 0; }
+table.blank th { font-size: 12px; padding: 5px 12px 5px 0; }
+table.blank td.fill { color: #2b50c8; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+.tkey { display:none; position:absolute; left:48px; right:48px; bottom:64px; z-index:9; background:#ffffff; border:4px solid #2b50c8; border-radius:14px; padding:14px 22px 16px; font:600 26px/1.35 'Archivo', Arial, sans-serif; color:#161821; box-shadow:0 6px 24px rgba(0,0,0,.18); }
+.tkey.shown { display:block; }
+.tkey .tlabel { display:block; color:#2b50c8; font:800 15px 'Archivo', Arial, sans-serif; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+.rv { visibility: hidden; } .rv.rvshown { visibility: visible; } /* reveal one at a time */
+</style><style>
+/* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+.tkey { display:none; position:absolute; left:48px; right:48px; bottom:64px; z-index:9; background:#ffffff; border:4px solid #2b50c8; border-radius:14px; padding:14px 22px 16px; font:600 26px/1.35 'Archivo', Arial, sans-serif; color:#161821; box-shadow:0 6px 24px rgba(0,0,0,.18); }
+.tkey.shown { display:block; }
+.tkey .tlabel { display:block; color:#2b50c8; font:800 15px 'Archivo', Arial, sans-serif; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+</style><style>
 /* Shared slide-deck style for Unit 2.5 Muscular System lesson decks.
    Matches the "NotebookLM Lesson - Student Slides" house style already used
    in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
@@ -79,36 +256,64 @@ html, body { height: 100%; background: #16181f; }
 
 
 </style>
-</head>
+<style id="nbtag-css">.nbtag{position:absolute;top:16px;right:72px;z-index:6;font:700 13px/1.2 'Archivo',Arial,sans-serif;letter-spacing:.04em;color:#6b4300;background:#fff4d6;border:1px solid #efd185;border-radius:999px;padding:6px 13px;max-width:640px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.nbkey .kbox{margin-top:18px;border:3px dashed #e0b84a;background:#fffaf0;border-radius:14px;padding:22px 26px;font-size:26px;line-height:1.45}.nbtag.nbno{color:#7b7f8c;background:#f2f3f6;border-color:#dfe2e8;font-weight:600}</style></head>
 <body>
 <div class="stage"><div class="frame" id="frame">
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="slide active">
-<div class="topline"></div>
-<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</div>
+<div class="topline"></div><div class="nbtag">Notebook p. 59 · Warm-up</div>
+<div class="kicker">Anatomy &amp; Physiology · Unit 2.5 Muscular System · Day 10</div>
 <h1>Types of Skeletal Muscle Fibers</h1>
 <div class="cols" style="margin-top:8px">
   <div class="col">
-    <div class="dolabel" style="margin-top:0">Warm-up &middot; notebook</div>
+    <div class="dolabel" style="margin-top:0">Warm-up · notebook</div>
     <div class="dobox">
-      <p>Chicken breast meat is pale ("white meat"). Chicken thigh meat is dark ("dark meat"). Predict: what might cause that color difference in muscle?</p>
+      <p style="font-weight:800; margin-bottom:8px">Built for speed or distance?</p>
+      <p>1. What are the three phases of a muscle twitch?</p>
+      <p style="margin-top:6px">2. Chicken legs are dark meat and chicken breast is white meat. Guess why.</p>
     </div>
   </div>
   <div class="col" style="flex:0.7">
     <div class="dolabel" style="margin-top:0">You need today</div>
     <div class="chips" style="flex-direction:column; align-items:flex-start;">
-      <span class="chip yes"><b>Chromebook</b> &mdash; yes</span>
-      <span class="chip yes"><b>Notebook</b> &mdash; yes</span>
-      <span class="chip no"><b>Whiteboard &amp; marker</b> &mdash; no</span>
-      <span class="chip no"><b>Phones</b> &mdash; no</span>
+      <span class="chip"><b>Chromebook</b></span>
+      <span class="chip"><b>Notebook</b></span>
+      <span class="chip no"><b>Phones</b> — no</span>
     </div>
   </div>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 1 of 18</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 1 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 59 · Language Target (already printed)</div>
 <div class="kicker">Objective</div>
 <h2>Today's goal</h2>
 <p class="bigp" style="font-size:26px">Students will be able to tell slow-twitch and fast-twitch fibers apart, by comparing mitochondria, color, and fatigue data, so that they can predict which fiber type a muscle sample or job requires.</p>
@@ -116,126 +321,186 @@ html, body { height: 100%; background: #16181f; }
   <li>I can describe slow-twitch and fast-twitch fibers.</li>
   <li>I can match a fiber type to the job it is built for.</li>
 </ul>
-<div class="ltarget" style="margin-top:14px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can compare fiber types for two athletes. I use &quot;because.&quot;</p><p style="margin:2px 0"><b>Key words:</b> slow-twitch fiber, fast-twitch fiber, energy, strength</p><p style="margin:2px 0"><b>Sentence frame:</b> A sprinter needs ____ fibers because ____. A marathon runner needs ____ fibers because ____.</p></div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 2 of 18</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="ltarget" style="margin-top:14px"><div class="dolabel">Language target</div><p style="margin:2px 0;font-weight:700">I can compare fiber types for two athletes. I use "because."</p><p style="margin:2px 0"><b>Key words:</b> slow-twitch fiber, fast-twitch fiber, energy, strength</p><p style="margin:2px 0"><b>Sentence frame:</b> A sprinter needs ____ fibers because ____. A marathon runner needs ____ fibers because ____.</p></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 2 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 59 · Essential Question (already printed)</div>
 <div class="kicker">Essential question</div>
-<h2>How do slow-twitch and fast-twitch fibers differ, and why does it matter?</h2>
-<p class="bigp">Keep this question in mind as you take notes. You will answer it at the end.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 3 of 18</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
+<h2>Why are sprinters and marathon runners built differently?</h2>
+<p class="bigp">Today you will compare slow-twitch and fast-twitch muscle fibers and use evidence to decide which type each athlete depends on. Then you will take CFA 3. Keep this question in mind as you take notes. You will answer it at the end.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 3 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 59 · Phenomenon</div>
+<div class="kicker">Phenomenon</div>
+<h2>Sprinter vs. marathoner.</h2>
+<div class="dobox"><div class="dolabel">Try it</div><p>Do as many jumps as you can in 10 seconds. Then walk in place for 2 minutes. Which could you keep doing?</p></div>
+<p class="bigp" style="font-size:24px">Write in your notebook: <b>What I noticed:</b></p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 4 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 59 · Focused Notes: Slow-twitch fibers (Type I)</div>
+<div class="kicker">Focused notes</div>
+<h2>Slow-twitch fibers (Type I)</h2>
+<ul style="font-size:26px;line-height:1.5"><li><b>Slow-twitch</b> fibers contract slowly but can keep going for a long time.</li><li>They are <b>red</b> because they have lots of <b>myoglobin</b>, which stores oxygen.</li><li>They use <b>aerobic</b> respiration and have many mitochondria. Great for posture and endurance.</li></ul>
+<div class="dobox"><div class="dolabel">Note only the key idea</div><p>Write the key idea in your own words.</p></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 5 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 59 · Focused Notes: Slow-twitch fibers (Type I)</div>
 <div class="kicker">Type 1</div>
 <h2>Slow-twitch fibers</h2>
 <ul>
-  <li>Many <b>mitochondria</b> and lots of <b>myoglobin</b> (a red protein that stores oxygen) &mdash; dark red color.</li>
+  <li>Many <b>mitochondria</b> and lots of <b>myoglobin</b> (a red protein that stores oxygen) — dark red color.</li>
   <li>Make ATP mainly by <b>aerobic respiration</b>.</li>
   <li>Contract <b>slowly</b>, with <b>low force</b>, but <b>resist fatigue</b> for a long time.</li>
 </ul>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 4 of 18</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 6 of 32</span></div>
+</div><div class="slide nbkey"><div class="topline"></div><div class="nbtag">Notebook p. 59 · Note Only the Key Idea</div><div class="kicker">Notebook · page 59 · Key Idea box</div><h2>Note only the key idea</h2><p class="bigp" style="font-size:28px">Pause the notes. Find the <b>Key Idea</b> box on <b>page 59</b>, right under <b>“Slow-twitch fibers (Type I)”</b>.</p><div class="kbox">Write the key idea in your own words: <b>one short sentence</b>, using the blue key words you just filled in.<br><span style="font-size:20px;color:#6b6f7b">No copying a full bullet. Shorter is better.</span></div><div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 7 of 32</span></div></div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 59 · Focused Notes: Fast-twitch fibers (Type II)</div>
+<div class="kicker">Focused notes</div>
+<h2>Fast-twitch fibers (Type II)</h2>
+<ul style="font-size:26px;line-height:1.5"><li><b>Fast-twitch</b> fibers contract quickly and powerfully.</li><li>They are <b>pale</b> because they have less myoglobin.</li><li>They use <b>anaerobic</b> energy, so they <b>tire quickly</b>. Great for sprinting, jumping, and lifting.</li></ul>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 8 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 59 · Focused Notes: Fast-twitch fibers (Type II)</div>
 <div class="kicker">Type 2</div>
 <h2>Fast-twitch fibers</h2>
 <ul>
-  <li><b>Few mitochondria</b>, little myoglobin &mdash; pale color.</li>
-  <li>Make ATP mainly by <b>glycolysis</b> and <b>creatine phosphate</b> &mdash; anaerobic sources.</li>
+  <li><b>Few mitochondria</b>, little myoglobin — pale color.</li>
+  <li>Make ATP mainly by <b>glycolysis</b> and <b>creatine phosphate</b> — anaerobic sources.</li>
   <li>Contract <b>quickly</b>, with <b>high force</b>, but <b>fatigue quickly</b>.</li>
 </ul>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 5 of 18</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 9 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 60 · Stop and Think</div>
+<div class="kicker">Stop and think</div>
+<h2>Powerlifter: which fiber type?</h2>
+<div class="prompt">Which fiber type would a powerlifter depend on most? Why?</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 10 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 60 · Focused Notes: Everyone has both</div>
+<div class="kicker">Focused notes</div>
+<h2>Everyone has both</h2>
+<ul style="font-size:26px;line-height:1.5"><li>Most muscles are a <b>mix</b> of both fiber types.</li><li>Your genes set the starting mix. Training can make fibers stronger or more aerobic.</li><li>Back muscles that hold your posture all day are mostly slow-twitch.</li></ul>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 11 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 60 · Focused Notes: Everyone has both</div>
+<div class="kicker">Why it matters</div>
+<h2>Job decides fiber type</h2>
+<p class="bigp">Deep back muscles that hold you upright all day work best with slow-twitch fibers — they need endurance, not power.</p>
+<p class="bigp">A muscle used for a single powerful jump benefits from fast-twitch fibers — power over endurance.</p>
+<p class="bigp">Most human muscles are a mix of both types.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 12 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 60 · Connect It</div>
+<div class="kicker">Connect it</div>
+<h2>Your sport</h2>
+<div class="prompt">Which fiber type does your favorite sport or activity use most?</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 13 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 60 · Focused Notes: Everyone has both</div>
 <div class="kicker">Compare two samples</div>
 <h2>Sample X vs. Sample Y</h2>
 <table>
-<tr><th>Measure</th><th>Sample X</th><th>Sample Y</th></tr>
+<tbody><tr><th>Measure</th><th>Sample X</th><th>Sample Y</th></tr>
 <tr><td>Mitochondria</td><td>Many</td><td>Few</td></tr>
 <tr><td>Color</td><td>Dark red</td><td>Pale</td></tr>
 <tr><td>Main ATP source</td><td>Aerobic respiration</td><td>Glycolysis</td></tr>
 <tr><td>Time to fatigue</td><td>Over 60 minutes</td><td>About 2 minutes</td></tr>
 <tr><td>Twitch speed / force</td><td>Slow / low</td><td>Fast / high</td></tr>
-</table>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 6 of 18</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+</tbody></table>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 14 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 60 · Focused Notes: Everyone has both</div>
 <div class="demo">Turn and talk</div>
 <div class="kicker">Read the data</div>
 <h2>Which sample is which?</h2>
 <p class="bigp" style="margin-top:20px">Using the table, decide which sample is slow-twitch and which is fast-twitch. Explain using at least two pieces of evidence.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 7 of 18</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 15 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="kicker">Catch the mistake</div>
 <h2>A classmate's claim</h2>
 <div class="prompt">"Sample X must be fast-twitch, because more mitochondria means it can contract faster."</div>
-<p class="bigp" style="font-size:24px">What is wrong with this claim? What do many mitochondria actually help with &mdash; speed, or endurance?</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 8 of 18</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<p class="bigp" style="font-size:24px">What is wrong with this claim? What do many mitochondria actually help with — speed, or endurance?</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 16 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="kicker">Back to the warm-up</div>
 <h2>Why is chicken breast pale?</h2>
-<p class="bigp">Chicken breast muscle is used for short bursts of powerful flight (or, in farmed chickens, is simply built that way) &mdash; mostly fast-twitch, pale fibers.</p>
-<p class="bigp">Chicken thigh muscle works steadily all day (standing, walking) &mdash; mostly slow-twitch, dark, myoglobin-rich fibers.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 9 of 18</span></div>
+<p class="bigp">Chicken breast muscle is used for short bursts of powerful flight (or, in farmed chickens, is simply built that way) — mostly fast-twitch, pale fibers.</p>
+<p class="bigp">Chicken thigh muscle works steadily all day (standing, walking) — mostly slow-twitch, dark, myoglobin-rich fibers.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 17 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 59 · Warm-up</div>
+<div class="kicker">Back to the warm-up</div>
+<h2>Built for speed or distance?</h2>
+<p class="bigp" style="font-size:24px"><b>1.</b> Latent period, contraction phase, relaxation phase.<br><b>2.</b> Legs are used all day for standing and walking. Today you will see how that changes the muscle.</p><p class="bigp" style="font-size: 22px;">Chicken breast muscle is used for short bursts of powerful flight (or, in farmed chickens, is simply built that way) — mostly fast-twitch, pale fibers.</p>
+<p class="bigp" style="font-size: 22px;">Chicken thigh muscle works steadily all day (standing, walking) — mostly slow-twitch, dark, myoglobin-rich fibers.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 18 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 60 · Big Picture: Slow-Twitch vs Fast-Twitch</div>
+<div class="kicker">Big picture: Slow-Twitch vs Fast-Twitch</div>
+<h2>Endurance versus power</h2>
+<table class="blank"><tbody><tr><th style="width:30%"></th><th style="width:35%">Slow-twitch (Type I)</th><th>Fast-twitch (Type II)</th></tr><tr><td><b>Color</b></td><td>Red</td><td>White / pale</td></tr><tr><td><b>Speed</b></td><td>Slow</td><td>Fast</td></tr><tr><td><b>Fatigue resistance</b></td><td>High</td><td>Low</td></tr><tr><td><b>Energy source</b></td><td>Aerobic (oxygen)</td><td>Anaerobic (glycolysis, CP)</td></tr><tr><td><b>Best for</b></td><td>Endurance, posture</td><td>Sprinting, jumping, lifting</td></tr></tbody></table>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 19 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook pp. 61–62 · Lab: Athlete Fiber Profiles</div>
+<div class="kicker">Lab · 20 minutes · groups</div>
+<h2>Athlete Fiber Profiles</h2>
+<p class="bigp" style="font-size:22px">Read each athlete profile. Use the evidence to decide: mostly slow-twitch, mostly fast-twitch, or mixed.</p>
+<div class="steps">
+<div class="step"><div class="stepn">1</div><div class="stept">Read each athlete profile card.</div></div>
+<div class="step"><div class="stepn">2</div><div class="stept">Decide which fiber type predominates: Type I, Type II, or mixed.</div></div>
+<div class="step"><div class="stepn">3</div><div class="stept">Write your evidence from the profile.</div></div>
+<div class="step"><div class="stepn">4</div><div class="stept">Color the fiber diagram: slow-twitch red, fast-twitch white.</div></div>
 </div>
-
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">Why it matters</div>
-<h2>Job decides fiber type</h2>
-<p class="bigp">Deep back muscles that hold you upright all day work best with slow-twitch fibers &mdash; they need endurance, not power.</p>
-<p class="bigp">A muscle used for a single powerful jump benefits from fast-twitch fibers &mdash; power over endurance.</p>
-<p class="bigp">Most human muscles are a mix of both types.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 10 of 18</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 20 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook pp. 61–62 · Lab: Athlete Fiber Profiles</div>
+<div class="kicker">Lab · Athlete Fiber Profiles</div>
+<h2 style="margin-bottom:8px">Decide each athlete's fiber type</h2>
+<table class="blank"><tbody><tr><th style="width:34%">Athlete</th><th style="width:26%">Predominant fiber type</th><th>Evidence / reasoning (use the profile)</th></tr><tr><td><b>A. Maya, 100-meter sprinter</b></td><td></td><td></td></tr><tr><td><b>B. Daniel, marathon runner</b></td><td></td><td></td></tr><tr><td><b>C. Priya, powerlifter</b></td><td></td><td></td></tr><tr><td><b>D. Coach Reyes, soccer midfielder</b></td><td></td><td></td></tr><tr><td><b>E. Alex, long-distance cyclist</b></td><td></td><td></td></tr><tr><td><b>F. Taylor, rower</b></td><td></td><td></td></tr></tbody></table>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 21 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook pp. 61–62 · Lab: Athlete Fiber Profiles</div>
+<div class="kicker">Lab · Color the fibers</div>
+<h2>Which cluster is slow-twitch?</h2>
+<p class="bigp">Color the fibers. Slow-twitch fibers are red; fast-twitch fibers are left white. Decide which cluster (A or B) is slow-twitch and label it. Use the clues in the picture (many mitochondria = dark dots).</p>
+<div class="prompt">Cluster A is ______________ (slow-twitch or fast-twitch). Cluster B is ______________.</div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 22 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 62 · Misconception Check</div>
+<div class="kicker">Misconception check · pairs</div>
+<h2>Can you completely change your fiber types by training?</h2>
+<p class="bigp">Talk with your partner, then write your answer in your notebook.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 23 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="demo">Take the CFA</div>
-<div class="kicker">CFA 3 &middot; Canvas</div>
+<div class="kicker">CFA 3 · Canvas</div>
 <h2>Now it's your turn</h2>
 <div class="steps">
   <div class="step"><div class="stepn">1</div><div class="stept">Open CFA 3 in Canvas.</div></div>
   <div class="step"><div class="stepn">2</div><div class="stept">Apply what you know about energy systems, twitch, and fiber types to new examples.</div></div>
   <div class="step"><div class="stepn">3</div><div class="stept">Read the feedback after each answer.</div></div>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 11 of 18</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 24 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="demo">Turn and talk</div>
 <div class="kicker">Check your understanding</div>
 <h2>Predict the fiber type</h2>
 <p class="bigp" style="margin-top:20px">The muscles that hold up your neck all day work slowly and rarely tire. Which fiber type do they mostly have, and why?</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 12 of 18</span></div>
-</div>
-
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 25 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="demo">If time allows</div>
 <div class="kicker">Partners, about 7 minutes</div>
 <h2>Pick the fibers</h2>
-<table><tr><th>Activity</th><th>Fiber type and one reason</th></tr><tr><td>Holding your head up all day</td><td></td></tr><tr><td>A single powerful jump</td><td></td></tr><tr><td>Walking a long way</td><td></td></tr><tr><td>Sprinting for a few seconds</td><td></td></tr></table>
+<table><tbody><tr><th>Activity</th><th>Fiber type and one reason</th></tr><tr><td>Holding your head up all day</td><td></td></tr><tr><td>A single powerful jump</td><td></td></tr><tr><td>Walking a long way</td><td></td></tr><tr><td>Sprinting for a few seconds</td><td></td></tr></tbody></table>
 <p class="note">Use: ____ fibers fit this job because ____.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 13 of 18</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 26 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag nbno">Not in notebook · pay attention, no writing</div>
 <div class="demo">If time allows</div>
 <div class="kicker">Partners, about 6 minutes</div>
 <h2>Teach the table</h2>
@@ -245,28 +510,25 @@ html, body { height: 100%; background: #16181f; }
   <div class="step"><div class="stepn">3</div><div class="stept"><b>Connect.</b> Say why one chicken muscle is pale and another dark.</div></div>
 </div>
 <p class="note">Word bank: mitochondria, myoglobin, aerobic, glycolysis, fatigue.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 14 of 18</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">After the notes</div>
-<h2>Mark, link, ask</h2>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 27 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 62 · Mark, Ask, Link</div>
+<div class="kicker">After the notes · 5 min · solo</div>
+<h2>Mark, ask, link</h2>
 <div class="steps">
-  <div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> Underline, circle, or highlight the main ideas in your notes.</div></div>
-  <div class="step"><div class="stepn">2</div><div class="stept"><b>Link.</b> Connect one idea in your notes to something outside your notes.</div></div>
-  <div class="step"><div class="stepn">3</div><div class="stept"><b>Ask.</b> Write one quiz question that your notes can answer and that could be on a test.</div></div>
+<div class="step"><div class="stepn">1</div><div class="stept"><b>Mark.</b> One pass over your notes: highlight, underline, or circle what matters most.</div></div>
+<div class="step"><div class="stepn">2</div><div class="stept"><b>Ask.</b> Write one quiz question. Your notes must already answer it.</div></div>
+<div class="step"><div class="stepn">3</div><div class="stept"><b>Link.</b> Write one connection beyond your notes: "this reminds me of..."</div></div>
 </div>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 15 of 18</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
-<div class="kicker">Summarize</div>
-<h2>How do slow-twitch and fast-twitch fibers differ, and why does it matter?</h2>
-<p class="bigp">Slow-twitch fibers have many mitochondria and lots of myoglobin, make ATP by aerobic respiration, and resist fatigue. Fast-twitch fibers have few mitochondria, make ATP by glycolysis and creatine phosphate, contract quickly with high force, and tire fast. Each muscle uses the mix that fits its job.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 16 of 18</span></div>
-</div>
-<div class="slide">
-<div class="topline"></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 28 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 62 · Then the Sum</div>
+<div class="kicker">Then the sum</div>
+<h2>Why are some bodies built for power and others for endurance?</h2>
+<p class="bigp">Answer in 2-3 sentences in your notebook.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 29 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div><div class="nbtag">Notebook p. 62 · Exit Ticket</div>
 <div class="kicker">Take-home message and exit ticket</div>
 <h2>Before you leave</h2>
 <div class="cols" style="margin-top:6px">
@@ -277,9 +539,14 @@ html, body { height: 100%; background: #16181f; }
 </div></div>
 </div>
 <p class="note">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 17 of 18</span></div>
-</div>
-<div class="slide">
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 30 of 32</span></div>
+</div><div class="slide">
+<div class="topline"></div>
+<div class="kicker">Turn it in</div>
+<h2>Weekly warm-up and exit ticket page</h2>
+<p class="bigp">Record today's warm-up and exit ticket on your weekly page. It is turned in on Fridays.</p>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 31 of 32</span></div>
+</div><div class="slide">
 <div class="topline"></div>
 <div class="kicker">Credits</div>
 <h2>Image and content credits</h2>
@@ -287,13 +554,15 @@ html, body { height: 100%; background: #16181f; }
   <li>No images in this deck.</li>
   <li>Content follows the Unit 2.5 notes, which cite OpenStax Anatomy and Physiology (CC BY 4.0).</li>
 </ul>
-<div class="foot"><span>Unit 2.5 Muscular System &middot; Day 10 &middot; Fri, Oct 30</span><span>slide 18 of 18</span></div>
-</div>
-</div></div>
+<div class="foot"><span>Unit 2.5 Muscular System · Day 10 · Fri, Oct 30</span><span>slide 32 of 32</span></div>
+</div></div></div>
 <div class="nav"><span id="counter"></span>
-  <button onclick="step(-1)">&#8592;</button>
-  <button onclick="step(1)">&#8594;</button>
+  <button onclick="step(-1)">←</button>
+  <button onclick="step(1)">→</button>
 </div>
+
+
+
 <script>
 // Shared slide-deck script for Unit 2.5 Muscular System lesson decks. Do not fork per day.
 var slides = document.querySelectorAll(".slide");
@@ -332,6 +601,4 @@ window.addEventListener("resize", fit);
 fit(); show(0);
 
 
-</script>
-</body>
-</html>
+</script></body></html>
