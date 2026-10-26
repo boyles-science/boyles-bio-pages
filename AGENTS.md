@@ -14,3 +14,7 @@ Published with GitHub Pages. Her curriculum source and all teacher material live
 - Student text follows the writing rules: short sentences, second person, terms defined, no idioms.
 - Never invent facts; every science fact must match the curriculum source.
 - Save point after each finished change.
+
+## Sub plans
+- When Michelle asks for a sub plan, use her saved 3-page format. Never write sub plans in this repo; they stay in Google Drive.
+- The format, the generator and her standing information are in the Drive file "Sub plan format (for Claude) - keep this file.txt". Read it first.
