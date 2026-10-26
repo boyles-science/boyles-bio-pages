@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice: Sound, Smell, and Taste</title>
+<style>
+:root{--ink:#161821;--bg:#fff;--blue:#2b50c8;--ok:#1b6e2f;--okbg:#e6f4ea;--bad:#a12a1a;--badbg:#fdeceb;--part:#7a5a00;--partbg:#fff4d6}
+*{box-sizing:border-box}body{margin:0;font:18px/1.45 Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{font-size:26px;margin:4px 0 2px}h2{font-size:21px;margin:18px 0 6px}
+.tag{display:inline-block;background:var(--blue);color:#fff;border-radius:6px;padding:2px 10px;font-size:15px;font-weight:700;letter-spacing:.04em}
+.note{color:#444;font-size:16px}
+.ev{border:1.5px solid #bbb;border-radius:8px;padding:10px 14px;margin:10px 0}
+.ev p{margin:6px 0}.ev b{color:var(--blue)}
+.opt{display:block;width:100%;text-align:left;font:inherit;background:#fff;border:2px solid #9aa3b8;border-radius:8px;padding:10px 12px;margin:8px 0;cursor:pointer}
+.opt:hover{border-color:var(--blue)}
+.fb{margin:6px 0 2px;padding:8px 12px;border-radius:8px;font-size:17px}
+.ok{background:var(--okbg);border:2px solid var(--ok)}.bad{background:var(--badbg);border:2px solid var(--bad)}.part{background:var(--partbg);border:2px solid var(--part)}
+.opt.ok,.opt.bad,.opt.part{cursor:default}
+label.chk{display:flex;gap:10px;align-items:flex-start;border:2px solid #9aa3b8;border-radius:8px;padding:10px 12px;margin:8px 0}
+label.chk input{width:22px;height:22px;margin-top:3px}
+button.go{font:inherit;font-weight:700;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:10px 18px;margin:10px 0;cursor:pointer}
+button.go:disabled{background:#aab;cursor:not-allowed}
+.steps{display:flex;gap:6px;margin:10px 0}.steps span{flex:1;height:8px;border-radius:4px;background:#d5d9e6}.steps span.on{background:var(--blue)}.steps span.done{background:var(--ok)}
+.sum{border:2px solid var(--blue);border-radius:10px;padding:12px 16px;margin:12px 0}
+a{color:var(--blue)}
+</style></head><body><div class="wrap">
+<span class="tag" id="mode"></span>
+<h1>Practice: Sound, Smell, and Taste</h1>
+<p class="note">Read the case. Then build a claim, evidence, and reasoning. You get feedback right away. Cases are made up for practice.</p>
+<div id="app"></div>
+<p class="note" id="switch"></p>
+</div>
+<script>
+var DATA={"support": [{"title": "Dizzy after spinning", "intro": "A student spins and then stops. This case is made up for practice.", "evidence": [["A", "The student feels dizzy for a few seconds after stopping."], ["B", "Fluid in the semicircular canals keeps moving for a moment."], ["C", "The student's eyes and hearing test normally."], ["D", "The student ate lunch an hour ago."]], "claim": {"q": "Step 1. Which part of the ear explains the dizziness?", "opts": [["The semicircular canals", "best", "Yes. They detect head movement for balance."], ["The cochlea", "wrong", "Not this one. The cochlea is for hearing."], ["The eardrum", "wrong", "Not this one. The eardrum vibrates with sound."], ["The retina", "wrong", "Not this one. The retina is in the eye."]]}, "evid": {"q": "Step 2. Which pieces of evidence support the claim? Select all that apply. Then press Check.", "items": [["A", true, "Yes. Dizziness is a balance problem."], ["B", true, "Yes. Fluid moving in the canals bends hair cells."], ["C", true, "Yes. Normal eyes and hearing point to the balance organs."], ["D", false, "This does not support the claim. Lunch does not cause this dizziness."]]}, "reason": {"q": "Step 3. Which reasoning connects the evidence to the claim?", "opts": [["Fluid in the semicircular canals bends hair cells when your head moves. After you stop, the fluid keeps moving, so the brain still gets a signal that you are spinning.", "best", "Yes. It explains why the feeling continues."], ["The cochlea keeps vibrating, so the brain thinks you hear a spin.", "wrong", "Not quite. The cochlea is for hearing."], ["The retina keeps sending light signals, so the room seems to move.", "wrong", "Not quite. The eyes tested normal."]]}}, {"title": "Bland food with a cold", "intro": "A student has a stuffy nose and says food tastes bland. This case is made up for practice.", "evidence": [["A", "The student can still tell sweet from salty."], ["B", "Odor molecules cannot reach the smell receptors in the blocked nose."], ["C", "Flavor is taste plus smell."], ["D", "The student is wearing a green shirt."]], "claim": {"q": "Step 1. Why does food taste bland?", "opts": [["Smell is blocked, so flavor is weaker", "best", "Yes. Flavor needs both taste and smell."], ["The taste buds stopped working", "wrong", "Not this one. Evidence A says taste still works."], ["The tongue is damaged", "wrong", "Not this one. There is no evidence of damage."], ["The ears are blocked", "wrong", "Not this one. Ears are for hearing and balance."]]}, "evid": {"q": "Step 2. Which pieces of evidence support the claim? Select all that apply. Then press Check.", "items": [["A", true, "Yes. Taste works, so the problem is not the tongue."], ["B", true, "Yes. Blocked smell receptors cannot send signals."], ["C", true, "Yes. Without smell, flavor is weaker."], ["D", false, "This does not support the claim. The shirt color does not matter."]]}, "reason": {"q": "Step 3. Which reasoning connects the evidence to the claim?", "opts": [["Taste buds detect basic tastes, but flavor also needs smell. A stuffy nose blocks odor molecules, so the brain gets less information and the food seems bland.", "best", "Yes. It explains the role of both senses."], ["Taste buds are in the nose, so a stuffy nose blocks taste.", "wrong", "Not quite. Taste buds are on the tongue."], ["The cold makes the tongue produce too much saliva, which blocks flavor.", "wrong", "Not quite. The evidence points to smell."]]}}], "stretch": []};
+var q=new URLSearchParams(location.search);var mode=(q.get('mode')==='stretch')?'stretch':'support';
+var list=DATA[mode];var si=0,step=0,miss=[0,0,0,0];var app=document.getElementById('app');
+document.getElementById('mode').textContent=(mode==='stretch'?'Stretch':'Support')+' practice';
+document.getElementById('switch').innerHTML=(DATA.stretch.length==0)?'':mode==='stretch'?'Want more guidance? <a href="?mode=support">Open the Support page</a>.':'Ready for a harder case? <a href="?mode=stretch">Open the Stretch page</a>.';
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function stepsBar(n,cur){var h='<div class="steps" aria-hidden="true">';for(var i=0;i<n;i++)h+='<span class="'+(i<cur?'done':(i===cur?'on':''))+'"></span>';return h+'</div>'}
+function render(){var s=list[si];var h='<h2>Case '+(si+1)+' of '+list.length+': '+esc(s.title)+'</h2><p>'+esc(s.intro)+'</p><div class="ev">';
+ s.evidence.forEach(function(e){h+='<p><b>Evidence '+e[0]+'.</b> '+esc(e[1])+'</p>'});h+='</div>';
+ var n=s.extra?4:3;h+=stepsBar(n,step);
+ var kinds=['claim','evid','reason','extra'];var k=kinds[step];
+ if(k==='evid'){h+=evidStep(s)}else{h+=choiceStep(s[k],k)}
+ app.innerHTML=h;}
+function shuf(n){var a=[];for(var i=0;i<n;i++)a.push(i);for(var j=n-1;j>0;j--){var r=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[r];a[r]=t}return a}
+function choiceStep(c,k){var h='<h2>'+esc(c.q)+'</h2><div id="opts">';shuf(c.opts.length).forEach(function(i){var o=c.opts[i];h+='<button class="opt" data-i="'+i+'" onclick="pick(\''+k+'\','+i+')">'+esc(o[0])+'</button><div id="fb'+i+'"></div>'});return h+'</div><button class="go" id="next" disabled onclick="nextStep()">Next</button>'}
+function pick(k,i){var s=list[si];var c=s[k];var o=c.opts[i];var cls=o[1]==='best'?'ok':(o[1]==='partial'?'part':'bad');
+ var btn=document.querySelector('.opt[data-i="'+i+'"]');btn.className='opt '+cls;
+ document.getElementById('fb'+i).innerHTML='<div class="fb '+cls+'" role="status">'+esc(o[2])+'</div>';
+ if(o[1]==='best'){document.getElementById('next').disabled=false;document.querySelectorAll('.opt').forEach(function(b){b.onclick=null})}
+ else{miss[step]++;btn.onclick=null}}
+function evidStep(s){var e=s.evid;var h='<h2>'+esc(e.q)+'</h2><div id="chk">';e.items.forEach(function(it,i){var ev=s.evidence.filter(function(x){return x[0]===it[0]})[0];h+='<label class="chk"><input type="checkbox" value="'+i+'"><span><b>Evidence '+it[0]+'.</b> '+esc(ev[1])+'</span></label><div id="ef'+i+'"></div>'});
+ return h+'</div><button class="go" onclick="checkEvid()">Check</button><div id="evsum"></div><button class="go" id="next" disabled onclick="nextStep()">Next</button>'}
+function checkEvid(){var s=list[si];var e=s.evid;var allok=true;
+ document.querySelectorAll('#chk input').forEach(function(inp){var i=+inp.value;var it=e.items[i];var on=inp.checked;var good=(on===it[1]);if(!good)allok=false;
+  var cls=good?'ok':'bad';var msg=good?(it[1]?'Supports the claim. ':'Correctly left out. '):(it[1]?'You missed this one. ':'This one does not belong. ');
+  document.getElementById('ef'+i).innerHTML='<div class="fb '+cls+'" role="status">'+msg+esc(it[2])+'</div>'});
+ var sum=document.getElementById('evsum');
+ if(allok){sum.innerHTML='<div class="fb ok" role="status"><b>All correct.</b></div>';document.getElementById('next').disabled=false}
+ else{miss[step]++;sum.innerHTML='<div class="fb bad" role="status"><b>Not yet.</b> Read the feedback above, change your choices, and press Check again.</div>'}}
+function nextStep(){var s=list[si];var n=s.extra?4:3;step++;if(step>=n){summary();return}render();window.scrollTo(0,0)}
+function summary(){var s=list[si];var n=s.extra?4:3;var first=0;for(var i=0;i<n;i++)if(miss[i]===0)first++;
+ var h='<h2>Case '+(si+1)+' done: '+esc(s.title)+'</h2><div class="sum"><p><b>You got '+first+' of '+n+' steps right on the first try.</b></p>';
+ h+='<p>'+(first===n?'Strong work.':(first>=n-1?'Almost there. Review the step you missed.':'Go back over the lesson notes, then try the next case.'))+'</p></div>';
+ if(si+1<list.length){h+='<button class="go" onclick="again()">Next case</button>'}else{h+='<p>That was the last case on this page.</p><p><button class="go" onclick="location.reload()">Start over</button></p>'}
+ app.innerHTML=h;window.scrollTo(0,0)}
+function again(){si++;step=0;miss=[0,0,0,0];render();window.scrollTo(0,0)}
+render();
+</script></body></html>

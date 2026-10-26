@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice: Protecting the Brain</title>
+<style>
+:root{--ink:#161821;--bg:#fff;--blue:#2b50c8;--ok:#1b6e2f;--okbg:#e6f4ea;--bad:#a12a1a;--badbg:#fdeceb;--part:#7a5a00;--partbg:#fff4d6}
+*{box-sizing:border-box}body{margin:0;font:18px/1.45 Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{font-size:26px;margin:4px 0 2px}h2{font-size:21px;margin:18px 0 6px}
+.tag{display:inline-block;background:var(--blue);color:#fff;border-radius:6px;padding:2px 10px;font-size:15px;font-weight:700;letter-spacing:.04em}
+.note{color:#444;font-size:16px}
+.ev{border:1.5px solid #bbb;border-radius:8px;padding:10px 14px;margin:10px 0}
+.ev p{margin:6px 0}.ev b{color:var(--blue)}
+.opt{display:block;width:100%;text-align:left;font:inherit;background:#fff;border:2px solid #9aa3b8;border-radius:8px;padding:10px 12px;margin:8px 0;cursor:pointer}
+.opt:hover{border-color:var(--blue)}
+.fb{margin:6px 0 2px;padding:8px 12px;border-radius:8px;font-size:17px}
+.ok{background:var(--okbg);border:2px solid var(--ok)}.bad{background:var(--badbg);border:2px solid var(--bad)}.part{background:var(--partbg);border:2px solid var(--part)}
+.opt.ok,.opt.bad,.opt.part{cursor:default}
+label.chk{display:flex;gap:10px;align-items:flex-start;border:2px solid #9aa3b8;border-radius:8px;padding:10px 12px;margin:8px 0}
+label.chk input{width:22px;height:22px;margin-top:3px}
+button.go{font:inherit;font-weight:700;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:10px 18px;margin:10px 0;cursor:pointer}
+button.go:disabled{background:#aab;cursor:not-allowed}
+.steps{display:flex;gap:6px;margin:10px 0}.steps span{flex:1;height:8px;border-radius:4px;background:#d5d9e6}.steps span.on{background:var(--blue)}.steps span.done{background:var(--ok)}
+.sum{border:2px solid var(--blue);border-radius:10px;padding:12px 16px;margin:12px 0}
+a{color:var(--blue)}
+</style></head><body><div class="wrap">
+<span class="tag" id="mode"></span>
+<h1>Practice: Protecting the Brain</h1>
+<p class="note">Read the case. Then build a claim, evidence, and reasoning. You get feedback right away. Cases are made up for practice.</p>
+<div id="app"></div>
+<p class="note" id="switch"></p>
+</div>
+<script>
+var DATA={"support": [{"title": "A hard fall", "intro": "A student falls and hits their head. This case is made up for practice.", "evidence": [["A", "The skull is not cracked."], ["B", "The student has a headache and feels confused."], ["C", "A scan shows no bleeding and no fractures."], ["D", "The brain moved inside the skull during the fall."]], "claim": {"q": "Step 1. What is the most likely injury?", "opts": [["A concussion", "best", "Yes. A concussion happens when the brain moves inside the skull."], ["A skull fracture", "wrong", "Not this one. Evidence A says the skull is not cracked."], ["Meningitis", "wrong", "Not this one. Meningitis is an infection, and there was no infection."], ["Multiple sclerosis", "wrong", "Not this one. MS is an immune attack on myelin, and it does not follow a fall."]]}, "evid": {"q": "Step 2. Which pieces of evidence support the claim? Select all that apply. Then press Check.", "items": [["A", true, "Yes. The skull is fine, so the injury is inside."], ["B", true, "Yes. Headache and confusion are signs of a concussion."], ["C", true, "Yes. No bleeding or fracture fits a concussion."], ["D", true, "Yes. The brain moving in the skull is what causes a concussion."]]}, "reason": {"q": "Step 3. Which reasoning connects the evidence to the claim?", "opts": [["Cerebrospinal fluid cushions the brain, but a hard blow can still make the brain bump the skull. This disturbs how the brain works for a while.", "best", "Yes. It explains how protection can still be overcome."], ["The skull broke and cut the brain, so the student feels confused.", "wrong", "Not quite. The skull is not cracked."], ["The blood-brain barrier broke, so germs reached the brain.", "wrong", "Not quite. There is no evidence of infection."]]}}, {"title": "A medicine that cannot reach the brain", "intro": "A medicine works in blood tests but does not help a brain infection. This case is made up for practice.", "evidence": [["A", "The medicine kills germs in blood samples."], ["B", "The medicine is a large molecule."], ["C", "Very little of the medicine is found in the brain."], ["D", "The patient takes the medicine with a glass of water."]], "claim": {"q": "Step 1. Why does the medicine fail in the brain?", "opts": [["The blood-brain barrier keeps it out", "best", "Yes. The barrier blocks many large molecules."], ["The skull absorbs the medicine", "wrong", "Not this one. The evidence is about blood vessels, not the skull."], ["The meninges make it stronger", "wrong", "Not this one. The meninges are membranes and do not change the medicine."], ["The medicine is gray matter", "wrong", "Not this one. Gray matter is tissue, not a medicine."]]}, "evid": {"q": "Step 2. Which pieces of evidence support the claim? Select all that apply. Then press Check.", "items": [["A", true, "Yes. The medicine works, so the problem is getting it to the brain."], ["B", true, "Yes. Large molecules often cannot cross the barrier."], ["C", true, "Yes. Little medicine in the brain shows it is blocked."], ["D", false, "This does not support the claim. What the patient drinks it with does not matter."]]}, "reason": {"q": "Step 3. Which reasoning connects the evidence to the claim?", "opts": [["The walls of the brain's blood vessels are very tight. A large molecule cannot cross, so the medicine cannot reach the infection.", "best", "Yes. It explains the barrier."], ["The brain absorbs all medicines, so there is none left in the blood.", "wrong", "Not quite. The evidence says little medicine is in the brain."], ["The medicine only works on white matter.", "wrong", "Not quite. The problem is crossing the barrier."]]}}], "stretch": []};
+var q=new URLSearchParams(location.search);var mode=(q.get('mode')==='stretch')?'stretch':'support';
+var list=DATA[mode];var si=0,step=0,miss=[0,0,0,0];var app=document.getElementById('app');
+document.getElementById('mode').textContent=(mode==='stretch'?'Stretch':'Support')+' practice';
+document.getElementById('switch').innerHTML=(DATA.stretch.length==0)?'':mode==='stretch'?'Want more guidance? <a href="?mode=support">Open the Support page</a>.':'Ready for a harder case? <a href="?mode=stretch">Open the Stretch page</a>.';
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function stepsBar(n,cur){var h='<div class="steps" aria-hidden="true">';for(var i=0;i<n;i++)h+='<span class="'+(i<cur?'done':(i===cur?'on':''))+'"></span>';return h+'</div>'}
+function render(){var s=list[si];var h='<h2>Case '+(si+1)+' of '+list.length+': '+esc(s.title)+'</h2><p>'+esc(s.intro)+'</p><div class="ev">';
+ s.evidence.forEach(function(e){h+='<p><b>Evidence '+e[0]+'.</b> '+esc(e[1])+'</p>'});h+='</div>';
+ var n=s.extra?4:3;h+=stepsBar(n,step);
+ var kinds=['claim','evid','reason','extra'];var k=kinds[step];
+ if(k==='evid'){h+=evidStep(s)}else{h+=choiceStep(s[k],k)}
+ app.innerHTML=h;}
+function shuf(n){var a=[];for(var i=0;i<n;i++)a.push(i);for(var j=n-1;j>0;j--){var r=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[r];a[r]=t}return a}
+function choiceStep(c,k){var h='<h2>'+esc(c.q)+'</h2><div id="opts">';shuf(c.opts.length).forEach(function(i){var o=c.opts[i];h+='<button class="opt" data-i="'+i+'" onclick="pick(\''+k+'\','+i+')">'+esc(o[0])+'</button><div id="fb'+i+'"></div>'});return h+'</div><button class="go" id="next" disabled onclick="nextStep()">Next</button>'}
+function pick(k,i){var s=list[si];var c=s[k];var o=c.opts[i];var cls=o[1]==='best'?'ok':(o[1]==='partial'?'part':'bad');
+ var btn=document.querySelector('.opt[data-i="'+i+'"]');btn.className='opt '+cls;
+ document.getElementById('fb'+i).innerHTML='<div class="fb '+cls+'" role="status">'+esc(o[2])+'</div>';
+ if(o[1]==='best'){document.getElementById('next').disabled=false;document.querySelectorAll('.opt').forEach(function(b){b.onclick=null})}
+ else{miss[step]++;btn.onclick=null}}
+function evidStep(s){var e=s.evid;var h='<h2>'+esc(e.q)+'</h2><div id="chk">';e.items.forEach(function(it,i){var ev=s.evidence.filter(function(x){return x[0]===it[0]})[0];h+='<label class="chk"><input type="checkbox" value="'+i+'"><span><b>Evidence '+it[0]+'.</b> '+esc(ev[1])+'</span></label><div id="ef'+i+'"></div>'});
+ return h+'</div><button class="go" onclick="checkEvid()">Check</button><div id="evsum"></div><button class="go" id="next" disabled onclick="nextStep()">Next</button>'}
+function checkEvid(){var s=list[si];var e=s.evid;var allok=true;
+ document.querySelectorAll('#chk input').forEach(function(inp){var i=+inp.value;var it=e.items[i];var on=inp.checked;var good=(on===it[1]);if(!good)allok=false;
+  var cls=good?'ok':'bad';var msg=good?(it[1]?'Supports the claim. ':'Correctly left out. '):(it[1]?'You missed this one. ':'This one does not belong. ');
+  document.getElementById('ef'+i).innerHTML='<div class="fb '+cls+'" role="status">'+msg+esc(it[2])+'</div>'});
+ var sum=document.getElementById('evsum');
+ if(allok){sum.innerHTML='<div class="fb ok" role="status"><b>All correct.</b></div>';document.getElementById('next').disabled=false}
+ else{miss[step]++;sum.innerHTML='<div class="fb bad" role="status"><b>Not yet.</b> Read the feedback above, change your choices, and press Check again.</div>'}}
+function nextStep(){var s=list[si];var n=s.extra?4:3;step++;if(step>=n){summary();return}render();window.scrollTo(0,0)}
+function summary(){var s=list[si];var n=s.extra?4:3;var first=0;for(var i=0;i<n;i++)if(miss[i]===0)first++;
+ var h='<h2>Case '+(si+1)+' done: '+esc(s.title)+'</h2><div class="sum"><p><b>You got '+first+' of '+n+' steps right on the first try.</b></p>';
+ h+='<p>'+(first===n?'Strong work.':(first>=n-1?'Almost there. Review the step you missed.':'Go back over the lesson notes, then try the next case.'))+'</p></div>';
+ if(si+1<list.length){h+='<button class="go" onclick="again()">Next case</button>'}else{h+='<p>That was the last case on this page.</p><p><button class="go" onclick="location.reload()">Start over</button></p>'}
+ app.innerHTML=h;window.scrollTo(0,0)}
+function again(){si++;step=0;miss=[0,0,0,0];render();window.scrollTo(0,0)}
+render();
+</script></body></html>
