@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skeletal System: Choose Your Review</title>
+<style>
+:root{--ink:#161821;--bg:#fff;--blue:#2b50c8;--ok:#1b6e2f;--okbg:#e6f4ea;--bad:#a12a1a;--badbg:#fdeceb;--part:#7a5a00;--partbg:#fff4d6;--line:#9aa3b8}
+*{box-sizing:border-box}body{margin:0;font:18px/1.45 Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:26px;margin:4px 0 2px}h2{font-size:21px;margin:16px 0 6px}h3{font-size:18px;margin:12px 0 4px}
+.tag{display:inline-block;background:var(--blue);color:#fff;border-radius:6px;padding:2px 10px;font-size:15px;font-weight:700;letter-spacing:.04em}
+.note{color:#444;font-size:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+.card{border:2px solid var(--line);border-radius:10px;padding:12px 14px;background:#fff;text-align:left;font:inherit;cursor:pointer;color:inherit}
+.card:hover,.card:focus{border-color:var(--blue);outline:none}
+.card b{display:block;font-size:19px;color:var(--blue);margin-bottom:2px}
+.card span{font-size:16px;color:#333}
+.opt{display:block;width:100%;text-align:left;font:inherit;background:#fff;border:2px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0;cursor:pointer;color:inherit}
+.opt:hover{border-color:var(--blue)}
+.fb{margin:6px 0 2px;padding:8px 12px;border-radius:8px;font-size:17px}
+.ok{background:var(--okbg);border:2px solid var(--ok)}.bad{background:var(--badbg);border:2px solid var(--bad)}.part{background:var(--partbg);border:2px solid var(--part)}
+.opt.ok,.opt.bad,.opt.part{cursor:default}
+.ev{border:1.5px solid #bbb;border-radius:8px;padding:10px 14px;margin:10px 0}.ev p{margin:6px 0}.ev b{color:var(--blue)}
+label.chk{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0}
+label.chk input{width:22px;height:22px;margin-top:3px}
+button.go{font:inherit;font-weight:700;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:10px 18px;margin:10px 8px 10px 0;cursor:pointer}
+button.go.alt{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+button.go:disabled{background:#aab;border-color:#aab;color:#fff;cursor:not-allowed}
+textarea{width:100%;font:inherit;border:2px solid var(--line);border-radius:8px;padding:8px;min-height:70px}
+.ans{border:2px solid var(--ok);background:var(--okbg);border-radius:8px;padding:8px 12px;margin:8px 0}
+.sum{border:2px solid var(--blue);border-radius:10px;padding:12px 16px;margin:12px 0}
+.bar{display:flex;gap:6px;margin:8px 0}.bar span{flex:1;height:8px;border-radius:4px;background:#d5d9e6}.bar span.on{background:var(--blue)}.bar span.done{background:var(--ok)}
+.stats{display:flex;gap:18px;flex-wrap:wrap;font-weight:700;margin:8px 0}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.m{font:inherit;text-align:left;border:2px solid var(--line);background:#fff;border-radius:8px;padding:9px 11px;cursor:pointer;color:inherit}
+.m.sel{border-color:var(--blue);background:#eef2ff}.m.gone{border-color:var(--ok);background:var(--okbg);cursor:default}.m.wrong{border-color:var(--bad);background:var(--badbg)}
+.lt{font-size:14px;color:#555}
+table.plan{border-collapse:collapse;width:100%;font-size:16px}table.plan td,table.plan th{border:1px solid #bbb;padding:6px 8px;text-align:left}
+a{color:var(--blue)}
+@media (max-width:520px){.match{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<span class="tag">Anatomy and Physiology · Unit 1.4 Skeletal System</span>
+<h1>Skeletal System: Choose Your Review</h1>
+<p class="note" id="lead">Pick how you want to study. All four paths cover the same learning targets. This does not count toward your grade. Nothing you do here is saved or sent anywhere.</p>
+<div id="app" aria-live="polite"></div>
+</div>
+<script>
+"use strict";
+var D={"lts": [{"id": "LT1", "name": "Bone tissue, cells, remodeling, and calcium"}, {"id": "LT2", "name": "Major bones and bone markings"}, {"id": "LT3", "name": "Joints and movement"}, {"id": "LT4", "name": "Injuries, disorders, and forensics"}], "mc": [{"lt": "LT1", "q": "A rib protects the lungs and heart. Which job of the skeleton is this?", "c": "Protection", "w": ["Mineral storage", "Blood cell production", "Movement"], "why": "Bones such as the ribs and skull surround and guard soft organs."}, {"lt": "LT1", "q": "A bone sample shows tiny, lightweight beams that form a network inside the bone. What is this tissue?", "c": "Spongy bone", "w": ["Compact bone", "Cartilage", "Red marrow only"], "why": "Spongy bone has trabeculae. It is light but still supportive."}, {"lt": "LT1", "q": "Under a microscope, compact bone shows rings around a central canal. What is one ring unit called?", "c": "An osteon", "w": ["A trabecula", "A sarcomere", "A lacuna only"], "why": "The osteon is the repeating unit of compact bone."}, {"lt": "LT1", "q": "After a break, which cell lays down new bone matrix?", "c": "Osteoblast", "w": ["Osteoclast", "Osteocyte", "Fibroblast"], "why": "Osteoblasts build bone. Osteoclasts break it down."}, {"lt": "LT1", "q": "A drug blocks osteoclasts. What is the most direct effect on bone?", "c": "Less bone is broken down.", "w": ["More red blood cells are made.", "Bone matrix is built faster.", "Calcium is stored in muscle."], "why": "Osteoclasts resorb (break down) bone. Blocking them slows breakdown."}, {"lt": "LT1", "q": "Blood calcium falls below normal. Which response helps restore it?", "c": "Parathyroid hormone triggers bone to release calcium into the blood.", "w": ["The skeleton stores more calcium.", "Osteoblasts build more bone from blood calcium.", "Red marrow makes calcium."], "why": "PTH raises blood calcium by increasing release from bone."}, {"lt": "LT1", "q": "A child's long bone grows from a cartilage model that is slowly replaced by bone. What is this process?", "c": "Endochondral ossification", "w": ["Intramembranous ossification", "Remodeling only", "Diffusion"], "why": "Most long bones form from cartilage by endochondral ossification."}, {"lt": "LT2", "q": "Which group includes only bones of the axial skeleton?", "c": "Skull, vertebrae, and ribs", "w": ["Humerus, radius, and ulna", "Femur, tibia, and fibula", "Carpals and tarsals"], "why": "The axial skeleton lies along the body's center line."}, {"lt": "LT2", "q": "Which skull bones mainly protect the brain?", "c": "The cranial bones", "w": ["The facial bones", "The hyoid and mandible", "The carpals"], "why": "Cranial bones form the braincase. Facial bones shape the face."}, {"lt": "LT2", "q": "A vertebra in the lower back is much larger than one in the neck. What best explains this?", "c": "It supports more of the body's weight.", "w": ["It attaches to the ribs.", "It protects the brain.", "It forms the jaw."], "why": "Lumbar vertebrae carry a large share of body weight."}, {"lt": "LT2", "q": "A rib that attaches directly to the sternum with its own cartilage is a...", "c": "True rib", "w": ["False rib", "Floating rib", "Vertebral rib"], "why": "True ribs connect straight to the sternum through costal cartilage."}, {"lt": "LT2", "q": "A hiker breaks the thicker of the two lower leg bones, which carries most of the weight. Which bone?", "c": "Tibia", "w": ["Fibula", "Patella", "Femur"], "why": "The tibia bears most of the weight of the lower leg."}, {"lt": "LT2", "q": "On an X-ray, a bone has a smooth hole through which a nerve passes. What is this marking?", "c": "A foramen", "w": ["A condyle", "A fossa", "A tubercle"], "why": "A foramen is a hole or opening. A condyle is a rounded joint projection."}, {"lt": "LT2", "q": "A rounded, smooth knob at the end of a bone fits into a socket of another bone. What marking is this?", "c": "A condyle", "w": ["A foramen", "A fossa", "A suture"], "why": "A condyle is a rounded projection that forms part of a joint."}, {"lt": "LT3", "q": "The sutures between skull bones allow almost no movement. What type of joint is this?", "c": "Fibrous", "w": ["Synovial", "Ball-and-socket", "Hinge"], "why": "Fibrous joints hold bones together tightly. They give stability."}, {"lt": "LT3", "q": "Which synovial joint lets you swing your arm in a full circle?", "c": "Ball-and-socket", "w": ["Hinge", "Pivot", "Gliding"], "why": "The shoulder is a ball-and-socket joint with a wide range of motion."}, {"lt": "LT3", "q": "Your knee bends and straightens in one plane only. Which joint type is this?", "c": "Hinge", "w": ["Ball-and-socket", "Pivot", "Saddle"], "why": "Hinge joints move like a door hinge, in one direction."}, {"lt": "LT3", "q": "A thin film inside a joint lets the surfaces slide with little rubbing. What is it?", "c": "Synovial fluid", "w": ["Red marrow", "Bone matrix", "Calcium salts"], "why": "Synovial fluid reduces friction in synovial joints."}, {"lt": "LT3", "q": "A tough cord holds one bone to another bone across a joint. What is it?", "c": "A ligament", "w": ["A tendon", "A fascicle", "A meniscus"], "why": "Ligaments connect bone to bone. Tendons connect muscle to bone."}, {"lt": "LT3", "q": "When you lift a cup to your mouth, the elbow acts as the pivot, and the muscle pulls between the pivot and the cup. Which lever class is this?", "c": "Third class", "w": ["First class", "Second class", "It is not a lever"], "why": "In a third-class lever, the effort is between the fulcrum and the load."}, {"lt": "LT4", "q": "A bone looks thin and brittle on a scan and breaks easily. Which disorder fits?", "c": "Osteoporosis", "w": ["Osteoarthritis", "Scoliosis", "A greenstick fracture"], "why": "Osteoporosis is a loss of bone density."}, {"lt": "LT4", "q": "An older runner has joint pain because cartilage has worn thin over the years. Which condition fits?", "c": "Osteoarthritis", "w": ["Rheumatoid arthritis", "Scoliosis", "Osteoporosis"], "why": "Osteoarthritis comes from wear of the articular cartilage."}, {"lt": "LT4", "q": "A child falls and the bone bends and cracks on one side without breaking through. What fracture is this?", "c": "Greenstick fracture", "w": ["Comminuted fracture", "Open (compound) fracture", "Stress fracture"], "why": "Children's bones are flexible, so they can bend and crack without breaking all the way."}, {"lt": "LT4", "q": "A bone heals in stages. Which order is correct?", "c": "Hematoma, soft callus, hard callus, remodeling", "w": ["Remodeling, hematoma, soft callus, hard callus", "Soft callus, hematoma, remodeling, hard callus", "Hard callus, hematoma, soft callus, remodeling"], "why": "A clot forms first. Then cartilage and bone fill the gap. Last, the bone is reshaped."}, {"lt": "LT4", "q": "A scientist sees a skeleton with fully fused growth plates and worn teeth. What can be estimated?", "c": "That the person was an adult, and about how old", "w": ["The person's favorite food", "The exact date of death", "The person's eye color"], "why": "Fusion of growth plates and wear on bones and teeth help estimate age."}, {"lt": "LT4", "q": "Which bone gives the most information about whether a skeleton was male or female?", "c": "The pelvis", "w": ["The patella", "A single rib", "A toe bone"], "why": "The pelvis differs in shape between males and females, in part because of childbirth."}, {"lt": "LT4", "q": "A femur is 48 cm long. What can a forensic scientist estimate from it?", "c": "The person's height", "w": ["The person's age only", "The cause of death", "The person's blood type"], "why": "Long bone length is used in formulas to estimate height."}, {"lt": "LT4", "q": "Why is a conclusion based on one small bone fragment weaker evidence?", "c": "Few features can be measured, so many answers are possible.", "w": ["Small bones never have markings.", "Fragments are always from children.", "Bone fragments cannot be dated."], "why": "More bones and more features give a stronger conclusion."}], "sa": [{"lt": "LT1", "q": "Name four jobs of the skeletal system.", "a": ["Support and movement.", "Protection of organs.", "Mineral storage, such as calcium.", "Blood cell production in red marrow."]}, {"lt": "LT1", "q": "Compare compact bone and spongy bone. How does each structure help the bone?", "a": ["Compact bone is dense and made of osteons, so it is strong.", "Spongy bone has thin beams (trabeculae), so it is light but still supportive."]}, {"lt": "LT1", "q": "Name the three bone cells and give the job of each.", "a": ["Osteoblasts build new bone.", "Osteoclasts break down bone.", "Osteocytes maintain bone tissue and sense stress."]}, {"lt": "LT1", "q": "Blood calcium drops too low. Explain how the skeleton helps bring it back up.", "a": ["Parathyroid hormone (PTH) is released.", "Osteoclast activity rises, so calcium is released from bone into the blood.", "Blood calcium returns to normal, which restores homeostasis."]}, {"lt": "LT2", "q": "Describe the difference between the axial and appendicular skeletons. Give two bones for each.", "a": ["Axial: the center line (skull, vertebral column, ribs, sternum).", "Appendicular: the limbs and girdles (humerus, femur, radius, tibia, pelvis, and others)."]}, {"lt": "LT2", "q": "Define foramen, condyle, and fossa. Explain why bones have markings.", "a": ["A foramen is a hole or opening.", "A condyle is a rounded joint projection.", "A fossa is a shallow depression.", "Markings show where muscles attach, nerves and vessels pass, or bones meet."]}, {"lt": "LT3", "q": "Compare fibrous, cartilaginous, and synovial joints. Say what each is best for.", "a": ["Fibrous: held together tightly, for stability.", "Cartilaginous: some movement and cushioning.", "Synovial: freely movable, for a wide range of motion."]}, {"lt": "LT3", "q": "Explain how synovial fluid, articular cartilage, and ligaments each help a synovial joint.", "a": ["Synovial fluid reduces friction.", "Articular cartilage covers the bone ends and cushions them.", "Ligaments connect bone to bone and keep the joint stable."]}, {"lt": "LT3", "q": "Name the three parts of a lever. Which part is the joint, and which is the muscle?", "a": ["Fulcrum (the joint), load (what is moved), effort (the muscle's pull)."]}, {"lt": "LT4", "q": "Compare osteoporosis, osteoarthritis, and rheumatoid arthritis.", "a": ["Osteoporosis: bone loses density and breaks easily.", "Osteoarthritis: cartilage wears away from use.", "Rheumatoid arthritis: the immune system attacks the joint lining (autoimmune)."]}, {"lt": "LT4", "q": "Put the stages of fracture healing in order and say what happens in each.", "a": ["Hematoma: a blood clot forms.", "Soft callus: cartilage bridges the gap.", "Hard callus: new bone replaces the cartilage.", "Remodeling: the bone is reshaped to its original form."]}, {"lt": "LT4", "q": "A skeleton is found. Explain how a scientist could estimate age, sex, and height. Name the bone evidence for each.", "a": ["Age: growth plate fusion, bone wear, and skull sutures.", "Sex: the pelvis (and skull features).", "Height: the length of long bones, such as the femur."]}], "pairs": [{"lt": "LT1", "term": "Osteoblast", "def": "Builds new bone"}, {"lt": "LT1", "term": "Osteoclast", "def": "Breaks down bone"}, {"lt": "LT1", "term": "Osteocyte", "def": "Maintains bone and senses stress"}, {"lt": "LT1", "term": "Osteon", "def": "Repeating unit of compact bone"}, {"lt": "LT1", "term": "Trabeculae", "def": "Thin beams of spongy bone"}, {"lt": "LT1", "term": "Red marrow", "def": "Makes blood cells"}, {"lt": "LT1", "term": "Parathyroid hormone", "def": "Raises blood calcium by releasing it from bone"}, {"lt": "LT2", "term": "Axial skeleton", "def": "Skull, vertebral column, and ribs"}, {"lt": "LT2", "term": "Appendicular skeleton", "def": "Limbs and the girdles that attach them"}, {"lt": "LT2", "term": "Tibia", "def": "Main weight-bearing bone of the lower leg"}, {"lt": "LT2", "term": "Radius", "def": "Forearm bone on the thumb side"}, {"lt": "LT2", "term": "Foramen", "def": "A hole or opening in a bone"}, {"lt": "LT2", "term": "Condyle", "def": "A rounded joint projection"}, {"lt": "LT3", "term": "Fibrous joint", "def": "Gives stability with little movement"}, {"lt": "LT3", "term": "Ball-and-socket joint", "def": "Greatest range of motion"}, {"lt": "LT3", "term": "Hinge joint", "def": "Moves in one plane, like a door"}, {"lt": "LT3", "term": "Ligament", "def": "Connects bone to bone"}, {"lt": "LT3", "term": "Fulcrum", "def": "The pivot point of a lever"}, {"lt": "LT4", "term": "Osteoporosis", "def": "Bones lose density and break easily"}, {"lt": "LT4", "term": "Greenstick fracture", "def": "Bone bends and cracks on one side"}, {"lt": "LT4", "term": "Callus", "def": "New tissue that bridges a healing fracture"}, {"lt": "LT4", "term": "Scoliosis", "def": "A sideways curve of the spine"}], "cases": [{"lt": "LT4", "title": "The unknown skeleton", "intro": "A forensic scientist examines a set of bones found at a site.", "evidence": [["A", "The pelvis is wide with a broad opening in the center."], ["B", "The growth plates at the ends of the long bones are fully fused. The bones show some wear."], ["C", "The femur measures 45 cm."], ["D", "The bones were found next to a blue backpack."]], "claim": {"q": "Which claim does the bone evidence best support?", "opts": [["The skeleton is an adult, probably female, with an estimated height that can be calculated from the femur.", "best", "Correct. Pelvis shape, growth plate fusion, and long bone length each give information."], ["The skeleton is a child, because it has a femur.", "bad", "Not quite. Fused growth plates mean growth has finished."], ["The skeleton belonged to a person who carried a blue backpack, so the owner is known.", "bad", "Not quite. An object nearby is not bone evidence."], ["Nothing can be learned from bones.", "bad", "Not quite. Bones give clues about age, sex, and height."]]}, "evid": {"q": "Pick every piece of evidence that supports the claim.", "items": [["A", true, "A wide pelvis with a broad opening is typical of a female pelvis."], ["B", true, "Fully fused growth plates show the person was an adult."], ["C", true, "Long bone length is used to estimate height."], ["D", false, "A backpack is not part of the skeleton. It does not give evidence about age, sex, or height."]]}, "reason": {"q": "Which reasoning links the evidence to the claim?", "opts": [["Pelvis shape differs between males and females. Growth plates fuse when growth ends, so fused plates mean an adult. Long bone length changes with height. Together the bones give age, sex, and height, but more bones make the estimate stronger.", "best", "Correct. Each feature is tied to what it tells you."], ["Any bone can show age, sex, and height, so one bone is enough.", "bad", "Different bones give different information, and more bones make the estimate stronger."], ["Growth plates stay open for life, so fused plates mean a child.", "bad", "Growth plates fuse when growth ends."], ["The femur length shows sex, so the pelvis is not needed.", "partial", "Part is right: bones give clues. Femur length is mainly used for height. The pelvis is the best bone for sex."]]}}]};
+var app=document.getElementById('app');
+var results={};  // lt id -> [right, tried]
+D.lts.forEach(function(l){results[l.id]=[0,0]});
+var used={};
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function shuf(a){a=a.slice();for(var j=a.length-1;j>0;j--){var r=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[r];a[r]=t}return a}
+function tally(lt,ok){if(!results[lt])results[lt]=[0,0];results[lt][1]++;if(ok)results[lt][0]++}
+function ltName(id){var n=id;D.lts.forEach(function(l){if(l.id===id)n=l.id+': '+l.name});return n}
+function home(){
+  var h='<h2>Choose your study path</h2><div class="cards">'+
+  '<button class="card" onclick="startQuest()"><b>1. Question Quest</b><span>Short-answer questions, like a traditional review. Write your answer, then check it.</span></button>'+
+  '<button class="card" onclick="startGame()"><b>2. Streak Challenge</b><span>A game. Answer 12 questions. Build a streak. Three misses and the round ends.</span></button>'+
+  '<button class="card" onclick="startMatch()"><b>3. Match-Up</b><span>Match each term to what it means. Five pairs a round.</span></button>'+
+  '<button class="card" onclick="startCase()"><b>4. Prove It Case</b><span>Read a made-up case. Build a claim, pick the evidence, and explain your reasoning.</span></button>'+
+  '</div><p class="note">Not sure where to start? Take the practice test in Canvas first. A miss on a learning target tells you which path to try. Come back here as often as you like.</p>'+
+  planBox();
+  app.innerHTML=h;window.scrollTo(0,0);
+}
+function planBox(){
+  var any=false,rows='';
+  D.lts.forEach(function(l){var r=results[l.id];if(r[1]>0)any=true;
+    var pct=r[1]?Math.round(100*r[0]/r[1]):null;
+    var s=pct===null?'Not tried yet':(pct>=85?'Strong':(pct>=60?'Getting there':'Needs more practice'));
+    rows+='<tr><td>'+esc(l.id+': '+l.name)+'</td><td>'+(r[1]?r[0]+' of '+r[1]:'-')+'</td><td>'+s+'</td></tr>'});
+  return '<div class="sum"><h3>My study plan</h3><table class="plan"><tr><th>Learning target</th><th>Right so far</th><th>Where you are</th></tr>'+rows+'</table>'+
+   (any?'<p class="note">Pick a path again and work on the targets that say "Needs more practice" or "Not tried yet." This chart resets when you close the page.</p>':'<p class="note">This chart fills in as you work. It resets when you close the page.</p>')+'</div>';
+}
+function back(){return '<button class="go alt" onclick="home()">Back to the four paths</button>'}
+
+/* ---------- 1. Question Quest ---------- */
+var qi=0,ql=[];
+function startQuest(){ql=shuf(D.sa);qi=0;renderQ()}
+function renderQ(){
+  if(qi>=ql.length){app.innerHTML='<h2>Question Quest finished</h2><p>You answered '+ql.length+' questions.</p>'+planBox()+'<button class="go" onclick="startQuest()">Do it again</button>'+back();return}
+  var q=ql[qi];
+  app.innerHTML='<span class="lt">Question '+(qi+1)+' of '+ql.length+' &middot; '+esc(ltName(q.lt))+'</span><h2>'+esc(q.q)+'</h2>'+
+  '<textarea id="mine" aria-label="Your answer" placeholder="Write your answer here. Use full sentences."></textarea>'+
+  '<div id="key"></div><button class="go" id="show" onclick="showA()">Check my answer</button>'+back();
+}
+function showA(){var q=ql[qi];var h='<div class="ans"><b>A strong answer includes:</b><ul>';q.a.forEach(function(x){h+='<li>'+esc(x)+'</li>'});h+='</ul></div><p><b>Compare your answer. How did you do?</b></p>'+
+  '<button class="go" onclick="rate(true)">I got it</button><button class="go alt" onclick="rate(false)">Not yet</button>';
+  document.getElementById('key').innerHTML=h;document.getElementById('show').disabled=true}
+function rate(ok){tally(ql[qi].lt,ok);qi++;renderQ()}
+
+/* ---------- 2. Streak Challenge ---------- */
+var g;
+function startGame(){var qs=shuf(D.mc).slice(0,12);g={qs:qs,i:0,streak:0,best:0,score:0,miss:0};renderG()}
+function renderG(){
+  if(g.i>=g.qs.length||g.miss>=3){var done=g.i>=g.qs.length;
+    app.innerHTML='<h2>'+(done?'Round complete':'Round over')+'</h2><div class="stats"><div>Score: '+g.score+'</div><div>Best streak: '+g.best+'</div></div>'+
+    '<p>'+(done?'You made it through all '+g.qs.length+' questions.':'Three misses ended the round. Read the feedback and try again.')+'</p>'+planBox()+'<button class="go" onclick="startGame()">Play again</button>'+back();return}
+  var q=g.qs[g.i];var order=shuf([q.c].concat(q.w));g.cur=q;
+  var h='<div class="stats"><div>Score: '+g.score+'</div><div>Streak: '+g.streak+'</div><div>Misses: '+g.miss+' of 3</div></div><span class="lt">Question '+(g.i+1)+' of '+g.qs.length+' &middot; '+esc(ltName(q.lt))+'</span><h2>'+esc(q.q)+'</h2><div id="opts">';
+  order.forEach(function(o,i){h+='<button class="opt" data-v="'+i+'">'+esc(o)+'</button>'});
+  app.innerHTML=h+'</div><div id="gfb"></div><div id="gnext"></div>'+back();
+  var bs=app.querySelectorAll('.opt');bs.forEach(function(b,i){b.onclick=function(){gpick(b,order[i])}});
+}
+function gpick(b,val){var q=g.cur;var ok=(val===q.c);tally(q.lt,ok);
+  app.querySelectorAll('.opt').forEach(function(x){x.onclick=null;if(x.textContent===q.c)x.className='opt ok'});
+  if(!ok)b.className='opt bad';
+  if(ok){g.streak++;g.score+=10+Math.min(g.streak-1,5)*2;if(g.streak>g.best)g.best=g.streak}else{g.streak=0;g.miss++}
+  document.getElementById('gfb').innerHTML='<div class="fb '+(ok?'ok':'bad')+'" role="status"><b>'+(ok?'Correct. ':'Not quite. ')+'</b>'+esc(q.why)+'</div>';
+  document.getElementById('gnext').innerHTML='<button class="go" onclick="g.i++;renderG()">Next</button>'}
+
+/* ---------- 3. Match-Up ---------- */
+var m;
+function startMatch(){m={all:shuf(D.pairs),round:0,selT:null,selD:null,wrong:0};renderM()}
+function renderM(){
+  var start=m.round*5,set=m.all.slice(start,start+5);
+  if(!set.length){app.innerHTML='<h2>Match-Up finished</h2><p>You matched every pair.</p>'+planBox()+'<button class="go" onclick="startMatch()">Play again</button>'+back();return}
+  m.set=set;m.left=set.length;m.terms=shuf(set.map(function(_,i){return i}));m.defs=shuf(set.map(function(_,i){return i}));m.selT=m.selD=null;
+  var h='<span class="lt">Round '+(m.round+1)+' of '+Math.ceil(m.all.length/5)+'</span><h2>Match each term to what it means</h2><p class="note">Pick a term on the left, then pick its match on the right.</p><div class="match"><div id="mt"></div><div id="md"></div></div><div id="mfb"></div>'+back();
+  app.innerHTML=h;
+  var mt=document.getElementById('mt'),md=document.getElementById('md');
+  m.terms.forEach(function(i){var b=document.createElement('button');b.className='m';b.textContent=set[i].term;b.dataset.i=i;b.onclick=function(){mpick('t',i,b)};mt.appendChild(b)});
+  m.defs.forEach(function(i){var b=document.createElement('button');b.className='m';b.textContent=set[i].def;b.dataset.i=i;b.onclick=function(){mpick('d',i,b)};md.appendChild(b)});
+}
+function mpick(side,i,b){if(b.classList.contains('gone'))return;
+  var box=document.getElementById(side==='t'?'mt':'md');box.querySelectorAll('.m').forEach(function(x){x.classList.remove('sel')});b.classList.add('sel');
+  if(side==='t')m.selT=[i,b];else m.selD=[i,b];
+  if(m.selT&&m.selD){var a=m.selT,c=m.selD;var ok=(a[0]===c[0]);tally(m.set[a[0]].lt,ok);
+    if(ok){[a[1],c[1]].forEach(function(x){x.className='m gone'});m.left--;document.getElementById('mfb').innerHTML='<div class="fb ok" role="status">Correct match.</div>';
+      if(!m.left){document.getElementById('mfb').innerHTML+='<button class="go" onclick="m.round++;renderM()">Next round</button>'}}
+    else{[a[1],c[1]].forEach(function(x){x.className='m wrong'});document.getElementById('mfb').innerHTML='<div class="fb bad" role="status">Not a match. Try again.</div>';
+      setTimeout(function(){[a[1],c[1]].forEach(function(x){if(!x.classList.contains('gone'))x.className='m'})},700)}
+    m.selT=m.selD=null}}
+
+/* ---------- 4. Prove It Case ---------- */
+var cs,cstep;
+function startCase(){cs=D.cases[Math.floor(Math.random()*D.cases.length)];cstep=0;renderC()}
+function renderC(){
+  var h='<h2>'+esc(cs.title)+'</h2><p>'+esc(cs.intro)+' <i>This case is made up for practice.</i></p><div class="ev">';
+  cs.evidence.forEach(function(e){h+='<p><b>Evidence '+e[0]+'.</b> '+esc(e[1])+'</p>'});h+='</div>';
+  h+='<div class="bar">';for(var i=0;i<3;i++)h+='<span class="'+(i<cstep?'done':(i===cstep?'on':''))+'"></span>';h+='</div>';
+  if(cstep===3){app.innerHTML='<h2>'+esc(cs.title)+': done</h2><div class="sum"><p><b>Claim:</b> '+esc(cs.claim.opts[0][0])+'</p><p><b>Reasoning:</b> '+esc(cs.reason.opts[0][0])+'</p></div>'+planBox()+'<button class="go" onclick="startCase()">Try another case</button>'+back();return}
+  if(cstep===1){h+=evStep()}else{h+=chStep(cstep===0?cs.claim:cs.reason,cstep===0?'claim':'reason')}
+  app.innerHTML=h+back();
+}
+function chStep(c,k){var h='<h3>'+esc(c.q)+'</h3><div>';shuf(c.opts.map(function(_,i){return i})).forEach(function(i){h+='<button class="opt" data-i="'+i+'" onclick="cpick('+i+',this)">'+esc(c.opts[i][0])+'</button><div id="cf'+i+'"></div>'});
+  return h+'</div><button class="go" id="cnext" disabled onclick="cstep++;renderC()">Next</button>'}
+function cpick(i,btn){var c=cstep===0?cs.claim:cs.reason;var o=c.opts[i];var cls=o[1]==='best'?'ok':(o[1]==='partial'?'part':'bad');
+  btn.className='opt '+cls;document.getElementById('cf'+i).innerHTML='<div class="fb '+cls+'" role="status">'+esc(o[2])+'</div>';
+  if(o[1]==='best'){tally(cs.lt,true);document.getElementById('cnext').disabled=false;document.querySelectorAll('.opt').forEach(function(b){b.onclick=null})}else{tally(cs.lt,false);btn.onclick=null}}
+function evStep(){var e=cs.evid;var h='<h3>'+esc(e.q)+'</h3><div id="chk">';e.items.forEach(function(it,i){var ev=cs.evidence.filter(function(x){return x[0]===it[0]})[0];
+  h+='<label class="chk"><input type="checkbox" value="'+i+'"><span><b>Evidence '+it[0]+'.</b> '+esc(ev[1])+'</span></label><div id="ef'+i+'"></div>'});
+  return h+'</div><button class="go" onclick="checkEv()">Check</button><div id="evsum"></div><button class="go" id="cnext" disabled onclick="cstep++;renderC()">Next</button>'}
+function checkEv(){var all=true;document.querySelectorAll('#chk input').forEach(function(inp){var i=+inp.value;var it=cs.evid.items[i];var good=(inp.checked===it[1]);if(!good)all=false;
+  document.getElementById('ef'+i).innerHTML='<div class="fb '+(good?'ok':'bad')+'" role="status">'+(good?(it[1]?'Supports the claim. ':'Correctly left out. '):(it[1]?'You missed this one. ':'This one does not belong. '))+esc(it[2])+'</div>'});
+  tally(cs.lt,all);
+  document.getElementById('evsum').innerHTML=all?'<div class="fb ok" role="status"><b>All correct.</b></div>':'<div class="fb part" role="status">Some choices need another look. Change them and press Check again.</div>';
+  if(all)document.getElementById('cnext').disabled=false}
+home();
+</script></body></html>
