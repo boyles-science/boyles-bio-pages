@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Group Project Day 12: Research your case</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@1,500;1,600&display=swap">
+<style>
+/* Shared slide-deck style for Unit 2.5 Muscular System and Unit 2.6 Nervous System lesson decks.
+   Matches the "NotebookLM Lesson - Student Slides" house style already used
+   in Michelle's GATE and AP Biology courses (Canvas Files). Do not fork this
+   file per day; edit here so every day stays consistent. */
+body { margin: 0; }
+a { color: #2b50c8; } a:hover { color: #1e3da3; }
+.slide { width: 1280px; height: 720px; box-sizing: border-box; position: relative;
+  background: #faf9f6; color: #161821; overflow: hidden;
+  font-family: 'Archivo', Arial, Helvetica, sans-serif; padding: 58px 72px 70px; }
+.topline { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #2b50c8; }
+.num { position: absolute; top: 30px; right: 60px; font-size: 100px; font-weight: 800;
+  color: rgba(43,80,200,0.09); line-height: 1; }
+.kicker { font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 800; color: #2b50c8; margin: 0 0 12px; }
+h1 { font-size: 62px; font-weight: 800; line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 18px; }
+h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 22px; }
+p { font-size: 21px; line-height: 1.45; margin: 0 0 14px; }
+ul, ol { margin: 0 0 14px 24px; padding: 0; }
+li { font-size: 21px; line-height: 1.45; margin-bottom: 10px; }
+.saylabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2e8b3d; margin: 18px 0 4px; }
+.say { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-style: italic;
+  font-size: 24px; line-height: 1.45; color: #1e5c2c; margin: 0 0 10px; }
+.dobox { background: #eef2fc; border: 1px solid #ccd5f1; border-radius: 10px;
+  padding: 14px 18px; margin: 16px 0; }
+.dolabel { font-size: 12px; letter-spacing: 0.22em; font-weight: 800; color: #2b50c8; margin: 0 0 4px; }
+.dobox p { margin: 0; font-size: 21px; }
+.prompt { font-family: Consolas, 'Courier New', monospace; font-size: 20px; line-height: 1.4;
+  background: #161821; color: #f4f5f8; padding: 15px 20px; border-radius: 8px; margin: 14px 0; }
+.chips { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+.chip { border: 1.5px solid #d6dae6; border-radius: 999px; padding: 8px 18px;
+  font-size: 17px; background: #ffffff; }
+.chip b { color: #2b50c8; font-weight: 800; }
+.chip.no { border-color: #e3b3b3; background: #fdf1f1; color: #8a2b2b; }
+.chip.no b { color: #b23a3a; }
+.chip.yes { border-color: #b9dcc2; background: #eef8f1; color: #1e5c2c; }
+.chip.yes b { color: #2e8b3d; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+th { text-align: left; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2b50c8; border-bottom: 2px solid #2b50c8; padding: 8px 14px 8px 0; }
+td { font-size: 19px; line-height: 1.4; border-bottom: 1px solid #e4e6ee;
+  padding: 10px 14px 10px 0; vertical-align: top; }
+.cols { display: flex; gap: 44px; }
+.col { flex: 1; min-width: 0; }
+.note { font-size: 17px; color: #6a6f7d; }
+.apflag { font-size: 19px; font-weight: 600; color: #1e5c2c; margin-top: 12px; }
+.foot { position: absolute; bottom: 20px; left: 72px; right: 72px; display: flex;
+  justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: #9195a1; }
+.bignum { font-size: 44px; font-weight: 800; color: #2b50c8; line-height: 1; }
+.demo { position: absolute; top: 54px; right: 72px; background: #2e8b3d; color: #ffffff;
+  font-weight: 800; letter-spacing: 0.14em; font-size: 15px; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 8px; }
+.steps { display: flex; flex-direction: column; gap: 16px; margin: 18px 0; }
+.step { display: flex; gap: 20px; align-items: flex-start; }
+.stepn { font-size: 34px; font-weight: 800; color: #2b50c8; min-width: 46px; line-height: 1.1; }
+.stept { font-size: 24px; line-height: 1.45; }
+.bigp { font-size: 30px; line-height: 1.5; max-width: 1020px; }
+.term { color: #2b50c8; font-weight: 700; }
+.diagram { max-width: 100%; max-height: 340px; display: block; margin: 0 auto; border-radius: 8px; background: #fff; }
+.diagram.svg { padding: 10px; border: 1px solid #e4e6ee; }
+.credit { font-size: 13px; color: #9195a1; text-align: center; margin-top: 6px; }
+
+html, body { height: 100%; background: #16181f; }
+.stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.frame { width: 1280px; height: 720px; transform-origin: center center; box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+.frame .slide { display: none; }
+.frame .slide.active { display: block; }
+.nav { position: fixed; bottom: 14px; right: 18px; z-index: 5;
+  font-family: 'Archivo', Arial, sans-serif; color: #8b90a0; font-size: 14px; }
+.nav button { background: #2b50c8; color: #ffffff; border: 0; border-radius: 6px;
+  padding: 6px 14px; font-size: 14px; cursor: pointer; margin-left: 8px; }
+
+
+.nbcue{position:absolute;top:30px;right:60px;border:2px solid #2b50c8;color:#2b50c8;background:#fff;border-radius:8px;padding:3px 12px;font-size:15px;font-weight:800;letter-spacing:.02em;z-index:5}.nbcue.low{top:96px}.nbcue.bottom{top:auto;bottom:64px;left:72px;right:auto}.exbox{margin-top:10px}.exbox p{font-size:19px;margin:4px 0}</style>
+</head>
+<body>
+<div class="stage"><div class="frame" id="frame">
+<div class="slide active">
+<div class="topline"></div>
+<div class="kicker">Anatomy &amp; Physiology &middot; Unit 2.6 Nervous System &middot; Group Project &middot; Day 12 &middot; Tue, Dec 8</div>
+<h1>Research your case</h1>
+<div class="cols" style="margin-top:8px"><div class="col"><div class="dolabel" style="margin-top:0">Today's job</div><div class="dobox"><p class="bigp" style="font-size:26px">Find at least 3 reliable sources and collect facts in your own words.</p></div></div>
+<div class="col" style="flex:0.7"><div class="dolabel" style="margin-top:0">You need today</div><div class="chips" style="flex-direction:column; align-items:flex-start;"><span class="chip yes"><b>Chromebook</b></span><span class="chip yes"><b>Planning sheet</b></span></div></div></div>
+<div class="foot"><span>Group Project &middot; Day 12 &middot; Tue, Dec 8</span><span>slide 1 of 8</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Where we are</div><h2>The project, day by day</h2>
+<table style="table-layout:fixed;font-size:17px"><tr><td style="background:#e6e6e6;color:#111;text-align:center;font-weight:500">&#10003; Day 11<br><span style="font-size:15px">Mon, Dec 7</span><br><span style="font-size:17px">Choose + plan</span></td><td style="background:#1b1b1b;color:#fff;text-align:center;font-weight:700">&#9654; Day 12<br><span style="font-size:15px">Tue, Dec 8</span><br><span style="font-size:17px">Research</span></td><td style="background:#ffffff;color:#111;text-align:center;font-weight:500">Day 13<br><span style="font-size:15px">Wed, Dec 9</span><br><span style="font-size:17px">Build</span></td><td style="background:#ffffff;color:#111;text-align:center;font-weight:500">Day 14<br><span style="font-size:15px">Thu, Dec 10</span><br><span style="font-size:17px">Write + time</span></td><td style="background:#ffffff;color:#111;text-align:center;font-weight:500">Day 15<br><span style="font-size:15px">Fri, Dec 11</span><br><span style="font-size:17px">Rehearse</span></td><td style="background:#ffffff;color:#111;text-align:center;font-weight:500">Day 16<br><span style="font-size:15px">Mon, Dec 14</span><br><span style="font-size:17px">Submit + CER</span></td><td style="background:#ffffff;color:#111;text-align:center;font-weight:500">Day 17<br><span style="font-size:15px">Tue, Dec 15</span><br><span style="font-size:17px">Present</span></td></tr></table>
+<table style="font-size:17px;margin-top:10px"><tr><th>Day</th><th>What it is for</th></tr><tr><td>Day 11: Choose + plan</td><td>Pick a case, pick a format, and fill in the planning sheet.</td></tr><tr><td><b>Day 12: Research</b></td><td><b>Find at least 3 reliable sources and collect facts in your own words.</b></td></tr><tr><td>Day 13: Build</td><td>Make your labeled model and your slides, poster, or video.</td></tr><tr><td>Day 14: Write + time</td><td>Write your 3-minute talk and practice it with a timer. Sign up today.</td></tr><tr><td>Day 15: Rehearse</td><td>Rehearse for another group. Give feedback and get feedback.</td></tr><tr><td>Day 16: Submit + CER</td><td>Submit everything on Canvas. Then write your individual CER alone.</td></tr><tr><td>Day 17: Present</td><td>Present your case. Listen to the other groups.</td></tr></table>
+<p class="note">Today is Day 12 of 7. The presentation is Tuesday, Dec 15.</p>
+<div class="foot"><span>Group Project &middot; Day 12 &middot; Tue, Dec 8</span><span>slide 2 of 8</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Remember from earlier days</div><h2>What you already have</h2><ul><li>Day 11: you chose a case and a format. Your planning sheet is started.</li></ul>
+<div class="foot"><span>Group Project &middot; Day 12 &middot; Tue, Dec 8</span><span>slide 3 of 8</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="demo">Today</div><div class="kicker">Day 12</div><h2>Research your case</h2><div class="steps" style="gap:10px; margin:10px 0"><div class="step"><div class="stepn">1</div><div class="stept">Open your planning sheet.</div></div><div class="step"><div class="stepn">2</div><div class="stept">Find at least 3 reliable sources. Name the organization behind each one.</div></div><div class="step"><div class="stepn">3</div><div class="stept">Write facts in your own words in a fact table.</div></div><div class="step"><div class="stepn">4</div><div class="stept">Find what the person feels or does.</div></div></div>
+<div class="foot"><span>Group Project &middot; Day 12 &middot; Tue, Dec 8</span><span>slide 4 of 8</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Reliable sources</div><h2>Where to look</h2><div class="cols"><div class="col"><div class="dolabel" style="margin-top:0">Good sources</div><ul><li>National Institutes of Health (NIH)</li><li>MedlinePlus</li><li>Centers for Disease Control and Prevention (CDC)</li><li>A medical center or university hospital</li></ul></div>
+<div class="col"><div class="dolabel" style="margin-top:0">Not enough on their own</div><ul><li>A blog or a forum post</li><li>A video with no named organization</li><li>A page that sells a product</li></ul></div></div>
+<p class="note">Name the organization behind every source. You need at least 3.</p>
+<div class="foot"><span>Group Project &middot; Day 12 &middot; Tue, Dec 8</span><span>slide 5 of 8</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Collect your facts</div><h2>Use a fact table</h2><table ><tr><th>Fact (my own words)</th><th>Source organization</th><th>What the person feels or does</th></tr><tr><td>Example: the myelin on axons is damaged.</td><td>Example: NIH</td><td>Example: numbness or weak legs</td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></table><p class="note">Do not copy sentences. Read, close the page, then write the fact from memory.</p>
+<div class="foot"><span>Group Project &middot; Day 12 &middot; Tue, Dec 8</span><span>slide 6 of 8</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Sign up</div><h2>Your presentation time</h2><p class="bigp" style="font-size:24px">Sign up for a presentation time in your Canvas calendar. Open Calendar, then Find Appointment. One person signs up for the whole group, and that same person submits for the group.</p><p class="note">Sign up by the end of class on Thu, Dec 10 (Day 14).</p>
+<div class="foot"><span>Group Project &middot; Day 12 &middot; Tue, Dec 8</span><span>slide 7 of 8</span></div>
+</div>
+<div class="slide">
+<div class="topline"></div>
+<div class="kicker">Done today looks like</div><h2>Check before you leave</h2><ul><li>At least 3 reliable sources, with the organization named.</li><li>At least 3 facts in your own words.</li><li>What the person feels or does.</li></ul><p class="note">Next: Day 13: build your model and your project.</p>
+<div class="foot"><span>Group Project &middot; Day 12 &middot; Tue, Dec 8</span><span>slide 8 of 8</span></div>
+</div>
+</div></div>
+<div class="nav"><span id="counter"></span>
+  <button onclick="step(-1)">&#8592;</button>
+  <button onclick="step(1)">&#8594;</button>
+</div>
+<script>
+// Shared slide-deck script for Unit 2.5 Muscular System and Unit 2.6 Nervous System lesson decks. Do not fork per day.
+var slides = document.querySelectorAll(".slide");
+var i = 0;
+function show(n) {
+  slides[i].classList.remove("active");
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides[i].classList.add("active");
+  var c = document.getElementById("counter");
+  if (c) c.textContent = (i + 1) + " / " + slides.length;
+}
+function step(d) { show(i + d); }
+function fit() {
+  var s = Math.min(window.innerWidth / 1300, window.innerHeight / 740);
+  document.getElementById("frame").style.transform = "scale(" + s + ")";
+}
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") step(1);
+  if (e.key === "ArrowLeft" || e.key === "PageUp") step(-1);
+});
+/* clicker support */
+document.addEventListener("keydown", function (e) {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  var t = e.target, tag = t && t.tagName;
+  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || tag === "BUTTON" || tag === "A" || (t && t.isContentEditable)) return;
+  if (e.key === "Enter" || e.key === "ArrowDown") { e.preventDefault(); step(1); }
+  if (e.key === "Backspace" || e.key === "ArrowUp") { e.preventDefault(); step(-1); }
+});
+document.getElementById("frame").addEventListener("click", function (e) {
+  if (e.target.closest("a, button, input, textarea, select, summary, label, details, [onclick]")) return;
+  if (String(window.getSelection())) return;
+  var r = this.getBoundingClientRect();
+  step(e.clientX < r.left + r.width * 0.2 ? -1 : 1);
+});
+window.addEventListener("resize", fit);
+fit(); show(0);
+
+
+</script>
+</body>
+</html>
