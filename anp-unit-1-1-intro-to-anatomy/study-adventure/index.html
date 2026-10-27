@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intro to Anatomy: Choose Your Review</title>
+<style>
+:root{--ink:#161821;--bg:#fff;--blue:#2b50c8;--ok:#1b6e2f;--okbg:#e6f4ea;--bad:#a12a1a;--badbg:#fdeceb;--part:#7a5a00;--partbg:#fff4d6;--line:#9aa3b8}
+*{box-sizing:border-box}body{margin:0;font:18px/1.45 Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:26px;margin:4px 0 2px}h2{font-size:21px;margin:16px 0 6px}h3{font-size:18px;margin:12px 0 4px}
+.tag{display:inline-block;background:var(--blue);color:#fff;border-radius:6px;padding:2px 10px;font-size:15px;font-weight:700;letter-spacing:.04em}
+.note{color:#444;font-size:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+.card{border:2px solid var(--line);border-radius:10px;padding:12px 14px;background:#fff;text-align:left;font:inherit;cursor:pointer;color:inherit}
+.card:hover,.card:focus{border-color:var(--blue);outline:none}
+.card b{display:block;font-size:19px;color:var(--blue);margin-bottom:2px}
+.card span{font-size:16px;color:#333}
+.opt{display:block;width:100%;text-align:left;font:inherit;background:#fff;border:2px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0;cursor:pointer;color:inherit}
+.opt:hover{border-color:var(--blue)}
+.fb{margin:6px 0 2px;padding:8px 12px;border-radius:8px;font-size:17px}
+.ok{background:var(--okbg);border:2px solid var(--ok)}.bad{background:var(--badbg);border:2px solid var(--bad)}.part{background:var(--partbg);border:2px solid var(--part)}
+.opt.ok,.opt.bad,.opt.part{cursor:default}
+.ev{border:1.5px solid #bbb;border-radius:8px;padding:10px 14px;margin:10px 0}.ev p{margin:6px 0}.ev b{color:var(--blue)}
+label.chk{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0}
+label.chk input{width:22px;height:22px;margin-top:3px}
+button.go{font:inherit;font-weight:700;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:10px 18px;margin:10px 8px 10px 0;cursor:pointer}
+button.go.alt{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+button.go:disabled{background:#aab;border-color:#aab;color:#fff;cursor:not-allowed}
+textarea{width:100%;font:inherit;border:2px solid var(--line);border-radius:8px;padding:8px;min-height:70px}
+.ans{border:2px solid var(--ok);background:var(--okbg);border-radius:8px;padding:8px 12px;margin:8px 0}
+.sum{border:2px solid var(--blue);border-radius:10px;padding:12px 16px;margin:12px 0}
+.bar{display:flex;gap:6px;margin:8px 0}.bar span{flex:1;height:8px;border-radius:4px;background:#d5d9e6}.bar span.on{background:var(--blue)}.bar span.done{background:var(--ok)}
+.stats{display:flex;gap:18px;flex-wrap:wrap;font-weight:700;margin:8px 0}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.m{font:inherit;text-align:left;border:2px solid var(--line);background:#fff;border-radius:8px;padding:9px 11px;cursor:pointer;color:inherit}
+.m.sel{border-color:var(--blue);background:#eef2ff}.m.gone{border-color:var(--ok);background:var(--okbg);cursor:default}.m.wrong{border-color:var(--bad);background:var(--badbg)}
+.lt{font-size:14px;color:#555}
+table.plan{border-collapse:collapse;width:100%;font-size:16px}table.plan td,table.plan th{border:1px solid #bbb;padding:6px 8px;text-align:left}
+a{color:var(--blue)}
+@media (max-width:520px){.match{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<span class="tag">Anatomy and Physiology · Unit 1.1 Intro to Anatomy</span>
+<h1>Intro to Anatomy: Choose Your Review</h1>
+<p class="note" id="lead">Pick how you want to study. All four paths cover the same learning targets. This does not count toward your grade. Nothing you do here is saved or sent anywhere.</p>
+<div id="app" aria-live="polite"></div>
+</div>
+<script>
+"use strict";
+var D={"lts": [{"id": "LT1", "name": "Levels of organization"}, {"id": "LT2", "name": "How the levels keep the body alive and healthy"}, {"id": "LT3", "name": "How structure fits function"}], "mc": [{"lt": "LT1", "q": "Which list goes from smallest to largest?", "c": "Cell, tissue, organ, organ system, organism", "w": ["Tissue, cell, organ, organ system, organism", "Cell, organ, tissue, organ system, organism", "Organ, tissue, cell, organism, organ system"], "why": "Cells form tissues. Tissues form organs. Organs work together in organ systems, and systems make up an organism."}, {"lt": "LT1", "q": "A group of similar cells that work together is a...", "c": "tissue", "w": ["organ", "organ system", "organelle"], "why": "A tissue is a group of similar cells doing one job."}, {"lt": "LT1", "q": "The stomach is made of several tissues that work together. What level of organization is the stomach?", "c": "Organ", "w": ["Tissue", "Cell", "Organ system"], "why": "An organ is made of two or more tissue types working together."}, {"lt": "LT1", "q": "The heart, blood vessels, and blood work together to move materials. What level is this group?", "c": "Organ system", "w": ["Organ", "Tissue", "Organelle"], "why": "An organ system is a group of organs that share a job."}, {"lt": "LT1", "q": "Which is the smallest living unit of the body?", "c": "The cell", "w": ["The atom", "The tissue", "The organ"], "why": "The cell is the smallest unit that is alive."}, {"lt": "LT2", "q": "Anatomy is the study of structure. What is physiology?", "c": "The study of how body parts work", "w": ["The study of body parts' locations", "The study of diseases only", "The study of cells only"], "why": "Anatomy is structure. Physiology is function."}, {"lt": "LT2", "q": "Which is a survival need of the body?", "c": "Oxygen", "w": ["Sunlight", "Vitamin pills", "Noise"], "why": "Survival needs include food, water, oxygen, a steady body temperature, and the right pressure."}, {"lt": "LT2", "q": "Body temperature rises. Sweating starts and the temperature falls back toward normal. What kind of loop is this?", "c": "Negative feedback", "w": ["Positive feedback", "No feedback", "A mutation"], "why": "Negative feedback reverses a change and returns the body toward its set point."}, {"lt": "LT2", "q": "What is homeostasis?", "c": "Keeping conditions inside the body steady", "w": ["Making the body temperature change", "Growing new cells", "Fighting germs"], "why": "Homeostasis means steady conditions inside the body, even when conditions outside change."}, {"lt": "LT2", "q": "Blood sugar drops too low. Which organ system uses hormones to help bring it back up?", "c": "The endocrine system", "w": ["The skeletal system", "The integumentary system", "The respiratory system"], "why": "Hormones such as glucagon raise blood sugar. Hormones are part of the endocrine system."}, {"lt": "LT2", "q": "A cell moves a substance from low concentration to high concentration. This uses energy. What is it called?", "c": "Active transport", "w": ["Diffusion", "Osmosis", "Facilitated diffusion"], "why": "Active transport moves substances against the concentration gradient and needs ATP."}, {"lt": "LT2", "q": "Diffusion moves a substance...", "c": "from high concentration to low concentration, with no energy needed", "w": ["from low to high, using energy", "from high to low, using energy", "only through the nucleus"], "why": "Diffusion is passive. Particles spread out down the concentration gradient."}, {"lt": "LT3", "q": "In anatomical position, the palms face...", "c": "forward", "w": ["backward", "toward each other", "down"], "why": "Anatomical position is standing upright, facing forward, with palms forward."}, {"lt": "LT3", "q": "The knee is ___ to the ankle.", "c": "proximal (closer to the trunk)", "w": ["distal (farther from the trunk)", "medial", "posterior"], "why": "Proximal means closer to the point of attachment. The knee is closer to the trunk than the ankle."}, {"lt": "LT3", "q": "The nose is ___ to the ears.", "c": "medial (closer to the midline)", "w": ["lateral", "superior", "posterior"], "why": "Medial means toward the midline. Lateral means away from it."}, {"lt": "LT3", "q": "Which cavity contains the heart and lungs?", "c": "The thoracic cavity", "w": ["The abdominal cavity", "The cranial cavity", "The pelvic cavity"], "why": "The thoracic cavity is the chest cavity. The heart sits in the pericardial cavity inside it."}, {"lt": "LT3", "q": "Which organelle makes most of the cell's ATP?", "c": "Mitochondrion", "w": ["Nucleus", "Ribosome", "Golgi apparatus"], "why": "Mitochondria make ATP. The nucleus holds the DNA."}, {"lt": "LT3", "q": "Which organelle builds proteins?", "c": "Ribosome", "w": ["Lysosome", "Mitochondrion", "Cell membrane"], "why": "Ribosomes read mRNA and build proteins."}, {"lt": "LT3", "q": "A cell that moves a lot of materials has many mitochondria. What does this show?", "c": "Structure matches function. Cells that use more energy need more ATP.", "w": ["Mitochondria make proteins.", "Mitochondria hold the DNA.", "Mitochondria are only in muscle."], "why": "Cells that do more work need more energy, so they have more mitochondria."}], "sa": [{"lt": "LT1", "q": "List the levels of organization from the smallest to the largest. Give one example of a body part at each level.", "a": ["Cell, tissue, organ, organ system, organism.", "Examples from your notes count (cell: a muscle cell; tissue: muscle tissue; organ: heart; system: circulatory system)."]}, {"lt": "LT1", "q": "Explain how an organ is different from a tissue.", "a": ["A tissue is a group of similar cells doing one job.", "An organ is made of two or more different tissues working together."]}, {"lt": "LT2", "q": "Explain the difference between anatomy and physiology. Give an example of each.", "a": ["Anatomy is structure. Physiology is function.", "Example: the heart's four chambers (anatomy); the heart pumping blood (physiology)."]}, {"lt": "LT2", "q": "Define homeostasis. Why must the body keep it?", "a": ["Homeostasis means steady conditions inside the body.", "Cells only work well within a narrow range, so the body must keep conditions steady to stay alive."]}, {"lt": "LT2", "q": "Describe how a negative feedback loop works. Use a body example.", "a": ["A receptor senses a change.", "A control center compares it to a set point.", "An effector acts to reverse the change.", "Example: sweating when you are hot."]}, {"lt": "LT2", "q": "Compare passive transport and active transport.", "a": ["Passive transport needs no energy; substances move from high to low concentration.", "Active transport needs energy (ATP); substances can move from low to high concentration."]}, {"lt": "LT2", "q": "Describe how protein synthesis moves information from DNA to a protein.", "a": ["DNA is copied into mRNA in the nucleus (transcription).", "The mRNA moves to a ribosome.", "The ribosome builds the protein (translation)."]}, {"lt": "LT3", "q": "Use three directional terms to describe where your elbow is in relation to your hand and your shoulder.", "a": ["Example: The elbow is proximal to the hand and distal to the shoulder.", "The elbow is on the upper limb, between the shoulder and the hand."]}, {"lt": "LT3", "q": "Name the major body cavities. Name one organ in each.", "a": ["Cranial: brain.", "Spinal (vertebral): spinal cord.", "Thoracic: heart and lungs.", "Abdominal: stomach and liver.", "Pelvic: bladder."]}, {"lt": "LT3", "q": "Pick two organelles. Describe the job of each and tell how its structure fits the job.", "a": ["Example: Mitochondrion makes ATP. Folded inner membranes give more room for energy-making.", "Example: Nucleus holds DNA. The envelope protects it.", "Other correct pairs from your notes count."]}], "pairs": [{"lt": "LT1", "term": "Cell", "def": "The smallest living unit"}, {"lt": "LT1", "term": "Tissue", "def": "A group of similar cells doing one job"}, {"lt": "LT1", "term": "Organ", "def": "Two or more tissues working together"}, {"lt": "LT1", "term": "Organ system", "def": "A group of organs that share a job"}, {"lt": "LT2", "term": "Anatomy", "def": "The study of body structure"}, {"lt": "LT2", "term": "Physiology", "def": "The study of how body parts work"}, {"lt": "LT2", "term": "Homeostasis", "def": "Keeping conditions inside the body steady"}, {"lt": "LT2", "term": "Negative feedback", "def": "A change is reversed to return to the set point"}, {"lt": "LT2", "term": "Diffusion", "def": "Particles spread from high to low concentration"}, {"lt": "LT2", "term": "Active transport", "def": "Moves substances against a gradient, using ATP"}, {"lt": "LT2", "term": "Osmosis", "def": "Diffusion of water across a membrane"}, {"lt": "LT3", "term": "Superior", "def": "Toward the head"}, {"lt": "LT3", "term": "Inferior", "def": "Toward the feet"}, {"lt": "LT3", "term": "Anterior", "def": "Toward the front of the body"}, {"lt": "LT3", "term": "Posterior", "def": "Toward the back of the body"}, {"lt": "LT3", "term": "Medial", "def": "Toward the midline"}, {"lt": "LT3", "term": "Lateral", "def": "Away from the midline"}, {"lt": "LT3", "term": "Mitochondrion", "def": "Makes most of the cell's ATP"}, {"lt": "LT3", "term": "Ribosome", "def": "Builds proteins"}, {"lt": "LT3", "term": "Thoracic cavity", "def": "Holds the heart and lungs"}], "cases": [{"lt": "LT2", "title": "A hot afternoon", "intro": "A student runs the mile on a hot day.", "evidence": [["A", "Before the run, the student's body temperature is 37 degrees C."], ["B", "During the run, the temperature climbs to 38.5 degrees C. The student starts to sweat, and blood vessels in the skin widen."], ["C", "After resting in the shade, the student's temperature returns to 37 degrees C and sweating stops."], ["D", "The student's shoe size is 8."]], "claim": {"q": "Which claim does the evidence support?", "opts": [["The body uses negative feedback to keep temperature near its set point.", "best", "Correct. A change was reversed and the body returned to the set point."], ["The body uses positive feedback to keep temperature steady.", "bad", "Not quite. Positive feedback makes a change bigger. Here the change was reversed."], ["The body does not control its temperature.", "bad", "Not quite. The temperature returned to 37 degrees C."], ["Sweating caused the temperature to rise.", "bad", "Not quite. Sweating came after the temperature rose, and it helped cool the body."]]}, "evid": {"q": "Pick every piece of evidence that supports the claim.", "items": [["A", true, "This gives the starting point (set point)."], ["B", true, "This shows the change and the body's responses."], ["C", true, "The temperature returned to the set point, and the responses stopped."], ["D", false, "Shoe size has nothing to do with temperature control."]]}, "reason": {"q": "Which reasoning links the evidence to the claim?", "opts": [["The body senses a rise in temperature and responds by sweating and widening skin blood vessels. These responses lower the temperature back to the set point, and then they stop. A change that is reversed is negative feedback.", "best", "Correct. Sense, respond, reverse, return to the set point."], ["The body senses a rise in temperature and responds by raising it more.", "bad", "That would be positive feedback, and the temperature did not keep rising."], ["The temperature went up and then down, so the body is not controlling it.", "bad", "The change was reversed by the body's responses, which is control."], ["Sweating lowers the temperature, so sweating is the only part of the loop.", "partial", "Part is right. A loop also needs a receptor and a control center that sense the change."]]}}]};
+var app=document.getElementById('app');
+var results={};  // lt id -> [right, tried]
+D.lts.forEach(function(l){results[l.id]=[0,0]});
+var used={};
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function shuf(a){a=a.slice();for(var j=a.length-1;j>0;j--){var r=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[r];a[r]=t}return a}
+function tally(lt,ok){if(!results[lt])results[lt]=[0,0];results[lt][1]++;if(ok)results[lt][0]++}
+function ltName(id){var n=id;D.lts.forEach(function(l){if(l.id===id)n=l.id+': '+l.name});return n}
+function home(){
+  var h='<h2>Choose your study path</h2><div class="cards">'+
+  '<button class="card" onclick="startQuest()"><b>1. Question Quest</b><span>Short-answer questions, like a traditional review. Write your answer, then check it.</span></button>'+
+  '<button class="card" onclick="startGame()"><b>2. Streak Challenge</b><span>A game. Answer 12 questions. Build a streak. Three misses and the round ends.</span></button>'+
+  '<button class="card" onclick="startMatch()"><b>3. Match-Up</b><span>Match each term to what it means. Five pairs a round.</span></button>'+
+  '<button class="card" onclick="startCase()"><b>4. Prove It Case</b><span>Read a made-up case. Build a claim, pick the evidence, and explain your reasoning.</span></button>'+
+  '</div><p class="note">Not sure where to start? Take the practice test in Canvas first. A miss on a learning target tells you which path to try. Come back here as often as you like.</p>'+
+  planBox();
+  app.innerHTML=h;window.scrollTo(0,0);
+}
+function planBox(){
+  var any=false,rows='';
+  D.lts.forEach(function(l){var r=results[l.id];if(r[1]>0)any=true;
+    var pct=r[1]?Math.round(100*r[0]/r[1]):null;
+    var s=pct===null?'Not tried yet':(pct>=85?'Strong':(pct>=60?'Getting there':'Needs more practice'));
+    rows+='<tr><td>'+esc(l.id+': '+l.name)+'</td><td>'+(r[1]?r[0]+' of '+r[1]:'-')+'</td><td>'+s+'</td></tr>'});
+  return '<div class="sum"><h3>My study plan</h3><table class="plan"><tr><th>Learning target</th><th>Right so far</th><th>Where you are</th></tr>'+rows+'</table>'+
+   (any?'<p class="note">Pick a path again and work on the targets that say "Needs more practice" or "Not tried yet." This chart resets when you close the page.</p>':'<p class="note">This chart fills in as you work. It resets when you close the page.</p>')+'</div>';
+}
+function back(){return '<button class="go alt" onclick="home()">Back to the four paths</button>'}
+
+/* ---------- 1. Question Quest ---------- */
+var qi=0,ql=[];
+function startQuest(){ql=shuf(D.sa);qi=0;renderQ()}
+function renderQ(){
+  if(qi>=ql.length){app.innerHTML='<h2>Question Quest finished</h2><p>You answered '+ql.length+' questions.</p>'+planBox()+'<button class="go" onclick="startQuest()">Do it again</button>'+back();return}
+  var q=ql[qi];
+  app.innerHTML='<span class="lt">Question '+(qi+1)+' of '+ql.length+' &middot; '+esc(ltName(q.lt))+'</span><h2>'+esc(q.q)+'</h2>'+
+  '<textarea id="mine" aria-label="Your answer" placeholder="Write your answer here. Use full sentences."></textarea>'+
+  '<div id="key"></div><button class="go" id="show" onclick="showA()">Check my answer</button>'+back();
+}
+function showA(){var q=ql[qi];var h='<div class="ans"><b>A strong answer includes:</b><ul>';q.a.forEach(function(x){h+='<li>'+esc(x)+'</li>'});h+='</ul></div><p><b>Compare your answer. How did you do?</b></p>'+
+  '<button class="go" onclick="rate(true)">I got it</button><button class="go alt" onclick="rate(false)">Not yet</button>';
+  document.getElementById('key').innerHTML=h;document.getElementById('show').disabled=true}
+function rate(ok){tally(ql[qi].lt,ok);qi++;renderQ()}
+
+/* ---------- 2. Streak Challenge ---------- */
+var g;
+function startGame(){var qs=shuf(D.mc).slice(0,12);g={qs:qs,i:0,streak:0,best:0,score:0,miss:0};renderG()}
+function renderG(){
+  if(g.i>=g.qs.length||g.miss>=3){var done=g.i>=g.qs.length;
+    app.innerHTML='<h2>'+(done?'Round complete':'Round over')+'</h2><div class="stats"><div>Score: '+g.score+'</div><div>Best streak: '+g.best+'</div></div>'+
+    '<p>'+(done?'You made it through all '+g.qs.length+' questions.':'Three misses ended the round. Read the feedback and try again.')+'</p>'+planBox()+'<button class="go" onclick="startGame()">Play again</button>'+back();return}
+  var q=g.qs[g.i];var order=shuf([q.c].concat(q.w));g.cur=q;
+  var h='<div class="stats"><div>Score: '+g.score+'</div><div>Streak: '+g.streak+'</div><div>Misses: '+g.miss+' of 3</div></div><span class="lt">Question '+(g.i+1)+' of '+g.qs.length+' &middot; '+esc(ltName(q.lt))+'</span><h2>'+esc(q.q)+'</h2><div id="opts">';
+  order.forEach(function(o,i){h+='<button class="opt" data-v="'+i+'">'+esc(o)+'</button>'});
+  app.innerHTML=h+'</div><div id="gfb"></div><div id="gnext"></div>'+back();
+  var bs=app.querySelectorAll('.opt');bs.forEach(function(b,i){b.onclick=function(){gpick(b,order[i])}});
+}
+function gpick(b,val){var q=g.cur;var ok=(val===q.c);tally(q.lt,ok);
+  app.querySelectorAll('.opt').forEach(function(x){x.onclick=null;if(x.textContent===q.c)x.className='opt ok'});
+  if(!ok)b.className='opt bad';
+  if(ok){g.streak++;g.score+=10+Math.min(g.streak-1,5)*2;if(g.streak>g.best)g.best=g.streak}else{g.streak=0;g.miss++}
+  document.getElementById('gfb').innerHTML='<div class="fb '+(ok?'ok':'bad')+'" role="status"><b>'+(ok?'Correct. ':'Not quite. ')+'</b>'+esc(q.why)+'</div>';
+  document.getElementById('gnext').innerHTML='<button class="go" onclick="g.i++;renderG()">Next</button>'}
+
+/* ---------- 3. Match-Up ---------- */
+var m;
+function startMatch(){m={all:shuf(D.pairs),round:0,selT:null,selD:null,wrong:0};renderM()}
+function renderM(){
+  var start=m.round*5,set=m.all.slice(start,start+5);
+  if(!set.length){app.innerHTML='<h2>Match-Up finished</h2><p>You matched every pair.</p>'+planBox()+'<button class="go" onclick="startMatch()">Play again</button>'+back();return}
+  m.set=set;m.left=set.length;m.terms=shuf(set.map(function(_,i){return i}));m.defs=shuf(set.map(function(_,i){return i}));m.selT=m.selD=null;
+  var h='<span class="lt">Round '+(m.round+1)+' of '+Math.ceil(m.all.length/5)+'</span><h2>Match each term to what it means</h2><p class="note">Pick a term on the left, then pick its match on the right.</p><div class="match"><div id="mt"></div><div id="md"></div></div><div id="mfb"></div>'+back();
+  app.innerHTML=h;
+  var mt=document.getElementById('mt'),md=document.getElementById('md');
+  m.terms.forEach(function(i){var b=document.createElement('button');b.className='m';b.textContent=set[i].term;b.dataset.i=i;b.onclick=function(){mpick('t',i,b)};mt.appendChild(b)});
+  m.defs.forEach(function(i){var b=document.createElement('button');b.className='m';b.textContent=set[i].def;b.dataset.i=i;b.onclick=function(){mpick('d',i,b)};md.appendChild(b)});
+}
+function mpick(side,i,b){if(b.classList.contains('gone'))return;
+  var box=document.getElementById(side==='t'?'mt':'md');box.querySelectorAll('.m').forEach(function(x){x.classList.remove('sel')});b.classList.add('sel');
+  if(side==='t')m.selT=[i,b];else m.selD=[i,b];
+  if(m.selT&&m.selD){var a=m.selT,c=m.selD;var ok=(a[0]===c[0]);tally(m.set[a[0]].lt,ok);
+    if(ok){[a[1],c[1]].forEach(function(x){x.className='m gone'});m.left--;document.getElementById('mfb').innerHTML='<div class="fb ok" role="status">Correct match.</div>';
+      if(!m.left){document.getElementById('mfb').innerHTML+='<button class="go" onclick="m.round++;renderM()">Next round</button>'}}
+    else{[a[1],c[1]].forEach(function(x){x.className='m wrong'});document.getElementById('mfb').innerHTML='<div class="fb bad" role="status">Not a match. Try again.</div>';
+      setTimeout(function(){[a[1],c[1]].forEach(function(x){if(!x.classList.contains('gone'))x.className='m'})},700)}
+    m.selT=m.selD=null}}
+
+/* ---------- 4. Prove It Case ---------- */
+var cs,cstep;
+function startCase(){cs=D.cases[Math.floor(Math.random()*D.cases.length)];cstep=0;renderC()}
+function renderC(){
+  var h='<h2>'+esc(cs.title)+'</h2><p>'+esc(cs.intro)+' <i>This case is made up for practice.</i></p><div class="ev">';
+  cs.evidence.forEach(function(e){h+='<p><b>Evidence '+e[0]+'.</b> '+esc(e[1])+'</p>'});h+='</div>';
+  h+='<div class="bar">';for(var i=0;i<3;i++)h+='<span class="'+(i<cstep?'done':(i===cstep?'on':''))+'"></span>';h+='</div>';
+  if(cstep===3){app.innerHTML='<h2>'+esc(cs.title)+': done</h2><div class="sum"><p><b>Claim:</b> '+esc(cs.claim.opts[0][0])+'</p><p><b>Reasoning:</b> '+esc(cs.reason.opts[0][0])+'</p></div>'+planBox()+'<button class="go" onclick="startCase()">Try another case</button>'+back();return}
+  if(cstep===1){h+=evStep()}else{h+=chStep(cstep===0?cs.claim:cs.reason,cstep===0?'claim':'reason')}
+  app.innerHTML=h+back();
+}
+function chStep(c,k){var h='<h3>'+esc(c.q)+'</h3><div>';shuf(c.opts.map(function(_,i){return i})).forEach(function(i){h+='<button class="opt" data-i="'+i+'" onclick="cpick('+i+',this)">'+esc(c.opts[i][0])+'</button><div id="cf'+i+'"></div>'});
+  return h+'</div><button class="go" id="cnext" disabled onclick="cstep++;renderC()">Next</button>'}
+function cpick(i,btn){var c=cstep===0?cs.claim:cs.reason;var o=c.opts[i];var cls=o[1]==='best'?'ok':(o[1]==='partial'?'part':'bad');
+  btn.className='opt '+cls;document.getElementById('cf'+i).innerHTML='<div class="fb '+cls+'" role="status">'+esc(o[2])+'</div>';
+  if(o[1]==='best'){tally(cs.lt,true);document.getElementById('cnext').disabled=false;document.querySelectorAll('.opt').forEach(function(b){b.onclick=null})}else{tally(cs.lt,false);btn.onclick=null}}
+function evStep(){var e=cs.evid;var h='<h3>'+esc(e.q)+'</h3><div id="chk">';e.items.forEach(function(it,i){var ev=cs.evidence.filter(function(x){return x[0]===it[0]})[0];
+  h+='<label class="chk"><input type="checkbox" value="'+i+'"><span><b>Evidence '+it[0]+'.</b> '+esc(ev[1])+'</span></label><div id="ef'+i+'"></div>'});
+  return h+'</div><button class="go" onclick="checkEv()">Check</button><div id="evsum"></div><button class="go" id="cnext" disabled onclick="cstep++;renderC()">Next</button>'}
+function checkEv(){var all=true;document.querySelectorAll('#chk input').forEach(function(inp){var i=+inp.value;var it=cs.evid.items[i];var good=(inp.checked===it[1]);if(!good)all=false;
+  document.getElementById('ef'+i).innerHTML='<div class="fb '+(good?'ok':'bad')+'" role="status">'+(good?(it[1]?'Supports the claim. ':'Correctly left out. '):(it[1]?'You missed this one. ':'This one does not belong. '))+esc(it[2])+'</div>'});
+  tally(cs.lt,all);
+  document.getElementById('evsum').innerHTML=all?'<div class="fb ok" role="status"><b>All correct.</b></div>':'<div class="fb part" role="status">Some choices need another look. Change them and press Check again.</div>';
+  if(all)document.getElementById('cnext').disabled=false}
+home();
+</script></body></html>

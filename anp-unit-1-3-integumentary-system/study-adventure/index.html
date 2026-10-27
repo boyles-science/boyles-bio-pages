@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integumentary System: Choose Your Review</title>
+<style>
+:root{--ink:#161821;--bg:#fff;--blue:#2b50c8;--ok:#1b6e2f;--okbg:#e6f4ea;--bad:#a12a1a;--badbg:#fdeceb;--part:#7a5a00;--partbg:#fff4d6;--line:#9aa3b8}
+*{box-sizing:border-box}body{margin:0;font:18px/1.45 Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:26px;margin:4px 0 2px}h2{font-size:21px;margin:16px 0 6px}h3{font-size:18px;margin:12px 0 4px}
+.tag{display:inline-block;background:var(--blue);color:#fff;border-radius:6px;padding:2px 10px;font-size:15px;font-weight:700;letter-spacing:.04em}
+.note{color:#444;font-size:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+.card{border:2px solid var(--line);border-radius:10px;padding:12px 14px;background:#fff;text-align:left;font:inherit;cursor:pointer;color:inherit}
+.card:hover,.card:focus{border-color:var(--blue);outline:none}
+.card b{display:block;font-size:19px;color:var(--blue);margin-bottom:2px}
+.card span{font-size:16px;color:#333}
+.opt{display:block;width:100%;text-align:left;font:inherit;background:#fff;border:2px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0;cursor:pointer;color:inherit}
+.opt:hover{border-color:var(--blue)}
+.fb{margin:6px 0 2px;padding:8px 12px;border-radius:8px;font-size:17px}
+.ok{background:var(--okbg);border:2px solid var(--ok)}.bad{background:var(--badbg);border:2px solid var(--bad)}.part{background:var(--partbg);border:2px solid var(--part)}
+.opt.ok,.opt.bad,.opt.part{cursor:default}
+.ev{border:1.5px solid #bbb;border-radius:8px;padding:10px 14px;margin:10px 0}.ev p{margin:6px 0}.ev b{color:var(--blue)}
+label.chk{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0}
+label.chk input{width:22px;height:22px;margin-top:3px}
+button.go{font:inherit;font-weight:700;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:10px 18px;margin:10px 8px 10px 0;cursor:pointer}
+button.go.alt{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+button.go:disabled{background:#aab;border-color:#aab;color:#fff;cursor:not-allowed}
+textarea{width:100%;font:inherit;border:2px solid var(--line);border-radius:8px;padding:8px;min-height:70px}
+.ans{border:2px solid var(--ok);background:var(--okbg);border-radius:8px;padding:8px 12px;margin:8px 0}
+.sum{border:2px solid var(--blue);border-radius:10px;padding:12px 16px;margin:12px 0}
+.bar{display:flex;gap:6px;margin:8px 0}.bar span{flex:1;height:8px;border-radius:4px;background:#d5d9e6}.bar span.on{background:var(--blue)}.bar span.done{background:var(--ok)}
+.stats{display:flex;gap:18px;flex-wrap:wrap;font-weight:700;margin:8px 0}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.m{font:inherit;text-align:left;border:2px solid var(--line);background:#fff;border-radius:8px;padding:9px 11px;cursor:pointer;color:inherit}
+.m.sel{border-color:var(--blue);background:#eef2ff}.m.gone{border-color:var(--ok);background:var(--okbg);cursor:default}.m.wrong{border-color:var(--bad);background:var(--badbg)}
+.lt{font-size:14px;color:#555}
+table.plan{border-collapse:collapse;width:100%;font-size:16px}table.plan td,table.plan th{border:1px solid #bbb;padding:6px 8px;text-align:left}
+a{color:var(--blue)}
+@media (max-width:520px){.match{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<span class="tag">Anatomy and Physiology · Unit 1.3 Integumentary System</span>
+<h1>Integumentary System: Choose Your Review</h1>
+<p class="note" id="lead">Pick how you want to study. All four paths cover the same learning targets. This does not count toward your grade. Nothing you do here is saved or sent anywhere.</p>
+<div id="app" aria-live="polite"></div>
+</div>
+<script>
+"use strict";
+var D={"lts": [{"id": "LT1", "name": "Skin layers and structures built for protection and sensing"}, {"id": "LT2", "name": "Skin and homeostasis, damage, and disorders"}], "mc": [{"lt": "LT1", "q": "Which is the outermost layer of the skin?", "c": "The epidermis", "w": ["The dermis", "The hypodermis", "The stratum basale"], "why": "The epidermis is the outer layer. The dermis is below it, and the hypodermis is below the dermis."}, {"lt": "LT1", "q": "Which tissue makes up the epidermis?", "c": "Stratified squamous epithelium", "w": ["Simple squamous epithelium", "Dense connective tissue", "Smooth muscle"], "why": "The epidermis is many layers of flat epithelial cells."}, {"lt": "LT1", "q": "Which layer contains blood vessels, nerve endings, and hair follicles?", "c": "The dermis", "w": ["The epidermis", "The stratum corneum", "The stratum basale"], "why": "The dermis is a thick connective tissue layer with blood vessels and nerves."}, {"lt": "LT1", "q": "Which layer stores fat and attaches the skin to the muscle?", "c": "The hypodermis", "w": ["The epidermis", "The dermis", "The stratum lucidum"], "why": "The hypodermis (subcutaneous layer) is mostly adipose tissue."}, {"lt": "LT1", "q": "What does melanin do?", "c": "It gives skin color and absorbs UV light.", "w": ["It makes the skin waterproof.", "It makes sweat.", "It makes the dermis stretchy."], "why": "Melanocytes make melanin, which protects DNA from UV damage."}, {"lt": "LT1", "q": "What protein makes the skin tough and waterproof?", "c": "Keratin", "w": ["Melanin", "Collagen", "Hemoglobin"], "why": "Keratin builds up in the outer cells. Collagen is in the dermis."}, {"lt": "LT1", "q": "Which gland makes an oily substance that softens hair and skin?", "c": "Sebaceous gland", "w": ["Sweat gland", "Mammary gland", "Thyroid gland"], "why": "Sebaceous glands make sebum."}, {"lt": "LT1", "q": "Which structure cools the body when it makes sweat?", "c": "Eccrine sweat gland", "w": ["Sebaceous gland", "Hair follicle", "Nail bed"], "why": "Sweat evaporates and cools the body."}, {"lt": "LT1", "q": "Fingertips are very sensitive. Which structure best explains this?", "c": "Many touch receptors in the dermis", "w": ["A thick hypodermis", "Many sebaceous glands", "Thick keratin only"], "why": "Touch receptors are packed into the dermis in the fingertips."}, {"lt": "LT2", "q": "On a hot day, blood vessels in the dermis widen. What does this do?", "c": "It lets heat leave the body.", "w": ["It keeps heat in.", "It makes more melanin.", "It makes more keratin."], "why": "Wider vessels bring warm blood near the surface, so heat is lost."}, {"lt": "LT2", "q": "On a cold day, blood vessels in the dermis narrow. Why?", "c": "To keep heat in the body", "w": ["To let heat escape", "To make sweat", "To grow hair"], "why": "Narrow vessels reduce blood flow to the surface, so less heat is lost."}, {"lt": "LT2", "q": "A burn destroys the epidermis and part of the dermis. What degree burn is this?", "c": "Second-degree burn", "w": ["First-degree burn", "Third-degree burn", "Chemical burn only"], "why": "First-degree burns affect the epidermis only. Third-degree burns destroy the full thickness of skin."}, {"lt": "LT2", "q": "Which burn destroys the full thickness of the skin?", "c": "Third-degree burn", "w": ["First-degree burn", "Second-degree burn", "Sunburn only"], "why": "Third-degree burns destroy the epidermis and dermis, sometimes deeper."}, {"lt": "LT2", "q": "Which type of skin cancer comes from melanocytes and is the most dangerous?", "c": "Melanoma", "w": ["Basal cell carcinoma", "Squamous cell carcinoma", "Acne"], "why": "Melanoma starts in the melanocytes and can spread."}, {"lt": "LT2", "q": "After a cut, a blood clot forms first. What happens next?", "c": "Cells grow and form new tissue, and a scar may form.", "w": ["Hair grows over the cut.", "The skin stops healing.", "Melanin fills the cut."], "why": "Healing includes clotting, new tissue growth, and sometimes scar tissue."}, {"lt": "LT2", "q": "Skin makes vitamin D when it is exposed to...", "c": "UV light", "w": ["Cold air", "Sweat", "Keratin"], "why": "UV light starts the making of vitamin D in the skin."}, {"lt": "LT2", "q": "How does the skin keep water inside the body?", "c": "Keratin and the tight layers of cells form a waterproof barrier.", "w": ["Sweat glands add water.", "The hypodermis stores water.", "Melanin traps water."], "why": "This protective barrier is one of the skin's main jobs."}], "sa": [{"lt": "LT1", "q": "Name the three layers of the skin from outside to inside. Give one main feature of each.", "a": ["Epidermis: stratified squamous epithelium with keratin.", "Dermis: connective tissue with blood vessels, nerves, glands, and hair follicles.", "Hypodermis: mostly adipose tissue that attaches skin to muscle."]}, {"lt": "LT1", "q": "Explain how keratin helps the skin protect the body.", "a": ["Keratin makes the outer cells tough.", "It helps make the skin waterproof and resist damage."]}, {"lt": "LT1", "q": "Name two accessory structures of the skin. Give the job of each.", "a": ["Hair: protects and senses.", "Nails: protect the ends of fingers and toes.", "Sweat glands: cool the body.", "Sebaceous glands: make oil."]}, {"lt": "LT1", "q": "Explain why the fingertips are more sensitive than the back.", "a": ["The fingertips have many more touch receptors in the dermis.", "More receptors give more detailed information."]}, {"lt": "LT1", "q": "List three functions of the skin.", "a": ["Protection from germs, UV light, and water loss.", "Temperature control.", "Sensing touch, pressure, and pain.", "Vitamin D production."]}, {"lt": "LT2", "q": "Explain how the skin helps keep body temperature steady when you are hot.", "a": ["Blood vessels in the dermis widen so heat leaves the body.", "Sweat glands make sweat, and evaporation cools the body.", "This is a negative feedback loop."]}, {"lt": "LT2", "q": "Compare first-, second-, and third-degree burns.", "a": ["First-degree: epidermis only, red and painful.", "Second-degree: epidermis and part of the dermis, blisters.", "Third-degree: full thickness, may destroy nerve endings."]}, {"lt": "LT2", "q": "Why are third-degree burns dangerous even if they hurt less?", "a": ["Nerve endings in the skin are destroyed, so there is less pain.", "The skin cannot keep out germs or hold in water, so infection and fluid loss are risks."]}, {"lt": "LT2", "q": "Describe the steps of wound healing.", "a": ["Bleeding is stopped by a clot.", "Cells clean the wound and new tissue grows.", "Scar tissue may form."]}, {"lt": "LT2", "q": "Explain why sunscreen helps reduce the risk of skin cancer.", "a": ["UV light can damage DNA in skin cells.", "Sunscreen blocks or absorbs UV light, so there is less DNA damage."]}], "pairs": [{"lt": "LT1", "term": "Epidermis", "def": "The outer layer of the skin"}, {"lt": "LT1", "term": "Dermis", "def": "Thick connective tissue layer with blood vessels and nerves"}, {"lt": "LT1", "term": "Hypodermis", "def": "Fat layer that attaches the skin to muscle"}, {"lt": "LT1", "term": "Keratin", "def": "Protein that makes skin tough and waterproof"}, {"lt": "LT1", "term": "Melanin", "def": "Pigment that gives color and absorbs UV light"}, {"lt": "LT1", "term": "Sebaceous gland", "def": "Makes oily sebum"}, {"lt": "LT1", "term": "Sweat gland", "def": "Makes sweat that cools the body"}, {"lt": "LT1", "term": "Hair follicle", "def": "The pocket in the dermis where a hair grows"}, {"lt": "LT1", "term": "Touch receptor", "def": "Senses pressure in the dermis"}, {"lt": "LT2", "term": "First-degree burn", "def": "Damages the epidermis only"}, {"lt": "LT2", "term": "Second-degree burn", "def": "Damages the epidermis and part of the dermis"}, {"lt": "LT2", "term": "Third-degree burn", "def": "Destroys the full thickness of the skin"}, {"lt": "LT2", "term": "Melanoma", "def": "Skin cancer that starts in melanocytes"}, {"lt": "LT2", "term": "Vasodilation", "def": "Blood vessels widen to release heat"}, {"lt": "LT2", "term": "Vasoconstriction", "def": "Blood vessels narrow to keep heat in"}, {"lt": "LT2", "term": "Vitamin D", "def": "Made in the skin when it is exposed to UV light"}, {"lt": "LT2", "term": "Scar tissue", "def": "Dense tissue that forms after deep damage"}, {"lt": "LT2", "term": "Homeostasis", "def": "Keeping conditions inside the body steady"}], "cases": [{"lt": "LT2", "title": "The cold morning run", "intro": "A student runs outside on a cold morning and then comes inside.", "evidence": [["A", "Outside, the skin on the student's hands turns pale and feels cold."], ["B", "Blood vessels in the dermis narrow."], ["C", "After warming up inside, the student's skin turns pink, and the student begins to sweat."], ["D", "The student's hair is brown."]], "claim": {"q": "Which claim does the evidence support?", "opts": [["The skin helps keep body temperature steady by changing blood flow.", "best", "Correct. Narrowed vessels keep heat in. Widened vessels release heat."], ["The skin does not play a role in temperature control.", "bad", "Not quite. The skin's blood vessels changed with the temperature."], ["The skin color change is caused by melanin only.", "bad", "Not quite. The color change came from changes in blood flow."], ["The skin makes heat by shivering.", "bad", "Not quite. Muscles shiver. The skin changes blood flow."]]}, "evid": {"q": "Pick every piece of evidence that supports the claim.", "items": [["A", true, "Pale, cold skin shows less blood near the surface."], ["B", true, "Narrowing blood vessels keeps heat in the body."], ["C", true, "Pink skin and sweating show heat is leaving the body when it is warm."], ["D", false, "Hair color does not help control temperature."]]}, "reason": {"q": "Which reasoning links the evidence to the claim?", "opts": [["In the cold, dermal blood vessels narrow, so less warm blood reaches the surface and less heat is lost. When warm, vessels widen and sweat evaporates, so heat leaves. The skin changes its response to keep temperature near normal.", "best", "Correct. This is a negative feedback loop."], ["The skin turns pale because melanin increases in the cold.", "bad", "Melanin does not change this quickly. Pale skin is from less blood flow."], ["The skin is warm because the hypodermis makes heat.", "bad", "The hypodermis insulates. It does not make heat."], ["Sweat warms the skin when the student is hot.", "partial", "Part is right: sweat is involved. But sweat cools the body as it evaporates."]]}}]};
+var app=document.getElementById('app');
+var results={};  // lt id -> [right, tried]
+D.lts.forEach(function(l){results[l.id]=[0,0]});
+var used={};
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function shuf(a){a=a.slice();for(var j=a.length-1;j>0;j--){var r=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[r];a[r]=t}return a}
+function tally(lt,ok){if(!results[lt])results[lt]=[0,0];results[lt][1]++;if(ok)results[lt][0]++}
+function ltName(id){var n=id;D.lts.forEach(function(l){if(l.id===id)n=l.id+': '+l.name});return n}
+function home(){
+  var h='<h2>Choose your study path</h2><div class="cards">'+
+  '<button class="card" onclick="startQuest()"><b>1. Question Quest</b><span>Short-answer questions, like a traditional review. Write your answer, then check it.</span></button>'+
+  '<button class="card" onclick="startGame()"><b>2. Streak Challenge</b><span>A game. Answer 12 questions. Build a streak. Three misses and the round ends.</span></button>'+
+  '<button class="card" onclick="startMatch()"><b>3. Match-Up</b><span>Match each term to what it means. Five pairs a round.</span></button>'+
+  '<button class="card" onclick="startCase()"><b>4. Prove It Case</b><span>Read a made-up case. Build a claim, pick the evidence, and explain your reasoning.</span></button>'+
+  '</div><p class="note">Not sure where to start? Take the practice test in Canvas first. A miss on a learning target tells you which path to try. Come back here as often as you like.</p>'+
+  planBox();
+  app.innerHTML=h;window.scrollTo(0,0);
+}
+function planBox(){
+  var any=false,rows='';
+  D.lts.forEach(function(l){var r=results[l.id];if(r[1]>0)any=true;
+    var pct=r[1]?Math.round(100*r[0]/r[1]):null;
+    var s=pct===null?'Not tried yet':(pct>=85?'Strong':(pct>=60?'Getting there':'Needs more practice'));
+    rows+='<tr><td>'+esc(l.id+': '+l.name)+'</td><td>'+(r[1]?r[0]+' of '+r[1]:'-')+'</td><td>'+s+'</td></tr>'});
+  return '<div class="sum"><h3>My study plan</h3><table class="plan"><tr><th>Learning target</th><th>Right so far</th><th>Where you are</th></tr>'+rows+'</table>'+
+   (any?'<p class="note">Pick a path again and work on the targets that say "Needs more practice" or "Not tried yet." This chart resets when you close the page.</p>':'<p class="note">This chart fills in as you work. It resets when you close the page.</p>')+'</div>';
+}
+function back(){return '<button class="go alt" onclick="home()">Back to the four paths</button>'}
+
+/* ---------- 1. Question Quest ---------- */
+var qi=0,ql=[];
+function startQuest(){ql=shuf(D.sa);qi=0;renderQ()}
+function renderQ(){
+  if(qi>=ql.length){app.innerHTML='<h2>Question Quest finished</h2><p>You answered '+ql.length+' questions.</p>'+planBox()+'<button class="go" onclick="startQuest()">Do it again</button>'+back();return}
+  var q=ql[qi];
+  app.innerHTML='<span class="lt">Question '+(qi+1)+' of '+ql.length+' &middot; '+esc(ltName(q.lt))+'</span><h2>'+esc(q.q)+'</h2>'+
+  '<textarea id="mine" aria-label="Your answer" placeholder="Write your answer here. Use full sentences."></textarea>'+
+  '<div id="key"></div><button class="go" id="show" onclick="showA()">Check my answer</button>'+back();
+}
+function showA(){var q=ql[qi];var h='<div class="ans"><b>A strong answer includes:</b><ul>';q.a.forEach(function(x){h+='<li>'+esc(x)+'</li>'});h+='</ul></div><p><b>Compare your answer. How did you do?</b></p>'+
+  '<button class="go" onclick="rate(true)">I got it</button><button class="go alt" onclick="rate(false)">Not yet</button>';
+  document.getElementById('key').innerHTML=h;document.getElementById('show').disabled=true}
+function rate(ok){tally(ql[qi].lt,ok);qi++;renderQ()}
+
+/* ---------- 2. Streak Challenge ---------- */
+var g;
+function startGame(){var qs=shuf(D.mc).slice(0,12);g={qs:qs,i:0,streak:0,best:0,score:0,miss:0};renderG()}
+function renderG(){
+  if(g.i>=g.qs.length||g.miss>=3){var done=g.i>=g.qs.length;
+    app.innerHTML='<h2>'+(done?'Round complete':'Round over')+'</h2><div class="stats"><div>Score: '+g.score+'</div><div>Best streak: '+g.best+'</div></div>'+
+    '<p>'+(done?'You made it through all '+g.qs.length+' questions.':'Three misses ended the round. Read the feedback and try again.')+'</p>'+planBox()+'<button class="go" onclick="startGame()">Play again</button>'+back();return}
+  var q=g.qs[g.i];var order=shuf([q.c].concat(q.w));g.cur=q;
+  var h='<div class="stats"><div>Score: '+g.score+'</div><div>Streak: '+g.streak+'</div><div>Misses: '+g.miss+' of 3</div></div><span class="lt">Question '+(g.i+1)+' of '+g.qs.length+' &middot; '+esc(ltName(q.lt))+'</span><h2>'+esc(q.q)+'</h2><div id="opts">';
+  order.forEach(function(o,i){h+='<button class="opt" data-v="'+i+'">'+esc(o)+'</button>'});
+  app.innerHTML=h+'</div><div id="gfb"></div><div id="gnext"></div>'+back();
+  var bs=app.querySelectorAll('.opt');bs.forEach(function(b,i){b.onclick=function(){gpick(b,order[i])}});
+}
+function gpick(b,val){var q=g.cur;var ok=(val===q.c);tally(q.lt,ok);
+  app.querySelectorAll('.opt').forEach(function(x){x.onclick=null;if(x.textContent===q.c)x.className='opt ok'});
+  if(!ok)b.className='opt bad';
+  if(ok){g.streak++;g.score+=10+Math.min(g.streak-1,5)*2;if(g.streak>g.best)g.best=g.streak}else{g.streak=0;g.miss++}
+  document.getElementById('gfb').innerHTML='<div class="fb '+(ok?'ok':'bad')+'" role="status"><b>'+(ok?'Correct. ':'Not quite. ')+'</b>'+esc(q.why)+'</div>';
+  document.getElementById('gnext').innerHTML='<button class="go" onclick="g.i++;renderG()">Next</button>'}
+
+/* ---------- 3. Match-Up ---------- */
+var m;
+function startMatch(){m={all:shuf(D.pairs),round:0,selT:null,selD:null,wrong:0};renderM()}
+function renderM(){
+  var start=m.round*5,set=m.all.slice(start,start+5);
+  if(!set.length){app.innerHTML='<h2>Match-Up finished</h2><p>You matched every pair.</p>'+planBox()+'<button class="go" onclick="startMatch()">Play again</button>'+back();return}
+  m.set=set;m.left=set.length;m.terms=shuf(set.map(function(_,i){return i}));m.defs=shuf(set.map(function(_,i){return i}));m.selT=m.selD=null;
+  var h='<span class="lt">Round '+(m.round+1)+' of '+Math.ceil(m.all.length/5)+'</span><h2>Match each term to what it means</h2><p class="note">Pick a term on the left, then pick its match on the right.</p><div class="match"><div id="mt"></div><div id="md"></div></div><div id="mfb"></div>'+back();
+  app.innerHTML=h;
+  var mt=document.getElementById('mt'),md=document.getElementById('md');
+  m.terms.forEach(function(i){var b=document.createElement('button');b.className='m';b.textContent=set[i].term;b.dataset.i=i;b.onclick=function(){mpick('t',i,b)};mt.appendChild(b)});
+  m.defs.forEach(function(i){var b=document.createElement('button');b.className='m';b.textContent=set[i].def;b.dataset.i=i;b.onclick=function(){mpick('d',i,b)};md.appendChild(b)});
+}
+function mpick(side,i,b){if(b.classList.contains('gone'))return;
+  var box=document.getElementById(side==='t'?'mt':'md');box.querySelectorAll('.m').forEach(function(x){x.classList.remove('sel')});b.classList.add('sel');
+  if(side==='t')m.selT=[i,b];else m.selD=[i,b];
+  if(m.selT&&m.selD){var a=m.selT,c=m.selD;var ok=(a[0]===c[0]);tally(m.set[a[0]].lt,ok);
+    if(ok){[a[1],c[1]].forEach(function(x){x.className='m gone'});m.left--;document.getElementById('mfb').innerHTML='<div class="fb ok" role="status">Correct match.</div>';
+      if(!m.left){document.getElementById('mfb').innerHTML+='<button class="go" onclick="m.round++;renderM()">Next round</button>'}}
+    else{[a[1],c[1]].forEach(function(x){x.className='m wrong'});document.getElementById('mfb').innerHTML='<div class="fb bad" role="status">Not a match. Try again.</div>';
+      setTimeout(function(){[a[1],c[1]].forEach(function(x){if(!x.classList.contains('gone'))x.className='m'})},700)}
+    m.selT=m.selD=null}}
+
+/* ---------- 4. Prove It Case ---------- */
+var cs,cstep;
+function startCase(){cs=D.cases[Math.floor(Math.random()*D.cases.length)];cstep=0;renderC()}
+function renderC(){
+  var h='<h2>'+esc(cs.title)+'</h2><p>'+esc(cs.intro)+' <i>This case is made up for practice.</i></p><div class="ev">';
+  cs.evidence.forEach(function(e){h+='<p><b>Evidence '+e[0]+'.</b> '+esc(e[1])+'</p>'});h+='</div>';
+  h+='<div class="bar">';for(var i=0;i<3;i++)h+='<span class="'+(i<cstep?'done':(i===cstep?'on':''))+'"></span>';h+='</div>';
+  if(cstep===3){app.innerHTML='<h2>'+esc(cs.title)+': done</h2><div class="sum"><p><b>Claim:</b> '+esc(cs.claim.opts[0][0])+'</p><p><b>Reasoning:</b> '+esc(cs.reason.opts[0][0])+'</p></div>'+planBox()+'<button class="go" onclick="startCase()">Try another case</button>'+back();return}
+  if(cstep===1){h+=evStep()}else{h+=chStep(cstep===0?cs.claim:cs.reason,cstep===0?'claim':'reason')}
+  app.innerHTML=h+back();
+}
+function chStep(c,k){var h='<h3>'+esc(c.q)+'</h3><div>';shuf(c.opts.map(function(_,i){return i})).forEach(function(i){h+='<button class="opt" data-i="'+i+'" onclick="cpick('+i+',this)">'+esc(c.opts[i][0])+'</button><div id="cf'+i+'"></div>'});
+  return h+'</div><button class="go" id="cnext" disabled onclick="cstep++;renderC()">Next</button>'}
+function cpick(i,btn){var c=cstep===0?cs.claim:cs.reason;var o=c.opts[i];var cls=o[1]==='best'?'ok':(o[1]==='partial'?'part':'bad');
+  btn.className='opt '+cls;document.getElementById('cf'+i).innerHTML='<div class="fb '+cls+'" role="status">'+esc(o[2])+'</div>';
+  if(o[1]==='best'){tally(cs.lt,true);document.getElementById('cnext').disabled=false;document.querySelectorAll('.opt').forEach(function(b){b.onclick=null})}else{tally(cs.lt,false);btn.onclick=null}}
+function evStep(){var e=cs.evid;var h='<h3>'+esc(e.q)+'</h3><div id="chk">';e.items.forEach(function(it,i){var ev=cs.evidence.filter(function(x){return x[0]===it[0]})[0];
+  h+='<label class="chk"><input type="checkbox" value="'+i+'"><span><b>Evidence '+it[0]+'.</b> '+esc(ev[1])+'</span></label><div id="ef'+i+'"></div>'});
+  return h+'</div><button class="go" onclick="checkEv()">Check</button><div id="evsum"></div><button class="go" id="cnext" disabled onclick="cstep++;renderC()">Next</button>'}
+function checkEv(){var all=true;document.querySelectorAll('#chk input').forEach(function(inp){var i=+inp.value;var it=cs.evid.items[i];var good=(inp.checked===it[1]);if(!good)all=false;
+  document.getElementById('ef'+i).innerHTML='<div class="fb '+(good?'ok':'bad')+'" role="status">'+(good?(it[1]?'Supports the claim. ':'Correctly left out. '):(it[1]?'You missed this one. ':'This one does not belong. '))+esc(it[2])+'</div>'});
+  tally(cs.lt,all);
+  document.getElementById('evsum').innerHTML=all?'<div class="fb ok" role="status"><b>All correct.</b></div>':'<div class="fb part" role="status">Some choices need another look. Change them and press Check again.</div>';
+  if(all)document.getElementById('cnext').disabled=false}
+home();
+</script></body></html>
