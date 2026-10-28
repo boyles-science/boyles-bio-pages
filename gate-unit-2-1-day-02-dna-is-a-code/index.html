@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DNA Is a Code · Unit 2.1 Day 2</title>
+<style>
+:root { --paper:#FBF7EF; --ink:#26241E; --blue:#1E3FA8; --tint:#F3EDDF; --line:#D8CFBB; --muted:#6E6858; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; font-size:18px; line-height:1.45; }
+header { padding:14px 16px 10px; border-top:5px solid var(--ink); border-bottom:1px solid var(--ink); }
+header .pub { font:700 13px Arial,sans-serif; letter-spacing:.16em; text-transform:uppercase; }
+h1 { font-size:27px; font-style:italic; font-weight:500; margin:6px 0 2px; line-height:1.15; }
+header p { margin:0; color:var(--muted); font-size:16px; }
+main { padding:12px 16px 50px; max-width:860px; margin:0 auto; }
+h2 { font-size:22px; font-style:italic; font-weight:500; margin:22px 0 4px; border-bottom:2px solid var(--ink); padding-bottom:2px; }
+.do { background:var(--tint); border-left:5px solid var(--blue); padding:8px 12px; margin:10px 0; }
+.do b { color:var(--blue); }
+.name { display:flex; gap:8px; align-items:center; margin:12px 0; font:700 16px Arial,sans-serif; }
+.name input { flex:1; font:18px Georgia,serif; padding:8px; border:2px solid var(--ink); background:#fff; }
+table { border-collapse:collapse; background:#fff; }
+th,td { border:2px solid var(--ink); padding:6px 12px; text-align:center; font-family:Arial,sans-serif; }
+th { background:var(--tint); }
+.seq { font:700 22px "Courier New",monospace; letter-spacing:.12em; margin:6px 0 10px; word-break:break-all; }
+.seq span { cursor:pointer; padding:1px 2px; border-radius:3px; }
+.seq span.m { background:#FFE08A; text-decoration:underline; }
+.groups { display:flex; gap:8px; flex-wrap:wrap; margin:6px 0 12px; }
+.groups input { width:92px; font:700 22px "Courier New",monospace; letter-spacing:.15em; text-align:center; padding:8px 4px; border:2px solid var(--ink); background:#fff; text-transform:uppercase; }
+.top { display:flex; gap:8px; flex-wrap:wrap; font:700 22px "Courier New",monospace; letter-spacing:.15em; margin:6px 0; }
+.top span { width:92px; text-align:center; padding:8px 4px; border:2px solid var(--line); background:var(--tint); }
+.row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:8px 0; font:700 16px Arial,sans-serif; }
+.row input { width:90px; font:20px Georgia,serif; padding:8px; border:2px solid var(--ink); background:#fff; text-align:center; text-transform:uppercase; }
+.count input { width:62px; padding:6px 2px; }
+textarea { width:100%; min-height:88px; font:17px Georgia,serif; padding:8px; border:2px solid var(--line); background:#fff; }
+label.q { display:block; font-weight:700; margin-top:12px; }
+.small { font-size:15px; color:var(--muted); font-style:italic; }
+button.act { font:700 15px Arial,sans-serif; letter-spacing:.06em; text-transform:uppercase; padding:12px 16px; background:var(--ink); color:var(--paper); border:0; cursor:pointer; margin:6px 6px 0 0; }
+button.act.alt { background:#fff; color:var(--ink); border:2px solid var(--ink); }
+.printcopy { display:none; white-space:pre-wrap; }
+ol.steps li { margin:6px 0; }
+@media (max-width:520px) { .groups input, .top span { width:76px; font-size:19px; } .count th, .count td { padding:3px 2px; font-size:14px; } .count input { width:42px; padding:6px 0; font-size:17px; } }
+@media print {
+  body { background:#fff; font-size:12pt; }
+  .noprint { display:none !important; }
+  textarea { display:none !important; }
+  .printcopy { display:block; border:1px solid #999; padding:6px; min-height:48px; margin-bottom:6px; }
+  .do { background:#fff; border-left:3px solid #000; }
+  header { border-top:3px solid #000; }
+  h2 { page-break-after:avoid; }
+  table, .row, .groups, .top { page-break-inside:avoid; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="pub">Gate Living Earth · Unit 2.1 · Day 2</div>
+  <h1>DNA is a code</h1>
+  <p>Do all of this worksheet on your Chromebook. You need your weekly warm-up page too.</p>
+</header>
+<main>
+
+<div class="name"><label for="nm">Your name:</label><input id="nm" autocomplete="name" data-save></div>
+
+<div class="do noprint"><b>Start here.</b> Do the warm-up first on your weekly warm-up and exit ticket page. Do not use your notes yet.</div>
+
+<h2>Today's goal</h2>
+<p>I can name the four bases in DNA and use the pairing rule. I can explain that the order of the bases, not only which bases are there, carries information.</p>
+
+<h2>Terms</h2>
+<p><b>Base:</b> one of the four building blocks of DNA. Their letters are A, T, C, and G.<br>
+<b>Strand:</b> a row of bases. DNA has two strands that pair up.<br>
+<b>Gene:</b> a section of DNA. Many genes hold the instructions for making a protein.<br>
+<b>Order:</b> the sequence in which the bases appear.</p>
+<p><b>Think about letters.</b> The letters E, A, and T can spell EAT, TEA, or ATE. The same letters in a different order make a different word.</p>
+
+<h2>Part 1: The pairing rule</h2>
+<p>The two strands of DNA are held together by pairs of bases. <b>A pairs with T. C pairs with G.</b></p>
+<table>
+  <tr><th>Base</th><th>Letter</th><th>Pairs with</th></tr>
+  <tr><td>Adenine</td><td>A</td><td>T</td></tr>
+  <tr><td>Thymine</td><td>T</td><td>A</td></tr>
+  <tr><td>Cytosine</td><td>C</td><td>G</td></tr>
+  <tr><td>Guanine</td><td>G</td><td>C</td></tr>
+</table>
+<p><b>The gene.</b> This is the top strand at the start of the real human gene for beta-globin, one part of hemoglobin. It is written in groups of three to make it easier to read.</p>
+<div class="top" aria-label="Top strand: ATG GTG CAT CTG"><span>ATG</span><span>GTG</span><span>CAT</span><span>CTG</span></div>
+
+<p><b>Step 1.</b> Write the bottom strand that pairs with the top strand. Keep the groups of three. Type one group in each box.</p>
+<div class="groups">
+  <input id="b1" maxlength="3" aria-label="Bottom strand group 1" autocomplete="off" data-save>
+  <input id="b2" maxlength="3" aria-label="Bottom strand group 2" autocomplete="off" data-save>
+  <input id="b3" maxlength="3" aria-label="Bottom strand group 3" autocomplete="off" data-save>
+  <input id="b4" maxlength="3" aria-label="Bottom strand group 4" autocomplete="off" data-save>
+</div>
+
+<p><b>Step 2.</b> A student wrote this bottom strand for the same top strand:</p>
+<div class="top" aria-label="Student strand: TAC GAC GTA GAC"><span>TAC</span><span>GAC</span><span>GTA</span><span>GAC</span></div>
+<p>Find the mistake. Write which base is wrong and what it should be.</p>
+<div class="row">
+  <label for="s2a">Wrong base (letter and place):</label><input id="s2a" style="width:150px" data-save>
+  <label for="s2b">It should be:</label><input id="s2b" maxlength="1" data-save>
+</div>
+
+<h2>Part 2: Same bases, different order</h2>
+<p><b>Sequence 1</b> is the top strand you used in Part 1. <b>Sequence 2</b> was made for this lesson. It is not a real gene. It uses the same 12 bases as Sequence 1 in a new order.</p>
+<p class="small noprint">Counting helper: tap a letter to mark it as you count it. Tap it again to unmark. Marks are just for you.</p>
+<p><b>Sequence 1:</b></p>
+<div class="seq" id="seq1">ATGGTGCATCTG</div>
+<p><b>Sequence 2:</b></p>
+<div class="seq" id="seq2">GTCAGTGATCGT</div>
+
+<p><b>Step 3.</b> Count how many of each base are in each sequence. Then fill in the totals.</p>
+<table class="count">
+  <tr><th></th><th>A</th><th>T</th><th>C</th><th>G</th><th>Total</th></tr>
+  <tr><th>Sequence 1</th>
+    <td><input id="c1a" inputmode="numeric" maxlength="2" data-save aria-label="Sequence 1, A"></td><td><input id="c1t" inputmode="numeric" maxlength="2" data-save aria-label="Sequence 1, T"></td>
+    <td><input id="c1c" inputmode="numeric" maxlength="2" data-save aria-label="Sequence 1, C"></td><td><input id="c1g" inputmode="numeric" maxlength="2" data-save aria-label="Sequence 1, G"></td>
+    <td><input id="c1x" inputmode="numeric" maxlength="2" data-save aria-label="Sequence 1, total"></td></tr>
+  <tr><th>Sequence 2</th>
+    <td><input id="c2a" inputmode="numeric" maxlength="2" data-save aria-label="Sequence 2, A"></td><td><input id="c2t" inputmode="numeric" maxlength="2" data-save aria-label="Sequence 2, T"></td>
+    <td><input id="c2c" inputmode="numeric" maxlength="2" data-save aria-label="Sequence 2, C"></td><td><input id="c2g" inputmode="numeric" maxlength="2" data-save aria-label="Sequence 2, G"></td>
+    <td><input id="c2x" inputmode="numeric" maxlength="2" data-save aria-label="Sequence 2, total"></td></tr>
+</table>
+
+<label class="q" for="w4"><b>Step 4.</b> What is the same about the two sequences? What is different?</label>
+<textarea id="w4" data-save></textarea>
+<label class="q" for="w5"><b>Step 5.</b> In the EAT and TEA example, what stayed the same and what changed? Write the same idea for DNA.</label>
+<textarea id="w5" data-save></textarea>
+
+<h2>Going deeper: how many orders? (optional)</h2>
+<p>A piece of DNA with 1 base has 4 possible orders (A, T, C, or G). A piece with 2 bases has 16.</p>
+<label class="q" for="g1">How many orders are possible for a piece with 3 bases? With 4 bases? Write the pattern.</label>
+<textarea id="g1" data-save></textarea>
+<label class="q" for="g2">Predict how many are possible for a piece with 12 bases. Explain why a code with only four bases can still hold a lot of information.</label>
+<textarea id="g2" data-save></textarea>
+
+<div class="do noprint" style="margin-top:22px"><b>Exit ticket.</b> Answer these on your weekly warm-up and exit ticket page, not here.
+  <ol><li>Two pieces of DNA have the same bases in a different order. Do they carry the same information? Use the base counts from your worksheet as evidence. Write two or three sentences.</li>
+  <li>Write the pairing rule in your own words.</li></ol></div>
+
+<h2 class="noprint">Turn it in</h2>
+<div class="do noprint">
+  <ol class="steps">
+    <li>Type your name at the top of this page.</li>
+    <li>Press <b>Save as PDF</b> below. In the window that opens, set <b>Destination</b> to <b>Save as PDF</b>. Press <b>Save</b>.</li>
+    <li>In Canvas, open the assignment <b>Unit 2.1 Day 2: DNA Is a Code</b>. Press <b>Start Assignment</b>, then <b>Upload File</b>. Choose your PDF. Press <b>Submit Assignment</b>.</li>
+    <li>Check that it says <b>Submitted</b>. Open your file once to make sure every part is there.</li>
+    <li>Then take the <b>Day 2 Check</b> quiz in Canvas. It does not count for a grade.</li>
+  </ol>
+</div>
+<div class="noprint"><button class="act" id="pdfBtn">Save as PDF</button><button class="act alt" id="clrBtn">Start over</button></div>
+<p class="small noprint">Your typing is saved on this Chromebook while you work. Do not clear your browser data until you have submitted.</p>
+
+</main>
+<script>
+(function(){
+  var $=function(i){ return document.getElementById(i); };
+  /* counting helper: marks are visual only */
+  ['seq1','seq2'].forEach(function(id){
+    var el=$(id), s=el.textContent; el.innerHTML='';
+    s.split('').forEach(function(ch){
+      var sp=document.createElement('span'); sp.textContent=ch;
+      sp.addEventListener('click',function(){ sp.classList.toggle('m'); });
+      el.appendChild(sp);
+    });
+  });
+  /* letters only in the strand boxes */
+  ['b1','b2','b3','b4','s2b'].forEach(function(id){
+    $(id).addEventListener('input',function(){ this.value=this.value.toUpperCase().replace(/[^ATCG]/g,''); });
+  });
+  /* save in this browser */
+  var fields=[].slice.call(document.querySelectorAll('[data-save]'));
+  fields.forEach(function(f){
+    try{ var v=localStorage.getItem('g21d2-'+f.id); if(v!==null) f.value=v; }catch(e){}
+    f.addEventListener('input',function(){ try{ localStorage.setItem('g21d2-'+f.id,f.value); }catch(e){} });
+  });
+  /* print: mirror textareas so the PDF shows what was typed */
+  function mirror(){
+    [].forEach.call(document.querySelectorAll('textarea'),function(t){
+      var n=t.nextElementSibling;
+      if(!(n&&n.classList.contains('printcopy'))){ n=document.createElement('div'); n.className='printcopy'; t.parentNode.insertBefore(n,t.nextSibling); }
+      n.textContent=t.value;
+    });
+  }
+  window.addEventListener('beforeprint',mirror);
+  $('pdfBtn').addEventListener('click',function(){ mirror(); window.print(); });
+  $('clrBtn').addEventListener('click',function(){
+    if(!confirm('Erase everything you typed on this page?')) return;
+    fields.forEach(function(f){ f.value=''; try{ localStorage.removeItem('g21d2-'+f.id); }catch(e){} });
+    [].forEach.call(document.querySelectorAll('.seq span.m'),function(s){ s.classList.remove('m'); });
+  });
+})();
+</script>
+</body>
+</html>
