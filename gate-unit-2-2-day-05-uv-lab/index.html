@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 5: Digital UV Lab (simulated)</title>
+<style>
+:root{--ink:#1d2433;--line:#d9dee8;--bg:#f6f7fb;--blue:#2457c5;--green:#1f8a4c;--red:#c0392b;--gold:#fff6d6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:900px;margin:0 auto;padding:20px 16px 60px}
+header{background:var(--blue);color:#fff;border-radius:14px;padding:18px 20px}header h1{margin:0;font-size:1.5rem}header p{margin:6px 0 0;opacity:.92}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.note{background:var(--gold);border-color:#ecd98c}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:8px 14px;cursor:pointer;background:var(--blue);color:#fff}
+button.t{background:#e8edf8;color:var(--blue)}button.t.on{background:var(--blue);color:#fff}
+canvas{max-width:100%;height:auto;display:block;margin:10px auto;background:#fff}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid var(--line);padding:6px 8px;text-align:center}th{background:#eef2fb}
+.scroll{overflow-x:auto}
+#out{font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;background:#f1f4fa;border-radius:8px;padding:10px;display:none}
+</style>
+</head>
+<body>
+<main>
+<header><h1>Day 5: Digital UV Lab</h1><p>Living Earth GATE · Unit 2.2 Inherited Instructions · <b>Simulation</b>: the numbers model real patterns but are not real measurements.</p></header>
+
+<section class="card note">
+<b>The question:</b> Does more UV light cause more mutations?<br>
+<b>The setup:</b> You spread the same number of yeast cells on each plate. Each yeast cell that survives grows into a <b>colony</b> (a dot of many cells). Some colonies are a <b>different color</b>. A different color means a mutation in a color gene.<br>
+<b>Control:</b> the 0-second plate stays covered. It shows how many changes happen with no UV at all (copying errors).
+</section>
+
+<section class="card">
+<div class="row"><b>UV time:</b>
+<button class="t" data-s="0">0 s (covered)</button><button class="t" data-s="10">10 s</button><button class="t" data-s="20">20 s</button><button class="t" data-s="40">40 s</button><button class="t" data-s="60">60 s</button>
+</div>
+<div class="row" style="margin-top:8px"><button id="run">Expose and grow the plate</button> <span id="msg"></span></div>
+<canvas id="plate" width="420" height="420" aria-label="Petri plate"></canvas>
+<p id="count" style="text-align:center;font-weight:600"></p>
+</section>
+
+<section class="card">
+<b>Data table</b> (filled in automatically; copy it into your notebook)
+<div class="scroll"><table><thead><tr><th>UV time (s)</th><th>Colonies</th><th>Changed colonies</th><th>Percent changed</th></tr></thead><tbody id="tb"></tbody></table></div>
+<p>Run each time at least once. Run a time again to replace its row.</p>
+</section>
+
+<section class="card">
+<div class="row"><button id="graph">Graph percent changed</button><button class="t" id="copy">Copy my data</button></div>
+<canvas id="g" width="640" height="320" aria-label="Graph"></canvas>
+<div id="out"></div>
+</section>
+</main>
+<script>
+(function(){
+var sel=null,data={};
+var btns=document.querySelectorAll('button.t[data-s]');
+btns.forEach(function(b){b.onclick=function(){btns.forEach(function(x){x.classList.remove('on');});b.classList.add('on');sel=+b.dataset.s;document.getElementById('msg').textContent='';};});
+function rnd(){return Math.random();}
+function pois(l){var L=Math.exp(-l),k=0,p=1;do{k++;p*=rnd();}while(p>L);return k-1;}
+function binom(n,p){var c=0;for(var i=0;i<n;i++)if(rnd()<p)c++;return c;}
+function sim(s){
+ // model: 300 cells spread; survival falls with dose; changed fraction rises with dose (background ~0.3%)
+ var surv=Math.exp(-s/45), n=Math.max(1,Math.round(300*surv*(0.92+0.16*rnd())));
+ var p=0.003+0.0028*s; var m=binom(n,Math.min(p,0.6));
+ return {n:n,m:m};
+}
+function draw(r){var c=document.getElementById('plate').getContext('2d');c.clearRect(0,0,420,420);
+ c.fillStyle='#f3ead2';c.beginPath();c.arc(210,210,200,0,7);c.fill();c.strokeStyle='#999';c.lineWidth=3;c.stroke();
+ var pts=[];for(var i=0;i<r.n;i++){var a=rnd()*6.283,d=185*Math.sqrt(rnd());pts.push([210+d*Math.cos(a),210+d*Math.sin(a)]);}
+ pts.forEach(function(p,i){c.fillStyle=i<r.m?'#c0392b':'#f8f8f8';c.strokeStyle='#b9ae94';c.lineWidth=1;c.beginPath();c.arc(p[0],p[1],4.2,0,7);c.fill();c.stroke();});
+}
+function table(){var tb=document.getElementById('tb');tb.innerHTML='';Object.keys(data).map(Number).sort(function(a,b){return a-b;}).forEach(function(s){var r=data[s];tb.innerHTML+='<tr><td>'+s+'</td><td>'+r.n+'</td><td>'+r.m+'</td><td>'+(100*r.m/r.n).toFixed(1)+'%</td></tr>';});}
+document.getElementById('run').onclick=function(){if(sel===null){document.getElementById('msg').textContent='Choose a UV time first.';return;}var r=sim(sel);data[sel]=r;draw(r);document.getElementById('count').textContent=sel+' s: '+r.n+' colonies, '+r.m+' changed (red). Count check: changed colonies are red.';table();};
+document.getElementById('graph').onclick=function(){var ks=Object.keys(data).map(Number).sort(function(a,b){return a-b;});var c=document.getElementById('g').getContext('2d');c.clearRect(0,0,640,320);
+ if(ks.length<2){c.fillStyle='#c0392b';c.font='16px sans-serif';c.fillText('Run at least two UV times first.',20,40);return;}
+ var L=60,B=270,W=540,Hh=230,maxY=Math.max(5,Math.ceil(Math.max.apply(null,ks.map(function(s){return 100*data[s].m/data[s].n;}))/5)*5);
+ c.strokeStyle='#333';c.lineWidth=2;c.beginPath();c.moveTo(L,20);c.lineTo(L,B);c.lineTo(L+W,B);c.stroke();c.fillStyle='#333';c.font='14px sans-serif';
+ for(var y=0;y<=maxY;y+=maxY/5){var yy=B-y/maxY*Hh;c.fillText(y.toFixed(0)+'%',14,yy+5);}
+ [0,10,20,40,60].forEach(function(x){c.fillText(x,L+x/60*W-6,B+20);});c.fillText('UV time (s)',L+W/2-30,B+42);
+ c.strokeStyle='#2457c5';c.fillStyle='#2457c5';c.beginPath();ks.forEach(function(s,i){var x=L+s/60*W,y=B-(100*data[s].m/data[s].n)/maxY*Hh;if(i)c.lineTo(x,y);else c.moveTo(x,y);});c.stroke();
+ ks.forEach(function(s){var x=L+s/60*W,y=B-(100*data[s].m/data[s].n)/maxY*Hh;c.beginPath();c.arc(x,y,5,0,7);c.fill();});};
+document.getElementById('copy').onclick=function(){var ks=Object.keys(data).map(Number).sort(function(a,b){return a-b;});var t='Day 5 Digital UV Lab (simulated)\nUV time (s) | Colonies | Changed | Percent\n'+ks.map(function(s){var r=data[s];return s+' | '+r.n+' | '+r.m+' | '+(100*r.m/r.n).toFixed(1)+'%';}).join('\n');var o=document.getElementById('out');o.textContent=t;o.style.display='block';
+ if(navigator.clipboard)navigator.clipboard.writeText(t).catch(function(){});};
+})();
+</script>
+</body>
+</html>
