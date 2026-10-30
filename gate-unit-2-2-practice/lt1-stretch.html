@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LT1 Stretch: How Much Variation Can Meiosis Make?</title>
+<style>
+:root{--ink:#1d2433;--muted:#5b6475;--line:#d9dee8;--bg:#f6f7fb;--card:#fff;--blue:#2457c5;--green:#1f8a4c;--red:#c0392b;--gold:#fff6d6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:820px;margin:0 auto;padding:20px 16px 60px}
+header{background:var(--blue);color:#fff;border-radius:14px;padding:18px 20px}
+header h1{margin:0;font-size:1.45rem}header p{margin:6px 0 0;opacity:.92}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.terms{background:var(--gold);border-color:#ecd98c}.terms ul{margin:6px 0 0;padding-left:20px}
+.n{font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--blue)}
+.q{font-weight:600;margin:4px 0 10px}
+.ch{display:block;width:100%;text-align:left;font:inherit;background:#f1f4fa;border:1.5px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;color:var(--ink)}
+.ch:hover{border-color:var(--blue)}
+.ch.ok{border-color:var(--green);background:#eaf7ef}.ch.no{border-color:var(--red);background:#fdecea}
+input[type=text],textarea{font:inherit;border:1.5px solid var(--line);border-radius:8px;padding:7px 9px;width:100%;color:var(--ink);background:#fff}
+textarea{min-height:140px}
+button.go{font:inherit;font-weight:600;border:0;border-radius:8px;padding:8px 14px;cursor:pointer;background:var(--blue);color:#fff;margin-top:8px}
+.fb{margin-top:8px;font-weight:600}.fb.good{color:var(--green)}.fb.bad{color:var(--red)}
+table{border-collapse:collapse;width:100%;margin-top:6px}th,td{border:1px solid var(--line);padding:6px 8px;text-align:left}th{background:#eef2fb}
+.hint li{margin:3px 0}.model{display:none;background:#eaf7ef;border:1px solid #9fd6b3;border-radius:8px;padding:10px;margin-top:10px}
+.locked{opacity:.45;pointer-events:none}
+.done{background:#eaf7ef;border-color:#9fd6b3}
+</style>
+</head>
+<body>
+<main>
+<header><h1 id="t"></h1><p id="lt"></p></header>
+<div class="card" id="intro"></div>
+<div class="card terms"><b>Terms</b><ul id="terms"></ul></div>
+<div id="steps"></div>
+<div class="card done" id="end" hidden><b>You finished this practice.</b> Go back to Canvas. If you have a question, bring this page to class.</div>
+</main>
+<script>
+(function(){
+var P={"title": "LT1 Stretch: How Much Variation Can Meiosis Make?", "lt": "LT1: I can explain how meiosis and fertilization make new combinations of genes, so children of the same parents differ.", "intro": "This practice is for no credit. It goes deeper than the CFA. Read the feedback after each step.", "terms": [["independent assortment", "each chromosome pair splits up on its own during meiosis"], ["crossing over", "matching chromosomes swap pieces before they separate"], ["identical twins", "two children from one fertilized egg that split in two"], ["fraternal twins", "two children from two different eggs and two different sperm"]], "steps": [{"type": "table", "html": "<p><b>Data.<\/b> Number of chromosome pairs, and the kinds of sex cells possible from independent assortment alone (2 raised to the number of pairs).<\/p><table><tr><th>Organism<\/th><th>Chromosome pairs<\/th><th>Kinds of sex cells (2<sup>n<\/sup>)<\/th><\/tr><tr><td>Fruit fly<\/td><td>4<\/td><td>16<\/td><\/tr><tr><td>Garden pea<\/td><td>7<\/td><td>?<\/td><\/tr><tr><td>Human<\/td><td>23<\/td><td>8,388,608<\/td><\/tr><\/table>"}, {"type": "num", "q": "Fill in the missing value for the garden pea: 2^7 = ?", "answer": 128, "fb_ok": "Right. 2^7 = 128.", "fb_no": "Multiply 2 by itself 7 times."}, {"type": "mc", "q": "Each extra chromosome pair does what to the number of possible sex cells?", "choices": ["Adds 2", "Doubles it", "Adds 23", "Has no effect"], "answer": 1, "fb": ["Each pair gives 2 choices, and choices multiply. They do not add.", "Right. Every added pair doubles the number of kinds of sex cells.", "The 23 is the number of pairs in humans, not an amount added.", "More pairs mean more choices to combine."]}, {"type": "num", "q": "A child gets one of about 8.4 million kinds of sperm and one of about 8.4 million kinds of eggs. Estimate the combinations: 8,388,608 \u00d7 8,388,608 \u2248 ? trillion. (Type the number of trillions, rounded to the nearest whole number.)", "answer": 70, "tol": 1, "fb_ok": "Right. About 70 trillion combinations, before counting crossing over.", "fb_no": "8,388,608 \u00d7 8,388,608 is about 70,368,000,000,000. That is about 70 trillion."}, {"type": "mc", "q": "The real number of combinations is much larger than 70 trillion. Which process explains this?", "choices": ["Crossing over makes new allele mixes inside chromosomes", "Fertilization adds new chromosomes", "Mitosis in skin cells", "Each parent gives two copies of every chromosome"], "answer": 0, "fb": ["Right. Crossing over creates chromosomes that never existed before, so the count grows far past 2^23.", "Fertilization joins two sets. It does not add new chromosomes.", "Mitosis makes body cells. It does not make sex cells.", "Each parent gives one chromosome from each pair."]}, {"type": "mc", "q": "Fraternal twins differ about as much as any brother and sister. Identical twins share nearly all of their DNA. Which claim does this evidence support best?", "choices": ["Variation between siblings comes from different sperm and eggs combining", "Variation between siblings comes mostly from the environment", "Twins never show any variation", "Identical twins come from two eggs"], "answer": 0, "fb": ["Right. Two sex-cell pairs give two different combinations. One fertilized egg gives one combination.", "The environment matters for some traits, but it does not explain the DNA match in identical twins.", "Fraternal twins vary as much as other siblings.", "Identical twins come from one fertilized egg that splits."]}, {"type": "cer", "q": "Write a CER. <b>Question:<\/b> A family has five children, and no two look exactly alike. Is that surprising? Defend your answer with the data on this page.", "hints": ["Claim: say whether it is surprising.", "Evidence: use at least two numbers from this page, and the twin evidence.", "Reasoning: connect independent assortment, crossing over, and random fertilization to the claim."], "model": "Claim: It is not surprising. Evidence: Independent assortment alone gives about 8.4 million kinds of sex cells per parent and about 70 trillion combinations for a child. Crossing over makes the number larger. Fraternal twins differ like other siblings, while identical twins from one egg match. Reasoning: Each child comes from a different sperm and egg, each with a different mix of alleles. With trillions of possible combinations, two matching children (other than identical twins) are very unlikely."}]};
+document.getElementById('t').textContent=P.title;
+document.getElementById('lt').textContent=P.lt;
+document.getElementById('intro').textContent=P.intro;
+var tl=document.getElementById('terms');
+P.terms.forEach(function(t){var li=document.createElement('li');li.innerHTML='<b>'+t[0]+'</b>: '+t[1];tl.appendChild(li);});
+var wrap=document.getElementById('steps'),cards=[],num=0;
+function unlock(i){for(var k=i+1;k<cards.length;k++){cards[k].classList.remove('locked');if(cards[k].dataset.gate==='1')break;} if(i+1>=cards.length||cards.slice(i+1).every(function(c){return !c.classList.contains('locked');})){} }
+P.steps.forEach(function(s,i){
+ var c=document.createElement('div');c.className='card'+(i>0?' locked':'');cards.push(c);
+ if(s.type==='text'||s.type==='table'){c.innerHTML=s.html;c.dataset.gate='0';}
+ else{
+  num++;c.dataset.gate='1';
+  var h='<div class="n">Step '+num+'</div><div class="q">'+s.q+'</div>';
+  if(s.type==='mc'){s.choices.forEach(function(x,j){h+='<button class="ch" data-j="'+j+'">'+x+'</button>';});h+='<div class="fb"></div>';}
+  if(s.type==='num'){h+='<input type="text" inputmode="decimal" aria-label="Your answer"><button class="go">Check</button><div class="fb"></div>';}
+  if(s.type==='cer'){h+='<ul class="hint">'+s.hints.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul><textarea aria-label="Your CER"></textarea><button class="go">Compare with a strong answer</button><div class="model"><b>A strong answer:</b> '+s.model+'<p style="margin:8px 0 0">Check yours: Did you make a clear claim? Did you use real numbers or data? Did your reasoning explain <i>why</i>, using the science idea?</p></div>';}
+  c.innerHTML=h;
+ }
+ wrap.appendChild(c);
+ if(s.type==='mc'){c.querySelectorAll('.ch').forEach(function(b){b.addEventListener('click',function(){var j=+b.dataset.j,ok=j===s.answer,fb=c.querySelector('.fb');c.querySelectorAll('.ch').forEach(function(x){x.classList.remove('ok','no');});b.classList.add(ok?'ok':'no');fb.className='fb '+(ok?'good':'bad');fb.textContent=s.fb[j];if(ok)go(i);});});}
+ if(s.type==='num'){var inp=c.querySelector('input'),bt=c.querySelector('button'),fb=c.querySelector('.fb');function chk(){var v=parseFloat((inp.value||'').replace(/[^0-9.\-]/g,''));var ok=!isNaN(v)&&Math.abs(v-s.answer)<=(s.tol||0);fb.className='fb '+(ok?'good':'bad');fb.textContent=ok?s.fb_ok:s.fb_no;if(ok)go(i);}bt.addEventListener('click',chk);inp.addEventListener('keydown',function(e){if(e.key==='Enter')chk();});}
+ if(s.type==='cer'){var b2=c.querySelector('button'),ta=c.querySelector('textarea'),md=c.querySelector('.model');b2.addEventListener('click',function(){if((ta.value||'').trim().split(/\s+/).length<15){alert('Write your full CER first (at least a few sentences).');return;}md.style.display='block';go(i);});}
+});
+// text cards before the first question unlock immediately
+function openFrom(k){for(var x=k;x<cards.length;x++){cards[x].classList.remove('locked');if(cards[x].dataset.gate==='1')return;} document.getElementById('end').hidden=false;}
+function go(i){openFrom(i+1);}
+openFrom(0);
+})();
+</script>
+</body>
+</html>

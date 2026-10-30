@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LT3 Stretch: Three Cases, One Argument Each</title>
+<style>
+:root{--ink:#1d2433;--muted:#5b6475;--line:#d9dee8;--bg:#f6f7fb;--card:#fff;--blue:#2457c5;--green:#1f8a4c;--red:#c0392b;--gold:#fff6d6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:820px;margin:0 auto;padding:20px 16px 60px}
+header{background:var(--blue);color:#fff;border-radius:14px;padding:18px 20px}
+header h1{margin:0;font-size:1.45rem}header p{margin:6px 0 0;opacity:.92}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+.terms{background:var(--gold);border-color:#ecd98c}.terms ul{margin:6px 0 0;padding-left:20px}
+.n{font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--blue)}
+.q{font-weight:600;margin:4px 0 10px}
+.ch{display:block;width:100%;text-align:left;font:inherit;background:#f1f4fa;border:1.5px solid var(--line);border-radius:8px;padding:9px 12px;margin:6px 0;cursor:pointer;color:var(--ink)}
+.ch:hover{border-color:var(--blue)}
+.ch.ok{border-color:var(--green);background:#eaf7ef}.ch.no{border-color:var(--red);background:#fdecea}
+input[type=text],textarea{font:inherit;border:1.5px solid var(--line);border-radius:8px;padding:7px 9px;width:100%;color:var(--ink);background:#fff}
+textarea{min-height:140px}
+button.go{font:inherit;font-weight:600;border:0;border-radius:8px;padding:8px 14px;cursor:pointer;background:var(--blue);color:#fff;margin-top:8px}
+.fb{margin-top:8px;font-weight:600}.fb.good{color:var(--green)}.fb.bad{color:var(--red)}
+table{border-collapse:collapse;width:100%;margin-top:6px}th,td{border:1px solid var(--line);padding:6px 8px;text-align:left}th{background:#eef2fb}
+.hint li{margin:3px 0}.model{display:none;background:#eaf7ef;border:1px solid #9fd6b3;border-radius:8px;padding:10px;margin-top:10px}
+.locked{opacity:.45;pointer-events:none}
+.done{background:#eaf7ef;border-color:#9fd6b3}
+</style>
+</head>
+<body>
+<main>
+<header><h1 id="t"></h1><p id="lt"></p></header>
+<div class="card" id="intro"></div>
+<div class="card terms"><b>Terms</b><ul id="terms"></ul></div>
+<div id="steps"></div>
+<div class="card done" id="end" hidden><b>You finished this practice.</b> Go back to Canvas. If you have a question, bring this page to class.</div>
+</main>
+<script>
+(function(){
+var P={"title": "LT3 Stretch: Three Cases, One Argument Each", "lt": "LT3: I can use data to make and defend a claim about which source of variation best explains differences in offspring or a population.", "intro": "This practice is for no credit. Decide the best-supported source for each case, then defend one in depth.", "terms": [["counterclaim", "another possible explanation that someone might argue"], ["rebuttal", "evidence-based reasons the counterclaim is weaker"]], "steps": [{"type": "mc", "q": "Case 1. Neither parent has achondroplasia. Their child does. DNA tests find the FGFR3 change in the child but not in either parent's blood cells. Best-supported source?", "choices": ["A new mutation in a sperm or egg (often a copying error)", "A new combination of the parents' alleles", "An environmental mutagen acting on the child's bones", "No genetic cause"], "answer": 0, "fb": ["Right. A change missing from both parents' body cells most likely arose in a sex cell.", "Shuffling cannot produce an allele neither parent has.", "The change is in every cell of the child, so it was present from fertilization.", "A gene change was found."]}, {"type": "mc", "q": "Case 2. Fraternal twins have the same parents and were born the same day. One has attached earlobes and one does not. Best-supported source?", "choices": ["New combinations from meiosis and fertilization", "A copying error in one twin", "UV light during pregnancy", "They have identical DNA"], "answer": 0, "fb": ["Right. Fraternal twins come from two eggs and two sperm, each with a different mix of alleles.", "Possible, but the expected shuffle explains it with no new mutation.", "There is no evidence of a mutagen.", "Fraternal twins differ like other siblings."]}, {"type": "mc", "q": "Case 3. Fruit flies were raised in two groups. One group got X-rays. Only the X-rayed group's offspring showed many new traits. Best-supported source?", "choices": ["Environmental mutagen", "New combinations only", "No variation", "Copying errors only"], "answer": 0, "fb": ["Right. The only difference between the groups was the X-rays.", "Both groups had meiosis, so shuffling cannot explain the difference.", "New traits appeared.", "Copying errors happen in both groups. Only one group changed."]}, {"type": "mc", "q": "Counterclaim for Case 1: \"The parents must carry a hidden achondroplasia allele.\" Which rebuttal is strongest?", "choices": ["The FGFR3 change was not found in either parent's DNA", "Achondroplasia is rare", "The child is the oldest", "Hidden alleles never exist"], "answer": 0, "fb": ["Right. Direct DNA evidence shows the parents do not carry it.", "Rarity alone does not answer the claim.", "Birth order is not evidence about alleles.", "Hidden (recessive) alleles do exist, as with red hair."]}, {"type": "cer", "q": "Choose ONE case. Write a CER with a counterclaim and rebuttal.", "hints": ["Claim: name the source of variation.", "Evidence: cite the data from the case.", "Reasoning: explain how that source changes the DNA a child gets.", "Counterclaim and rebuttal: name another source and use evidence to show it is weaker."], "model": "Case 3. Claim: The new traits came from mutations caused by X-rays. Evidence: Only offspring of the X-rayed group showed many new traits. Reasoning: X-rays damage DNA. Damage in sex cells is passed to offspring. Counterclaim: The traits came from shuffling during meiosis. Rebuttal: Both groups had meiosis, but only the X-rayed group showed the extra traits, so shuffling cannot explain the difference."}]};
+document.getElementById('t').textContent=P.title;
+document.getElementById('lt').textContent=P.lt;
+document.getElementById('intro').textContent=P.intro;
+var tl=document.getElementById('terms');
+P.terms.forEach(function(t){var li=document.createElement('li');li.innerHTML='<b>'+t[0]+'</b>: '+t[1];tl.appendChild(li);});
+var wrap=document.getElementById('steps'),cards=[],num=0;
+function unlock(i){for(var k=i+1;k<cards.length;k++){cards[k].classList.remove('locked');if(cards[k].dataset.gate==='1')break;} if(i+1>=cards.length||cards.slice(i+1).every(function(c){return !c.classList.contains('locked');})){} }
+P.steps.forEach(function(s,i){
+ var c=document.createElement('div');c.className='card'+(i>0?' locked':'');cards.push(c);
+ if(s.type==='text'||s.type==='table'){c.innerHTML=s.html;c.dataset.gate='0';}
+ else{
+  num++;c.dataset.gate='1';
+  var h='<div class="n">Step '+num+'</div><div class="q">'+s.q+'</div>';
+  if(s.type==='mc'){s.choices.forEach(function(x,j){h+='<button class="ch" data-j="'+j+'">'+x+'</button>';});h+='<div class="fb"></div>';}
+  if(s.type==='num'){h+='<input type="text" inputmode="decimal" aria-label="Your answer"><button class="go">Check</button><div class="fb"></div>';}
+  if(s.type==='cer'){h+='<ul class="hint">'+s.hints.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul><textarea aria-label="Your CER"></textarea><button class="go">Compare with a strong answer</button><div class="model"><b>A strong answer:</b> '+s.model+'<p style="margin:8px 0 0">Check yours: Did you make a clear claim? Did you use real numbers or data? Did your reasoning explain <i>why</i>, using the science idea?</p></div>';}
+  c.innerHTML=h;
+ }
+ wrap.appendChild(c);
+ if(s.type==='mc'){c.querySelectorAll('.ch').forEach(function(b){b.addEventListener('click',function(){var j=+b.dataset.j,ok=j===s.answer,fb=c.querySelector('.fb');c.querySelectorAll('.ch').forEach(function(x){x.classList.remove('ok','no');});b.classList.add(ok?'ok':'no');fb.className='fb '+(ok?'good':'bad');fb.textContent=s.fb[j];if(ok)go(i);});});}
+ if(s.type==='num'){var inp=c.querySelector('input'),bt=c.querySelector('button'),fb=c.querySelector('.fb');function chk(){var v=parseFloat((inp.value||'').replace(/[^0-9.\-]/g,''));var ok=!isNaN(v)&&Math.abs(v-s.answer)<=(s.tol||0);fb.className='fb '+(ok?'good':'bad');fb.textContent=ok?s.fb_ok:s.fb_no;if(ok)go(i);}bt.addEventListener('click',chk);inp.addEventListener('keydown',function(e){if(e.key==='Enter')chk();});}
+ if(s.type==='cer'){var b2=c.querySelector('button'),ta=c.querySelector('textarea'),md=c.querySelector('.model');b2.addEventListener('click',function(){if((ta.value||'').trim().split(/\s+/).length<15){alert('Write your full CER first (at least a few sentences).');return;}md.style.display='block';go(i);});}
+});
+// text cards before the first question unlock immediately
+function openFrom(k){for(var x=k;x<cards.length;x++){cards[x].classList.remove('locked');if(cards[x].dataset.gate==='1')return;} document.getElementById('end').hidden=false;}
+function go(i){openFrom(i+1);}
+openFrom(0);
+})();
+</script>
+</body>
+</html>
