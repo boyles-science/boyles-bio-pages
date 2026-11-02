@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 1: Digital Half-Life Lab (simulated)</title>
+<style>
+:root{--ink:#1d2433;--line:#d9dee8;--bg:#f6f7fb;--blue:#2457c5;--gold:#fff6d6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:900px;margin:0 auto;padding:20px 16px 60px}
+header{background:var(--blue);color:#fff;border-radius:14px;padding:18px 20px}header h1{margin:0;font-size:1.5rem}header p{margin:6px 0 0;opacity:.92}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}.note{background:var(--gold);border-color:#ecd98c}
+button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:8px 14px;cursor:pointer;background:var(--blue);color:#fff;margin:4px 4px 4px 0}button.g{background:#e8edf8;color:var(--blue)}
+#grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;max-width:420px;margin:10px auto}
+.atom{aspect-ratio:1;border-radius:50%;border:2px solid #333;background:#333}.atom.d{background:#fff;border-style:dashed}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid var(--line);padding:6px 8px;text-align:center}th{background:#eef2fb}
+.scroll{overflow-x:auto}canvas{max-width:100%;height:auto;display:block;margin:10px auto;background:#fff}
+#out{font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;background:#f1f4fa;border-radius:8px;padding:10px;display:none}
+</style>
+</head>
+<body>
+<main>
+<header><h1>Day 1: Digital Half-Life Lab</h1><p>Living Earth GATE · Unit 3.1 Age of the Earth · <b>Simulation</b>: each atom has a 50% chance to decay in each half-life, like real radioactive atoms.</p></header>
+<section class="card note"><b>How it works.</b> Solid circles are <b>parent</b> (radioactive) atoms. Dashed circles are <b>daughter</b> (stable) atoms. Press <b>Run one half-life</b>. Each parent atom has a 50% chance of decaying. Record the counts after each half-life. Run 5 half-lives.</section>
+<section class="card">
+<button id="run">Run one half-life</button><button class="g" id="reset">Start over</button>
+<div id="grid" aria-label="100 atoms"></div>
+<p id="msg" style="text-align:center;font-weight:600"></p>
+</section>
+<section class="card"><b>Data table</b> (copy into your notebook)
+<div class="scroll"><table><thead><tr><th>Half-lives</th><th>Parent atoms</th><th>Daughter atoms</th><th>Percent parent left</th></tr></thead><tbody id="tb"></tbody></table></div></section>
+<section class="card"><button id="graph">Graph parent atoms</button><button class="g" id="copy">Copy my data</button>
+<canvas id="g" width="640" height="320" aria-label="Graph"></canvas><div id="out"></div>
+<p><b>Think:</b> Your numbers will not be exactly 50, 25, 12.5. Why not? What would happen with a million atoms?</p></section>
+</main>
+<script>
+(function(){
+var atoms,rows,grid=document.getElementById('grid');
+function reset(){atoms=Array(100).fill(1);rows=[[0,100,0]];draw();}
+function draw(){grid.innerHTML='';atoms.forEach(function(a){var d=document.createElement('div');d.className='atom'+(a?'':' d');grid.appendChild(d);});
+ var tb=document.getElementById('tb');tb.innerHTML=rows.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[1]+'%</td></tr>';}).join('');
+ document.getElementById('msg').textContent='After '+(rows.length-1)+' half-lives: '+rows[rows.length-1][1]+' parent atoms left.';}
+document.getElementById('run').onclick=function(){if(rows.length>5){document.getElementById('msg').textContent='You have run 5 half-lives. Graph your data, or start over.';return;}
+ atoms=atoms.map(function(a){return a&&Math.random()<0.5?0:a;});var p=atoms.filter(Boolean).length;rows.push([rows.length,p,100-p]);draw();};
+document.getElementById('reset').onclick=reset;
+document.getElementById('graph').onclick=function(){var c=document.getElementById('g').getContext('2d');c.clearRect(0,0,640,320);var L=60,B=270,W=520,H=230;
+ c.strokeStyle='#333';c.lineWidth=2;c.beginPath();c.moveTo(L,20);c.lineTo(L,B);c.lineTo(L+W,B);c.stroke();c.fillStyle='#333';c.font='14px sans-serif';
+ for(var y=0;y<=100;y+=20){c.fillText(y,24,B-y/100*H+5);}for(var x=0;x<=5;x++){c.fillText(x,L+x/5*W-4,B+20);}c.fillText('Half-lives',L+W/2-30,B+42);
+ c.strokeStyle='#999';c.setLineDash([5,4]);c.beginPath();for(x=0;x<=5;x++){var yy=B-100*Math.pow(.5,x)/100*H;if(x)c.lineTo(L+x/5*W,yy);else c.moveTo(L,yy);}c.stroke();c.setLineDash([]);
+ c.strokeStyle='#2457c5';c.fillStyle='#2457c5';c.beginPath();rows.forEach(function(r,i){var px=L+r[0]/5*W,py=B-r[1]/100*H;if(i)c.lineTo(px,py);else c.moveTo(px,py);});c.stroke();
+ rows.forEach(function(r){c.beginPath();c.arc(L+r[0]/5*W,B-r[1]/100*H,5,0,7);c.fill();});c.fillStyle='#666';c.fillText('dashed line = exactly half each time',L+W-250,40);};
+document.getElementById('copy').onclick=function(){var t='Day 1 Digital Half-Life Lab (simulated)\nHalf-lives | Parent | Daughter\n'+rows.map(function(r){return r.join(' | ');}).join('\n');var o=document.getElementById('out');o.textContent=t;o.style.display='block';if(navigator.clipboard)navigator.clipboard.writeText(t).catch(function(){});};
+reset();})();
+</script>
+</body>
+</html>
