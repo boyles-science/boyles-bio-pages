@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LT2 Stretch: How muscle contraction works</title>
+<style>
+:root{--bg:#fff;--fg:#1a1a1a;--muted:#555;--line:#8a8a8a;--card:#f4f4f4;--ok-bg:#e3f2e6;--ok-bd:#1d6b2f;--bad-bg:#fbe9e7;--bad-bd:#a3281c;--sel:#dbe8fb;--sel-bd:#1f4e9c;--hint-bg:#fff6d6;}
+@media (prefers-color-scheme:dark){:root{--bg:#16181c;--fg:#eee;--muted:#b5b5b5;--line:#777;--card:#23262c;--ok-bg:#16301d;--ok-bd:#6fcf86;--bad-bg:#3a1c18;--bad-bd:#ff9a8d;--sel:#1b2f4f;--sel-bd:#8db7ff;--hint-bg:#3a3414;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:18px/1.5 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+main{max-width:740px;margin:0 auto;padding:16px}
+small,.muted{color:var(--muted)}
+h1{font-size:1.5rem;margin:.2rem 0 .4rem}
+h2{font-size:1.25rem;margin:1.2rem 0 .4rem}
+.course{font-size:.85rem;color:var(--muted)}
+.how{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 14px;margin:10px 0}
+.how ol{margin:.3rem 0 .3rem 1.2rem;padding:0}
+.dots{display:flex;gap:8px;margin:12px 0}
+.dot{padding:2px 10px;border:2px solid var(--line);border-radius:14px;font-size:.85rem}
+.dot.now{border-color:var(--sel-bd);background:var(--sel);font-weight:700}
+.dot.done{border-color:var(--ok-bd)}
+table{border-collapse:collapse;width:100%;margin:8px 0}
+caption{text-align:left;font-size:.85rem;color:var(--muted);padding:4px 0}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;font-size:.95rem}
+th{background:var(--card)}
+.q{font-weight:700;margin:14px 0 6px}
+.hint{background:var(--hint-bg);border-left:5px solid var(--line);padding:6px 10px;margin:8px 0;font-size:.95rem}
+.opts{display:grid;gap:8px;margin:8px 0}
+button.opt,button.card{display:block;width:100%;text-align:left;min-height:44px;padding:10px 12px;font:inherit;color:inherit;background:var(--card);border:2px solid var(--line);border-radius:8px;cursor:pointer}
+button.opt:focus-visible,button.card:focus-visible,button.go:focus-visible{outline:3px solid var(--sel-bd);outline-offset:2px}
+button.card[aria-pressed="true"]{background:var(--sel);border-color:var(--sel-bd)}
+button.card[aria-pressed="true"]::before{content:"\2713  "}
+.good{background:var(--ok-bg)!important;border-color:var(--ok-bd)!important}
+.bad{background:var(--bad-bg)!important;border-color:var(--bad-bd)!important}
+.why{display:block;font-size:.92rem;margin-top:4px}
+.msg{margin:8px 0;padding:8px 12px;border-radius:8px;border:2px solid var(--line)}
+.msg.good{border-color:var(--ok-bd)}.msg.bad{border-color:var(--bad-bd)}
+button.go{font:inherit;font-weight:700;min-height:44px;padding:8px 18px;margin:8px 8px 8px 0;border:2px solid var(--fg);border-radius:8px;background:var(--fg);color:var(--bg);cursor:pointer}
+button.go[disabled]{opacity:.45;cursor:not-allowed}
+.cer{border:2px solid var(--fg);border-radius:8px;padding:6px 14px;margin:10px 0}
+.cer h3{margin:.5rem 0 .1rem;font-size:1rem}
+.cer ul{margin:.2rem 0 .2rem 1.2rem;padding:0}
+textarea.fallback{width:100%;min-height:8rem;font:inherit}
+</style>
+</head>
+<body>
+<main>
+<div id="app"></div>
+<noscript><p>This practice page needs JavaScript turned on.</p></noscript>
+</main>
+<script>
+window.CER_LT = 2;
+window.CER_DATA = {"2":{"id":"LT2","title":"How muscle contraction works","target":"I can explain how muscles shorten and pull to create movement.","scenarios":[{"title":"A climber holds still","intro":["A climber hangs from a ledge with the elbow bent for 20 seconds. The arm does not move.","A sensor measures the biceps muscle. Tension is the pulling force a muscle makes. A cross-bridge is a myosin head attached to actin."],"table":{"head":["Measurement","Result"],"rows":[["Biceps length at the start of the hold","24.0 cm"],["Biceps length at 20 seconds","24.0 cm"],["Tension in the biceps","High the whole time"],["Elbow angle","Did not change"]]},"q":"What type of contraction is this: concentric (muscle shortens), eccentric (muscle lengthens while pulling), or isometric (muscle stays the same length)?","claim":[{"t":"Isometric","ok":true,"why":"The muscle makes tension but stays the same length.","s":false},{"t":"Concentric","ok":false,"why":"In a concentric contraction the muscle gets shorter. This muscle did not.","s":false},{"t":"Eccentric","ok":false,"why":"In an eccentric contraction the muscle gets longer. This muscle did not.","s":false}],"ev":[{"t":"The biceps was 24.0 cm at the start and at 20 seconds.","ok":true,"why":"No change in length rules out concentric and eccentric.","s":false},{"t":"Tension in the biceps stayed high.","ok":true,"why":"The muscle is contracting, not relaxed.","s":false},{"t":"The elbow angle did not change.","ok":true,"why":"The joint did not move, which fits a muscle that did not change length.","s":false},{"t":"The climber hangs for 20 seconds.","ok":false,"why":"The time does not tell you the type of contraction.","s":false},{"t":"All contractions use ATP.","ok":false,"why":"This is true, but it does not separate the types of contraction.","s":false},{"t":"The biceps looked tired at the end.","ok":false,"why":"Tiredness is not in the data and does not show the type.","s":true}],"re":[{"t":"In an isometric contraction, cross-bridges form and pull, but the pull only matches the load. The muscle stays the same length.","ok":true,"why":"This explains tension without a change in length.","s":false},{"t":"In an isometric contraction no cross-bridges form, so the muscle only holds.","ok":false,"why":"Tension needs cross-bridges. Without them the muscle is relaxed.","s":false},{"t":"A muscle that does not move must be relaxed.","ok":false,"why":"The data show high tension, so the muscle is contracting.","s":false},{"t":"In an isometric contraction the filaments slide past each other, so the muscle shortens.","ok":false,"why":"That describes a concentric contraction.","s":true}],"pr":{"q":"The climber slowly lowers the body by letting the arms straighten. The biceps still pulls the whole time. Which type is this?","opts":[{"t":"Eccentric","ok":true,"why":"The muscle lengthens while it still pulls, like a brake.","s":false},{"t":"Concentric","ok":false,"why":"The muscle is getting longer, not shorter.","s":false},{"t":"Isometric","ok":false,"why":"The muscle length is changing.","s":false}]},"hint":{"c":"Compare the two length rows. Did the muscle get shorter, longer, or stay the same?","r":"A good reason says whether cross-bridges form and what the muscle length does."}},{"title":"Substance X at the neuromuscular junction","intro":["A researcher studies a muscle and its motor neuron, the nerve cell that controls it.","The neuromuscular junction is the small gap where the neuron meets the muscle fiber. The neuron releases ACh (acetylcholine) into this gap.","The researcher adds substance X and records four things."],"table":{"head":["Measurement","Before X","After X"],"rows":[["Nerve signal reaches the end of the motor neuron","Yes","Yes"],["ACh found in the gap","Yes","No"],["Muscle contracts after a nerve signal","Yes","No"],["Muscle contracts when ACh is added to the gap by the researcher","Yes","Yes"]]},"q":"Which step does substance X block?","claim":[{"t":"X stops the motor neuron from releasing ACh into the gap.","ok":true,"why":"ACh is missing from the gap even though the signal arrives.","s":false},{"t":"X destroys the muscle fiber's ability to contract.","ok":false,"why":"The fiber still contracts when ACh is added.","s":false},{"t":"X stops the nerve signal from reaching the end of the neuron.","ok":false,"why":"The signal still reaches the end of the neuron.","s":false}],"ev":[{"t":"The nerve signal still reaches the end of the neuron after X.","ok":true,"why":"The neuron is working up to this point.","s":false},{"t":"ACh is not found in the gap after X.","ok":true,"why":"ACh was not released.","s":false},{"t":"The muscle still contracts when ACh is added after X.","ok":true,"why":"The fiber itself still works.","s":false},{"t":"The muscle does not contract after a nerve signal.","ok":false,"why":"This is the result of the block, but it does not show which step is blocked.","s":false},{"t":"The researcher recorded four measurements.","ok":false,"why":"The number of measurements is not evidence.","s":false},{"t":"The experiment used one muscle.","ok":false,"why":"This is not evidence about which step is blocked.","s":true}],"re":[{"t":"ACh is the chemical messenger that crosses the gap. Without it the fiber gets no signal. Added ACh works, so the fiber is fine.","ok":true,"why":"This links the missing ACh to the missing contraction.","s":false},{"t":"ACh is made in the muscle fiber and tells the neuron to fire.","ok":false,"why":"ACh is made in the neuron and released toward the muscle fiber.","s":false},{"t":"The nerve signal jumps the gap as electricity, so ACh is not needed.","ok":false,"why":"The gap needs a chemical messenger. That messenger is ACh.","s":false},{"t":"Without ACh, calcium is still released but myosin cannot attach.","ok":false,"why":"Without ACh the fiber gets no signal, so calcium is not released.","s":true}],"pr":{"q":"A different drug blocks the ACh receptors on the fiber. Which result would you expect?","opts":[{"t":"ACh is in the gap, but the muscle does not contract, even when more ACh is added.","ok":true,"why":"The ACh is released, but blocked receptors cannot receive it.","s":false},{"t":"ACh is missing from the gap, but added ACh makes the muscle contract.","ok":false,"why":"That matches substance X, not blocked receptors.","s":false},{"t":"The nerve signal does not reach the end of the neuron.","ok":false,"why":"Blocked receptors are on the fiber, after the neuron.","s":false}]},"hint":{"c":"Find the row where ACh changes from Yes to No.","r":"A good reason says what ACh does and why the added ACh matters."}},{"title":"Three tubes of muscle fibers","intro":["A student team places three identical bundles of muscle fibers in three tubes. Each tube has a different mix.","ATP is the molecule that supplies energy. Calcium is an ion released inside the fiber. The team measures how much each bundle shortens."],"table":{"head":["Tube","Calcium added","ATP added","Bundle shortened by"],"rows":[["1","Yes","Yes","20%"],["2","No","Yes","0%"],["3","Yes","No","0%"]]},"q":"What does a muscle fiber need in order to shorten?","claim":[{"t":"It needs both calcium and ATP.","ok":true,"why":"Only the tube with both shortened.","s":false},{"t":"It needs calcium only.","ok":false,"why":"Tube 3 had calcium but did not shorten.","s":false},{"t":"It needs ATP only.","ok":false,"why":"Tube 2 had ATP but did not shorten.","s":false}],"ev":[{"t":"Tube 1 had calcium and ATP and shortened by 20%.","ok":true,"why":"With both present, the bundle shortened.","s":false},{"t":"Tube 2 had ATP but no calcium and shortened by 0%.","ok":true,"why":"ATP alone was not enough.","s":false},{"t":"Tube 3 had calcium but no ATP and shortened by 0%.","ok":true,"why":"Calcium alone was not enough.","s":false},{"t":"The three bundles were identical.","ok":false,"why":"This makes the test fair, but it does not show which substances are needed.","s":false},{"t":"There were three tubes.","ok":false,"why":"The number of tubes is not evidence about calcium or ATP.","s":false},{"t":"Tube 1 had the most chemicals, so it worked best.","ok":false,"why":"The count of chemicals does not matter. What matters is which ones are missing.","s":true}],"re":[{"t":"Calcium uncovers the binding sites on actin so myosin can attach. ATP gives myosin energy to pull and lets it release. The cycle needs both.","ok":true,"why":"This gives each substance its own job.","s":false},{"t":"Calcium gives the energy for the pull, and ATP uncovers the binding sites.","ok":false,"why":"The jobs are swapped. Calcium uncovers the sites, and ATP supplies energy.","s":false},{"t":"ATP is needed only after a contraction ends, to relax the fiber.","ok":false,"why":"ATP is used in every cycle, to pull and to let go.","s":false},{"t":"Calcium is only needed to make more ATP.","ok":false,"why":"Calcium's job is to uncover the binding sites on actin.","s":true}],"pr":{"q":"The bundle in Tube 3 feels stiff when pulled. What best explains this?","opts":[{"t":"Myosin heads stay attached to actin, because ATP is needed to let go.","ok":true,"why":"With calcium but no ATP, the cross-bridges cannot release.","s":false},{"t":"The actin filaments grew longer.","ok":false,"why":"Filaments do not change length.","s":false},{"t":"Calcium left the bundle, so the fibers locked.","ok":false,"why":"Tube 3 still has calcium.","s":false}]},"hint":{"c":"Look at which tubes shortened, then check what those tubes had.","r":"Give calcium one job and ATP one job."}}]}};
+</script>
+<script>
+/* CER practice engine, Unit 2.4 Muscular System (Anatomy and Physiology).
+   Nothing is saved or sent anywhere. Everything stays on the student's screen.
+   Page sets window.CER_LT (1-4). The link sets ?level=support or ?level=stretch. */
+(function () {
+  var lt = (window.CER_DATA || {})[window.CER_LT];
+  var params = new URLSearchParams(location.search);
+  var stretch = true;
+  var root = document.getElementById("app");
+  var S = lt.scenarios;
+  var idx = 0, step = "claim";
+  var st = {};            // per-scenario working state
+  var results = [];       // per-scenario summary text and first-try flags
+  var firstTry = { claim: 0, evidence: 0, reasoning: 0, predict: 0 };
+
+  function el(tag, attrs, kids) {
+    var e = document.createElement(tag);
+    for (var k in (attrs || {})) {
+      if (k === "text") e.textContent = attrs[k];
+      else if (k === "class") e.className = attrs[k];
+      else e.setAttribute(k, attrs[k]);
+    }
+    (kids || []).forEach(function (c) { e.appendChild(c); });
+    return e;
+  }
+  function shuffle(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function pick(list) { return list.filter(function (o) { return !o.s || stretch; }); }
+
+  function begin() {
+    var sc = S[idx];
+    st = {
+      sc: sc,
+      claim: shuffle(pick(sc.claim)), ev: shuffle(pick(sc.ev)),
+      re: shuffle(pick(sc.re)), pr: sc.pr ? shuffle(sc.pr.opts) : [],
+      tried: { claim: 0, evidence: 0, reasoning: 0, predict: 0 },
+      chosenClaim: null, chosenEv: [], chosenRe: null, wrongSeen: {}
+    };
+    step = "claim";
+    draw();
+  }
+
+  function dots() {
+    var d = el("div", { class: "dots", "aria-label": "Scenario progress" });
+    S.forEach(function (_, i) {
+      d.appendChild(el("span", {
+        class: "dot" + (i === idx ? " now" : (i < idx ? " done" : "")),
+        text: (i < idx ? "✓ " : "") + "Scenario " + (i + 1)
+      }));
+    });
+    return d;
+  }
+
+  function header() {
+    var level = stretch ? "Stretch" : "Support";
+    var h = el("div", {}, [
+      el("div", { class: "course", text: "Anatomy and Physiology · Unit 2.4 Muscular System · " + lt.id }),
+      el("h1", { text: lt.id + " " + level + ": " + lt.title }),
+      el("p", { class: "muted", text: lt.target })
+    ]);
+    var how = el("div", { class: "how" }, [
+      el("strong", { text: "How this works" }),
+      el("ol", {}, [
+        el("li", { text: "Choose a claim. A claim is a short answer to the question." }),
+        el("li", { text: "Tap the evidence. Evidence is data from the scenario that supports your claim." }),
+        el("li", { text: "Choose the reasoning. Reasoning explains why the evidence supports the claim." })
+      ]),
+      el("span", { class: "muted", text: stretch ? "Stretch: no hints, and one extra question in each scenario." : "Support: each step has a hint." })
+    ]);
+    h.appendChild(how);
+    return h;
+  }
+
+  function scenarioView() {
+    var sc = st.sc, box = el("section", {});
+    box.appendChild(el("h2", { text: "Scenario " + (idx + 1) + ": " + sc.title }));
+    sc.intro.forEach(function (p) { box.appendChild(el("p", { text: p })); });
+    if (sc.table) {
+      var t = el("table", {}, [el("caption", { text: "Practice data, made up for this activity. It is not from a real person or study." })]);
+      t.appendChild(el("tr", {}, sc.table.head.map(function (h) { return el("th", { text: h, scope: "col" }); })));
+      sc.table.rows.forEach(function (r) {
+        t.appendChild(el("tr", {}, r.map(function (c, i) { return el(i === 0 ? "th" : "td", i === 0 ? { text: c, scope: "row" } : { text: c }); })));
+      });
+      box.appendChild(t);
+    }
+    box.appendChild(el("p", { class: "q", text: sc.q }));
+    return box;
+  }
+
+  function hint(text) {
+    return stretch ? null : el("div", { class: "hint", text: "Hint: " + text });
+  }
+
+  function live() { return document.getElementById("live"); }
+  function say(cls, text) {
+    var m = live(); m.style.display = "block"; m.className = "msg " + cls; m.textContent = text;
+  }
+
+  /* ---------- single-choice step (claim, reasoning, predict) ---------- */
+  function choiceStep(key, list, intro, hintText, onRight) {
+    var wrap = el("div", {});
+    wrap.appendChild(el("p", { class: "q", text: intro }));
+    var h = hint(hintText); if (h) wrap.appendChild(h);
+    var opts = el("div", { class: "opts" });
+    var done = false;
+    list.forEach(function (o) {
+      var b = el("button", { class: "opt", type: "button" }, [document.createTextNode(o.t)]);
+      b.addEventListener("click", function () {
+        if (done) return;
+        st.tried[key]++;
+        var why = el("span", { class: "why", text: (o.ok ? "✔ Yes. " : "✘ Not yet. ") + o.why });
+        var old = b.querySelector(".why"); if (old) old.remove();
+        b.appendChild(why);
+        b.classList.add(o.ok ? "good" : "bad");
+        if (o.ok) {
+          done = true;
+          if (st.tried[key] === 1) firstTry[key]++;
+          say("good", "Correct. Read the explanations, then continue.");
+          Array.prototype.forEach.call(opts.children, function (x) { x.disabled = true; });
+          onRight(o);
+        } else {
+          b.disabled = true;
+          say("bad", "Not yet. Read why, then try another choice.");
+        }
+      });
+      opts.appendChild(b);
+    });
+    wrap.appendChild(opts);
+    return wrap;
+  }
+
+  /* ---------- evidence step ---------- */
+  function evidenceStep() {
+    var wrap = el("div", {});
+    wrap.appendChild(el("p", { class: "q", text: "Step 2. Tap every piece of evidence that supports your claim. Then press Check." }));
+    var h = hint("Pick only data that helps prove your claim. Some true facts do not help."); if (h) wrap.appendChild(h);
+    var need = st.ev.filter(function (o) { return o.ok; }).length;
+    var opts = el("div", { class: "opts" }), cards = [];
+    st.ev.forEach(function (o) {
+      var b = el("button", { class: "card", type: "button", "aria-pressed": "false" }, [document.createTextNode(o.t)]);
+      b.addEventListener("click", function () {
+        if (b.disabled) return;
+        b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+        b.classList.remove("good", "bad");
+        var w = b.querySelector(".why"); if (w) w.remove();
+      });
+      cards.push({ o: o, b: b }); opts.appendChild(b);
+    });
+    wrap.appendChild(opts);
+    var check = el("button", { class: "go", type: "button", text: "Check my evidence" });
+    check.addEventListener("click", function () {
+      st.tried.evidence++;
+      var wrong = 0, right = 0;
+      cards.forEach(function (c) {
+        var on = c.b.getAttribute("aria-pressed") === "true";
+        var w = c.b.querySelector(".why"); if (w) w.remove();
+        c.b.classList.remove("good", "bad");
+        if (on) {
+          var ok = c.o.ok;
+          c.b.classList.add(ok ? "good" : "bad");
+          c.b.appendChild(el("span", { class: "why", text: (ok ? "✔ Supports your claim. " : "✘ Does not support your claim. ") + c.o.why }));
+          if (ok) right++; else wrong++;
+        }
+      });
+      var missing = need - right;
+      if (wrong === 0 && missing === 0) {
+        if (st.tried.evidence === 1) firstTry.evidence++;
+        st.chosenEv = cards.filter(function (c) { return c.o.ok; }).map(function (c) { return c.o.t; });
+        cards.forEach(function (c) {
+          c.b.disabled = true;
+          if (!c.o.ok) {
+            c.b.appendChild(el("span", { class: "why", text: "✘ Not used. " + c.o.why }));
+          }
+        });
+        check.disabled = true;
+        say("good", "Correct. You found all the evidence. Continue to the reasoning.");
+        nextBtn("Continue to reasoning", function () { step = "reasoning"; draw(); });
+      } else {
+        var parts = [];
+        if (wrong) parts.push("Remove the " + wrong + " card" + (wrong > 1 ? "s" : "") + " marked with ✘.");
+        if (missing > 0) parts.push(stretch ? "You are still missing some evidence." : "You are still missing " + missing + " piece" + (missing > 1 ? "s" : "") + " of evidence.");
+        say("bad", "Not yet. " + parts.join(" ") + " Then press Check again.");
+      }
+    });
+    wrap.appendChild(check);
+    return wrap;
+  }
+
+  function nextBtn(label, fn) {
+    var area = document.getElementById("nextarea");
+    area.textContent = "";
+    var b = el("button", { class: "go", type: "button", text: label });
+    b.addEventListener("click", fn);
+    area.appendChild(b);
+    b.focus();
+  }
+
+  function cerBlock() {
+    var sc = st.sc;
+    var box = el("div", { class: "cer" }, [
+      el("h3", { text: "Your claim" }), el("p", { text: st.chosenClaim.t }),
+      el("h3", { text: "Your evidence" }),
+      el("ul", {}, st.chosenEv.map(function (t) { return el("li", { text: t }); })),
+      el("h3", { text: "Your reasoning" }), el("p", { text: st.chosenRe.t })
+    ]);
+    return box;
+  }
+
+  function cerText() {
+    return "Claim: " + st.chosenClaim.t + "\nEvidence:\n" +
+      st.chosenEv.map(function (t) { return "- " + t; }).join("\n") +
+      "\nReasoning: " + st.chosenRe.t;
+  }
+
+  function finishScenario() {
+    results.push("Scenario " + (idx + 1) + ": " + st.sc.title + "\n" + cerText());
+    var main = document.getElementById("stepbox");
+    main.textContent = "";
+    main.appendChild(el("h2", { text: "Your CER for this scenario" }));
+    main.appendChild(cerBlock());
+    var last = idx === S.length - 1;
+    nextBtn(last ? "Finish" : "Next scenario", function () {
+      if (last) summary(); else { idx++; begin(); window.scrollTo(0, 0); }
+    });
+    say("good", "Scenario complete. Read your CER, then continue.");
+  }
+
+  function summary() {
+    root.textContent = "";
+    root.appendChild(header());
+    root.appendChild(el("h2", { text: "Finished: " + lt.id + " " + (stretch ? "Stretch" : "Support") }));
+    var total = S.length;
+    var lines = [
+      "Claim chosen right on the first try: " + firstTry.claim + " of " + total,
+      "Evidence right on the first check: " + firstTry.evidence + " of " + total,
+      "Reasoning right on the first try: " + firstTry.reasoning + " of " + total
+    ];
+    if (stretch) lines.push("Extra question right on the first try: " + firstTry.predict + " of " + total);
+    root.appendChild(el("ul", {}, lines.map(function (l) { return el("li", { text: l }); })));
+    root.appendChild(el("p", { class: "muted", text: "This page does not save your work or send it anywhere. Copy your CERs and paste them where your teacher asks." }));
+    var all = lt.id + " " + (stretch ? "Stretch" : "Support") + ": " + lt.title + "\n\n" + results.join("\n\n");
+    var area = el("textarea", { class: "fallback", readonly: "readonly", "aria-label": "All your CERs" });
+    area.value = all;
+    var copy = el("button", { class: "go", type: "button", text: "Copy all my CERs" });
+    var note = el("p", { role: "status", class: "muted" });
+    copy.addEventListener("click", function () {
+      function fallback() { area.select(); try { document.execCommand("copy"); note.textContent = "Copied."; } catch (e) { note.textContent = "Select the text below and copy it."; } }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(all).then(function () { note.textContent = "Copied."; }, fallback);
+      } else fallback();
+    });
+    root.appendChild(copy); root.appendChild(note); root.appendChild(area);
+    window.scrollTo(0, 0);
+  }
+
+  function draw() {
+    root.textContent = "";
+    root.appendChild(header());
+    root.appendChild(dots());
+    root.appendChild(scenarioView());
+    var box = el("div", { id: "stepbox" });
+    var sc = st.sc;
+    if (step === "claim") {
+      box.appendChild(choiceStep("claim", st.claim, "Step 1. Choose your claim.", sc.hint.c, function (o) {
+        st.chosenClaim = o;
+        nextBtn("Continue to evidence", function () { step = "evidence"; draw(); });
+      }));
+    } else {
+      var c = el("div", { class: "cer" }, [el("h3", { text: "Your claim" }), el("p", { text: st.chosenClaim.t })]);
+      box.appendChild(c);
+      if (step === "evidence") {
+        box.appendChild(evidenceStep());
+      } else if (step === "reasoning") {
+        box.appendChild(choiceStep("reasoning", st.re, "Step 3. Choose the reasoning that links your evidence to your claim.", sc.hint.r, function (o) {
+          st.chosenRe = o;
+          if (stretch && sc.pr) nextBtn("Continue to the extra question", function () { step = "predict"; draw(); });
+          else nextBtn("See my CER", function () { finishScenario(); });
+        }));
+      } else if (step === "predict") {
+        box.appendChild(choiceStep("predict", st.pr, "Extra question. " + sc.pr.q, "", function () {
+          nextBtn("See my CER", function () { finishScenario(); });
+        }));
+      }
+    }
+    root.appendChild(box);
+    root.appendChild(el("div", { id: "live", class: "msg", role: "status", "aria-live": "polite" }));
+    root.appendChild(el("div", { id: "nextarea" }));
+    document.getElementById("live").style.display = "none";
+  }
+
+  begin();
+})();
+</script>
+</body>
+</html>

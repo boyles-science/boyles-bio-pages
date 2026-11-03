@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LT1 Support: Muscle tissue and levels of organization</title>
+<style>
+:root{--bg:#fff;--fg:#1a1a1a;--muted:#555;--line:#8a8a8a;--card:#f4f4f4;--ok-bg:#e3f2e6;--ok-bd:#1d6b2f;--bad-bg:#fbe9e7;--bad-bd:#a3281c;--sel:#dbe8fb;--sel-bd:#1f4e9c;--hint-bg:#fff6d6;}
+@media (prefers-color-scheme:dark){:root{--bg:#16181c;--fg:#eee;--muted:#b5b5b5;--line:#777;--card:#23262c;--ok-bg:#16301d;--ok-bd:#6fcf86;--bad-bg:#3a1c18;--bad-bd:#ff9a8d;--sel:#1b2f4f;--sel-bd:#8db7ff;--hint-bg:#3a3414;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:18px/1.5 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+main{max-width:740px;margin:0 auto;padding:16px}
+small,.muted{color:var(--muted)}
+h1{font-size:1.5rem;margin:.2rem 0 .4rem}
+h2{font-size:1.25rem;margin:1.2rem 0 .4rem}
+.course{font-size:.85rem;color:var(--muted)}
+.how{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 14px;margin:10px 0}
+.how ol{margin:.3rem 0 .3rem 1.2rem;padding:0}
+.dots{display:flex;gap:8px;margin:12px 0}
+.dot{padding:2px 10px;border:2px solid var(--line);border-radius:14px;font-size:.85rem}
+.dot.now{border-color:var(--sel-bd);background:var(--sel);font-weight:700}
+.dot.done{border-color:var(--ok-bd)}
+table{border-collapse:collapse;width:100%;margin:8px 0}
+caption{text-align:left;font-size:.85rem;color:var(--muted);padding:4px 0}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;font-size:.95rem}
+th{background:var(--card)}
+.q{font-weight:700;margin:14px 0 6px}
+.hint{background:var(--hint-bg);border-left:5px solid var(--line);padding:6px 10px;margin:8px 0;font-size:.95rem}
+.opts{display:grid;gap:8px;margin:8px 0}
+button.opt,button.card{display:block;width:100%;text-align:left;min-height:44px;padding:10px 12px;font:inherit;color:inherit;background:var(--card);border:2px solid var(--line);border-radius:8px;cursor:pointer}
+button.opt:focus-visible,button.card:focus-visible,button.go:focus-visible{outline:3px solid var(--sel-bd);outline-offset:2px}
+button.card[aria-pressed="true"]{background:var(--sel);border-color:var(--sel-bd)}
+button.card[aria-pressed="true"]::before{content:"\2713  "}
+.good{background:var(--ok-bg)!important;border-color:var(--ok-bd)!important}
+.bad{background:var(--bad-bg)!important;border-color:var(--bad-bd)!important}
+.why{display:block;font-size:.92rem;margin-top:4px}
+.msg{margin:8px 0;padding:8px 12px;border-radius:8px;border:2px solid var(--line)}
+.msg.good{border-color:var(--ok-bd)}.msg.bad{border-color:var(--bad-bd)}
+button.go{font:inherit;font-weight:700;min-height:44px;padding:8px 18px;margin:8px 8px 8px 0;border:2px solid var(--fg);border-radius:8px;background:var(--fg);color:var(--bg);cursor:pointer}
+button.go[disabled]{opacity:.45;cursor:not-allowed}
+.cer{border:2px solid var(--fg);border-radius:8px;padding:6px 14px;margin:10px 0}
+.cer h3{margin:.5rem 0 .1rem;font-size:1rem}
+.cer ul{margin:.2rem 0 .2rem 1.2rem;padding:0}
+textarea.fallback{width:100%;min-height:8rem;font:inherit}
+</style>
+</head>
+<body>
+<main>
+<div id="app"></div>
+<noscript><p>This practice page needs JavaScript turned on.</p></noscript>
+</main>
+<script>
+window.CER_LT = 1;
+window.CER_DATA = {"1":{"id":"LT1","title":"Muscle tissue and levels of organization","target":"I can name the three types of muscle tissue and describe how a muscle is built from fibers to the whole muscle.","scenarios":[{"title":"Two tissue samples","intro":["A surgeon removes two small tissue samples for a lab. One is from the wall of the heart. One is from the biceps, the muscle on the front of the upper arm.","A lab assistant looks at both under a microscope and records what is seen. The samples are not labeled."],"table":{"head":["Feature","Sample 1","Sample 2"],"rows":[["Stripes (striations)","Yes","Yes"],["Cell shape","Long, branched, joined end to end","Long, straight, not branched"],["Nuclei per cell","1","Many, along the edge of the cell"],["Dark connecting lines between cells","Yes","No"]]},"q":"Which sample came from the heart? A nucleus is the part of a cell that holds its DNA.","claim":[{"t":"Sample 1 is cardiac (heart) muscle.","ok":true,"why":"Cardiac muscle is striped, branched, and joined by connecting lines.","s":false},{"t":"Sample 2 is cardiac (heart) muscle.","ok":false,"why":"Sample 2 has many nuclei and no branches. That matches skeletal muscle.","s":false},{"t":"Sample 1 is smooth muscle, because it has one nucleus.","ok":false,"why":"Smooth muscle has no stripes. Both samples are striped.","s":false}],"ev":[{"t":"The cells in Sample 1 branch and join end to end.","ok":true,"why":"Cardiac cells branch. Skeletal muscle fibers do not.","s":false},{"t":"Sample 1 has dark connecting lines between its cells.","ok":true,"why":"These lines link cardiac cells so they work together.","s":false},{"t":"Sample 1 has one nucleus per cell.","ok":true,"why":"Cardiac cells usually have one nucleus. Skeletal fibers have many.","s":false},{"t":"Both samples have stripes.","ok":false,"why":"This is true, but it does not help. Cardiac and skeletal muscle are both striped.","s":false},{"t":"The surgeon removed the samples for a lab.","ok":false,"why":"This does not describe the tissue.","s":false}],"re":[{"t":"Cardiac cells branch, have one nucleus, and are joined by connecting lines. Skeletal fibers are straight with many nuclei.","ok":true,"why":"This links the features in the data to each tissue type.","s":false},{"t":"Stripes show a muscle is cardiac, because only the heart has striped muscle.","ok":false,"why":"Skeletal muscle is striped too.","s":false},{"t":"The sample with more nuclei is the heart, because the heart works hardest.","ok":false,"why":"Nuclei count is about cell structure, not workload. Skeletal fibers have many nuclei.","s":false}],"hint":{"c":"Look at the Sample 1 column. Which muscle type has branched cells?","r":"A strong reason names the features and says what they mean."}},{"title":"Muscle in the wall of the intestine","intro":["A doctor looks at a tissue sample from the wall of the small intestine. Muscle in this wall squeezes food along for hours.","Nobody chooses to make it move."],"table":{"head":["Feature","Intestine sample"],"rows":[["Stripes","None"],["Cell shape","Tapered at both ends"],["Nuclei per cell","1, in the center"],["Voluntary or involuntary?","Involuntary (you cannot choose)"],["How it works","Slow, steady squeezing. Rarely tires."]]},"q":"What type of muscle tissue is in the wall of the intestine?","claim":[{"t":"Smooth muscle","ok":true,"why":"No stripes, tapered cells, and slow involuntary squeezing all match smooth muscle.","s":false},{"t":"Skeletal muscle","ok":false,"why":"Skeletal muscle is striped and voluntary.","s":false},{"t":"Cardiac muscle","ok":false,"why":"Cardiac muscle is striped and is found only in the heart.","s":false}],"ev":[{"t":"The cells have no stripes.","ok":true,"why":"Skeletal and cardiac muscle are striped. No stripes points to smooth muscle.","s":false},{"t":"The cells taper at both ends and have one nucleus in the center.","ok":true,"why":"This spindle shape is typical of smooth muscle.","s":false},{"t":"It works with slow, steady squeezing and rarely tires.","ok":true,"why":"Smooth muscle can work for hours without tiring.","s":false},{"t":"You cannot choose to move it.","ok":true,"why":"This rules out skeletal muscle. Used with the other evidence, it points to smooth muscle.","s":false},{"t":"The sample came from an organ in the body.","ok":false,"why":"Cardiac muscle is also in an organ, so this does not decide.","s":false}],"re":[{"t":"Smooth muscle has no stripes and has spindle-shaped cells with one nucleus. It works involuntarily and slowly. The sample matches.","ok":true,"why":"This connects the sample's features to smooth muscle.","s":false},{"t":"All involuntary muscle is smooth muscle, so the sample must be smooth.","ok":false,"why":"Cardiac muscle is involuntary too, but it is striped.","s":false},{"t":"The sample has one nucleus per cell, so it must be cardiac.","ok":false,"why":"Smooth cells also have one nucleus. Cardiac cells are striped and branched.","s":false}],"hint":{"c":"Check the stripes row. Which two types have stripes?","r":"Name at least two features from the table and the tissue they match."}},{"title":"A torn bundle in the hamstring","intro":["A runner pulls a hamstring, the muscle on the back of the thigh. An ultrasound scan checks three levels of the muscle.","The runner can still bend the knee, but the leg feels weak.","A fascicle is a bundle of muscle fibers. A muscle fiber is one long muscle cell."],"table":{"head":["Level examined","Result"],"rows":[["Whole muscle (hamstring)","Still moves the knee, but weaker"],["Fascicles (bundles of fibers)","2 of 10 are torn. 8 of 10 look normal."],["Fibers inside the 8 normal fascicles","Normal size and shape"]]},"q":"At which level is the damage, and why is the muscle weaker instead of fully out of use?","claim":[{"t":"The damage is at the fascicle level. Eight of 10 fascicles still contract, so the muscle still works but pulls less.","ok":true,"why":"The scan shows torn fascicles, and most fascicles are still working.","s":false},{"t":"The damage is at the level of the myofilaments, because the whole muscle is weak.","ok":false,"why":"The scan shows torn bundles. It does not examine filaments.","s":false},{"t":"The damage is at the whole-muscle level, so no fascicles work.","ok":false,"why":"Eight of 10 fascicles look normal, so many still work.","s":false}],"ev":[{"t":"Two of the 10 fascicles are torn.","ok":true,"why":"This places the damage at the fascicle level.","s":false},{"t":"Eight of the 10 fascicles look normal.","ok":true,"why":"These fascicles can still contract.","s":false},{"t":"The runner can still bend the knee, but the leg is weak.","ok":true,"why":"A muscle with fewer working fascicles pulls less but still works.","s":false},{"t":"The scan was done on the back of the thigh.","ok":false,"why":"This tells you where the scan was done, not which level is damaged.","s":false}],"re":[{"t":"A muscle is made of fascicles, and each fascicle is a bundle of fibers. Force adds up across the working fascicles. Losing 2 of 10 lowers the force but does not stop the muscle.","ok":true,"why":"This explains weaker but not fully out of use.","s":false},{"t":"A fascicle is part of one muscle fiber, so a tear affects only one fiber.","ok":false,"why":"A fascicle holds many fibers.","s":false},{"t":"Muscle force comes from one main fascicle, so the muscle should not work at all.","ok":false,"why":"Every working fascicle adds force.","s":false}],"hint":{"c":"Find the row in the table that has a damage count. That row names the level.","r":"A good reason says what a muscle is made of and how force adds up."}}]}};
+</script>
+<script>
+/* CER practice engine, Unit 2.4 Muscular System (Anatomy and Physiology).
+   Nothing is saved or sent anywhere. Everything stays on the student's screen.
+   Page sets window.CER_LT (1-4). The link sets ?level=support or ?level=stretch. */
+(function () {
+  var lt = (window.CER_DATA || {})[window.CER_LT];
+  var params = new URLSearchParams(location.search);
+  var stretch = false;
+  var root = document.getElementById("app");
+  var S = lt.scenarios;
+  var idx = 0, step = "claim";
+  var st = {};            // per-scenario working state
+  var results = [];       // per-scenario summary text and first-try flags
+  var firstTry = { claim: 0, evidence: 0, reasoning: 0, predict: 0 };
+
+  function el(tag, attrs, kids) {
+    var e = document.createElement(tag);
+    for (var k in (attrs || {})) {
+      if (k === "text") e.textContent = attrs[k];
+      else if (k === "class") e.className = attrs[k];
+      else e.setAttribute(k, attrs[k]);
+    }
+    (kids || []).forEach(function (c) { e.appendChild(c); });
+    return e;
+  }
+  function shuffle(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function pick(list) { return list.filter(function (o) { return !o.s || stretch; }); }
+
+  function begin() {
+    var sc = S[idx];
+    st = {
+      sc: sc,
+      claim: shuffle(pick(sc.claim)), ev: shuffle(pick(sc.ev)),
+      re: shuffle(pick(sc.re)), pr: sc.pr ? shuffle(sc.pr.opts) : [],
+      tried: { claim: 0, evidence: 0, reasoning: 0, predict: 0 },
+      chosenClaim: null, chosenEv: [], chosenRe: null, wrongSeen: {}
+    };
+    step = "claim";
+    draw();
+  }
+
+  function dots() {
+    var d = el("div", { class: "dots", "aria-label": "Scenario progress" });
+    S.forEach(function (_, i) {
+      d.appendChild(el("span", {
+        class: "dot" + (i === idx ? " now" : (i < idx ? " done" : "")),
+        text: (i < idx ? "✓ " : "") + "Scenario " + (i + 1)
+      }));
+    });
+    return d;
+  }
+
+  function header() {
+    var level = stretch ? "Stretch" : "Support";
+    var h = el("div", {}, [
+      el("div", { class: "course", text: "Anatomy and Physiology · Unit 2.4 Muscular System · " + lt.id }),
+      el("h1", { text: lt.id + " " + level + ": " + lt.title }),
+      el("p", { class: "muted", text: lt.target })
+    ]);
+    var how = el("div", { class: "how" }, [
+      el("strong", { text: "How this works" }),
+      el("ol", {}, [
+        el("li", { text: "Choose a claim. A claim is a short answer to the question." }),
+        el("li", { text: "Tap the evidence. Evidence is data from the scenario that supports your claim." }),
+        el("li", { text: "Choose the reasoning. Reasoning explains why the evidence supports the claim." })
+      ]),
+      el("span", { class: "muted", text: stretch ? "Stretch: no hints, and one extra question in each scenario." : "Support: each step has a hint." })
+    ]);
+    h.appendChild(how);
+    return h;
+  }
+
+  function scenarioView() {
+    var sc = st.sc, box = el("section", {});
+    box.appendChild(el("h2", { text: "Scenario " + (idx + 1) + ": " + sc.title }));
+    sc.intro.forEach(function (p) { box.appendChild(el("p", { text: p })); });
+    if (sc.table) {
+      var t = el("table", {}, [el("caption", { text: "Practice data, made up for this activity. It is not from a real person or study." })]);
+      t.appendChild(el("tr", {}, sc.table.head.map(function (h) { return el("th", { text: h, scope: "col" }); })));
+      sc.table.rows.forEach(function (r) {
+        t.appendChild(el("tr", {}, r.map(function (c, i) { return el(i === 0 ? "th" : "td", i === 0 ? { text: c, scope: "row" } : { text: c }); })));
+      });
+      box.appendChild(t);
+    }
+    box.appendChild(el("p", { class: "q", text: sc.q }));
+    return box;
+  }
+
+  function hint(text) {
+    return stretch ? null : el("div", { class: "hint", text: "Hint: " + text });
+  }
+
+  function live() { return document.getElementById("live"); }
+  function say(cls, text) {
+    var m = live(); m.style.display = "block"; m.className = "msg " + cls; m.textContent = text;
+  }
+
+  /* ---------- single-choice step (claim, reasoning, predict) ---------- */
+  function choiceStep(key, list, intro, hintText, onRight) {
+    var wrap = el("div", {});
+    wrap.appendChild(el("p", { class: "q", text: intro }));
+    var h = hint(hintText); if (h) wrap.appendChild(h);
+    var opts = el("div", { class: "opts" });
+    var done = false;
+    list.forEach(function (o) {
+      var b = el("button", { class: "opt", type: "button" }, [document.createTextNode(o.t)]);
+      b.addEventListener("click", function () {
+        if (done) return;
+        st.tried[key]++;
+        var why = el("span", { class: "why", text: (o.ok ? "✔ Yes. " : "✘ Not yet. ") + o.why });
+        var old = b.querySelector(".why"); if (old) old.remove();
+        b.appendChild(why);
+        b.classList.add(o.ok ? "good" : "bad");
+        if (o.ok) {
+          done = true;
+          if (st.tried[key] === 1) firstTry[key]++;
+          say("good", "Correct. Read the explanations, then continue.");
+          Array.prototype.forEach.call(opts.children, function (x) { x.disabled = true; });
+          onRight(o);
+        } else {
+          b.disabled = true;
+          say("bad", "Not yet. Read why, then try another choice.");
+        }
+      });
+      opts.appendChild(b);
+    });
+    wrap.appendChild(opts);
+    return wrap;
+  }
+
+  /* ---------- evidence step ---------- */
+  function evidenceStep() {
+    var wrap = el("div", {});
+    wrap.appendChild(el("p", { class: "q", text: "Step 2. Tap every piece of evidence that supports your claim. Then press Check." }));
+    var h = hint("Pick only data that helps prove your claim. Some true facts do not help."); if (h) wrap.appendChild(h);
+    var need = st.ev.filter(function (o) { return o.ok; }).length;
+    var opts = el("div", { class: "opts" }), cards = [];
+    st.ev.forEach(function (o) {
+      var b = el("button", { class: "card", type: "button", "aria-pressed": "false" }, [document.createTextNode(o.t)]);
+      b.addEventListener("click", function () {
+        if (b.disabled) return;
+        b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+        b.classList.remove("good", "bad");
+        var w = b.querySelector(".why"); if (w) w.remove();
+      });
+      cards.push({ o: o, b: b }); opts.appendChild(b);
+    });
+    wrap.appendChild(opts);
+    var check = el("button", { class: "go", type: "button", text: "Check my evidence" });
+    check.addEventListener("click", function () {
+      st.tried.evidence++;
+      var wrong = 0, right = 0;
+      cards.forEach(function (c) {
+        var on = c.b.getAttribute("aria-pressed") === "true";
+        var w = c.b.querySelector(".why"); if (w) w.remove();
+        c.b.classList.remove("good", "bad");
+        if (on) {
+          var ok = c.o.ok;
+          c.b.classList.add(ok ? "good" : "bad");
+          c.b.appendChild(el("span", { class: "why", text: (ok ? "✔ Supports your claim. " : "✘ Does not support your claim. ") + c.o.why }));
+          if (ok) right++; else wrong++;
+        }
+      });
+      var missing = need - right;
+      if (wrong === 0 && missing === 0) {
+        if (st.tried.evidence === 1) firstTry.evidence++;
+        st.chosenEv = cards.filter(function (c) { return c.o.ok; }).map(function (c) { return c.o.t; });
+        cards.forEach(function (c) {
+          c.b.disabled = true;
+          if (!c.o.ok) {
+            c.b.appendChild(el("span", { class: "why", text: "✘ Not used. " + c.o.why }));
+          }
+        });
+        check.disabled = true;
+        say("good", "Correct. You found all the evidence. Continue to the reasoning.");
+        nextBtn("Continue to reasoning", function () { step = "reasoning"; draw(); });
+      } else {
+        var parts = [];
+        if (wrong) parts.push("Remove the " + wrong + " card" + (wrong > 1 ? "s" : "") + " marked with ✘.");
+        if (missing > 0) parts.push(stretch ? "You are still missing some evidence." : "You are still missing " + missing + " piece" + (missing > 1 ? "s" : "") + " of evidence.");
+        say("bad", "Not yet. " + parts.join(" ") + " Then press Check again.");
+      }
+    });
+    wrap.appendChild(check);
+    return wrap;
+  }
+
+  function nextBtn(label, fn) {
+    var area = document.getElementById("nextarea");
+    area.textContent = "";
+    var b = el("button", { class: "go", type: "button", text: label });
+    b.addEventListener("click", fn);
+    area.appendChild(b);
+    b.focus();
+  }
+
+  function cerBlock() {
+    var sc = st.sc;
+    var box = el("div", { class: "cer" }, [
+      el("h3", { text: "Your claim" }), el("p", { text: st.chosenClaim.t }),
+      el("h3", { text: "Your evidence" }),
+      el("ul", {}, st.chosenEv.map(function (t) { return el("li", { text: t }); })),
+      el("h3", { text: "Your reasoning" }), el("p", { text: st.chosenRe.t })
+    ]);
+    return box;
+  }
+
+  function cerText() {
+    return "Claim: " + st.chosenClaim.t + "\nEvidence:\n" +
+      st.chosenEv.map(function (t) { return "- " + t; }).join("\n") +
+      "\nReasoning: " + st.chosenRe.t;
+  }
+
+  function finishScenario() {
+    results.push("Scenario " + (idx + 1) + ": " + st.sc.title + "\n" + cerText());
+    var main = document.getElementById("stepbox");
+    main.textContent = "";
+    main.appendChild(el("h2", { text: "Your CER for this scenario" }));
+    main.appendChild(cerBlock());
+    var last = idx === S.length - 1;
+    nextBtn(last ? "Finish" : "Next scenario", function () {
+      if (last) summary(); else { idx++; begin(); window.scrollTo(0, 0); }
+    });
+    say("good", "Scenario complete. Read your CER, then continue.");
+  }
+
+  function summary() {
+    root.textContent = "";
+    root.appendChild(header());
+    root.appendChild(el("h2", { text: "Finished: " + lt.id + " " + (stretch ? "Stretch" : "Support") }));
+    var total = S.length;
+    var lines = [
+      "Claim chosen right on the first try: " + firstTry.claim + " of " + total,
+      "Evidence right on the first check: " + firstTry.evidence + " of " + total,
+      "Reasoning right on the first try: " + firstTry.reasoning + " of " + total
+    ];
+    if (stretch) lines.push("Extra question right on the first try: " + firstTry.predict + " of " + total);
+    root.appendChild(el("ul", {}, lines.map(function (l) { return el("li", { text: l }); })));
+    root.appendChild(el("p", { class: "muted", text: "This page does not save your work or send it anywhere. Copy your CERs and paste them where your teacher asks." }));
+    var all = lt.id + " " + (stretch ? "Stretch" : "Support") + ": " + lt.title + "\n\n" + results.join("\n\n");
+    var area = el("textarea", { class: "fallback", readonly: "readonly", "aria-label": "All your CERs" });
+    area.value = all;
+    var copy = el("button", { class: "go", type: "button", text: "Copy all my CERs" });
+    var note = el("p", { role: "status", class: "muted" });
+    copy.addEventListener("click", function () {
+      function fallback() { area.select(); try { document.execCommand("copy"); note.textContent = "Copied."; } catch (e) { note.textContent = "Select the text below and copy it."; } }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(all).then(function () { note.textContent = "Copied."; }, fallback);
+      } else fallback();
+    });
+    root.appendChild(copy); root.appendChild(note); root.appendChild(area);
+    window.scrollTo(0, 0);
+  }
+
+  function draw() {
+    root.textContent = "";
+    root.appendChild(header());
+    root.appendChild(dots());
+    root.appendChild(scenarioView());
+    var box = el("div", { id: "stepbox" });
+    var sc = st.sc;
+    if (step === "claim") {
+      box.appendChild(choiceStep("claim", st.claim, "Step 1. Choose your claim.", sc.hint.c, function (o) {
+        st.chosenClaim = o;
+        nextBtn("Continue to evidence", function () { step = "evidence"; draw(); });
+      }));
+    } else {
+      var c = el("div", { class: "cer" }, [el("h3", { text: "Your claim" }), el("p", { text: st.chosenClaim.t })]);
+      box.appendChild(c);
+      if (step === "evidence") {
+        box.appendChild(evidenceStep());
+      } else if (step === "reasoning") {
+        box.appendChild(choiceStep("reasoning", st.re, "Step 3. Choose the reasoning that links your evidence to your claim.", sc.hint.r, function (o) {
+          st.chosenRe = o;
+          if (stretch && sc.pr) nextBtn("Continue to the extra question", function () { step = "predict"; draw(); });
+          else nextBtn("See my CER", function () { finishScenario(); });
+        }));
+      } else if (step === "predict") {
+        box.appendChild(choiceStep("predict", st.pr, "Extra question. " + sc.pr.q, "", function () {
+          nextBtn("See my CER", function () { finishScenario(); });
+        }));
+      }
+    }
+    root.appendChild(box);
+    root.appendChild(el("div", { id: "live", class: "msg", role: "status", "aria-live": "polite" }));
+    root.appendChild(el("div", { id: "nextarea" }));
+    document.getElementById("live").style.display = "none";
+  }
+
+  begin();
+})();
+</script>
+</body>
+</html>

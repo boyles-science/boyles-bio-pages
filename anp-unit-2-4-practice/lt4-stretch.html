@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LT4 Stretch: Muscle disorders and levers</title>
+<style>
+:root{--bg:#fff;--fg:#1a1a1a;--muted:#555;--line:#8a8a8a;--card:#f4f4f4;--ok-bg:#e3f2e6;--ok-bd:#1d6b2f;--bad-bg:#fbe9e7;--bad-bd:#a3281c;--sel:#dbe8fb;--sel-bd:#1f4e9c;--hint-bg:#fff6d6;}
+@media (prefers-color-scheme:dark){:root{--bg:#16181c;--fg:#eee;--muted:#b5b5b5;--line:#777;--card:#23262c;--ok-bg:#16301d;--ok-bd:#6fcf86;--bad-bg:#3a1c18;--bad-bd:#ff9a8d;--sel:#1b2f4f;--sel-bd:#8db7ff;--hint-bg:#3a3414;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:18px/1.5 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+main{max-width:740px;margin:0 auto;padding:16px}
+small,.muted{color:var(--muted)}
+h1{font-size:1.5rem;margin:.2rem 0 .4rem}
+h2{font-size:1.25rem;margin:1.2rem 0 .4rem}
+.course{font-size:.85rem;color:var(--muted)}
+.how{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 14px;margin:10px 0}
+.how ol{margin:.3rem 0 .3rem 1.2rem;padding:0}
+.dots{display:flex;gap:8px;margin:12px 0}
+.dot{padding:2px 10px;border:2px solid var(--line);border-radius:14px;font-size:.85rem}
+.dot.now{border-color:var(--sel-bd);background:var(--sel);font-weight:700}
+.dot.done{border-color:var(--ok-bd)}
+table{border-collapse:collapse;width:100%;margin:8px 0}
+caption{text-align:left;font-size:.85rem;color:var(--muted);padding:4px 0}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;font-size:.95rem}
+th{background:var(--card)}
+.q{font-weight:700;margin:14px 0 6px}
+.hint{background:var(--hint-bg);border-left:5px solid var(--line);padding:6px 10px;margin:8px 0;font-size:.95rem}
+.opts{display:grid;gap:8px;margin:8px 0}
+button.opt,button.card{display:block;width:100%;text-align:left;min-height:44px;padding:10px 12px;font:inherit;color:inherit;background:var(--card);border:2px solid var(--line);border-radius:8px;cursor:pointer}
+button.opt:focus-visible,button.card:focus-visible,button.go:focus-visible{outline:3px solid var(--sel-bd);outline-offset:2px}
+button.card[aria-pressed="true"]{background:var(--sel);border-color:var(--sel-bd)}
+button.card[aria-pressed="true"]::before{content:"\2713  "}
+.good{background:var(--ok-bg)!important;border-color:var(--ok-bd)!important}
+.bad{background:var(--bad-bg)!important;border-color:var(--bad-bd)!important}
+.why{display:block;font-size:.92rem;margin-top:4px}
+.msg{margin:8px 0;padding:8px 12px;border-radius:8px;border:2px solid var(--line)}
+.msg.good{border-color:var(--ok-bd)}.msg.bad{border-color:var(--bad-bd)}
+button.go{font:inherit;font-weight:700;min-height:44px;padding:8px 18px;margin:8px 8px 8px 0;border:2px solid var(--fg);border-radius:8px;background:var(--fg);color:var(--bg);cursor:pointer}
+button.go[disabled]{opacity:.45;cursor:not-allowed}
+.cer{border:2px solid var(--fg);border-radius:8px;padding:6px 14px;margin:10px 0}
+.cer h3{margin:.5rem 0 .1rem;font-size:1rem}
+.cer ul{margin:.2rem 0 .2rem 1.2rem;padding:0}
+textarea.fallback{width:100%;min-height:8rem;font:inherit}
+</style>
+</head>
+<body>
+<main>
+<div id="app"></div>
+<noscript><p>This practice page needs JavaScript turned on.</p></noscript>
+</main>
+<script>
+window.CER_LT = 4;
+window.CER_DATA = {"4":{"id":"LT4","title":"Muscle disorders and levers","target":"I can match a muscle disorder to evidence, and I can classify a lever in the body.","scenarios":[{"title":"Pain with no injury","intro":["A patient visits a clinic. This case is made up for practice. It is not a real patient.","A strain is a tear in muscle fibers from overuse or injury. A cramp is a sudden, painful tightening of a muscle."],"table":{"head":["Finding","Result"],"rows":[["Pain","Widespread, on both sides of the body, for more than 3 months"],["Injury","None remembered"],["Swelling or bruising","None"],["Muscle fibers on exam","Normal"],["Also reported","Tiredness and poor sleep. Tender spots when pressed."]]},"q":"Which disorder fits this case best?","claim":[{"t":"Fibromyalgia","ok":true,"why":"Long-lasting widespread pain with normal muscle fibers and no injury fits fibromyalgia.","s":false},{"t":"A muscle strain","ok":false,"why":"A strain follows an injury, hurts in one place, and shows torn fibers.","s":false},{"t":"A muscle cramp","ok":false,"why":"A cramp is sudden and short. This pain has lasted months.","s":false}],"ev":[{"t":"The pain is widespread and has lasted more than 3 months.","ok":true,"why":"A strain or cramp does not last this long or spread this widely.","s":false},{"t":"There is no remembered injury, swelling, or bruising.","ok":true,"why":"This argues against a strain.","s":false},{"t":"The muscle fibers look normal on exam.","ok":true,"why":"A strain would show torn fibers.","s":false},{"t":"The patient visits a clinic.","ok":false,"why":"This does not separate the disorders.","s":false},{"t":"Cramps are painful.","ok":false,"why":"This is true, but it does not describe this case.","s":false},{"t":"The patient has tender spots when pressed.","ok":true,"why":"Tender spots are a common sign of fibromyalgia.","s":true},{"t":"The patient is a student.","ok":false,"why":"This is not in the data.","s":true}],"re":[{"t":"A strain follows an injury and shows torn fibers, and a cramp is brief. This case has long-lasting pain, no injury, and normal fibers. That matches fibromyalgia, whose cause scientists do not fully know.","ok":true,"why":"This rules out two disorders and names the match.","s":false},{"t":"Pain that lasts months means the fibers are torn, so this is a strain.","ok":false,"why":"The fibers look normal.","s":false},{"t":"Any long-lasting muscle pain is muscular dystrophy.","ok":false,"why":"Muscular dystrophy involves growing weakness and a missing protein, not this pattern.","s":false},{"t":"Fibromyalgia is caused by a missing protein called dystrophin.","ok":false,"why":"Missing dystrophin causes muscular dystrophy.","s":true}],"pr":{"q":"A hiker feels sudden sharp pain in the calf after a sprint. The calf is swollen and bruised. Which disorder fits?","opts":[{"t":"A muscle strain","ok":true,"why":"Sudden pain with swelling and bruising after exertion fits torn fibers.","s":false},{"t":"Fibromyalgia","ok":false,"why":"Fibromyalgia is widespread and long-lasting, with no swelling.","s":false},{"t":"Atrophy","ok":false,"why":"Atrophy is shrinking from disuse, not sudden pain.","s":false}]},"hint":{"c":"Check how long the pain lasted and whether an injury happened.","r":"Say why the other two disorders do not fit, then name the match."}},{"title":"Weakness that keeps growing","intro":["A 9-year-old has more and more trouble climbing stairs. This case is made up for practice. It is not a real patient.","Atrophy is when muscles shrink from not being used. Dystrophin is a protein that helps hold muscle fibers together."],"table":{"head":["Finding","Result"],"rows":[["Strength","Gets worse over several years"],["Activity level","Plays sports normally. Not on bed rest."],["Muscle sample","Fibers break down and are replaced by fat and scar tissue"],["Dystrophin protein","Missing"],["Antibodies against ACh receptors","Not found"]]},"q":"Which disorder fits this case best?","claim":[{"t":"Muscular dystrophy","ok":true,"why":"Missing dystrophin and breaking-down fibers match muscular dystrophy.","s":false},{"t":"Atrophy","ok":false,"why":"Atrophy comes from disuse. This child is active.","s":false},{"t":"Myasthenia gravis","ok":false,"why":"Myasthenia gravis involves antibodies against ACh receptors, and none were found.","s":false}],"ev":[{"t":"The dystrophin protein is missing.","ok":true,"why":"This is the cause of muscular dystrophy.","s":false},{"t":"Muscle fibers break down and are replaced by fat and scar tissue.","ok":true,"why":"This is damage inside the fibers, not shrinking from disuse.","s":false},{"t":"Strength gets worse over several years even though the child is active.","ok":true,"why":"Atrophy from disuse would not fit an active child.","s":false},{"t":"The child has trouble climbing stairs.","ok":false,"why":"Many disorders cause this, so it does not separate them.","s":false},{"t":"The doctor compares the findings.","ok":false,"why":"This is not evidence about the disorder.","s":false},{"t":"No antibodies against ACh receptors were found.","ok":true,"why":"This argues against myasthenia gravis.","s":true},{"t":"The child is 9 years old.","ok":false,"why":"Age alone does not identify the disorder.","s":true}],"re":[{"t":"Dystrophin helps hold muscle fibers together. Without it, normal use damages the fibers and they break down. Strength falls over time even with activity. Atrophy comes from not using a muscle.","ok":true,"why":"This links the missing protein to the pattern of weakness.","s":false},{"t":"Atrophy fits, because weakness always means the muscle is unused.","ok":false,"why":"This child is active, and the fibers are breaking down.","s":false},{"t":"Weakness means the nerve signal is blocked, so this is myasthenia gravis.","ok":false,"why":"That disorder involves antibodies. None were found, and dystrophin is missing.","s":false},{"t":"A missing protein can be replaced by exercise.","ok":false,"why":"Exercise cannot replace a protein the body cannot make.","s":true}],"pr":{"q":"Which test result would point to atrophy instead?","opts":[{"t":"Dystrophin is present. Fibers are normal but small, and strength returns with exercise.","ok":true,"why":"Small fibers that recover with use fit atrophy.","s":false},{"t":"Dystrophin is missing, and fibers are breaking down.","ok":false,"why":"That fits muscular dystrophy.","s":false},{"t":"Antibodies against ACh receptors are found.","ok":false,"why":"That fits myasthenia gravis.","s":false}]},"hint":{"c":"Look at the dystrophin row and the activity row.","r":"Explain what dystrophin does, then say why atrophy does not fit."}},{"title":"The forearm as a lever","intro":["A student holds a 2 kg ball in the hand with the elbow bent.","A lever has three parts. The pivot is the fixed point (the fulcrum). The effort is the pull from the muscle. The load is the weight being moved.","In first-class levers the pivot is in the middle. In second-class levers the load is in the middle. In third-class levers the effort is in the middle."],"table":{"head":["Part","What it is in the arm","Distance from the elbow"],"rows":[["Pivot","Elbow joint","0 cm"],["Effort","Biceps tendon pulling on the forearm","4 cm"],["Load","The 2 kg ball","30 cm"]]},"q":"What class of lever is the forearm in this position?","claim":[{"t":"Third class","ok":true,"why":"The effort is between the pivot and the load.","s":false},{"t":"First class","ok":false,"why":"In a first-class lever the pivot is in the middle. Here the pivot is at the end.","s":false},{"t":"Second class","ok":false,"why":"In a second-class lever the load is in the middle. Here the effort is.","s":false}],"ev":[{"t":"The pivot (elbow) is at 0 cm, at one end of the forearm.","ok":true,"why":"The pivot is not in the middle, so this is not first class.","s":false},{"t":"The effort (biceps) pulls at 4 cm, between the pivot and the ball.","ok":true,"why":"Effort in the middle is the mark of a third-class lever.","s":false},{"t":"The load (ball) is at 30 cm, at the far end.","ok":true,"why":"The load is not in the middle, so this is not second class.","s":false},{"t":"The ball has a mass of 2 kg.","ok":false,"why":"The class does not depend on the weight of the load.","s":false},{"t":"The biceps is a skeletal muscle.","ok":false,"why":"This is true, but it does not show the lever class.","s":false},{"t":"The effort is closer to the pivot than the load is.","ok":true,"why":"This also fits a third-class lever.","s":true}],"re":[{"t":"In a third-class lever the effort is between the pivot and the load. The forearm fits this order: elbow, then biceps, then ball.","ok":true,"why":"This matches the order in the table.","s":false},{"t":"In a second-class lever the effort is in the middle.","ok":false,"why":"In a second-class lever the load is in the middle.","s":false},{"t":"In a first-class lever the pivot is at one end, so this is first class.","ok":false,"why":"In a first-class lever the pivot is in the middle.","s":false},{"t":"A 2 kg ball is heavy, so the lever is second class.","ok":false,"why":"The class depends only on the order of pivot, load, and effort.","s":true}],"pr":{"q":"Ignore the weight of the forearm. About how hard must the biceps pull to hold the 2 kg ball? Effort times its distance equals load times its distance.","opts":[{"t":"About the weight of 15 kg","ok":true,"why":"Effort x 4 = 2 x 30, so the effort is 15.","s":false},{"t":"About the weight of 2 kg","ok":false,"why":"The effort is closer to the pivot than the load, so it must be larger than 2.","s":false},{"t":"About the weight of 0.3 kg","ok":false,"why":"This reverses the distances. The effort is closer to the pivot, so it must pull harder.","s":false}]},"hint":{"c":"Put the three parts in order by their distance from the elbow.","r":"Say which part is in the middle."}}]}};
+</script>
+<script>
+/* CER practice engine, Unit 2.4 Muscular System (Anatomy and Physiology).
+   Nothing is saved or sent anywhere. Everything stays on the student's screen.
+   Page sets window.CER_LT (1-4). The link sets ?level=support or ?level=stretch. */
+(function () {
+  var lt = (window.CER_DATA || {})[window.CER_LT];
+  var params = new URLSearchParams(location.search);
+  var stretch = true;
+  var root = document.getElementById("app");
+  var S = lt.scenarios;
+  var idx = 0, step = "claim";
+  var st = {};            // per-scenario working state
+  var results = [];       // per-scenario summary text and first-try flags
+  var firstTry = { claim: 0, evidence: 0, reasoning: 0, predict: 0 };
+
+  function el(tag, attrs, kids) {
+    var e = document.createElement(tag);
+    for (var k in (attrs || {})) {
+      if (k === "text") e.textContent = attrs[k];
+      else if (k === "class") e.className = attrs[k];
+      else e.setAttribute(k, attrs[k]);
+    }
+    (kids || []).forEach(function (c) { e.appendChild(c); });
+    return e;
+  }
+  function shuffle(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function pick(list) { return list.filter(function (o) { return !o.s || stretch; }); }
+
+  function begin() {
+    var sc = S[idx];
+    st = {
+      sc: sc,
+      claim: shuffle(pick(sc.claim)), ev: shuffle(pick(sc.ev)),
+      re: shuffle(pick(sc.re)), pr: sc.pr ? shuffle(sc.pr.opts) : [],
+      tried: { claim: 0, evidence: 0, reasoning: 0, predict: 0 },
+      chosenClaim: null, chosenEv: [], chosenRe: null, wrongSeen: {}
+    };
+    step = "claim";
+    draw();
+  }
+
+  function dots() {
+    var d = el("div", { class: "dots", "aria-label": "Scenario progress" });
+    S.forEach(function (_, i) {
+      d.appendChild(el("span", {
+        class: "dot" + (i === idx ? " now" : (i < idx ? " done" : "")),
+        text: (i < idx ? "✓ " : "") + "Scenario " + (i + 1)
+      }));
+    });
+    return d;
+  }
+
+  function header() {
+    var level = stretch ? "Stretch" : "Support";
+    var h = el("div", {}, [
+      el("div", { class: "course", text: "Anatomy and Physiology · Unit 2.4 Muscular System · " + lt.id }),
+      el("h1", { text: lt.id + " " + level + ": " + lt.title }),
+      el("p", { class: "muted", text: lt.target })
+    ]);
+    var how = el("div", { class: "how" }, [
+      el("strong", { text: "How this works" }),
+      el("ol", {}, [
+        el("li", { text: "Choose a claim. A claim is a short answer to the question." }),
+        el("li", { text: "Tap the evidence. Evidence is data from the scenario that supports your claim." }),
+        el("li", { text: "Choose the reasoning. Reasoning explains why the evidence supports the claim." })
+      ]),
+      el("span", { class: "muted", text: stretch ? "Stretch: no hints, and one extra question in each scenario." : "Support: each step has a hint." })
+    ]);
+    h.appendChild(how);
+    return h;
+  }
+
+  function scenarioView() {
+    var sc = st.sc, box = el("section", {});
+    box.appendChild(el("h2", { text: "Scenario " + (idx + 1) + ": " + sc.title }));
+    sc.intro.forEach(function (p) { box.appendChild(el("p", { text: p })); });
+    if (sc.table) {
+      var t = el("table", {}, [el("caption", { text: "Practice data, made up for this activity. It is not from a real person or study." })]);
+      t.appendChild(el("tr", {}, sc.table.head.map(function (h) { return el("th", { text: h, scope: "col" }); })));
+      sc.table.rows.forEach(function (r) {
+        t.appendChild(el("tr", {}, r.map(function (c, i) { return el(i === 0 ? "th" : "td", i === 0 ? { text: c, scope: "row" } : { text: c }); })));
+      });
+      box.appendChild(t);
+    }
+    box.appendChild(el("p", { class: "q", text: sc.q }));
+    return box;
+  }
+
+  function hint(text) {
+    return stretch ? null : el("div", { class: "hint", text: "Hint: " + text });
+  }
+
+  function live() { return document.getElementById("live"); }
+  function say(cls, text) {
+    var m = live(); m.style.display = "block"; m.className = "msg " + cls; m.textContent = text;
+  }
+
+  /* ---------- single-choice step (claim, reasoning, predict) ---------- */
+  function choiceStep(key, list, intro, hintText, onRight) {
+    var wrap = el("div", {});
+    wrap.appendChild(el("p", { class: "q", text: intro }));
+    var h = hint(hintText); if (h) wrap.appendChild(h);
+    var opts = el("div", { class: "opts" });
+    var done = false;
+    list.forEach(function (o) {
+      var b = el("button", { class: "opt", type: "button" }, [document.createTextNode(o.t)]);
+      b.addEventListener("click", function () {
+        if (done) return;
+        st.tried[key]++;
+        var why = el("span", { class: "why", text: (o.ok ? "✔ Yes. " : "✘ Not yet. ") + o.why });
+        var old = b.querySelector(".why"); if (old) old.remove();
+        b.appendChild(why);
+        b.classList.add(o.ok ? "good" : "bad");
+        if (o.ok) {
+          done = true;
+          if (st.tried[key] === 1) firstTry[key]++;
+          say("good", "Correct. Read the explanations, then continue.");
+          Array.prototype.forEach.call(opts.children, function (x) { x.disabled = true; });
+          onRight(o);
+        } else {
+          b.disabled = true;
+          say("bad", "Not yet. Read why, then try another choice.");
+        }
+      });
+      opts.appendChild(b);
+    });
+    wrap.appendChild(opts);
+    return wrap;
+  }
+
+  /* ---------- evidence step ---------- */
+  function evidenceStep() {
+    var wrap = el("div", {});
+    wrap.appendChild(el("p", { class: "q", text: "Step 2. Tap every piece of evidence that supports your claim. Then press Check." }));
+    var h = hint("Pick only data that helps prove your claim. Some true facts do not help."); if (h) wrap.appendChild(h);
+    var need = st.ev.filter(function (o) { return o.ok; }).length;
+    var opts = el("div", { class: "opts" }), cards = [];
+    st.ev.forEach(function (o) {
+      var b = el("button", { class: "card", type: "button", "aria-pressed": "false" }, [document.createTextNode(o.t)]);
+      b.addEventListener("click", function () {
+        if (b.disabled) return;
+        b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+        b.classList.remove("good", "bad");
+        var w = b.querySelector(".why"); if (w) w.remove();
+      });
+      cards.push({ o: o, b: b }); opts.appendChild(b);
+    });
+    wrap.appendChild(opts);
+    var check = el("button", { class: "go", type: "button", text: "Check my evidence" });
+    check.addEventListener("click", function () {
+      st.tried.evidence++;
+      var wrong = 0, right = 0;
+      cards.forEach(function (c) {
+        var on = c.b.getAttribute("aria-pressed") === "true";
+        var w = c.b.querySelector(".why"); if (w) w.remove();
+        c.b.classList.remove("good", "bad");
+        if (on) {
+          var ok = c.o.ok;
+          c.b.classList.add(ok ? "good" : "bad");
+          c.b.appendChild(el("span", { class: "why", text: (ok ? "✔ Supports your claim. " : "✘ Does not support your claim. ") + c.o.why }));
+          if (ok) right++; else wrong++;
+        }
+      });
+      var missing = need - right;
+      if (wrong === 0 && missing === 0) {
+        if (st.tried.evidence === 1) firstTry.evidence++;
+        st.chosenEv = cards.filter(function (c) { return c.o.ok; }).map(function (c) { return c.o.t; });
+        cards.forEach(function (c) {
+          c.b.disabled = true;
+          if (!c.o.ok) {
+            c.b.appendChild(el("span", { class: "why", text: "✘ Not used. " + c.o.why }));
+          }
+        });
+        check.disabled = true;
+        say("good", "Correct. You found all the evidence. Continue to the reasoning.");
+        nextBtn("Continue to reasoning", function () { step = "reasoning"; draw(); });
+      } else {
+        var parts = [];
+        if (wrong) parts.push("Remove the " + wrong + " card" + (wrong > 1 ? "s" : "") + " marked with ✘.");
+        if (missing > 0) parts.push(stretch ? "You are still missing some evidence." : "You are still missing " + missing + " piece" + (missing > 1 ? "s" : "") + " of evidence.");
+        say("bad", "Not yet. " + parts.join(" ") + " Then press Check again.");
+      }
+    });
+    wrap.appendChild(check);
+    return wrap;
+  }
+
+  function nextBtn(label, fn) {
+    var area = document.getElementById("nextarea");
+    area.textContent = "";
+    var b = el("button", { class: "go", type: "button", text: label });
+    b.addEventListener("click", fn);
+    area.appendChild(b);
+    b.focus();
+  }
+
+  function cerBlock() {
+    var sc = st.sc;
+    var box = el("div", { class: "cer" }, [
+      el("h3", { text: "Your claim" }), el("p", { text: st.chosenClaim.t }),
+      el("h3", { text: "Your evidence" }),
+      el("ul", {}, st.chosenEv.map(function (t) { return el("li", { text: t }); })),
+      el("h3", { text: "Your reasoning" }), el("p", { text: st.chosenRe.t })
+    ]);
+    return box;
+  }
+
+  function cerText() {
+    return "Claim: " + st.chosenClaim.t + "\nEvidence:\n" +
+      st.chosenEv.map(function (t) { return "- " + t; }).join("\n") +
+      "\nReasoning: " + st.chosenRe.t;
+  }
+
+  function finishScenario() {
+    results.push("Scenario " + (idx + 1) + ": " + st.sc.title + "\n" + cerText());
+    var main = document.getElementById("stepbox");
+    main.textContent = "";
+    main.appendChild(el("h2", { text: "Your CER for this scenario" }));
+    main.appendChild(cerBlock());
+    var last = idx === S.length - 1;
+    nextBtn(last ? "Finish" : "Next scenario", function () {
+      if (last) summary(); else { idx++; begin(); window.scrollTo(0, 0); }
+    });
+    say("good", "Scenario complete. Read your CER, then continue.");
+  }
+
+  function summary() {
+    root.textContent = "";
+    root.appendChild(header());
+    root.appendChild(el("h2", { text: "Finished: " + lt.id + " " + (stretch ? "Stretch" : "Support") }));
+    var total = S.length;
+    var lines = [
+      "Claim chosen right on the first try: " + firstTry.claim + " of " + total,
+      "Evidence right on the first check: " + firstTry.evidence + " of " + total,
+      "Reasoning right on the first try: " + firstTry.reasoning + " of " + total
+    ];
+    if (stretch) lines.push("Extra question right on the first try: " + firstTry.predict + " of " + total);
+    root.appendChild(el("ul", {}, lines.map(function (l) { return el("li", { text: l }); })));
+    root.appendChild(el("p", { class: "muted", text: "This page does not save your work or send it anywhere. Copy your CERs and paste them where your teacher asks." }));
+    var all = lt.id + " " + (stretch ? "Stretch" : "Support") + ": " + lt.title + "\n\n" + results.join("\n\n");
+    var area = el("textarea", { class: "fallback", readonly: "readonly", "aria-label": "All your CERs" });
+    area.value = all;
+    var copy = el("button", { class: "go", type: "button", text: "Copy all my CERs" });
+    var note = el("p", { role: "status", class: "muted" });
+    copy.addEventListener("click", function () {
+      function fallback() { area.select(); try { document.execCommand("copy"); note.textContent = "Copied."; } catch (e) { note.textContent = "Select the text below and copy it."; } }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(all).then(function () { note.textContent = "Copied."; }, fallback);
+      } else fallback();
+    });
+    root.appendChild(copy); root.appendChild(note); root.appendChild(area);
+    window.scrollTo(0, 0);
+  }
+
+  function draw() {
+    root.textContent = "";
+    root.appendChild(header());
+    root.appendChild(dots());
+    root.appendChild(scenarioView());
+    var box = el("div", { id: "stepbox" });
+    var sc = st.sc;
+    if (step === "claim") {
+      box.appendChild(choiceStep("claim", st.claim, "Step 1. Choose your claim.", sc.hint.c, function (o) {
+        st.chosenClaim = o;
+        nextBtn("Continue to evidence", function () { step = "evidence"; draw(); });
+      }));
+    } else {
+      var c = el("div", { class: "cer" }, [el("h3", { text: "Your claim" }), el("p", { text: st.chosenClaim.t })]);
+      box.appendChild(c);
+      if (step === "evidence") {
+        box.appendChild(evidenceStep());
+      } else if (step === "reasoning") {
+        box.appendChild(choiceStep("reasoning", st.re, "Step 3. Choose the reasoning that links your evidence to your claim.", sc.hint.r, function (o) {
+          st.chosenRe = o;
+          if (stretch && sc.pr) nextBtn("Continue to the extra question", function () { step = "predict"; draw(); });
+          else nextBtn("See my CER", function () { finishScenario(); });
+        }));
+      } else if (step === "predict") {
+        box.appendChild(choiceStep("predict", st.pr, "Extra question. " + sc.pr.q, "", function () {
+          nextBtn("See my CER", function () { finishScenario(); });
+        }));
+      }
+    }
+    root.appendChild(box);
+    root.appendChild(el("div", { id: "live", class: "msg", role: "status", "aria-live": "polite" }));
+    root.appendChild(el("div", { id: "nextarea" }));
+    document.getElementById("live").style.display = "none";
+  }
+
+  begin();
+})();
+</script>
+</body>
+</html>
