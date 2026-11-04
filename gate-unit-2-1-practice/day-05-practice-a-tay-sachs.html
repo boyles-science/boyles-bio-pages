@@ -290,11 +290,16 @@ button.alt { background:#fff; color:var(--accent); border:2px solid var(--accent
     });
     finish = el('section', 'finish'); finish.hidden = true;
     finish.appendChild(el('h2', '', 'You finished this page'));
-    finish.appendChild(el('p', '', 'Turn in your writing on Canvas as a PDF. Choose one way to make the PDF:'));
-    var ul = el('ul');
-    ul.appendChild(el('li', '', 'Press "Save as PDF" below. In the print window, choose Save as PDF as the printer.'));
-    ul.appendChild(el('li', '', 'Or press "Copy my writing". Paste it into a document. Download the document as a PDF.'));
+    finish.appendChild(el('p', '', 'Turn in your writing on Canvas as a PDF. Follow these steps:'));
+    var ul = el('ol');
+    ul.appendChild(el('li', '', 'Press "Save as PDF" below. A print window opens.'));
+    ul.appendChild(el('li', '', 'Find "Destination". Choose "Save as PDF". Do not choose a printer.'));
+    ul.appendChild(el('li', '', 'Press "Save". Save the file in Downloads. Give it a name you can find, like the name of this practice.'));
+    ul.appendChild(el('li', '', 'Go back to the assignment on Canvas. Press "Start Assignment" (or "New Attempt"), then "Upload File".'));
+    ul.appendChild(el('li', '', 'Choose your PDF from Downloads. Press "Submit Assignment".'));
+    ul.appendChild(el('li', '', 'Check that Canvas says "Submitted" on the right side of the page.'));
     finish.appendChild(ul);
+    finish.appendChild(el('p', 'hint', 'If "Save as PDF" does not work: press "Copy my writing". Open a new Google Doc and press Ctrl + V to paste. Choose File, then Download, then PDF document (.pdf). Upload that PDF in steps 4 to 6.'));
     var pb = el('button', 'go', 'Save as PDF'); pb.type = 'button';
     pb.addEventListener('click', function () { window.print(); });
     var cb = el('button', 'go alt', 'Copy my writing'); cb.type = 'button';
@@ -393,7 +398,7 @@ Practice.run({
         { t: 'I said that GM2 ganglioside builds up and the nerve cells stop working.', hint: 'Go back to Step 3.' },
         { t: 'I said what trait a person has.', hint: 'Use Fact 5.' }
       ],
-      doneMsg: 'Save your work as a PDF at the bottom of the page and turn it in on Canvas.' }
+      doneMsg: 'Follow the steps at the bottom of the page to save your work as a PDF and turn it in on Canvas.' }
   ]
 });
 
