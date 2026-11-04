@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice</title>
+<style>
+:root { --ink:#1b1b1b; --muted:#555; --line:#c9c9c9; --bg:#fff; --card:#f6f6f4; --ok:#116329; --no:#9a1c1c; --accent:#1f3a5f; }
+* { box-sizing:border-box; }
+body { margin:0; font:17px/1.5 system-ui, -apple-system, "Segoe UI", Arial, sans-serif; color:var(--ink); background:var(--bg); }
+main { max-width:760px; margin:0 auto; padding:16px; }
+.eyebrow { font-size:14px; color:var(--muted); margin:0; }
+h1 { font-size:26px; line-height:1.2; margin:4px 0 10px; }
+h2 { font-size:20px; margin:0 0 6px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px 14px; margin:12px 0; }
+.facts p { margin:6px 0; }
+table { border-collapse:collapse; width:100%; margin:8px 0; font-size:16px; }
+th, td { border:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top; }
+th { background:#ececea; }
+.bar { position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(--line); padding:8px 0; z-index:2; font-size:15px; }
+.step { border:1px solid var(--line); border-radius:8px; padding:12px 14px; margin:16px 0; }
+.step.done { border-color:var(--ok); }
+.step .tag { font-size:14px; color:var(--muted); }
+.opt { display:block; width:100%; text-align:left; font:inherit; color:inherit; background:#fff; border:2px solid var(--line); border-radius:8px; padding:10px 12px; margin:8px 0 0; cursor:pointer; min-height:44px; }
+.opt:hover { border-color:var(--accent); }
+.opt:focus-visible, button:focus-visible, select:focus-visible, textarea:focus-visible, input:focus-visible { outline:3px solid var(--accent); outline-offset:2px; }
+.opt.ok { border-color:var(--ok); background:#eef7f0; }
+.opt.no { border-color:var(--no); background:#fbeeee; }
+.opt[aria-disabled="true"] { cursor:default; }
+.fb { margin:6px 0 0; padding:8px 10px; border-left:4px solid var(--line); font-size:16px; }
+.fb.ok { border-color:var(--ok); }
+.fb.no { border-color:var(--no); }
+.mark { font-weight:700; }
+.ok .mark, .fb.ok .mark { color:var(--ok); }
+.no .mark, .fb.no .mark { color:var(--no); }
+.slot { margin:10px 0; }
+.slot label { display:block; font-weight:600; margin-bottom:4px; }
+select, textarea { font:inherit; width:100%; padding:8px; border:2px solid var(--line); border-radius:8px; background:#fff; color:inherit; }
+textarea { min-height:90px; resize:vertical; }
+button.go { font:inherit; font-weight:600; color:#fff; background:var(--accent); border:0; border-radius:8px; padding:10px 16px; margin:8px 8px 0 0; cursor:pointer; min-height:44px; }
+button.alt { background:#fff; color:var(--accent); border:2px solid var(--accent); }
+.check { display:flex; gap:10px; align-items:flex-start; margin:8px 0; }
+.check input { width:22px; height:22px; margin-top:3px; flex:none; }
+.hint { color:var(--muted); font-size:15px; }
+.finish { border:2px solid var(--ok); border-radius:8px; padding:12px 14px; margin:16px 0; }
+[hidden] { display:none !important; }
+.strip { display:flex; gap:4px; margin:8px 0; }
+.cell { flex:1; min-width:0; font:inherit; font-size:22px; font-weight:700; padding:10px 0; background:#fff; color:inherit; border:2px solid var(--line); border-radius:8px; cursor:pointer; min-height:48px; }
+.cell.site { border-color:var(--accent); background:#eef2f8; }
+.foldgrid { display:flex; gap:4px; margin:8px 0; }
+.fcol { flex:1; text-align:center; border:1px solid var(--line); border-radius:8px; padding:6px 2px; }
+.fcol.site { border-color:var(--accent); }
+.fbox { font-size:22px; font-weight:700; padding:4px 0; }
+.fmark { font-size:14px; padding:2px 0; }
+.fmark.ok, .job.ok { color:var(--ok); }
+.fmark.no, .job.no { color:var(--no); }
+.foldstatus p { margin:4px 0; }
+.foldbtns { margin-top:8px; }
+#printout { display:none; }
+@media print { main#app { display:none; } #printout { display:block; color:#000; font:12pt/1.4 Arial, sans-serif; } #printout .pw { white-space:pre-wrap; } }
+@media (max-width:480px) { body { font-size:16px; } h1 { font-size:22px; } }
+</style>
+</head>
+<body>
+<main id="app"><noscript>This page needs JavaScript. Ask your teacher for help.</noscript></main>
+<script>
+// Shared engine for the Unit 2.1 mastery-path practice pages.
+// A page defines PAGE = { eyebrow, title, intro, chainLine, facts, table, steps } and calls Practice.run(PAGE).
+// Answers are never written in the page. The build tool replaces each "correct" with a code (h or hs).
+(function () {
+  function h32(s) { var h = 0x811c9dc5; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); } return (h >>> 0).toString(16); }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+  function fb(cls, mark, text) { var d = el('p', 'fb ' + cls); d.setAttribute('role', 'status'); var m = el('span', 'mark', mark + ' '); d.appendChild(m); d.appendChild(document.createTextNode(text)); return d; }
+
+  var done = {}, total = 0, bar, finish, writing = {};
+
+  function progress() {
+    var n = Object.keys(done).length;
+    bar.textContent = 'Steps finished: ' + n + ' of ' + total;
+    if (n === total) finish.hidden = false;
+  }
+  function finishStep(box, id) { box.classList.add('done'); done[id] = true; progress(); }
+
+  function mc(box, s) {
+    var out = el('div'); var locked = false, last = null;
+    s.opts.forEach(function (o, i) {
+      var b = el('button', 'opt'); b.type = 'button'; b.textContent = o.t;
+      b.addEventListener('click', function () {
+        if (locked) return;
+        var right = h32(s.id + ':' + i) === s.h;
+        Array.prototype.forEach.call(out.querySelectorAll('.opt'), function (x) { x.classList.remove('no'); });
+        if (last) last.remove();
+        b.classList.add(right ? 'ok' : 'no');
+        last = fb(right ? 'ok' : 'no', right ? '✔ Yes.' : '✖ Not yet.', o.f);
+        b.insertAdjacentElement('afterend', last);
+        if (right) {
+          locked = true;
+          Array.prototype.forEach.call(out.querySelectorAll('.opt'), function (x) { x.setAttribute('aria-disabled', 'true'); });
+          finishStep(box, s.id);
+        }
+      });
+      out.appendChild(b);
+    });
+    box.appendChild(out);
+  }
+
+  function chain(box, s) {
+    var out = el('div'), selects = [], notes = [];
+    s.slots.forEach(function (name, i) {
+      var w = el('div', 'slot'); var l = el('label', '', 'Box ' + (i + 1) + ': ' + name); l.setAttribute('for', s.id + i);
+      var sel = el('select'); sel.id = s.id + i;
+      var first = el('option', '', 'Choose a card'); first.value = ''; sel.appendChild(first);
+      s.bank.forEach(function (c, k) { var o = el('option', '', c.t); o.value = k; sel.appendChild(o); });
+      var note = el('div'); selects.push(sel); notes.push(note);
+      w.appendChild(l); w.appendChild(sel); w.appendChild(note); out.appendChild(w);
+    });
+    var btn = el('button', 'go', 'Check my chain'); btn.type = 'button';
+    btn.addEventListener('click', function () {
+      var all = true;
+      selects.forEach(function (sel, i) {
+        notes[i].textContent = '';
+        if (sel.value === '') { all = false; notes[i].appendChild(fb('no', '✖', 'Choose a card for this box.')); return; }
+        var right = h32(s.id + ':' + i + ':' + sel.value) === s.hs[i];
+        var card = s.bank[+sel.value];
+        if (!right) all = false;
+        notes[i].appendChild(fb(right ? 'ok' : 'no', right ? '✔ Yes.' : '✖ Not yet.', right ? card.f : card.w));
+      });
+      if (all) finishStep(box, s.id);
+    });
+    out.appendChild(btn); box.appendChild(out);
+  }
+
+  // One card per row, each sorted into one of the bins. After every card is right, s.after (if any) is shown.
+  function sort(box, s) {
+    var out = el('div'), selects = [], notes = [];
+    s.cards.forEach(function (c, i) {
+      var w = el('div', 'slot'); var l = el('label', '', c.t); l.setAttribute('for', s.id + i);
+      var sel = el('select'); sel.id = s.id + i;
+      var first = el('option', '', 'Choose a pile'); first.value = ''; sel.appendChild(first);
+      s.bins.forEach(function (b, k) { var o = el('option', '', b); o.value = k; sel.appendChild(o); });
+      var note = el('div'); selects.push(sel); notes.push(note);
+      w.appendChild(l); w.appendChild(sel); w.appendChild(note); out.appendChild(w);
+    });
+    var after = el('div'); after.hidden = true;
+    if (s.after) after.appendChild(el('p', 'card', s.after));
+    var btn = el('button', 'go', 'Check my sort'); btn.type = 'button';
+    btn.addEventListener('click', function () {
+      var all = true;
+      selects.forEach(function (sel, i) {
+        notes[i].textContent = '';
+        if (sel.value === '') { all = false; notes[i].appendChild(fb('no', '✖', 'Choose a pile for this card.')); return; }
+        var right = h32(s.id + ':' + i + ':' + sel.value) === s.hs[i];
+        if (!right) all = false;
+        notes[i].appendChild(fb(right ? 'ok' : 'no', right ? '✔ Yes.' : '✖ Not yet.', right ? s.cards[i].f : s.cards[i].w));
+      });
+      if (all) { after.hidden = false; finishStep(box, s.id); }
+    });
+    out.appendChild(btn); out.appendChild(after); box.appendChild(out);
+  }
+
+  // Paper-model "Fold-a-protein" simulator. Boxes hold +, O, or -. The strip folds so box i sits on box 9-i.
+  // A pair attracts if it is (+,-), (-,+), or (O,O). The job works if at least 3 of 4 pairs attract and the active-site pair (boxes 4 and 5) attracts.
+  // Heat turns every attraction off. The step is done after 3 different changes and one use of heat.
+  function fold(box, s) {
+    var start = s.start.slice(), seq = start.slice(), heat = false, tried = {}, heated = false;
+    var names = { '+': 'positive', 'O': 'neutral', '-': 'negative' }, next = { '+': 'O', 'O': '-', '-': '+' };
+    var show = function (x) { return x === '-' ? '−' : x; };
+    var out = el('div', 'foldtool');
+    var status = el('div', 'foldstatus'); status.setAttribute('role', 'status');
+    var grid = el('div', 'foldgrid'); var stripBtns = [];
+    var strip = el('div', 'strip');
+    seq.forEach(function (sym, i) {
+      var b = el('button', 'cell' + (i === 3 || i === 4 ? ' site' : '')); b.type = 'button';
+      b.addEventListener('click', function () { seq[i] = next[seq[i]]; heat = false; update(); });
+      stripBtns.push(b); strip.appendChild(b);
+    });
+    function attract(a, b) { return (a === '+' && b === '-') || (a === '-' && b === '+') || (a === 'O' && b === 'O'); }
+    function update() {
+      var n = 0, siteOk = false;
+      grid.textContent = '';
+      seq.forEach(function (sym, i) { stripBtns[i].textContent = show(sym) + (i === 3 || i === 4 ? '*' : ''); stripBtns[i].setAttribute('aria-label', 'Box ' + (i + 1) + ': ' + names[sym] + (i === 3 || i === 4 ? ', active site' : '') + '. Press to change.'); });
+      if (!heat) {
+        for (var c = 0; c < 4; c++) {
+          var a = seq[c], b2 = seq[7 - c], ok = attract(a, b2); if (ok) n++; if (c === 3) siteOk = ok;
+          var col = el('div', 'fcol' + (c === 3 ? ' site' : ''));
+          col.appendChild(el('div', 'fbox', show(a) + (c === 3 ? '*' : '')));
+          col.appendChild(el('div', 'fmark ' + (ok ? 'ok' : 'no'), ok ? '✔ attract' : '✖ no'));
+          col.appendChild(el('div', 'fbox', show(b2) + (c === 3 ? '*' : '')));
+          grid.appendChild(col);
+        }
+      }
+      var works = !heat && n >= 3 && siteOk;
+      status.textContent = '';
+      if (heat) { status.appendChild(el('p', '', 'Heat: every attraction is off. The strip is unfolded. The sequence did not change.')); }
+      else {
+        status.appendChild(el('p', '', 'Pairs that attract: ' + n + ' of 4'));
+        status.appendChild(el('p', '', 'Active-site pair (boxes 4 and 5): ' + (siteOk ? '✔ attracts' : '✖ does not attract')));
+      }
+      var job = el('p', 'job ' + (works ? 'ok' : 'no')); job.appendChild(el('strong', '', works ? '✔ The protein holds its shape. The job works.' : '✖ The protein does not hold its shape. The job fails.')); status.appendChild(job);
+      var key = seq.join('');
+      if (!heat && key !== start.join('')) tried[key] = 1;
+      if (heat) heated = true;
+      var count = Object.keys(tried).length;
+      counter.textContent = 'Different changes tried: ' + count + ' (need 3). Heat tried: ' + (heated ? 'yes' : 'not yet') + '.';
+      if (count >= 3 && heated && !box.classList.contains('done')) finishStep(box, s.id);
+    }
+    var counter = el('p', 'hint');
+    var bar = el('div', 'foldbtns');
+    var reset = el('button', 'go alt', 'Reset the strip'); reset.type = 'button';
+    reset.addEventListener('click', function () { seq = start.slice(); heat = false; update(); });
+    var hb = el('button', 'go', 'Add heat'); hb.type = 'button';
+    hb.addEventListener('click', function () { heat = true; update(); });
+    bar.appendChild(reset); bar.appendChild(hb);
+    out.appendChild(el('p', 'hint', 'Boxes 1 to 8 are the strip. Press a box to change it: positive (+), neutral (O), or negative (−). The starred boxes are the active site.'));
+    out.appendChild(strip); out.appendChild(el('p', 'hint', 'Folded strip: box 1 sits on box 8, box 2 on box 7, box 3 on box 6, and box 4 on box 5.'));
+    out.appendChild(grid); out.appendChild(status); out.appendChild(bar); out.appendChild(counter);
+    box.appendChild(out); update();
+  }
+
+  function write(box, s) {
+    var out = el('div');
+    s.fields.forEach(function (f, i) {
+      var w = el('div', 'slot'); var l = el('label', '', f.label); var id = s.id + 'w' + i; l.setAttribute('for', id);
+      var t = el('textarea'); t.id = id; t.placeholder = f.ph || '';
+      t.addEventListener('input', function () { writing[id] = f.label + '\n' + t.value; });
+      w.appendChild(l); w.appendChild(t); out.appendChild(w);
+    });
+    out.appendChild(el('p', 'hint', 'Your writing stays on this page. It is not saved or sent anywhere. Use the buttons at the bottom of the page to keep a copy.'));
+    var h = el('h3', '', 'Check your own writing'); out.appendChild(h);
+    out.appendChild(el('p', 'hint', 'Tick each box that is true for your writing. Be honest. The list tells you where to look if a box is not ticked.'));
+    var boxes = [];
+    s.checklist.forEach(function (c, i) {
+      var row = el('label', 'check'); var cb = el('input'); cb.type = 'checkbox'; cb.setAttribute('aria-label', c.t);
+      row.appendChild(cb); row.appendChild(el('span', '', c.t)); out.appendChild(row); boxes.push(cb);
+    });
+    var res = el('div');
+    var btn = el('button', 'go', 'Check my list'); btn.type = 'button';
+    btn.addEventListener('click', function () {
+      res.textContent = '';
+      if (collect().length < 60) { res.appendChild(fb('no', '✖', 'Write your explanation in the boxes above first. Then check it.')); return; }
+      var missing = [];
+      boxes.forEach(function (cb, i) { if (!cb.checked) missing.push(s.checklist[i]); });
+      if (!missing.length) { res.appendChild(fb('ok', '✔', 'Every box is ticked. ' + (s.doneMsg || 'Good work.'))); finishStep(box, s.id); return; }
+      res.appendChild(fb('no', '✖', 'You ticked ' + (boxes.length - missing.length) + ' of ' + boxes.length + '. Fix your writing for each box that is not ticked, then tick it.'));
+      missing.forEach(function (c) { res.appendChild(el('p', 'hint', 'Not ticked: "' + c.t + '" Hint: ' + c.hint)); });
+    });
+    out.appendChild(btn); out.appendChild(res); box.appendChild(out);
+  }
+
+  function collect() {
+    return Object.keys(writing).sort().map(function (k) { return writing[k]; }).join('\n\n');
+  }
+
+  function run(P) {
+    document.title = P.title;
+    var app = document.getElementById('app'); app.textContent = '';
+    app.appendChild(el('p', 'eyebrow', P.eyebrow));
+    app.appendChild(el('h1', '', P.title));
+    app.appendChild(el('p', '', P.intro));
+    if (P.chainLine) app.appendChild(el('p', 'hint', P.chainLine));
+    bar = el('div', 'bar'); bar.setAttribute('aria-live', 'polite'); app.appendChild(bar);
+
+    var facts = el('section', 'card facts'); facts.appendChild(el('h2', '', 'Evidence'));
+    P.facts.forEach(function (f) { var p = el('p'); var b = el('strong', '', f.h + '. '); p.appendChild(b); p.appendChild(document.createTextNode(f.t)); facts.appendChild(p); });
+    if (P.table) {
+      var t = el('table'); var cap = el('caption', '', P.table.caption); cap.style.textAlign = 'left'; cap.style.fontWeight = '600'; t.appendChild(cap);
+      var hr = el('tr'); P.table.head.forEach(function (x) { hr.appendChild(el('th', '', x)); }); t.appendChild(hr);
+      P.table.rows.forEach(function (r) { var tr = el('tr'); r.forEach(function (x) { tr.appendChild(el('td', '', x)); }); t.appendChild(tr); });
+      facts.appendChild(t);
+    }
+    if (P.source) facts.appendChild(el('p', 'hint', P.source));
+    app.appendChild(facts);
+
+    P.steps.forEach(function (s, i) {
+      total++;
+      var box = el('section', 'step');
+      box.appendChild(el('div', 'tag', 'Step ' + (i + 1) + (s.arrow ? ' · ' + s.arrow : '')));
+      box.appendChild(el('h2', '', s.title));
+      if (s.prompt) box.appendChild(el('p', '', s.prompt));
+      (s.type === 'chain' ? chain : s.type === 'fold' ? fold : s.type === 'sort' ? sort : s.type === 'write' ? write : mc)(box, s);
+      app.appendChild(box);
+    });
+
+    var po = el('div'); po.id = 'printout'; document.body.appendChild(po);
+    window.addEventListener('beforeprint', function () {
+      po.textContent = '';
+      po.appendChild(el('p', '', 'Name: ______________________   Period: _____   Date: __________'));
+      po.appendChild(el('h1', '', P.title));
+      po.appendChild(el('div', 'pw', collect() || '(No writing yet.)'));
+    });
+    finish = el('section', 'finish'); finish.hidden = true;
+    finish.appendChild(el('h2', '', 'You finished this page'));
+    finish.appendChild(el('p', '', 'Turn in your writing on Canvas as a PDF. Choose one way to make the PDF:'));
+    var ul = el('ul');
+    ul.appendChild(el('li', '', 'Press "Save as PDF" below. In the print window, choose Save as PDF as the printer.'));
+    ul.appendChild(el('li', '', 'Or press "Copy my writing". Paste it into a document. Download the document as a PDF.'));
+    finish.appendChild(ul);
+    var pb = el('button', 'go', 'Save as PDF'); pb.type = 'button';
+    pb.addEventListener('click', function () { window.print(); });
+    var cb = el('button', 'go alt', 'Copy my writing'); cb.type = 'button';
+    var msg = el('span', 'hint', '');
+    cb.addEventListener('click', function () {
+      var text = collect();
+      function ok() { msg.textContent = 'Copied.'; }
+      function old() { var ta = el('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch (e) { msg.textContent = 'Copy did not work. Select your writing by hand.'; } ta.remove(); }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, old); else old();
+    });
+    finish.appendChild(pb); finish.appendChild(cb); finish.appendChild(msg);
+    app.appendChild(finish);
+    progress();
+  }
+
+  window.Practice = { run: run };
+})();
+
+</script>
+<script>
+// Day 5 practice path B: "New case on your own" on osteogenesis imperfecta (OI). Less scaffolding; two different protein-level changes reach one trait.
+// Source facts checked 2026-09-24: MedlinePlus "Osteogenesis imperfecta" (fetched).
+Practice.run({
+  eyebrow: 'Living Earth GATE · Unit 2.1 DNA to Traits · Day 5 · Practice path B',
+  title: 'New case on your own: osteogenesis imperfecta',
+  intro: 'Osteogenesis imperfecta (OI) is a condition you have not studied. Build the explanation yourself from the evidence. You get feedback after each answer. You can try again.',
+  chainLine: 'The chain: DNA → protein (its structure) → what the protein does → trait',
+  facts: [
+    { h: 'Fact 1', t: 'The COL1A1 and COL1A2 genes hold the instructions for proteins that are put together to make type I collagen.' },
+    { h: 'Fact 2', t: 'Type I collagen is the most abundant protein in bone, skin, and other connective tissues. It gives these tissues structure and strength.' },
+    { h: 'Fact 3', t: 'In some forms of OI, changes in these genes reduce the amount of type I collagen the body makes. The collagen that is made is normal.' },
+    { h: 'Fact 4', t: 'In other forms of OI, changes in these genes alter the structure of the collagen molecules. The abnormal collagen weakens bones.' },
+    { h: 'Fact 5', t: 'People with OI have bones that break easily, often from mild injuries or for no clear reason. Some people have only a few broken bones in a lifetime. Others have broken bones before birth.' },
+    { h: 'Fact 6', t: 'OI affects about 1 in 10,000 to 20,000 people around the world.' }
+  ],
+  table: {
+    caption: 'Fact 7. Two ways a gene change can lead to weak bones.',
+    head: ['', 'Form 1', 'Form 2'],
+    rows: [
+      ['What the gene change does to the collagen protein', 'Less collagen is made', 'The structure of the collagen is altered'],
+      ['Is the collagen that is made normal?', 'Yes', 'No'],
+      ['Bones', 'Weakened', 'Weakened']
+    ]
+  },
+  steps: [
+    { id: 'b1', type: 'mc', arrow: 'Claim', title: 'Choose the best claim',
+      prompt: 'Which claim best answers this question: How do changes in the COL1A1 and COL1A2 genes lead to bones that break easily?',
+      h: '828e8840',
+      opts: [
+        { t: 'Bones that break easily change the COL1A1 and COL1A2 genes.', f: 'The chain runs from the gene to the trait. Weak bones are a result of the gene change. They do not change the gene.' },
+        { t: 'OI happens because collagen is a protein that is found in bone.', f: 'This is true, but it does not answer how the gene changes lead to weak bones.' },
+        { t: 'Changes in these genes lead to less collagen or collagen with an altered structure. Bone and other tissues then lose strength, so bones break easily.', f: 'This claim follows the chain: gene, collagen protein, loss of strength, and weak bones (Facts 1 to 5).' },
+        { t: 'People with OI eat too little of the food that makes collagen.', f: 'None of the facts say this. The facts give the gene as the cause.' }
+      ] },
+    { id: 'b2', type: 'mc', arrow: 'Evidence', title: 'Is Fact 1 good evidence for the claim?',
+      prompt: 'Fact 1: The COL1A1 and COL1A2 genes hold the instructions for proteins that make type I collagen. Does this support the claim?',
+      h: 'e16ab097',
+      opts: [
+        { t: 'Yes. It links the genes to the protein.', f: 'It shows the first arrow: the genes hold the instructions for the collagen proteins.' },
+        { t: 'No. It does not connect to the claim.', f: 'It does connect. A claim about a gene change needs evidence that links the gene to a protein.' }
+      ] },
+    { id: 'b3', type: 'mc', arrow: 'Evidence', title: 'Is Fact 4 good evidence for the claim?',
+      prompt: 'Fact 4: In other forms of OI, changes in these genes alter the structure of the collagen molecules. The abnormal collagen weakens bones. Does this support the claim?',
+      h: 'eac99328',
+      opts: [
+        { t: 'Yes. It shows that a changed structure changes what the protein can do.', f: 'A protein\'s structure decides its function. Altered collagen structure means weaker bone. This links the protein to the trait.' },
+        { t: 'No. It only describes one form of OI.', f: 'One form is enough to show an arrow in the chain. Use Fact 3 for the other form.' }
+      ] },
+    { id: 'b4', type: 'mc', arrow: 'Evidence', title: 'Is Fact 6 good evidence for the claim?',
+      prompt: 'Fact 6: OI affects about 1 in 10,000 to 20,000 people around the world. Does this support the claim?',
+      h: 'cfe6143e',
+      opts: [
+        { t: 'Yes. It shows how the gene change leads to weak bones.', f: 'It tells you how common OI is. It does not show how a gene change leads to a trait.' },
+        { t: 'No. It tells how common OI is. It does not show how the gene leads to the trait.', f: 'Good choice. A fact can be true and still not be evidence for the claim. Choose evidence that shows an arrow in the chain.' }
+      ] },
+    { id: 'b5', type: 'mc', arrow: 'Reasoning', title: 'Choose the best reasoning',
+      prompt: 'Which reasoning best connects the evidence to the claim?',
+      h: 'e81b6337',
+      opts: [
+        { t: 'Bones break easily in people with OI. So the broken bones change the COL1A1 gene.', f: 'The trait cannot change the gene. The chain starts at the gene.' },
+        { t: 'Collagen is a protein, and proteins are made of DNA, so a change in the DNA changes the bone directly.', f: 'Proteins are made of amino acids, not DNA. A gene change changes the protein first. The changed protein then changes the bone.' },
+        { t: 'A change in the gene always makes normal collagen, so the bones are normal.', f: 'Facts 3 and 4 say the collagen is reduced or altered. That weakens bones.' },
+        { t: 'A gene change leads to less collagen or altered collagen. Collagen gives bone strength, so with less collagen or changed collagen, the bone is weaker and breaks easily.', f: 'This reasoning follows every arrow: gene, protein, what the protein does for bone, and the trait.' }
+      ] },
+    { id: 'b6', type: 'write', arrow: 'Write your explanation', title: 'Write your CER',
+      prompt: 'Question: How do changes in the COL1A1 and COL1A2 genes lead to bones that break easily? Use what you chose in the steps above.',
+      fields: [
+        { label: 'Claim', ph: '' },
+        { label: 'Evidence (name each fact you use and say what it shows)', ph: '' },
+        { label: 'Reasoning (follow the chain from the genes to the bones)', ph: '' }
+      ],
+      checklist: [
+        { t: 'My claim answers the question in one sentence.', hint: 'Reread the question. Compare your claim to the one you chose in Step 1.' },
+        { t: 'I named at least three facts and said what each one shows.', hint: 'Look at the facts you marked as good evidence. Name them.' },
+        { t: 'I left out a fact that is true but does not support my claim.', hint: 'Look at Step 4. Some facts are true but do not show an arrow in the chain.' },
+        { t: 'I explained the gene to protein arrow.', hint: 'Use Fact 1.' },
+        { t: 'I explained that the structure of a protein decides what it can do.', hint: 'Use Facts 2 and 4.' },
+        { t: 'I explained the last arrow: weakened bone that breaks easily.', hint: 'Use Facts 4 and 5.' }
+      ],
+      doneMsg: 'Now try the challenge below.' },
+    { id: 'b7', type: 'write', arrow: 'Challenge: two routes, one trait', title: 'Different changes, the same trait',
+      prompt: 'Two people have OI. In one person, the gene change means less collagen is made. In the other person, the gene change means the collagen has an altered structure. Both have weak bones. Use the chain to explain how different changes at the protein link can lead to the same trait.',
+      fields: [
+        { label: 'Your explanation', ph: '' }
+      ],
+      checklist: [
+        { t: 'I said that both people start with a gene change.', hint: 'Use Fact 1.' },
+        { t: 'I said what is different at the protein link: the amount of collagen in one person, and the structure of the collagen in the other.', hint: 'Use Facts 3 and 4, or the table in Fact 7.' },
+        { t: 'I said that both routes end with collagen that cannot give the bone enough strength, so the bone is weak.', hint: 'Use Fact 2.' }
+      ],
+      doneMsg: 'Save your work as a PDF at the bottom of the page and turn it in on Canvas.' }
+  ]
+});
+
+</script>
+</body>
+</html>
