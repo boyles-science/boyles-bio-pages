@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice</title>
+<style>
+:root { --ink:#1b1b1b; --muted:#555; --line:#c9c9c9; --bg:#fff; --card:#f6f6f4; --ok:#116329; --no:#9a1c1c; --accent:#1f3a5f; }
+* { box-sizing:border-box; }
+body { margin:0; font:17px/1.5 system-ui, -apple-system, "Segoe UI", Arial, sans-serif; color:var(--ink); background:var(--bg); }
+main { max-width:760px; margin:0 auto; padding:16px; }
+.eyebrow { font-size:14px; color:var(--muted); margin:0; }
+h1 { font-size:26px; line-height:1.2; margin:4px 0 10px; }
+h2 { font-size:20px; margin:0 0 6px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px 14px; margin:12px 0; }
+.facts p { margin:6px 0; }
+table { border-collapse:collapse; width:100%; margin:8px 0; font-size:16px; }
+th, td { border:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top; }
+th { background:#ececea; }
+.bar { position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(--line); padding:8px 0; z-index:2; font-size:15px; }
+.step { border:1px solid var(--line); border-radius:8px; padding:12px 14px; margin:16px 0; }
+.step.done { border-color:var(--ok); }
+.step .tag { font-size:14px; color:var(--muted); }
+.opt { display:block; width:100%; text-align:left; font:inherit; color:inherit; background:#fff; border:2px solid var(--line); border-radius:8px; padding:10px 12px; margin:8px 0 0; cursor:pointer; min-height:44px; }
+.opt:hover { border-color:var(--accent); }
+.opt:focus-visible, button:focus-visible, select:focus-visible, textarea:focus-visible, input:focus-visible { outline:3px solid var(--accent); outline-offset:2px; }
+.opt.ok { border-color:var(--ok); background:#eef7f0; }
+.opt.no { border-color:var(--no); background:#fbeeee; }
+.opt[aria-disabled="true"] { cursor:default; }
+.fb { margin:6px 0 0; padding:8px 10px; border-left:4px solid var(--line); font-size:16px; }
+.fb.ok { border-color:var(--ok); }
+.fb.no { border-color:var(--no); }
+.mark { font-weight:700; }
+.ok .mark, .fb.ok .mark { color:var(--ok); }
+.no .mark, .fb.no .mark { color:var(--no); }
+.slot { margin:10px 0; }
+.slot label { display:block; font-weight:600; margin-bottom:4px; }
+select, textarea { font:inherit; width:100%; padding:8px; border:2px solid var(--line); border-radius:8px; background:#fff; color:inherit; }
+textarea { min-height:90px; resize:vertical; }
+button.go { font:inherit; font-weight:600; color:#fff; background:var(--accent); border:0; border-radius:8px; padding:10px 16px; margin:8px 8px 0 0; cursor:pointer; min-height:44px; }
+button.alt { background:#fff; color:var(--accent); border:2px solid var(--accent); }
+.check { display:flex; gap:10px; align-items:flex-start; margin:8px 0; }
+.check input { width:22px; height:22px; margin-top:3px; flex:none; }
+.hint { color:var(--muted); font-size:15px; }
+.finish { border:2px solid var(--ok); border-radius:8px; padding:12px 14px; margin:16px 0; }
+[hidden] { display:none !important; }
+.strip { display:flex; gap:4px; margin:8px 0; }
+.cell { flex:1; min-width:0; font:inherit; font-size:22px; font-weight:700; padding:10px 0; background:#fff; color:inherit; border:2px solid var(--line); border-radius:8px; cursor:pointer; min-height:48px; }
+.cell.site { border-color:var(--accent); background:#eef2f8; }
+.foldgrid { display:flex; gap:4px; margin:8px 0; }
+.fcol { flex:1; text-align:center; border:1px solid var(--line); border-radius:8px; padding:6px 2px; }
+.fcol.site { border-color:var(--accent); }
+.fbox { font-size:22px; font-weight:700; padding:4px 0; }
+.fmark { font-size:14px; padding:2px 0; }
+.fmark.ok, .job.ok { color:var(--ok); }
+.fmark.no, .job.no { color:var(--no); }
+.foldstatus p { margin:4px 0; }
+.foldbtns { margin-top:8px; }
+.dnainput { width:100%; font:600 18px/1.4 ui-monospace, Consolas, monospace; letter-spacing:1px; padding:8px; border:2px solid var(--line); border-radius:8px; background:#fff; color:inherit; margin:4px 0 8px; }
+.murow { margin:8px 0; }
+.mutitle { font-weight:600; font-size:15px; }
+.mucells { display:flex; flex-wrap:wrap; gap:4px; margin-top:4px; }
+.mucell { text-align:center; border:2px solid var(--line); border-radius:6px; padding:3px 5px; min-width:52px; }
+.mucell.diff { border-color:var(--no); background:#fbeeee; }
+.mucell.extra { border-style:dashed; }
+.mucodon { font-family:ui-monospace, Consolas, monospace; font-weight:700; }
+.muaa { font-size:14px; }
+#printout { display:none; }
+@media print { main#app { display:none; } #printout { display:block; color:#000; font:12pt/1.4 Arial, sans-serif; } #printout .pw { white-space:pre-wrap; } }
+@media (max-width:480px) { body { font-size:16px; } h1 { font-size:22px; } }
+</style>
+</head>
+<body>
+<main id="app"><noscript>This page needs JavaScript. Ask your teacher for help.</noscript></main>
+<script>
+// Shared engine for the Unit 2.1 mastery-path practice pages.
+// A page defines PAGE = { eyebrow, title, intro, chainLine, facts, table, steps } and calls Practice.run(PAGE).
+// Answers are never written in the page. The build tool replaces each "correct" with a code (h or hs).
+(function () {
+function h32(s) { var h = 0x811c9dc5; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); } return (h >>> 0).toString(16); }
+function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+function fb(cls, mark, text) { var d = el('p', 'fb ' + cls); d.setAttribute('role', 'status'); var m = el('span', 'mark', mark + ' '); d.appendChild(m); d.appendChild(document.createTextNode(text)); return d; }
+
+var done = {}, total = 0, bar, finish, writing = {};
+
+function progress() {
+var n = Object.keys(done).length;
+bar.textContent = 'Steps finished: ' + n + ' of ' + total;
+if (n === total) finish.hidden = false;
+}
+function finishStep(box, id) { box.classList.add('done'); done[id] = true; progress(); }
+
+function mc(box, s) {
+var out = el('div'); var locked = false, last = null;
+s.opts.forEach(function (o, i) {
+var b = el('button', 'opt'); b.type = 'button'; b.textContent = o.t;
+b.addEventListener('click', function () {
+if (locked) return;
+var right = h32(s.id + ':' + i) === s.h;
+Array.prototype.forEach.call(out.querySelectorAll('.opt'), function (x) { x.classList.remove('no'); });
+if (last) last.remove();
+b.classList.add(right ? 'ok' : 'no');
+last = fb(right ? 'ok' : 'no', right ? '✔ Yes.' : '✖ Not yet.', o.f);
+b.insertAdjacentElement('afterend', last);
+if (right) {
+locked = true;
+Array.prototype.forEach.call(out.querySelectorAll('.opt'), function (x) { x.setAttribute('aria-disabled', 'true'); });
+finishStep(box, s.id);
+}
+});
+out.appendChild(b);
+});
+box.appendChild(out);
+}
+
+function chain(box, s) {
+var out = el('div'), selects = [], notes = [];
+s.slots.forEach(function (name, i) {
+var w = el('div', 'slot'); var l = el('label', '', 'Box ' + (i + 1) + ': ' + name); l.setAttribute('for', s.id + i);
+var sel = el('select'); sel.id = s.id + i;
+var first = el('option', '', 'Choose a card'); first.value = ''; sel.appendChild(first);
+s.bank.forEach(function (c, k) { var o = el('option', '', c.t); o.value = k; sel.appendChild(o); });
+var note = el('div'); selects.push(sel); notes.push(note);
+w.appendChild(l); w.appendChild(sel); w.appendChild(note); out.appendChild(w);
+});
+var btn = el('button', 'go', 'Check my chain'); btn.type = 'button';
+btn.addEventListener('click', function () {
+var all = true;
+selects.forEach(function (sel, i) {
+notes[i].textContent = '';
+if (sel.value === '') { all = false; notes[i].appendChild(fb('no', '✖', 'Choose a card for this box.')); return; }
+var right = h32(s.id + ':' + i + ':' + sel.value) === s.hs[i];
+var card = s.bank[+sel.value];
+if (!right) all = false;
+notes[i].appendChild(fb(right ? 'ok' : 'no', right ? '✔ Yes.' : '✖ Not yet.', right ? card.f : card.w));
+});
+if (all) finishStep(box, s.id);
+});
+out.appendChild(btn); box.appendChild(out);
+}
+
+// One card per row, each sorted into one of the bins. After every card is right, s.after (if any) is shown.
+function sort(box, s) {
+var out = el('div'), selects = [], notes = [];
+s.cards.forEach(function (c, i) {
+var w = el('div', 'slot'); var l = el('label', '', c.t); l.setAttribute('for', s.id + i);
+var sel = el('select'); sel.id = s.id + i;
+var first = el('option', '', 'Choose a pile'); first.value = ''; sel.appendChild(first);
+s.bins.forEach(function (b, k) { var o = el('option', '', b); o.value = k; sel.appendChild(o); });
+var note = el('div'); selects.push(sel); notes.push(note);
+w.appendChild(l); w.appendChild(sel); w.appendChild(note); out.appendChild(w);
+});
+var after = el('div'); after.hidden = true;
+if (s.after) after.appendChild(el('p', 'card', s.after));
+var btn = el('button', 'go', 'Check my sort'); btn.type = 'button';
+btn.addEventListener('click', function () {
+var all = true;
+selects.forEach(function (sel, i) {
+notes[i].textContent = '';
+if (sel.value === '') { all = false; notes[i].appendChild(fb('no', '✖', 'Choose a pile for this card.')); return; }
+var right = h32(s.id + ':' + i + ':' + sel.value) === s.hs[i];
+if (!right) all = false;
+notes[i].appendChild(fb(right ? 'ok' : 'no', right ? '✔ Yes.' : '✖ Not yet.', right ? s.cards[i].f : s.cards[i].w));
+});
+if (all) { after.hidden = false; finishStep(box, s.id); }
+});
+out.appendChild(btn); out.appendChild(after); box.appendChild(out);
+}
+
+// Paper-model "Fold-a-protein" simulator. Boxes hold +, O, or -. The strip folds so box i sits on box 9-i.
+// A pair attracts if it is (+,-), (-,+), or (O,O). The job works if at least 3 of 4 pairs attract and the active-site pair (boxes 4 and 5) attracts.
+// Heat turns every attraction off. The step is done after 3 different changes and one use of heat.
+function fold(box, s) {
+var start = s.start.slice(), seq = start.slice(), heat = false, tried = {}, heated = false;
+var names = { '+': 'positive', 'O': 'neutral', '-': 'negative' }, next = { '+': 'O', 'O': '-', '-': '+' };
+var show = function (x) { return x === '-' ? '−' : x; };
+var out = el('div', 'foldtool');
+var status = el('div', 'foldstatus'); status.setAttribute('role', 'status');
+var grid = el('div', 'foldgrid'); var stripBtns = [];
+var strip = el('div', 'strip');
+seq.forEach(function (sym, i) {
+var b = el('button', 'cell' + (i === 3 || i === 4 ? ' site' : '')); b.type = 'button';
+b.addEventListener('click', function () { seq[i] = next[seq[i]]; heat = false; update(); });
+stripBtns.push(b); strip.appendChild(b);
+});
+function attract(a, b) { return (a === '+' && b === '-') || (a === '-' && b === '+') || (a === 'O' && b === 'O'); }
+function update() {
+var n = 0, siteOk = false;
+grid.textContent = '';
+seq.forEach(function (sym, i) { stripBtns[i].textContent = show(sym) + (i === 3 || i === 4 ? '*' : ''); stripBtns[i].setAttribute('aria-label', 'Box ' + (i + 1) + ': ' + names[sym] + (i === 3 || i === 4 ? ', active site' : '') + '. Press to change.'); });
+if (!heat) {
+for (var c = 0; c < 4; c++) {
+var a = seq[c], b2 = seq[7 - c], ok = attract(a, b2); if (ok) n++; if (c === 3) siteOk = ok;
+var col = el('div', 'fcol' + (c === 3 ? ' site' : ''));
+col.appendChild(el('div', 'fbox', show(a) + (c === 3 ? '*' : '')));
+col.appendChild(el('div', 'fmark ' + (ok ? 'ok' : 'no'), ok ? '✔ attract' : '✖ no'));
+col.appendChild(el('div', 'fbox', show(b2) + (c === 3 ? '*' : '')));
+grid.appendChild(col);
+}
+}
+var works = !heat && n >= 3 && siteOk;
+status.textContent = '';
+if (heat) { status.appendChild(el('p', '', 'Heat: every attraction is off. The strip is unfolded. The sequence did not change.')); }
+else {
+status.appendChild(el('p', '', 'Pairs that attract: ' + n + ' of 4'));
+status.appendChild(el('p', '', 'Active-site pair (boxes 4 and 5): ' + (siteOk ? '✔ attracts' : '✖ does not attract')));
+}
+var job = el('p', 'job ' + (works ? 'ok' : 'no')); job.appendChild(el('strong', '', works ? '✔ The protein holds its shape. The job works.' : '✖ The protein does not hold its shape. The job fails.')); status.appendChild(job);
+var key = seq.join('');
+if (!heat && key !== start.join('')) tried[key] = 1;
+if (heat) heated = true;
+var count = Object.keys(tried).length;
+counter.textContent = 'Different changes tried: ' + count + ' (need 3). Heat tried: ' + (heated ? 'yes' : 'not yet') + '.';
+if (count >= 3 && heated && !box.classList.contains('done')) finishStep(box, s.id);
+}
+var counter = el('p', 'hint');
+var bar = el('div', 'foldbtns');
+var reset = el('button', 'go alt', 'Reset the strip'); reset.type = 'button';
+reset.addEventListener('click', function () { seq = start.slice(); heat = false; update(); });
+var hb = el('button', 'go', 'Add heat'); hb.type = 'button';
+hb.addEventListener('click', function () { heat = true; update(); });
+bar.appendChild(reset); bar.appendChild(hb);
+out.appendChild(el('p', 'hint', 'Boxes 1 to 8 are the strip. Press a box to change it: positive (+), neutral (O), or negative (−). The starred boxes are the active site.'));
+out.appendChild(strip); out.appendChild(el('p', 'hint', 'Folded strip: box 1 sits on box 8, box 2 on box 7, box 3 on box 6, and box 4 on box 5.'));
+out.appendChild(grid); out.appendChild(status); out.appendChild(bar); out.appendChild(counter);
+box.appendChild(out); update();
+}
+
+// Mutation lab: type into a DNA string, see the codons and the amino acid chain rebuilt, and compare with the original.
+// Standard genetic code, written with DNA letters (T). Bases are read in groups of three from the first base.
+var CODE = (function () {
+var aas = 'FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG', b = 'TCAG', t = {}, i = 0;
+for (var x = 0; x < 4; x++) for (var y = 0; y < 4; y++) for (var z = 0; z < 4; z++) t[b[x] + b[y] + b[z]] = aas[i++];
+return t;
+})();
+var AA3 = { A: 'Ala', R: 'Arg', N: 'Asn', D: 'Asp', C: 'Cys', Q: 'Gln', E: 'Glu', G: 'Gly', H: 'His', I: 'Ile', L: 'Leu', K: 'Lys', M: 'Met', F: 'Phe', P: 'Pro', S: 'Ser', T: 'Thr', W: 'Trp', Y: 'Tyr', V: 'Val', '*': 'Stop' };
+function translate(dna) {
+var chain = [], codons = [];
+for (var i = 0; i + 3 <= dna.length; i += 3) { var c = dna.substr(i, 3); codons.push(c); chain.push(AA3[CODE[c]]); }
+return { codons: codons, chain: chain, extra: dna.length % 3 ? dna.substr(dna.length - dna.length % 3) : '' };
+}
+function mutate(box, s) {
+var start = s.start, orig = translate(start), tried = {};
+var out = el('div', 'mutool');
+var label = el('label', '', 'DNA (edit the letters; A, C, G, and T only)'); label.setAttribute('for', s.id + 'dna');
+var inp = el('input', 'dnainput'); inp.id = s.id + 'dna'; inp.type = 'text'; inp.value = start; inp.setAttribute('autocomplete', 'off'); inp.setAttribute('spellcheck', 'false');
+var view = el('div', 'muview'), result = el('div', 'mures'); result.setAttribute('role', 'status');
+var counter = el('p', 'hint');
+function analyze(dna, t) {
+// Returns { msg, mark }: the sentence to show, and whether to outline differing positions (position by position).
+if (dna === start) return { msg: 'This is the original DNA.', mark: false };
+var stop = t.chain.indexOf('Stop'), chain = stop >= 0 ? t.chain.slice(0, stop) : t.chain, o = orig.chain, i, j;
+if (stop >= 0) return { msg: 'A Stop codon appears at amino acid ' + (stop + 1) + '. The chain ends there. It has ' + chain.length + ' amino acids. The original has ' + o.length + '.', mark: false };
+var same = chain.length === o.length, first = -1, diff = 0;
+for (i = 0; i < Math.max(chain.length, o.length); i++) if (chain[i] !== o[i]) { if (first < 0) first = i; diff++; }
+if (diff === 0) return { msg: 'The DNA changed, but the amino acid chain is the same as the original.', mark: false };
+if (same) return { msg: diff + ' amino acid' + (diff === 1 ? ' is' : 's are') + ' different from the original. The first difference is amino acid ' + (first + 1) + '.', mark: true };
+if (chain.length === o.length - 1) {
+for (j = 0; j < o.length; j++) { var rest = o.slice(0, j).concat(o.slice(j + 1)); if (rest.join() === chain.join()) return { msg: 'The chain is one amino acid shorter than the original. The other amino acids are the same and in the same order.', mark: false }; }
+}
+return { msg: 'The chain has ' + chain.length + ' amino acids. The original has ' + o.length + '. Starting at amino acid ' + (first + 1) + ', ' + diff + ' position' + (diff === 1 ? ' differs' : 's differ') + ' from the original.', mark: true };
+}
+function row(title, t, mark) {
+var r = el('div', 'murow'); r.appendChild(el('div', 'mutitle', title));
+var cells = el('div', 'mucells');
+t.codons.forEach(function (c, i) {
+var cell = el('div', 'mucell');
+if (mark && orig.chain[i] !== t.chain[i]) cell.classList.add('diff');
+cell.appendChild(el('div', 'mucodon', c)); cell.appendChild(el('div', 'muaa', t.chain[i]));
+cells.appendChild(cell);
+});
+if (t.extra) { var e = el('div', 'mucell extra'); e.appendChild(el('div', 'mucodon', t.extra)); e.appendChild(el('div', 'muaa', 'extra')); cells.appendChild(e); }
+r.appendChild(cells); return r;
+}
+function update() {
+var dna = inp.value.toUpperCase().replace(/[^ACGT]/g, ''); if (dna !== inp.value) { var pos = inp.selectionStart; inp.value = dna; try { inp.setSelectionRange(pos, pos); } catch (e) {} }
+var t = translate(dna), a = analyze(dna, t);
+view.textContent = ''; view.appendChild(row('Original', orig, false)); view.appendChild(row('Your DNA', t, a.mark));
+result.textContent = ''; result.appendChild(el('p', 'card', a.msg));
+if (dna !== start) tried[dna] = 1;
+var n = Object.keys(tried).length;
+counter.textContent = 'Different DNA changes tried: ' + n + ' (need 3).';
+if (n >= 3 && !box.classList.contains('done')) finishStep(box, s.id);
+}
+inp.addEventListener('input', update);
+var reset = el('button', 'go alt', 'Reset to the original DNA'); reset.type = 'button';
+reset.addEventListener('click', function () { inp.value = start; update(); });
+out.appendChild(el('p', 'hint', 'Cells read DNA in groups of three bases, starting at the first base. Each group of three is a codon. Each codon stands for one amino acid. Changed amino acids are outlined below.'));
+out.appendChild(label); out.appendChild(inp); out.appendChild(view); out.appendChild(result); out.appendChild(reset); out.appendChild(counter);
+box.appendChild(out); update();
+}
+
+function write(box, s) {
+var out = el('div');
+s.fields.forEach(function (f, i) {
+var w = el('div', 'slot'); var l = el('label', '', f.label); var id = s.id + 'w' + i; l.setAttribute('for', id);
+var t = el('textarea'); t.id = id; t.placeholder = f.ph || '';
+t.addEventListener('input', function () { writing[id] = f.label + '\n' + t.value; });
+w.appendChild(l); w.appendChild(t); out.appendChild(w);
+});
+out.appendChild(el('p', 'hint', 'Your writing stays on this page. It is not saved or sent anywhere. Use the buttons at the bottom of the page to keep a copy.'));
+var h = el('h3', '', 'Check your own writing'); out.appendChild(h);
+out.appendChild(el('p', 'hint', 'Tick each box that is true for your writing. Be honest. The list tells you where to look if a box is not ticked.'));
+var boxes = [];
+s.checklist.forEach(function (c, i) {
+var row = el('label', 'check'); var cb = el('input'); cb.type = 'checkbox'; cb.setAttribute('aria-label', c.t);
+row.appendChild(cb); row.appendChild(el('span', '', c.t)); out.appendChild(row); boxes.push(cb);
+});
+var res = el('div');
+var btn = el('button', 'go', 'Check my list'); btn.type = 'button';
+btn.addEventListener('click', function () {
+res.textContent = '';
+if (collect().length < 60) { res.appendChild(fb('no', '✖', 'Write your explanation in the boxes above first. Then check it.')); return; }
+var missing = [];
+boxes.forEach(function (cb, i) { if (!cb.checked) missing.push(s.checklist[i]); });
+if (!missing.length) { res.appendChild(fb('ok', '✔', 'Every box is ticked. ' + (s.doneMsg || 'Good work.'))); finishStep(box, s.id); return; }
+res.appendChild(fb('no', '✖', 'You ticked ' + (boxes.length - missing.length) + ' of ' + boxes.length + '. Fix your writing for each box that is not ticked, then tick it.'));
+missing.forEach(function (c) { res.appendChild(el('p', 'hint', 'Not ticked: "' + c.t + '" Hint: ' + c.hint)); });
+});
+out.appendChild(btn); out.appendChild(res); box.appendChild(out);
+}
+
+function collect() {
+return Object.keys(writing).sort().map(function (k) { return writing[k]; }).join('\n\n');
+}
+
+function run(P) {
+document.title = P.title;
+var app = document.getElementById('app'); app.textContent = '';
+app.appendChild(el('p', 'eyebrow', P.eyebrow));
+app.appendChild(el('h1', '', P.title));
+app.appendChild(el('p', '', P.intro));
+if (P.chainLine) app.appendChild(el('p', 'hint', P.chainLine));
+bar = el('div', 'bar'); bar.setAttribute('aria-live', 'polite'); app.appendChild(bar);
+
+var facts = el('section', 'card facts'); facts.appendChild(el('h2', '', 'Evidence'));
+P.facts.forEach(function (f) { var p = el('p'); var b = el('strong', '', f.h + '. '); p.appendChild(b); p.appendChild(document.createTextNode(f.t)); facts.appendChild(p); });
+if (P.table) {
+var t = el('table'); var cap = el('caption', '', P.table.caption); cap.style.textAlign = 'left'; cap.style.fontWeight = '600'; t.appendChild(cap);
+var hr = el('tr'); P.table.head.forEach(function (x) { hr.appendChild(el('th', '', x)); }); t.appendChild(hr);
+P.table.rows.forEach(function (r) { var tr = el('tr'); r.forEach(function (x) { tr.appendChild(el('td', '', x)); }); t.appendChild(tr); });
+facts.appendChild(t);
+}
+if (P.source) facts.appendChild(el('p', 'hint', P.source));
+app.appendChild(facts);
+
+P.steps.forEach(function (s, i) {
+total++;
+var box = el('section', 'step');
+box.appendChild(el('div', 'tag', 'Step ' + (i + 1) + (s.arrow ? ' · ' + s.arrow : '')));
+box.appendChild(el('h2', '', s.title));
+if (s.prompt) box.appendChild(el('p', '', s.prompt));
+(s.type === 'chain' ? chain : s.type === 'fold' ? fold : s.type === 'mutate' ? mutate : s.type === 'sort' ? sort : s.type === 'write' ? write : mc)(box, s);
+app.appendChild(box);
+});
+
+var po = el('div'); po.id = 'printout'; document.body.appendChild(po);
+window.addEventListener('beforeprint', function () {
+po.textContent = '';
+po.appendChild(el('p', '', 'Name: ______________________   Period: _____   Date: __________'));
+po.appendChild(el('h1', '', P.title));
+po.appendChild(el('div', 'pw', collect() || '(No writing yet.)'));
+});
+finish = el('section', 'finish'); finish.hidden = true;
+finish.appendChild(el('h2', '', 'You finished this page'));
+finish.appendChild(el('p', '', 'Turn in your writing on Canvas as a PDF. Choose one way to make the PDF:'));
+var ul = el('ul');
+ul.appendChild(el('li', '', 'Press "Save as PDF" below. In the print window, choose Save as PDF as the printer.'));
+ul.appendChild(el('li', '', 'Or press "Copy my writing". Paste it into a document. Download the document as a PDF.'));
+finish.appendChild(ul);
+var pb = el('button', 'go', 'Save as PDF'); pb.type = 'button';
+pb.addEventListener('click', function () { window.print(); });
+var cb = el('button', 'go alt', 'Copy my writing'); cb.type = 'button';
+var msg = el('span', 'hint', '');
+cb.addEventListener('click', function () {
+var text = collect();
+function ok() { msg.textContent = 'Copied.'; }
+function old() { var ta = el('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch (e) { msg.textContent = 'Copy did not work. Select your writing by hand.'; } ta.remove(); }
+if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, old); else old();
+});
+finish.appendChild(pb); finish.appendChild(cb); finish.appendChild(msg);
+app.appendChild(finish);
+progress();
+}
+
+window.Practice = { run: run };
+})();
+
+</script>
+<script>
+// Day 4 digital "Mutation lab" (for absent students; same trials as the paper lab). Gene start = the real start of the human HBB gene (NM_000518).
+Practice.run({
+eyebrow: 'Living Earth GATE · Unit 2.1 DNA to Traits · Day 4 · Digital Mutation lab',
+title: 'Mutation lab: change the DNA, rebuild the protein',
+intro: 'This is the same lab your class does on paper. The DNA below is the real start of the human gene for beta-globin, a part of hemoglobin. You change the DNA, read it in groups of three, and rebuild the amino acid chain. You get feedback after each answer.',
+chainLine: 'DNA letters (bases) in order → groups of three (codons) → amino acids in order (a chain).',
+facts: [
+{ h: 'Rule 1', t: 'Cells read a gene in groups of three bases, starting at the first base. Each group of three is a codon.' },
+{ h: 'Rule 2', t: 'Each codon stands for one amino acid. The codon chart below lists the 16 codons used in this lab. It is written with DNA letters to keep the lab short.' },
+{ h: 'Rule 3', t: 'A mutation is a change in the DNA. A base can be replaced, or a base can be removed.' },
+{ h: 'Real change', t: 'Only the change in Trial 3 (the sickle cell change) is found in people. The other changes are for practice. They are not claims about real people.' }
+],
+table: {
+caption: 'Codon chart (16 codons used in this lab)',
+head: ['Codon', 'Amino acid', 'Codon', 'Amino acid'],
+rows: [
+['ATG', 'Met', 'GAG', 'Glu'],
+['GTG', 'Val', 'GAA', 'Glu'],
+['CAT', 'His', 'AAG', 'Lys'],
+['CTG', 'Leu', 'TCT', 'Ser'],
+['ACT', 'Thr', 'GCC', 'Ala'],
+['CCT', 'Pro', 'GTT', 'Val'],
+['AGG', 'Arg', 'AGA', 'Arg'],
+['AGT', 'Ser', 'CCG', 'Pro']
+]
+},
+source: 'Gene start from the NCBI reference sequence for the human HBB gene (NM_000518). Amino acids match UniProt P68871. Sickle cell change: MedlinePlus, HBB gene.',
+steps: [
+{ id: 'm1', type: 'mutate', title: 'Explore the gene',
+prompt: 'Change the DNA in at least three different ways. Replace a base, or remove one. Watch the codons and the amino acid chain change. The step finishes when you have tried three different changes.',
+start: 'ATGGTGCATCTGACTCCTGAGGAGAAGTCTGCCGTT' },
+{ id: 'm2', type: 'mc', title: 'Trial 2: change the last base of codon 7',
+prompt: 'Reset the DNA. Codon 7 is GAG. Change its last base to make GAA. What happens to the amino acid chain?',
+h: '7e8f2b9a',
+opts: [
+{ t: 'Amino acid 7 changes to a different amino acid.', f: 'Look at the chart. GAG and GAA both stand for Glu. The chain does not change.' },
+{ t: 'Every amino acid after amino acid 7 changes.', f: 'Replacing a base changes only its own codon. The other codons are read the same way.' },
+{ t: 'The DNA changed, but the chain is the same as the original.', f: 'Different codons can stand for the same amino acid. A change in the DNA does not always change the protein.' },
+{ t: 'The chain gets shorter.', f: 'A replaced base does not change the number of codons. Count the amino acids again.' }
+] },
+{ id: 'm3', type: 'mc', title: 'Trial 3: the sickle cell change',
+prompt: 'Reset the DNA. Change the middle base of codon 7 from A to T, so GAG becomes GTG. What happens to the chain?',
+h: 'd3456d80',
+opts: [
+{ t: 'The chain is the same, because only one base changed.', f: 'Check the chart. GTG stands for Val, not Glu. One base changed and one amino acid changed.' },
+{ t: 'One amino acid is different: Glu becomes Val at amino acid 7.', f: 'Only codon 7 changed, so only amino acid 7 changed.' },
+{ t: 'Every amino acid after amino acid 7 is different.', f: 'A replaced base changes only its own codon. The codons before and after stay the same.' },
+{ t: 'The chain ends early.', f: 'GTG is not a stop signal. It stands for Val, so the chain keeps going.' }
+] },
+{ id: 'm4', type: 'mc', title: 'Trial 4: remove all three bases of codon 7',
+prompt: 'Reset the DNA. Remove the three bases of codon 7 (GAG). What happens to the chain?',
+h: '51dcd3ab',
+opts: [
+{ t: 'Every amino acid after amino acid 6 is different.', f: 'You removed a whole codon. The codons after it stay in groups of three, so they are read the same way.' },
+{ t: 'The chain is the same as the original.', f: 'A whole codon is gone, so its amino acid is gone. Count the amino acids.' },
+{ t: 'Amino acid 7 changes to a different amino acid.', f: 'Nothing takes its place. The amino acid is missing.' },
+{ t: 'The chain is one amino acid shorter. The other amino acids are the same and in the same order.', f: 'The three bases of one codon are gone. The groups of three after it still line up.' }
+] },
+{ id: 'm5', type: 'mc', title: 'Trial 5: remove only one base',
+prompt: 'Reset the DNA. Remove only the first G of codon 7. Look at the chain after amino acid 6. Why is it so different?',
+h: '396a51c5',
+opts: [
+{ t: 'Cells read in groups of three. Removing one base shifts every group after it, so every later amino acid is different.', f: 'The bases after the missing base slide over by one place. Every later group of three is made from different bases.' },
+{ t: 'The base that was removed was the most important one in the gene.', f: 'The same kind of removal in a different spot also shifts the groups. The problem is the shift, not that one base.' },
+{ t: 'Each removed base changes exactly one amino acid.', f: 'Compare with Trial 4 and Trial 3. Here, many amino acids changed.' },
+{ t: 'The chain is longer, because the bases move.', f: 'The gene is one base shorter, not longer. Count the amino acids and the leftover bases.' }
+] },
+{ id: 'm6', type: 'mc', title: 'Does the base change explain the protein change?',
+prompt: 'In people with sickle cell disease, the hemoglobin protein has Val where the usual protein has Glu. Which statement best explains why, using your lab?',
+h: '9a17ac33',
+opts: [
+{ t: 'The protein changed first, and then the DNA changed to match it.', f: 'The gene is the code. A change in the gene changes the protein built from it. The protein does not rewrite the gene.' },
+{ t: 'One base in the gene changed, from GAG to GTG. That changed one codon, so one amino acid in the protein changed.', f: 'The order of the bases is the code. One changed codon changes one amino acid.' },
+{ t: 'Every base in the gene changed, so every amino acid changed.', f: 'Only one amino acid is different. Compare the two chains again.' },
+{ t: 'The amino acid changed, but the gene did not.', f: 'The gene holds the code for the amino acids. A different amino acid means a different code in the gene.' }
+] },
+{ id: 'm7', type: 'write', title: 'Write your explanation (CER)',
+prompt: 'Question: Does the change of one base in the DNA explain the change of one amino acid in the hemoglobin of a person with sickle cell disease? Use your lab and this data: the sickle gene has GTG at codon 7 where the usual gene has GAG; the usual protein has Glu at amino acid 7 and the sickle protein has Val; sickle hemoglobin sticks together into long, stiff rods that bend red blood cells into a crescent shape.',
+fields: [
+{ label: 'Claim', ph: 'Yes, the change in one base explains the change in the protein, because ...' },
+{ label: 'Evidence (the data and your trials)', ph: 'The DNA at codon 7 changes from ... to ... The amino acid changes from ... to ... In Trial 3, ...' },
+{ label: 'Reasoning (why the evidence supports your claim)', ph: 'The order of the bases is the code. Each codon stands for ... So a change in one codon ...' }
+],
+checklist: [
+{ t: 'My claim answers the question with yes or no and gives a reason.', hint: 'Start with "Yes, ..." or "No, ..."' },
+{ t: 'I wrote the two codons (GAG and GTG) as evidence.', hint: 'Look at the data in the question.' },
+{ t: 'I wrote the two amino acids (Glu and Val) as evidence.', hint: 'Look at the data in the question and at the codon chart.' },
+{ t: 'I used Trial 3 or another trial from the lab.', hint: 'Trial 3 has the same change as the sickle gene.' },
+{ t: 'I said that the order of the bases is the code, and that one changed codon changes one amino acid.', hint: 'Look at Rule 1 and Rule 2.' }
+],
+doneMsg: 'Save your work as a PDF at the bottom of the page.' }
+]
+});
+
+</script>
+</body>
+</html>
