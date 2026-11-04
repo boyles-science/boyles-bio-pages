@@ -363,10 +363,10 @@ po.appendChild(el('div', 'pw', collect() || '(No writing yet.)'));
 });
 finish = el('section', 'finish'); finish.hidden = true;
 finish.appendChild(el('h2', '', 'You finished this page'));
-finish.appendChild(el('p', '', 'Turn in your writing on Canvas as a PDF. Choose one way to make the PDF:'));
+finish.appendChild(el('p', '', 'Turn in your writing on Canvas. Choose one way:'));
 var ul = el('ul');
-ul.appendChild(el('li', '', 'Press "Save as PDF" below. In the print window, choose Save as PDF as the printer.'));
-ul.appendChild(el('li', '', 'Or press "Copy my writing". Paste it into a document. Download the document as a PDF.'));
+ul.appendChild(el('li', '', 'Type it in: press "Copy my writing" below. On the Canvas assignment, choose Text Entry. Click in the box and press Ctrl + V to paste. Then submit.'));
+ul.appendChild(el('li', '', 'Or upload a PDF: press "Save as PDF" below. In the print window, choose Save as PDF as the printer. On the Canvas assignment, choose File Upload and add the PDF.'));
 finish.appendChild(ul);
 var pb = el('button', 'go', 'Save as PDF'); pb.type = 'button';
 pb.addEventListener('click', function () { window.print(); });
@@ -478,7 +478,7 @@ checklist: [
 { t: 'I used Trial 3 or another trial from the lab.', hint: 'Trial 3 has the same change as the sickle gene.' },
 { t: 'I said that the order of the bases is the code, and that one changed codon changes one amino acid.', hint: 'Look at Rule 1 and Rule 2.' }
 ],
-doneMsg: 'Save your work as a PDF at the bottom of the page.' }
+doneMsg: 'Use the buttons at the bottom of the page to turn in your writing.' }
 ]
 });
 
