@@ -1,97 +1,50 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GATE Today: Thursday, November 5</title>
+<title>GATE Today: Friday, November 6</title>
 <style>
-/* One projector screen, large text: warm-up across the top, today's three steps along the bottom.
-   Every size scales with the screen (--u), so the board fills any 16:9 or 16:10 projector without scrolling. */
+/* One projector screen, large text: four steps in order, in a 2 x 2 grid. Sizes scale with the screen (--u). */
 :root{--bg:#f5f7f6;--panel:#fff;--ink:#14211f;--muted:#4d5f5b;--line:#d3dcd9;--accent:#0d6b5f;--accent-soft:#e1f0ec;--warn:#9a4a00;--warn-soft:#fbeee0;
- --A:#2e9e57;--T:#d64545;--C:#2f6fd6;--G:#c48c00;--U:#8a4fd6;
- --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;--body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
- --u:min(1vw,1.75vh)}
+ --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;--body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;--u:min(1vw,1.75vh)}
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:calc(var(--u)*2.3);line-height:1.2}
-.board{height:100vh;display:grid;grid-template-rows:auto 1fr auto;gap:calc(var(--u)*1);padding:calc(var(--u)*1) calc(var(--u)*1.6)}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:calc(var(--u)*2.9);line-height:1.2}
+.board{height:100vh;display:grid;grid-template-rows:auto 1fr;gap:calc(var(--u)*1.1);padding:calc(var(--u)*1.1) calc(var(--u)*1.6)}
 header{display:flex;justify-content:space-between;align-items:center;gap:calc(var(--u)*2);border-bottom:calc(var(--u)*.3) solid var(--accent);padding-bottom:calc(var(--u)*.5)}
-h1{font-family:var(--display);font-weight:800;font-size:calc(var(--u)*3);line-height:1;margin:0}
-h1 small{font-size:.55em;color:var(--muted);font-weight:600;margin-left:calc(var(--u)*1)}
-.reveal{font:inherit;font-size:calc(var(--u)*1.5);font-weight:700;padding:calc(var(--u)*.35) calc(var(--u)*1);border-radius:calc(var(--u)*.6);border:2px solid var(--accent);background:var(--panel);color:var(--accent);cursor:pointer}
-.reveal:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
-.label{font-family:var(--display);font-weight:800;color:var(--accent);font-size:calc(var(--u)*2.4);margin:0 0 calc(var(--u)*.4)}
-.label span{color:var(--muted);font-family:var(--body);font-weight:400;font-size:.7em}
-/* warm-up */
-.warm{display:grid;grid-template-rows:auto 1fr;min-height:0}
-.qs{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--u)*1);min-height:0}
-.q{background:var(--panel);border:calc(var(--u)*.22) solid var(--accent);border-radius:calc(var(--u)*.9);padding:calc(var(--u)*.8) calc(var(--u)*1.1);display:grid;grid-template-rows:auto 1fr auto;gap:calc(var(--u)*.4);min-height:0}
-.qn{font-family:var(--display);font-weight:800;font-size:calc(var(--u)*2.6);line-height:1.05}
-.q p{margin:0 0 calc(var(--u)*.3)}
-.strand{font-family:"Courier New",Courier,monospace;font-weight:700;font-size:1.3em;letter-spacing:.12em;white-space:nowrap}
-.bA{color:var(--A)}.bT{color:var(--T)}.bC{color:var(--C)}.bG{color:var(--G)}.bU{color:var(--U)}
-.order{display:grid;grid-template-columns:1fr 1fr;align-content:start;gap:calc(var(--u)*.35)}
-.order span{background:var(--accent-soft);border-radius:calc(var(--u)*.45);padding:calc(var(--u)*.25) calc(var(--u)*.5);font-size:.92em}
-.ans{visibility:hidden;background:var(--accent-soft);border-left:calc(var(--u)*.4) solid var(--accent);border-radius:0 calc(var(--u)*.5) calc(var(--u)*.5) 0;padding:calc(var(--u)*.4) calc(var(--u)*.7);font-weight:700}
-body.show .ans{visibility:visible}
-/* today's steps */
-.steps{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:calc(var(--u)*1)}
-.step{background:var(--panel);border:1px solid var(--line);border-radius:calc(var(--u)*.9);padding:calc(var(--u)*.7) calc(var(--u)*1.1)}
-.step h2{font-family:var(--display);font-weight:800;font-size:calc(var(--u)*2.5);line-height:1.05;margin:0 0 calc(var(--u)*.3)}
-.step h2 .n{color:var(--accent);margin-right:calc(var(--u)*.4)}
-.step p{margin:0 0 calc(var(--u)*.2)}
+h1{font-family:var(--display);font-weight:800;font-size:calc(var(--u)*3.6);line-height:1;margin:0}
+h1 small{font-size:.5em;color:var(--muted);font-weight:600;margin-left:calc(var(--u)*1)}
+.quiet{font-weight:700;font-size:calc(var(--u)*2.2);padding:calc(var(--u)*.3) calc(var(--u)*1.1);border-radius:999px;background:var(--warn-soft);color:var(--warn);white-space:nowrap}
+.steps{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:calc(var(--u)*1.1);min-height:0}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:calc(var(--u)*.9);padding:calc(var(--u)*1) calc(var(--u)*1.4);min-height:0;overflow:hidden}
+.step.first{border:calc(var(--u)*.3) solid var(--accent)}
+.step h2{font-family:var(--display);font-weight:800;font-size:calc(var(--u)*3.4);line-height:1.05;margin:0 0 calc(var(--u)*.5)}
+.step h2 .n{color:var(--accent);margin-right:calc(var(--u)*.5)}
+.step p{margin:0 0 calc(var(--u)*.35)}
+.step ul{margin:0;padding-left:1.1em}.step li{margin:0 0 calc(var(--u)*.25)}
 .where{color:var(--muted);font-size:.85em}.where b{color:var(--ink)}
 .pill{display:inline-block;font-weight:700;padding:0 calc(var(--u)*.7);border-radius:999px;background:var(--warn-soft);color:var(--warn)}
-@media (max-aspect-ratio:1/1){:root{--u:2.4vw}body{font-size:16px}.board{height:auto}.qs,.steps{grid-template-columns:1fr}h1{font-size:26px}.qn,.label,.step h2{font-size:19px}.reveal{font-size:14px}
- .ans{display:none;visibility:visible}body.show .ans{display:block}}
+@media (max-aspect-ratio:1/1){body{font-size:17px}.board{height:auto}.steps{grid-template-columns:1fr;grid-template-rows:none}h1{font-size:26px}.step h2{font-size:21px}.quiet{font-size:14px;white-space:normal}}
 </style></head><body>
 <div class="board">
   <header>
-    <h1>GATE Today<small>Thursday, Nov 5 · Day 9</small></h1>
+    <h1>GATE Today<small>Friday, Nov 6 · Unit 2.1 Test</small></h1>
+    <span class="quiet">Test in progress · stay quiet</span>
   </header>
-
-  <section class="warm" aria-label="Warm-up">
-    <p class="label">1 Warm-up <span>· on your Warmup and Exit Sheet · no notes · 5 min</span></p>
-    <div class="qs">
-      <div class="q">
-        <span class="qn">Partner strand or mRNA?</span>
-        <div>
-          <p>DNA strand: <span class="strand"><span class="bT">T</span><span class="bA">A</span><span class="bC">C</span> <span class="bG">G</span><span class="bG">G</span><span class="bA">A</span></span></p>
-          <p>a) Write the <b>partner strand</b>.</p>
-          <p>b) Write the <b>mRNA</b>.</p>
-        </div>
-      </div>
-      <div class="q">
-        <span class="qn">Which change is bigger?</span>
-        <div>
-          <p>Gene 1 loses <b>1 base</b>.<br>Gene 2 loses <b>3 bases</b>.</p>
-          <p>Which protein changes more? Why?</p>
-        </div>
-      </div>
-      <div class="q">
-        <span class="qn">Order the Duchenne chain</span>
-        <div class="order">
-          <span>A. Cells tear and die</span>
-          <span>B. No dystrophin</span>
-          <span>C. Weak muscles</span>
-          <span>D. DMD gene deletion</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="steps" aria-label="Today's work">
-    <div class="step">
-      <h2><span class="n">2</span>Personal review</h2>
-      <p class="where">Canvas → Unit 2.1 → Day 9 → <b>My Personal Review</b></p>
-      <p>Name → base-pair check → pick a path → <b>Copy my work</b> → paste <span class="pill">Due Fri 9 AM</span></p>
+  <section class="steps" aria-label="Today's steps">
+    <div class="step first">
+      <h2><span class="n">1</span>Unit 2.1 Test</h2>
+      <p class="where">Canvas → Unit 2.1 → <b>Unit 2.1 Test: DNA to Traits</b></p><p><b>LockDown Browser.</b> No notes.</p><p>Submit, then close it.</p>
     </div>
     <div class="step">
-      <h2><span class="n">3</span>Feedback</h2>
-      <p class="where">Canvas → Grades → <b>Practice Test</b></p>
-      <p>Fix question 17 using my comment.</p>
+      <h2><span class="n">2</span>Missing work for this class</h2>
+      <p class="where">Canvas → <b>Grades</b> → look for <b>Missing</b></p><ul><li>Day 9 Personal Review</li><li>Warmup and Exit Sheet</li><li>Any Unit 2.1 page</li></ul>
     </div>
     <div class="step">
-      <h2><span class="n">4</span>Test Friday</h2>
-      <p><b>LockDown Browser.</b></p>
-      <p>Charge your Chromebook.</p>
+      <h2><span class="n">3</span>Work for other classes</h2>
+      <p>Finish work for your other classes.</p><p>Work alone and silently.</p>
+    </div>
+    <div class="step">
+      <h2><span class="n">4</span>Then: your choice</h2>
+      <p>Read, draw, or rest at your seat.</p><p><b>Stay quiet and respectful.</b> Others are still testing.</p>
     </div>
   </section>
 </div>
