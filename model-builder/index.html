@@ -102,7 +102,8 @@ const TASKS = {
   "cystic-fibrosis": {
     kind: "fix",
     title: "Fix a broken model: cystic fibrosis",
-    intro: "A student built this model of cystic fibrosis. It has three mistakes. Fix the model: swap wrong cards for better ones and rewrite any wrong arrow. Then name each mistake in the last box.",
+    intro: "A student built this model of cystic fibrosis. It has three mistakes. First, read the student's model and write down each mistake. After you write the mistakes, fix the model. Remove each wrong card and place a better one. Delete any wrong arrow explanation and write a new one.",
+    mistakesQ: "Find the three mistakes in the student's model. For each one, name the box or arrow, say what is wrong, and say why it is a mistake. Use Evidence A and B.",
     start: {
       dna: "Three bases are deleted from the CFTR gene.",
       protein: "The CFTR protein has extra amino acids added to it.",
@@ -127,7 +128,7 @@ const TASKS = {
       "Chloride is a protein that folds into the wrong shape."
     ],
     evidence: ["A", "B", "C", "D"],
-    finalQ: "Name each mistake in the student's model. Say why it is a mistake. Then use Evidence C and D to predict what a medicine that helps CFTR fold would do to the lung mucus and to sweat chloride."
+    finalQ: "Use Evidence C and D to predict what a medicine that helps CFTR fold would do to the lung mucus and to sweat chloride. Explain your prediction."
   },
   "muscle-contraction": {
     kind: "build",
@@ -338,11 +339,20 @@ function render() {
     arrows: saved.arrows || Object.assign({}, task.startArrows || {}),
     ev: saved.ev || {},
     final: saved.final || "",
+    mistakes: saved.mistakes || "",
     picked: null
   };
   const pairs = LINKS.slice(0, -1).map((l, i) => l.key + "-" + LINKS[i + 1].key);
   // Fixed mixed order (same on every load), so correct cards are not grouped or listed first.
   const hash = s => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+  const fix = task.kind === "fix";
+  function original() {
+    return LINKS.map((l, i) => {
+      let h = `<p style="margin:6px 0"><b>${i + 1}. ${esc(l.label)}:</b> ${esc((task.start || {})[l.key] || "(empty)")}</p>`;
+      if (i < LINKS.length - 1) h += `<p style="margin:6px 0 6px 16px">↓ ${esc((task.startArrows || {})[pairs[i]] || "(no explanation)")}</p>`;
+      return h;
+    }).join("");
+  }
   const allCards = [...new Set([...(Object.values(task.start || {})), ...task.bank])]
     .sort((a, b) => hash(a) - hash(b));
 
@@ -350,6 +360,13 @@ function render() {
     <p class="eyebrow">Model Builder · ${esc(task.unit || "Unit 2.1 DNA to Traits")}${task.practice ? " · Practice" : ""}</p>
     <h1>${esc(task.title)}</h1>
     <p>${esc(task.intro)}</p>
+    ${fix ? `<h2>Step 1: Find the mistakes</h2>
+    <p class="hint">This is the student's model as they wrote it. Do not change anything yet. This copy stays here so you can still see it after you fix the model.</p>
+    <div class="panel">${original()}</div>
+    <label for="mistakes">${esc(task.mistakesQ || "Name each mistake in the student's model. Say why it is a mistake.")}</label>
+    <textarea id="mistakes" rows="6"></textarea>
+    <h2>Step 2: Fix the model</h2>
+    <p class="hint">Do this only after you write the mistakes in Step 1. In the model below, tap <b>Remove</b> on each wrong card, then place a better card from the word bank. Delete any wrong arrow explanation and write a new one.</p>` : ""}
     <div class="panel">
       <h2 style="margin-top:0">Word bank</h2>
       <p class="hint">Tap a card, then tap <b>Place here</b> in a box. Some cards do not belong. To take a card back out, tap <b>Remove</b>.</p>
@@ -358,7 +375,7 @@ function render() {
     <h2>Your model</h2>
     <p class="progress" id="progress" aria-live="polite"></p>
     <div id="chain"></div>
-    <h2>${task.kind === "fix" ? "Mistakes and prediction" : "Last question"}</h2>
+    <h2>${fix ? "Step 3: Prediction" : "Last question"}</h2>
     <label for="final">${esc(task.finalQ)}</label>
     <textarea id="final" rows="5"></textarea>
     <h2>Turn it in</h2>
@@ -375,7 +392,7 @@ function render() {
 
   const bank = $("#bank"), chain = $("#chain");
 
-  function save() { store(saveKey, { slots: state.slots, arrows: state.arrows, ev: state.ev, final: state.final }); }
+  function save() { store(saveKey, { slots: state.slots, arrows: state.arrows, ev: state.ev, final: state.final, mistakes: state.mistakes }); }
 
   function drawBank() {
     const used = new Set(Object.values(state.slots).filter(Boolean));
@@ -428,9 +445,12 @@ function render() {
   const fin = $("#final");
   fin.value = state.final;
   fin.oninput = () => { state.final = fin.value; save(); };
+  const mis = $("#mistakes");
+  if (mis) { mis.value = state.mistakes; mis.oninput = () => { state.mistakes = mis.value; save(); }; }
 
   function modelText() {
     const lines = [`MY MODEL: ${task.title}`, ""];
+    if (fix) lines.push(`Mistakes I found: ${(mis.value || "").trim() || "(not answered)"}`, "", "My fixed model:");
     LINKS.forEach((l, i) => {
       lines.push(`${i + 1}. ${l.label}: ${state.slots[l.key] || "(empty)"}`);
       if (i < LINKS.length - 1) {
@@ -438,7 +458,7 @@ function render() {
         lines.push(`   ↓ How: ${(state.arrows[p] || "").trim() || "(not explained)"}${task.evidence.length ? ` (Evidence: ${state.ev[p] || "none"})` : ""}`);
       }
     });
-    lines.push("", `${task.kind === "fix" ? "Mistakes and prediction" : "Last question"}: ${fin.value.trim() || "(not answered)"}`);
+    lines.push("", `${fix ? "Prediction" : "Last question"}: ${fin.value.trim() || "(not answered)"}`);
     return lines.join("\n");
   }
 
