@@ -235,7 +235,7 @@ var PATHS0=[
  {id:'write',cls:'c3',fn:'startWrite',kind:'Writing',title:'Write It Out',what:'Explain an idea in your own words, then check it against a strong answer, point by point.',time:'12 min'},
  {id:'cases',cls:'c6',fn:'startCase',kind:'Case files',title:'Prove It Case',what:'Read the evidence about a real case. Make a claim, pick the evidence, and explain your reasoning.',time:'10 min'}
 ];
-var PATHS=PATHS0.filter(function(p){return p.id!=='model'||(typeof MODELS!=='undefined'&&MODELS.length)});
+var PATHS=PATHS0.filter(function(p){if(p.id==='cases'&&!CASES.length)return false;return p.id!=='model'||(typeof MODELS!=='undefined'&&MODELS.length)});
 function pathCard(p){var rec=(p.id==='model'&&SK.model)||(p.id==='words')?' <span class="rec">Everyone</span>':'';
   return '<button class="card '+p.cls+'" onclick="'+p.fn+'()"><span class="head">'+ICON[p.id]+'<span><span class="kind">'+p.kind+rec+'</span><br><b>'+p.title+'</b></span></span><span class="what">'+p.what+'</span><span class="meta">About '+p.time+'</span></button>'}
 function home(){window.scrollTo(0,0);gmStop();
