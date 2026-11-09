@@ -138,7 +138,7 @@ const TASKS = {
     title: "Build a model: from nerve to movement",
     steps: [
       "<b>Fill the 4 boxes.</b> The model is a chain read from top to bottom, from the nerve signal to the moving bone. Tap a card in the word bank, then tap <b>Place here</b> in the box where that step happens. Some cards have a mistake in them and do not go in any box.",
-      "<b>Explain the 3 arrows.</b> Under each arrow, write how one box causes the next one.",
+      "<b>Explain the 3 arrows.</b> In the box under each arrow, write <b>one full sentence</b> that answers the arrow's question: how one box <b>causes</b> the next box. Use <b>so</b> or <b>because</b>.<br><span class=\"hint\">Example from a different topic, so you still write your own: <i>How does flipping the switch turn on the light?</i> Flipping the switch closes the circuit, so electricity can flow to the bulb.</span>",
       "<b>Answer the last question.</b> Use your finished model.",
       "<b>Copy my model</b> and paste it into the test's answer box."
     ],
@@ -430,7 +430,7 @@ function render() {
         html += `<div class="arrow">
           <span class="tip">↓</span>
           <label for="a-${p}">${ARROW_Q[i]}</label>
-          <textarea id="a-${p}" data-p="${p}" rows="2">${esc(state.arrows[p] || "")}</textarea>
+          <textarea id="a-${p}" data-p="${p}" rows="2"${task.steps ? ` placeholder="One full sentence: how Box ${i + 1} causes Box ${i + 2}. Use so or because."` : ""}>${esc(state.arrows[p] || "")}</textarea>
           ${task.evidence.length ? `<div class="row"><label for="e-${p}" style="margin:0">Evidence:</label>
             <select id="e-${p}" data-p="${p}"><option value="">choose</option>${task.evidence.map(e => `<option${state.ev[p] === e ? " selected" : ""}>${e}</option>`).join("")}</select></div>` : ""}
         </div>`;
