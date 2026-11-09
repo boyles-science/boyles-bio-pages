@@ -38,6 +38,8 @@
   .slot-label { font-size: 13px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
   .slot-body { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 30px; }
   .slot-body .empty { color: var(--muted); font-style: italic; }
+  .slot-hint { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .howto ol { margin: 6px 0 0 20px; padding: 0; } .howto li { margin: 4px 0; }
   .slot button.place, .slot button.remove { border: 1px solid var(--line); background: var(--card); border-radius: 6px; padding: 4px 10px; cursor: pointer; white-space: nowrap; font-size: 15px; }
   .arrow { margin: 4px 0 4px 18px; padding: 6px 0 6px 18px; border-left: 3px solid var(--accent); }
   .arrow .tip { color: var(--accent); font-weight: 700; }
@@ -132,14 +134,20 @@ const TASKS = {
   },
   "muscle-contraction": {
     kind: "build",
-    unit: "Unit 2.4 Muscular System",
+    unit: "Unit 2.5 Muscular System",
     title: "Build a model: from nerve to movement",
+    steps: [
+      "<b>Fill the 4 boxes.</b> The model is a chain read from top to bottom, from the nerve signal to the moving bone. Tap a card in the word bank, then tap <b>Place here</b> in the box where that step happens. Some cards have a mistake in them and do not go in any box.",
+      "<b>Explain the 3 arrows.</b> Under each arrow, write how one box causes the next one.",
+      "<b>Answer the last question.</b> Use your finished model.",
+      "<b>Copy my model</b> and paste it into the test's answer box."
+    ],
     intro: "Build a model of how the brain's signal makes the elbow bend in a biceps curl. Put one card in each box. Some cards do not belong.",
     links: [
-      { key: "nmj",    label: "Neuromuscular junction" },
-      { key: "fiber",  label: "Inside the muscle fiber" },
-      { key: "sarc",   label: "Inside the sarcomeres" },
-      { key: "muscle", label: "Whole muscle and bone" }
+      { key: "nmj",    label: "Neuromuscular junction", hint: "Where the nerve meets the muscle" },
+      { key: "fiber",  label: "Inside the muscle fiber", hint: "The signal spreads inside one muscle cell" },
+      { key: "sarc",   label: "Inside the sarcomeres", hint: "Actin and myosin pull" },
+      { key: "muscle", label: "Whole muscle and bone", hint: "The muscle pulls on the bone" }
     ],
     arrowQs: [
       "How does the signal get from the junction into the fiber?",
@@ -367,6 +375,7 @@ function render() {
     <textarea id="mistakes" rows="6"></textarea>
     <h2>Step 2: Fix the model</h2>
     <p class="hint">Do this only after you write the mistakes in Step 1. In the model below, tap <b>Remove</b> on each wrong card, then place a better card from the word bank. Delete any wrong arrow explanation and write a new one.</p>` : ""}
+    ${task.steps ? `<div class="panel howto"><h2 style="margin-top:0">How this works</h2><ol>${task.steps.map(t => `<li>${t}</li>`).join("")}</ol></div>` : ""}
     <div class="panel">
       <h2 style="margin-top:0">Word bank</h2>
       <p class="hint">Tap a card, then tap <b>Place here</b> in a box. Some cards do not belong. To take a card back out, tap <b>Remove</b>.</p>
@@ -411,7 +420,7 @@ function render() {
     LINKS.forEach((l, i) => {
       const v = state.slots[l.key];
       html += `<div class="slot${v ? " filled" : ""}${state.picked && !v ? " ready" : ""}">
-        <div class="slot-label">${i + 1}. ${esc(l.label)}</div>
+        <div class="slot-label">${i + 1}. ${esc(l.label)}</div>${l.hint ? `<div class="slot-hint">${esc(l.hint)}</div>` : ""}
         <div class="slot-body">
           ${v ? `<span>${esc(v)}</span><button class="remove" data-k="${l.key}">Remove</button>`
               : `<span class="empty">Empty</span>${state.picked ? `<button class="place" data-k="${l.key}">Place here</button>` : ""}`}
