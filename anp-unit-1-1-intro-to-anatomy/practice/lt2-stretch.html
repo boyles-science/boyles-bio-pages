@@ -52,7 +52,7 @@ P.steps.forEach(function(s,i){
  else{
   num++;c.dataset.gate='1';
   var h='<div class="n">Step '+num+'</div><div class="q">'+s.q+'</div>';
-  if(s.type==='mc'){s.choices.forEach(function(x,j){h+='<button class="ch" data-j="'+j+'">'+x+'</button>';});h+='<div class="fb"></div>';}
+  if(s.type==='mc'){var ord=s.choices.map(function(x,j){return j;});for(var k=ord.length-1;k>0;k--){var r=Math.floor(Math.random()*(k+1)),t=ord[k];ord[k]=ord[r];ord[r]=t;}ord.forEach(function(j){h+='<button class="ch" data-j="'+j+'">'+s.choices[j]+'</button>';});h+='<div class="fb"></div>';}
   if(s.type==='num'){h+='<input type="text" inputmode="decimal" aria-label="Your answer"><button class="go">Check</button><div class="fb"></div>';}
   if(s.type==='cer'){h+='<ul class="hint">'+s.hints.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul><textarea aria-label="Your CER"></textarea><button class="go">Compare with a strong answer</button><div class="model"><b>A strong answer:</b> '+s.model+'<p style="margin:8px 0 0">Check yours: Did you make a clear claim? Did you use real numbers or data? Did your reasoning explain <i>why</i>, using the science idea?</p></div>';}
   c.innerHTML=h;
