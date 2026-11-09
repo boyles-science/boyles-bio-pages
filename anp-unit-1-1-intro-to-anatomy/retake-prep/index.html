@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 1.1 Intro to Anatomy: Final Retake Prep</title>
+<style>
+:root{--ink:#161821;--bg:#f4f6fb;--card:#fff;--blue:#2b50c8;--ok:#1b6e2f;--okbg:#e6f4ea;--bad:#a12a1a;--badbg:#fdeceb;--part:#7a5a00;--partbg:#fff4d6;--line:#c3c9d8;
+ --A:#2e9e57;--T:#d64545;--C:#2f6fd6;--G:#e0a100;--U:#8a4fd6}
+*{box-sizing:border-box}body{margin:0;font:18px/1.45 Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{font-size:27px;margin:6px 0 2px}h2{font-size:21px;margin:16px 0 6px}h3{font-size:18px;margin:12px 0 4px}
+.tag{display:inline-block;background:var(--blue);color:#fff;border-radius:6px;padding:2px 10px;font-size:15px;font-weight:700;letter-spacing:.04em}
+.note{color:#444;font-size:16px}
+.panel{background:var(--card);border-radius:14px;padding:14px 16px;margin:12px 0;box-shadow:0 1px 3px rgba(20,30,60,.12)}
+.hero{background:linear-gradient(135deg,#2b50c8,#5b3cc4);color:#fff;border-radius:14px;padding:16px 18px;margin:12px 0;position:relative;overflow:hidden}
+.hero h2{margin:0 0 4px;font-size:22px}.hero p{margin:4px 0}
+.hero svg{position:absolute;right:-10px;top:-6px;opacity:.18;width:150px;height:150px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.chip{border-radius:99px;padding:3px 11px;font-size:15px;font-weight:700}
+.chip.f{background:#fff3cd;color:#6b4b00}.chip.s{background:#d9f2e2;color:#145a2a}
+.hero details{background:rgba(255,255,255,.14);border-radius:8px;padding:6px 10px;margin-top:6px}.hero summary{color:#fff;font-weight:700}
+.hero ul{margin:6px 0 2px 18px;padding:0;font-size:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:12px 0}
+.card{border:0;border-radius:14px;padding:14px 16px;background:var(--card);text-align:left;font:inherit;cursor:pointer;color:inherit;box-shadow:0 1px 3px rgba(20,30,60,.15);border-top:6px solid var(--blue);display:flex;flex-direction:column;gap:6px;transition:transform .12s}
+.card:hover,.card:focus{transform:translateY(-2px);outline:3px solid #b9c6f2}
+.card .head{display:flex;align-items:center;gap:10px}.card svg{width:44px;height:44px;flex:none}
+.card b{font-size:20px}.card .kind{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#666}
+.card .what{font-size:16px;color:#333}.card .meta{font-size:14px;color:#555;border-top:1px solid #eee;padding-top:6px}
+.card.c1{border-top-color:#2b50c8}.card.c2{border-top-color:#e2387a;background:linear-gradient(160deg,#1a1640,#2c1f63);color:#fff}.card.c2 .what,.card.c2 .meta,.card.c2 .kind{color:#d9d4ff}.card.c2 .meta{border-color:#4a3e8a}
+.card.c3{border-top-color:#1b9e8f}.card.c4{border-top-color:#d98a00}
+.card.quick{border-top:0;border-left:8px solid var(--U);width:100%}
+.opt{display:block;width:100%;text-align:left;font:inherit;background:#fff;border:2px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0;cursor:pointer;color:inherit}
+.opt:hover{border-color:var(--blue)}
+.opt.mono,.m.mono{font-family:"Courier New",Courier,monospace;font-weight:700;letter-spacing:.08em}
+.fb{margin:6px 0 2px;padding:8px 12px;border-radius:8px;font-size:17px}
+.ok{background:var(--okbg);border:2px solid var(--ok)}.bad{background:var(--badbg);border:2px solid var(--bad)}.part{background:var(--partbg);border:2px solid var(--part)}
+.opt.ok,.opt.bad,.opt.part{cursor:default}
+.mine{font-size:16px;background:#fff8e1;border-left:4px solid #e0a100;padding:6px 10px;border-radius:6px;margin:6px 0}
+.ev{border:1.5px solid #bbb;border-radius:8px;padding:10px 14px;margin:10px 0;background:#fff}.ev p{margin:6px 0}.ev b{color:var(--blue)}
+label.chk{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0;background:#fff}
+label.chk input{width:22px;height:22px;margin-top:3px}
+button.go{font:inherit;font-weight:700;background:var(--blue);color:#fff;border:0;border-radius:10px;padding:10px 18px;margin:10px 8px 10px 0;cursor:pointer}
+button.go.alt{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+button.go:disabled{background:#aab;border-color:#aab;color:#fff;cursor:not-allowed}
+textarea,input[type=text]{width:100%;font:inherit;border:2px solid var(--line);border-radius:8px;padding:8px;background:#fff}
+textarea{min-height:70px}
+.ans{border:2px solid var(--ok);background:var(--okbg);border-radius:8px;padding:8px 12px;margin:8px 0}
+.sum{border:2px solid var(--blue);border-radius:12px;padding:12px 16px;margin:12px 0;background:#fff}
+.bar{display:flex;gap:6px;margin:8px 0}.bar span{flex:1;height:8px;border-radius:4px;background:#d5d9e6}.bar span.on{background:var(--blue)}.bar span.done{background:var(--ok)}
+.stats{display:flex;gap:18px;flex-wrap:wrap;font-weight:700;margin:8px 0}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.m{font:inherit;text-align:left;border:2px solid var(--line);background:#fff;border-radius:10px;padding:10px 12px;cursor:pointer;color:inherit;display:block;width:100%;margin-bottom:8px;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.m.sel{border-color:var(--blue);background:#eef2ff}.m.gone{border-color:var(--ok);background:var(--okbg);cursor:default;opacity:.75}.m.wrong{border-color:var(--bad);background:var(--badbg)}
+.lt{font-size:14px;color:#555}
+.pill{display:inline-block;border-radius:99px;padding:1px 9px;font-size:13px;font-weight:700;margin-left:4px}
+.pill.focus{background:#fff3cd;color:#6b4b00}.pill.strong{background:#d9f2e2;color:#145a2a}
+table.plan{border-collapse:collapse;width:100%;font-size:16px}table.plan td,table.plan th{border:1px solid #ccd;padding:6px 8px;text-align:left}
+a{color:var(--blue)}
+details{margin:6px 0;font-size:16px}summary{cursor:pointer;color:var(--blue)}
+/* Codon Quest game */
+.game{background:radial-gradient(circle at 30% 0%,#3a2a8c,#120f2e 70%);color:#f2efff;border-radius:16px;padding:14px;min-height:480px;position:relative;overflow:hidden;font-family:"Courier New",Courier,monospace}
+.game .stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:38px 38px;opacity:.15;pointer-events:none}
+.hud{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font-weight:700;font-size:18px;position:relative}
+.hearts{color:#ff4d6d;font-size:24px;letter-spacing:2px}.hearts .lost{color:#4a4370}
+.combo{color:#ffd23f}.lvl{color:#7cf3ff}
+.timer{height:12px;background:#2a2457;border-radius:6px;overflow:hidden;margin:10px 0;position:relative}
+.timer i{display:block;height:100%;background:linear-gradient(90deg,#3cff9e,#ffd23f,#ff4d6d);width:100%}
+.gtitle{font-size:26px;font-weight:700;color:#ffd23f;text-shadow:0 3px 0 #7a2bd6;margin:8px 0;text-align:center}
+.gsub{text-align:center;color:#d9d4ff;font-family:Arial,Helvetica,sans-serif;font-size:17px}
+.track{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:14px 0;position:relative}
+.gcol{display:flex;flex-direction:column;align-items:center}
+.gcol .tl,.gslot{width:38px;height:46px}
+.gslot{border:2px dashed #6c63b5;border-radius:7px;display:block}.gslot.filled{border:0}.gslot .tl{width:100%;height:100%}
+.gcol.now .tl{filter:drop-shadow(0 0 6px #ffd23f) drop-shadow(0 0 3px #ffd23f)}
+.gcol .rung{background:#4a4370}.gcol .rung.on{background:#3cff9e}
+.pad{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.pad .key.kt,.pad .key.kt .tl{width:56px;height:68px}
+.gmsg{min-height:28px;text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:17px;margin:6px 0}
+.gmsg.badm{color:#ff9db0}.gmsg.goodm{color:#7dffb9}
+.boss{display:flex;flex-direction:column;align-items:center;margin:6px 0}
+.boss svg{width:130px;height:110px}
+.hp{width:220px;height:14px;background:#2a2457;border-radius:7px;overflow:hidden;border:2px solid #ff4d6d}.hp i{display:block;height:100%;background:#ff4d6d;transition:width .3s}
+.gq{background:rgba(255,255,255,.08);border-radius:12px;padding:10px 12px;font-family:Arial,Helvetica,sans-serif}
+.gq h3{color:#fff;margin:4px 0 8px}
+.gq .opt{background:#231d52;color:#fff;border-color:#5a50a8}.gq .opt:hover{border-color:#ffd23f}
+.gq .opt.ok{background:#11502f;border-color:#3cff9e}.gq .opt.bad{background:#5c1626;border-color:#ff4d6d}
+.gq .fb{color:#161821}
+.gbtn{font:700 18px "Courier New",Courier,monospace;background:#ffd23f;color:#1a1640;border:0;border-radius:10px;padding:12px 22px;margin:10px 6px;cursor:pointer;box-shadow:0 4px 0 #b08900}
+.gbtn.alt{background:transparent;color:#ffd23f;border:2px solid #ffd23f;box-shadow:none}
+.center{text-align:center}
+.shake{animation:shake .35s}.pop{animation:pop .3s}.flash{animation:flash .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
+@keyframes flash{0%,100%{background-color:transparent}50%{background-color:rgba(255,77,109,.35)}}
+.float{position:absolute;left:50%;top:40%;transform:translateX(-50%);font-size:28px;font-weight:700;color:#ffd23f;pointer-events:none;animation:rise .8s forwards}
+@keyframes rise{from{opacity:1;transform:translate(-50%,0)}to{opacity:0;transform:translate(-50%,-50px)}}
+@media (prefers-reduced-motion:reduce){.shake,.pop,.flash,.float,.card{animation:none!important;transition:none}}
+@media (max-width:520px){.match{grid-template-columns:1fr}.wrap{padding:10px}.bp{padding:10px 8px}.ladder{gap:3px}.col .tl,.slot{width:28px;height:34px}.gap{width:5px}
+ .gcol .tl,.gslot{width:30px;height:37px}.track{gap:4px}.pad .key.kt,.pad .key.kt .tl{width:50px;height:61px}}
+.chainrow{display:flex;align-items:stretch;gap:4px;margin:10px 0;flex-wrap:wrap}
+.cbox{flex:1;min-width:120px;border:2px dashed #b9a5e8;border-radius:10px;padding:6px 8px;background:#fff;font-size:14px}
+.cbox b{display:block;color:#7a2bd6;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+.cbox.done{border:2px solid #7a2bd6;background:#f3edff}
+.carrow{align-self:center;font-size:22px;color:#7a2bd6;font-weight:700}
+.codons{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.cod{display:inline-flex;flex-direction:column;align-items:center;border-radius:8px;padding:4px 8px;background:#eef1fa;border:2px solid #c3c9d8;font-family:"Courier New",Courier,monospace}
+.cod b{font-size:18px;letter-spacing:.06em}.cod small{font-family:Arial,Helvetica,sans-serif;font-size:13px}
+.cod.same{background:#e6f4ea;border-color:#1b6e2f}.cod.chg{background:#fdeceb;border-color:#a12a1a}.cod.left{opacity:.6;border-style:dashed}
+.card.c5{border-top-color:#7a2bd6}
+.rec{display:inline-block;background:#ffd23f;color:#1a1640;border-radius:99px;padding:0 8px;margin-left:4px;letter-spacing:0}
+@media (max-width:520px){.carrow{display:none}.cbox{min-width:45%}}
+
+.card.c6{border-top-color:#5b3cc4}
+.flash{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:100%;min-height:230px;border:0;border-radius:16px;background:linear-gradient(135deg,#2b50c8,#5b3cc4);color:#fff;font:inherit;cursor:pointer;padding:20px;box-shadow:0 3px 8px rgba(20,30,60,.25);margin:10px 0}
+.flash.back{background:#fff;color:#161821;border:3px solid #2b50c8}
+.flash .ft{font-size:34px;font-weight:700;text-align:center}.flash .fh{font-size:15px;opacity:.85}
+.flash .fd{font-size:22px;text-align:center;max-width:640px}.flash .fp{font-size:16px;color:#5b3cc4;font-weight:700}
+.lv{display:inline-block;border-radius:99px;padding:1px 9px;font-weight:700;font-size:14px}
+.lv.l4{background:#d9f2e2;color:#145a2a}.lv.l3{background:#e3f0ff;color:#1b4fa0}.lv.l2{background:#fff3cd;color:#6b4b00}.lv.l1{background:#fdeceb;color:#a12a1a}
+tr.kn td:first-child{border-left:5px solid #1b6e2f}tr.ms td:first-child{border-left:5px solid #d98a00}
+.opt:disabled{cursor:default}
+@media (max-width:620px){table.plan{font-size:14px}table.plan td,table.plan th{padding:4px}}
+</style></head><body><div class="wrap">
+<span class="tag">Anatomy &amp; Physiology · Unit 1.1 Intro to Anatomy</span>
+<h1>Final Retake Prep</h1>
+<div id="app" aria-live="polite"></div>
+</div>
+<script>
+var CFG={"title": "Unit 1.1 Intro to Anatomy: Final Retake Prep", "tag": "Anatomy & Physiology · Unit 1.1 Intro to Anatomy", "cfa": "CFA", "nq": 0, "gameName": "Body Builder", "keyPrefix": "ret11", "submitTo": "Then open <b>Final Retake Prep: Unit 1.1 Intro to Anatomy</b> in Canvas (Final Retake Prep module), press <b>Start Assignment</b>, paste with <b>Ctrl + V</b>, and press <b>Submit Assignment</b>. You can submit again later with a better score; your newest one counts. Last chance: <b>Thursday, Dec 17 at 11:59 PM</b>.", "retake": {"unit": "1.1", "min": 20, "salt": "hhs-anp-final-26"}};
+var LTS=[{"id": "LT1", "name": "I can describe the levels of organization, the life functions and survival needs of the body, and the difference between anatomy and physiology."}, {"id": "LT2", "name": "I can use directional terms, body cavities and membranes to describe where structures are in the body."}, {"id": "LT3", "name": "I can explain how organelles, cell transport and protein synthesis keep cells working."}];
+var SK={"1levels": {"lt": "LT1", "q": -1, "name": "Levels of organization"}, "1needs": {"lt": "LT1", "q": -1, "name": "Survival needs"}, "1functions": {"lt": "LT1", "q": -1, "name": "Life functions"}, "1ap": {"lt": "LT1", "q": -1, "name": "Anatomy vs. physiology"}, "2updown": {"lt": "LT2", "q": -1, "name": "Proximal, distal, superior and inferior"}, "2midline": {"lt": "LT2", "q": -1, "name": "Medial, lateral, anterior and posterior"}, "2cavities": {"lt": "LT2", "q": -1, "name": "Body cavities"}, "2membranes": {"lt": "LT2", "q": -1, "name": "Membranes that line the cavities"}, "3organelles": {"lt": "LT3", "q": -1, "name": "Organelles and their jobs"}, "3passive": {"lt": "LT3", "q": -1, "name": "Diffusion and osmosis"}, "3active": {"lt": "LT3", "q": -1, "name": "Active transport, endocytosis and exocytosis"}, "3protein": {"lt": "LT3", "q": -1, "name": "Transcription and translation"}};
+var FIX={};
+var GLOSS=[{"t": "Anatomy", "sk": "1ap", "d": "The study of the structure (shape and parts) of the body.", "p": "ana = apart, tomy = cutting"}, {"t": "Physiology", "sk": "1ap", "d": "The study of how the body and its parts work (function).", "p": "physio = nature, logy = study of"}, {"t": "Structure and function", "sk": "1ap", "d": "The shape of a body part fits the job it does."}, {"t": "Chemical level", "sk": "1levels", "d": "Atoms and molecules, the smallest level of organization."}, {"t": "Cell", "sk": "1levels", "d": "The smallest unit of life."}, {"t": "Tissue", "sk": "1levels", "d": "A group of similar cells that do the same job."}, {"t": "Organ", "sk": "1levels", "d": "Two or more tissue types working together to do a job, such as the heart."}, {"t": "Organ system", "sk": "1levels", "d": "Organs that work together for one main job, such as the digestive system."}, {"t": "Organism", "sk": "1levels", "d": "The whole living thing, made of all the organ systems."}, {"t": "Survival needs", "sk": "1needs", "d": "What the body needs to stay alive: nutrients, oxygen, water, normal body temperature, and the right air pressure."}, {"t": "Nutrients", "sk": "1needs", "d": "Chemicals from food that give energy and building materials."}, {"t": "Metabolism", "sk": "1functions", "d": "All the chemical reactions in the body."}, {"t": "Excretion", "sk": "1functions", "d": "Removing wastes from the body."}, {"t": "Responsiveness", "sk": "1functions", "d": "Sensing a change and reacting to it."}, {"t": "Digestion", "sk": "1functions", "d": "Breaking food down into molecules small enough to absorb."}, {"t": "Anatomical position", "sk": "2updown", "d": "Standing upright, facing forward, palms facing forward with thumbs away from the body."}, {"t": "Superior", "sk": "2updown", "d": "Above; toward the head."}, {"t": "Inferior", "sk": "2updown", "d": "Below; toward the feet."}, {"t": "Proximal", "sk": "2updown", "d": "Closer to where a limb attaches to the trunk."}, {"t": "Distal", "sk": "2updown", "d": "Farther from where a limb attaches to the trunk."}, {"t": "Medial", "sk": "2midline", "d": "Toward the midline of the body."}, {"t": "Lateral", "sk": "2midline", "d": "Away from the midline of the body."}, {"t": "Anterior (ventral)", "sk": "2midline", "d": "The front of the body."}, {"t": "Posterior (dorsal)", "sk": "2midline", "d": "The back of the body."}, {"t": "Cranial cavity", "sk": "2cavities", "d": "The space inside the skull that holds the brain."}, {"t": "Thoracic cavity", "sk": "2cavities", "d": "The chest cavity. It holds the heart and lungs."}, {"t": "Abdominopelvic cavity", "sk": "2cavities", "d": "The cavity below the diaphragm. It holds the stomach, intestines, liver, bladder and reproductive organs."}, {"t": "Pericardium", "sk": "2membranes", "d": "The membrane around the heart."}, {"t": "Pleura", "sk": "2membranes", "d": "The membrane around the lungs."}, {"t": "Peritoneum", "sk": "2membranes", "d": "The membrane that lines the abdominal cavity and covers its organs."}, {"t": "Nucleus", "sk": "3organelles", "d": "Holds the cell's DNA and controls the cell."}, {"t": "Mitochondria", "sk": "3organelles", "d": "Make most of the cell's ATP (energy)."}, {"t": "Ribosome", "sk": "3organelles", "d": "Builds proteins."}, {"t": "Endoplasmic reticulum", "sk": "3organelles", "d": "A network of membranes that makes and moves proteins and lipids."}, {"t": "Golgi apparatus", "sk": "3organelles", "d": "Packages and ships proteins."}, {"t": "Lysosome", "sk": "3organelles", "d": "Breaks down wastes and worn-out parts."}, {"t": "Cell membrane", "sk": "3passive", "d": "Controls what goes in and out of the cell."}, {"t": "Diffusion", "sk": "3passive", "d": "Molecules move from high concentration to low concentration, with no energy needed."}, {"t": "Osmosis", "sk": "3passive", "d": "Diffusion of water across a membrane."}, {"t": "Facilitated diffusion", "sk": "3passive", "d": "Molecules move from high to low concentration through a protein channel, with no energy needed."}, {"t": "Active transport", "sk": "3active", "d": "Moving molecules from low to high concentration. It needs energy (ATP)."}, {"t": "Endocytosis", "sk": "3active", "d": "The cell membrane wraps around material to bring it into the cell."}, {"t": "Exocytosis", "sk": "3active", "d": "Vesicles join the membrane to release material out of the cell."}, {"t": "Transcription", "sk": "3protein", "d": "DNA is copied into mRNA in the nucleus."}, {"t": "Translation", "sk": "3protein", "d": "At a ribosome, the mRNA code is read to build a protein."}];
+var MC=[{"sk": "1levels", "q": "Which is the smallest level of organization?", "o": ["Chemical", "Cellular", "Tissue", "Organ"], "w": "Atoms and molecules come first."}, {"sk": "1levels", "q": "The stomach is made of muscle, epithelial, connective and nervous tissue working together. What level is the stomach?", "o": ["Organ", "Tissue", "Organ system", "Cell"], "w": "Two or more tissue types working together make an organ."}, {"sk": "1levels", "q": "Which comes right after \"tissue\" in the levels of organization?", "o": ["Organ", "Cell", "Organism", "Chemical"], "w": "Chemical, cellular, tissue, organ, organ system, organism."}, {"sk": "1needs", "q": "Which list names only survival needs?", "o": ["Nutrients, oxygen, water", "Oxygen, sunlight, exercise", "Water, music, sleep", "Nutrients, caffeine, oxygen"], "w": "Survival needs: nutrients, oxygen, water, normal body temperature, right air pressure."}, {"sk": "1needs", "q": "A climber high on a mountain struggles to breathe because the air pressure is low. Which survival need is at risk?", "o": ["The right air pressure (and oxygen)", "Nutrients", "Normal body temperature", "Water"], "w": "Low air pressure makes it hard to get enough oxygen into the lungs."}, {"sk": "1functions", "q": "You touch a hot pan and pull your hand back. Which life function is this?", "o": ["Responsiveness", "Excretion", "Digestion", "Growth"], "w": "Sensing a change and reacting is responsiveness."}, {"sk": "1functions", "q": "The kidneys remove wastes from the blood. Which life function is this?", "o": ["Excretion", "Metabolism", "Movement", "Reproduction"], "w": "Removing wastes is excretion."}, {"sk": "1ap", "q": "A student draws and labels the four chambers of the heart. Is this anatomy or physiology?", "o": ["Anatomy", "Physiology", "Neither", "Homeostasis"], "w": "Naming and drawing parts is structure: anatomy."}, {"sk": "1ap", "q": "A doctor measures how fast the heart pumps during exercise. Is this anatomy or physiology?", "o": ["Physiology", "Anatomy", "Neither", "Chemistry only"], "w": "How a part works is physiology."}, {"sk": "2updown", "q": "The knee is ___ to the ankle.", "o": ["Proximal", "Distal", "Lateral", "Anterior"], "w": "The knee is closer to where the leg attaches to the trunk."}, {"sk": "2updown", "q": "The chin is ___ to the nose.", "o": ["Inferior", "Superior", "Proximal", "Posterior"], "w": "Inferior means below."}, {"sk": "2updown", "q": "The fingers are ___ to the elbow.", "o": ["Distal", "Proximal", "Medial", "Superior"], "w": "Farther from the trunk = distal."}, {"sk": "2midline", "q": "In anatomical position, the thumb is ___ to the pinky finger.", "o": ["Lateral", "Medial", "Posterior", "Inferior"], "w": "Palms face forward, so the thumb is away from the midline."}, {"sk": "2midline", "q": "The spine is on the ___ side of the body.", "o": ["Posterior (dorsal)", "Anterior (ventral)", "Lateral", "Superior"], "w": "The spine is on the back."}, {"sk": "2midline", "q": "The sternum (breastbone) is ___ to the heart.", "o": ["Anterior", "Posterior", "Distal", "Lateral"], "w": "It is in front of the heart."}, {"sk": "2cavities", "q": "Which cavity holds the lungs?", "o": ["Thoracic cavity", "Cranial cavity", "Abdominopelvic cavity", "Vertebral cavity"], "w": "The chest (thoracic) cavity holds the heart and lungs."}, {"sk": "2cavities", "q": "Which muscle separates the thoracic cavity from the abdominopelvic cavity?", "o": ["The diaphragm", "The heart", "The pericardium", "The stomach"], "w": "The diaphragm divides them."}, {"sk": "2membranes", "q": "Which membrane surrounds the lungs?", "o": ["Pleura", "Pericardium", "Peritoneum", "Meninges"], "w": "Pleura = lungs; pericardium = heart; peritoneum = abdomen."}, {"sk": "2membranes", "q": "Which membrane lines the abdominal cavity?", "o": ["Peritoneum", "Pleura", "Pericardium", "Epidermis"], "w": "The peritoneum lines the abdomen and covers its organs."}, {"sk": "3organelles", "q": "Which organelle packages and ships proteins?", "o": ["Golgi apparatus", "Lysosome", "Nucleus", "Mitochondria"], "w": "The Golgi packages and ships."}, {"sk": "3organelles", "q": "Muscle cells use a lot of energy. Which organelle would they have many of?", "o": ["Mitochondria", "Lysosomes", "Vacuoles", "Golgi apparatus"], "w": "Mitochondria make most of the ATP."}, {"sk": "3organelles", "q": "Which organelle breaks down wastes and worn-out cell parts?", "o": ["Lysosome", "Ribosome", "Nucleus", "Cell membrane"], "w": "Lysosomes break things down."}, {"sk": "3passive", "q": "Perfume spreads across a room with no fan. What kind of movement is this?", "o": ["Diffusion", "Active transport", "Exocytosis", "Translation"], "w": "High to low concentration with no energy: diffusion."}, {"sk": "3passive", "q": "A shell-less egg sits in corn syrup and shrinks. What happened?", "o": ["Water left the egg by osmosis.", "Corn syrup entered by active transport.", "The egg used ATP to push water out.", "The membrane dissolved."], "w": "Water moved from more water (inside) to less water (outside)."}, {"sk": "3active", "q": "A cell pumps ions from low concentration to high concentration. What does it need?", "o": ["Energy (ATP)", "Nothing; it happens on its own", "Osmosis", "A lysosome"], "w": "Moving against the gradient is active transport and needs ATP."}, {"sk": "3active", "q": "A white blood cell wraps its membrane around a bacterium and pulls it in. What is this?", "o": ["Endocytosis", "Exocytosis", "Osmosis", "Diffusion"], "w": "Bringing material in by wrapping it = endocytosis."}, {"sk": "3protein", "q": "Where does transcription happen?", "o": ["In the nucleus", "At a ribosome", "In a lysosome", "In the cell membrane"], "w": "DNA is copied into mRNA in the nucleus."}, {"sk": "3protein", "q": "What is the job of translation?", "o": ["To build a protein from the mRNA code", "To copy DNA into mRNA", "To make ATP", "To break down wastes"], "w": "Translation reads mRNA at a ribosome to build a protein."}, {"sk": "3protein", "q": "What could happen if a DNA code changes?", "o": ["The protein made from it could change.", "The cell stops having a nucleus.", "The cell membrane disappears.", "Nothing can ever change."], "w": "A changed code can change the protein."}];
+var SA=[{"sk": "1levels", "q": "Name the levels of organization from smallest to largest, with one example of each.", "a": ["Chemical (water molecule)", "Cellular (a muscle cell)", "Tissue (muscle tissue)", "Organ (heart)", "Organ system (circulatory system)", "Organism (the whole person)"]}, {"sk": "1needs", "q": "Choose one survival need. Explain what would happen if it were missing.", "a": ["Names a survival need (nutrients, oxygen, water, normal body temperature, or air pressure)", "Explains what the body uses it for", "Explains what would go wrong without it"]}, {"sk": "1ap", "q": "Explain the difference between anatomy and physiology. Give an example of how a structure fits its function.", "a": ["Anatomy: the structure (parts and shape)", "Physiology: how parts work (function)", "An example where the shape fits the job"]}, {"sk": "2midline", "q": "Describe the position of your nose using at least three directional terms.", "a": ["Uses three correct directional terms", "Each term compares the nose to another body part (e.g., medial to the eyes, superior to the mouth, anterior to the ears)"]}, {"sk": "2cavities", "q": "Name the cavity and membrane for the heart, the lungs, and the stomach.", "a": ["Heart: thoracic cavity, pericardium", "Lungs: thoracic cavity, pleura", "Stomach: abdominopelvic cavity, peritoneum"]}, {"sk": "2updown", "q": "Why do scientists need a common language for locations in the body?", "a": ["Everyone describes positions from anatomical position", "So doctors and scientists understand each other exactly", "Example of a mistake that could happen without it"]}, {"sk": "3protein", "q": "Explain how a cell uses its DNA to make a protein. Name both steps and where each happens.", "a": ["Transcription: DNA is copied into mRNA", "Transcription happens in the nucleus", "Translation: the mRNA code is read to build a protein", "Translation happens at a ribosome"]}, {"sk": "3passive", "q": "Compare passive and active transport. Give an example of each.", "a": ["Passive: high to low concentration, no energy (diffusion, osmosis)", "Active: low to high concentration, needs ATP", "One correct example of each"]}, {"sk": "3organelles", "q": "Pick three organelles. Explain how each one helps the cell stay alive.", "a": ["Three correct organelles", "A correct job for each", "Connects each job to keeping the cell alive"]}];
+var CASES=[];
+var MODELS=[],BREAK=[];
+
+"use strict";
+/* Filled in by the build script. STUDENTS: [{n,s,q}] where q is the 16-character practice-test string or "" (did not take it). */
+var STUDENTS=[];
+var CLASSWEAK=[];
+var app=document.getElementById('app');
+var P=null,S=null,SKEY=null;
+function esc(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML}
+function shuf(a){a=a.slice();for(var j=a.length-1;j>0;j--){var r=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[r];a[r]=t}return a}
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function nm(s){return (s||'').normalize('NFKD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z ]/g,' ').replace(/\s+/g,' ').trim()}
+function ltOf(sk){return SK[sk]?SK[sk].lt:'LT1'}
+function newState(){var r={};LTS.forEach(function(l){r[l.id]=[0,0]});return {r:r,s:{},known:{},miss:{},pl:{},w:{sa:{},model:{},cases:0,words:0,game:0,match:0,boss:0},v:1}}
+function save(){if(!SKEY)return;try{localStorage.setItem(SKEY,JSON.stringify(S))}catch(e){}}
+function load(){S=newState();try{var o=JSON.parse(localStorage.getItem(SKEY)||'null');if(o&&o.v===1){S=o;LTS.forEach(function(l){if(!S.r[l.id])S.r[l.id]=[0,0]})}}catch(e){}}
+/* path: which review style. Every answer counts toward a learning target. */
+function tally(sk,ok,path){var lt=ltOf(sk);S.r[lt][1]++;if(ok)S.r[lt][0]++;
+  if(!S.s[sk])S.s[sk]=[0,0];S.s[sk][1]++;if(ok)S.s[sk][0]++;
+  if(path){if(!S.pl[path])S.pl[path]={};if(!S.pl[path][lt])S.pl[path][lt]=[0,0];S.pl[path][lt][1]++;if(ok)S.pl[path][lt][0]++}
+  save()}
+function isWeak(sk){return !!(P&&P.weak[sk])}
+function choose(pool,n,key){var w=shuf(pool.filter(function(x){return isWeak(x[key||'sk'])})),s=shuf(pool.filter(function(x){return !isWeak(x[key||'sk'])}));
+  var nw=Math.min(w.length,Math.ceil(n*0.6));var out=w.slice(0,nw).concat(s.slice(0,n-nw));if(out.length<n)out=out.concat(w.slice(nw,nw+n-out.length));return shuf(out)}
+function fixNote(sk){var f=P&&P.weak[sk];return f&&f!==true?'<div class="mine"><b>From your practice test:</b> '+esc(f)+'</div>':''}
+
+/* ---------- Sign in ---------- */
+function start(){
+  app.innerHTML='<div class="hero"><h2>'+esc(CFG.title)+'</h2><p>Type your first and last name. '+(STUDENTS.length?'Your review is built from your '+CFG.cfa+' answers. ':'')+'Your progress saves on this device.</p></div>'+
+  '<div class="panel"><label for="nmIn"><b>Your name</b></label><input id="nmIn" type="text" autocomplete="off" placeholder="First Last"><button class="go" id="goBtn">Start my review</button><div id="nmMsg"></div></div>';
+  var i=document.getElementById('nmIn');i.addEventListener('keydown',function(e){if(e.key==='Enter')lookup()});document.getElementById('goBtn').onclick=lookup;i.focus()}
+function findStudent(t){var q=nm(t);if(!q)return null;var ex=STUDENTS.filter(function(s){return nm(s.n)===q});if(ex.length===1)return ex[0];
+  var parts=q.split(' ');var m=STUDENTS.filter(function(s){var n=nm(s.n);return parts.every(function(p){return n.split(' ').some(function(w){return w.indexOf(p)===0})})});return m.length===1?m[0]:null}
+function lookup(){var t=document.getElementById('nmIn').value;var s=findStudent(t);var msg=document.getElementById('nmMsg');
+  if(!s&&!STUDENTS.length&&nm(t)){signIn({n:t.trim(),s:'',q:''},true);return}
+  if(!s){msg.innerHTML='<p class="fb part">I could not find that name. Check the spelling and type your first and last name.</p>'+(nm(t).split(' ').length>=2?'<button class="go alt" id="genBtn">Use the general review with this name</button>':'');
+    var g=document.getElementById('genBtn');if(g)g.onclick=function(){signIn({n:t.trim(),s:'',q:''},true)};return}
+  signIn(s,false)}
+function signIn(s,guest){var weak={},took=!!(s.q&&s.q.length===CFG.nq);
+  if(took){var key=[];Object.keys(SK).forEach(function(k){var x=SK[k];if(x.q>=0&&s.q.charAt(x.q)==='0')weak[k]=(s.f&&s.f[x.q])||true})}
+  else CLASSWEAK.forEach(function(k){weak[k]=true});
+  if(SK.model)weak.model=true;
+  P={name:s.n,sec:s.s,took:took,guest:guest,q:s.q,weak:weak,score:took?s.q.split('').filter(function(c){return c==='1'}).length:null};
+  SKEY=CFG.keyPrefix+':'+nm(s.n);load();home()}
+function first(){return esc(P.name.split(' ')[0])}
+
+/* ---------- Home ---------- */
+var ICON={
+ words:'<svg viewBox="0 0 48 48"><rect x="6" y="8" width="30" height="22" rx="4" fill="#2b50c8"/><rect x="12" y="16" width="30" height="22" rx="4" fill="#9fb3f2" stroke="#2b50c8" stroke-width="2"/><text x="27" y="32" font-size="12" text-anchor="middle" font-family="Arial" font-weight="700" fill="#1a1640">Aa</text></svg>',
+ write:'<svg viewBox="0 0 48 48"><rect x="8" y="6" width="28" height="36" rx="3" fill="#fff" stroke="#1b9e8f" stroke-width="3"/><path d="M14 16h16M14 23h16M14 30h10" stroke="#1b9e8f" stroke-width="3"/></svg>',
+ game:'<svg viewBox="0 0 48 48"><rect x="4" y="14" width="40" height="22" rx="11" fill="#e2387a"/><circle cx="15" cy="25" r="4" fill="#fff"/><circle cx="33" cy="22" r="3" fill="#ffd23f"/><circle cx="37" cy="28" r="3" fill="#7cf3ff"/></svg>',
+ match:'<svg viewBox="0 0 48 48"><rect x="4" y="8" width="16" height="10" rx="3" fill="#d98a00"/><rect x="28" y="30" width="16" height="10" rx="3" fill="#d98a00"/><path d="M20 13 C30 13,18 35,28 35" stroke="#d98a00" stroke-width="3" fill="none"/></svg>',
+ cases:'<svg viewBox="0 0 48 48"><circle cx="20" cy="20" r="11" fill="none" stroke="#5b3cc4" stroke-width="4"/><path d="M28 28l12 12" stroke="#5b3cc4" stroke-width="5" stroke-linecap="round"/></svg>',
+ model:'<svg viewBox="0 0 48 48"><rect x="2" y="17" width="9" height="14" rx="2" fill="#7a2bd6"/><rect x="14" y="17" width="9" height="14" rx="2" fill="#7a2bd6"/><rect x="26" y="17" width="9" height="14" rx="2" fill="#7a2bd6"/><rect x="38" y="17" width="9" height="14" rx="2" fill="#7a2bd6"/></svg>'
+};
+var PATHS0=[
+ {id:'model',cls:'c5',fn:'startModel',kind:'Build a model',title:'Model Builder: Nerve to Movement',what:'Put the 4 boxes in order, from the nerve signal to the moving bone. Explain each arrow, then break the model. The real test has a question like this.',time:'15 min'},
+ {id:'words',cls:'c1',fn:'startWords',kind:'Vocabulary',title:'Word Lab',what:'Learn the words for this learning target. Flip cards, break words into parts, then quiz yourself both ways.',time:'10 min'},
+ {id:'game',cls:'c2',fn:'startGame',kind:'Video game',title:CFG.gameName,what:'A timed arcade game. Answer fast to build a combo, keep your 3 hearts, then beat the boss.',time:'8 min'},
+ {id:'match',cls:'c4',fn:'startMatch',kind:'Matching',title:'Match-Up',what:'Tap a word, then tap what it means. Clear the board in three rounds.',time:'6 min'},
+ {id:'write',cls:'c3',fn:'startWrite',kind:'Writing',title:'Write It Out',what:'Explain an idea in your own words, then check it against a strong answer, point by point.',time:'12 min'},
+ {id:'cases',cls:'c6',fn:'startCase',kind:'Case files',title:'Prove It Case',what:'Read the evidence about a real case. Make a claim, pick the evidence, and explain your reasoning.',time:'10 min'}
+];
+var PATHS=PATHS0.filter(function(p){if(p.id==='cases'&&!CASES.length)return false;return p.id!=='model'||(typeof MODELS!=='undefined'&&MODELS.length)});
+function pathCard(p){var rec=(p.id==='model'&&SK.model)||(p.id==='words')?' <span class="rec">Everyone</span>':'';
+  return '<button class="card '+p.cls+'" onclick="'+p.fn+'()"><span class="head">'+ICON[p.id]+'<span><span class="kind">'+p.kind+rec+'</span><br><b>'+p.title+'</b></span></span><span class="what">'+p.what+'</span><span class="meta">About '+p.time+'</span></button>'}
+function home(){window.scrollTo(0,0);gmStop();
+  var focus=Object.keys(P.weak).filter(function(k){return SK[k]});
+  var h='<div class="hero"><h2>Hi, '+first()+'!</h2>';
+  if(P.took)h+='<p>'+esc(CFG.cfa)+': <b>'+P.score+' of '+CFG.nq+'</b> multiple choice right. Your review focuses on what you missed.</p>';
+  else h+='<p>'+(P.guest?'This prep earns your final retake for this unit.':'Your '+esc(CFG.cfa)+' answers are not in yet, so you get the general review.')+' It covers every learning target in the unit.</p>';
+  h+='<div class="chips">'+focus.map(function(k){return '<span class="chip f">'+esc(SK[k].name)+'</span>'}).join('')+'</div>';
+  var notes=focus.filter(function(k){return P.weak[k]!==true});
+  if(notes.length)h+='<details><summary>What your '+esc(CFG.cfa)+' shows</summary><ul>'+notes.map(function(k){return '<li><b>'+esc(SK[k].name)+':</b> '+esc(P.weak[k])+'</li>'}).join('')+'</ul></details>';
+  h+='</div>'+planBox()+'<h2>Choose a way to review</h2><p class="note">Every path counts toward the table above. If a target is stuck, switch to a different style.</p><div class="cards">'+PATHS.map(pathCard).join('')+'</div>'+turnIn();
+  app.innerHTML=h}
+function lvl(p){return p>=90?[4,'Exceeds']:p>=80?[3,'Mastered']:p>=60?[2,'Approaching']:[1,'Beginning']}
+function ptLT(lt){if(!P.took)return null;var c=0,n=0;Object.keys(SK).forEach(function(k){var x=SK[k];if(x.lt===lt&&x.q>=0){n++;if(P.q.charAt(x.q)==='1')c++}});return [c,n]}
+function nextStyle(lt){var best=null,used={};PATHS.forEach(function(p){var x=S.pl[p.id]&&S.pl[p.id][lt];used[p.id]=x?x[1]:0});
+  var order=PATHS.slice().sort(function(a,b){return used[a.id]-used[b.id]});best=order[0];return best}
+function planBox(){var h='<div class="panel"><h2 style="margin-top:0">How you would score right now</h2><table class="plan"><tr><th>Learning target</th><th>'+esc(CFG.cfa)+'</th><th>Review so far</th><th>Your level now</th><th>Next step</th></tr>';
+  LTS.forEach(function(l){var r=S.r[l.id],pt=ptLT(l.id),pct=null,src='';
+    if(r[1]>=4){pct=Math.round(100*r[0]/r[1]);src='review'}else if(pt){pct=Math.round(100*pt[0]/pt[1]);src='cfa'}
+    var L=pct===null?null:lvl(pct),ns=nextStyle(l.id);
+    var step=pct===null?'Start any path':(L[0]>=3&&r[1]>=4?'Keep it fresh: try '+ns.title:(r[1]>=6&&L[0]<3?'Stuck? Switch styles: try '+ns.title:'Practice more: try '+ns.title));
+    h+='<tr><td><b>'+l.id+'</b> '+esc(l.name)+'</td><td>'+(pt?pt[0]+' of '+pt[1]:'—')+'</td><td>'+(r[1]?r[0]+' of '+r[1]+' ('+Math.round(100*r[0]/r[1])+'%)':'Not practiced yet')+'</td><td>'+(L?'<span class="lv l'+L[0]+'">'+L[0]+' · '+L[1]+'</span>'+(src==='cfa'?'<br><small>from '+esc(CFG.cfa)+'</small>':''):'—')+'</td><td>'+esc(step)+'</td></tr>'});
+  var nk=Object.keys(S.known).length;
+  h+='</table><p class="note">Levels match your CFA tracker: 90% and up = 4 Exceeds, 80% = 3 Mastered, 60-79% = 2 Approaching, below 60% = 1 Beginning. Your level uses your review answers once you have 4 or more on a target. Words you know: <b>'+nk+' of '+GLOSS.length+'</b>. Saved on this device.</p></div>';return h}
+function back(){return '<button class="go alt" onclick="home()">Back to my review</button>'}
+function turnIn(){return '<div class="sum"><h2 style="margin-top:0">Turn in your work</h2><p>When you are done, press <b>Copy my work</b>. '+CFG.submitTo+'</p><button class="go" onclick="copyWork()">Copy my work</button><div id="cpMsg"></div></div>'}
+function workText(){var L=[];L.push(CFG.title.toUpperCase()+': '+P.name+(P.sec?' ('+P.sec+')':''));L.push('Date: '+new Date().toLocaleString());
+  L.push(P.took?CFG.cfa+': '+P.score+' of '+CFG.nq+' multiple choice':'General review');L.push('');L.push('HOW I WOULD SCORE');
+  LTS.forEach(function(l){var r=S.r[l.id];var pct=r[1]?Math.round(100*r[0]/r[1]):null;L.push(l.id+' '+l.name+': '+(r[1]?r[0]+' of '+r[1]+' ('+pct+'%), level '+lvl(pct)[0]+' '+lvl(pct)[1]:'not practiced yet'))});
+  L.push('');L.push('WHAT I DID');
+  PATHS.forEach(function(p){var n=0;if(S.pl[p.id])Object.keys(S.pl[p.id]).forEach(function(k){n+=S.pl[p.id][k][1]});L.push('- '+p.title+': '+n+' answers')});
+  L.push('- Words I know: '+Object.keys(S.known).length+' of '+GLOSS.length);
+  var miss=Object.keys(S.miss);if(miss.length)L.push('- Words to keep practicing: '+miss.slice(0,15).join(', '));
+  var ms=Object.keys(S.w.model);if(ms.length){L.push('');L.push('MY MODELS');ms.forEach(function(k){L.push(k+':');L.push(S.w.model[k])})}
+  var sa=Object.keys(S.w.sa);if(sa.length){L.push('');L.push('MY WRITTEN ANSWERS');sa.forEach(function(k){L.push('Q: '+k);L.push('A: '+S.w.sa[k].a+' ['+(S.w.sa[k].ok?'matched the strong answer':'still learning')+']')})}
+  return L.join('\n')}
+function copyWork(){var t=workText(),m=document.getElementById('cpMsg');
+  function fall(){m.innerHTML='<p class="note">Select all the text below (Ctrl + A inside the box), copy it (Ctrl + C), then paste it into Canvas.</p><textarea id="cpTa" style="min-height:220px">'+esc(t)+'</textarea>';var ta=document.getElementById('cpTa');ta.focus();ta.select()}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){m.innerHTML='<p class="fb ok">Copied! Now paste it into the Canvas assignment with Ctrl + V.</p>'},fall)}else fall()}
+
+/* ---------- Word Lab ---------- */
+var wl;
+function wordPool(n){var w=shuf(GLOSS.filter(function(g){return isWeak(g.sk)&&!S.known[g.t]})),u=shuf(GLOSS.filter(function(g){return !S.known[g.t]&&!isWeak(g.sk)})),k=shuf(GLOSS.filter(function(g){return S.known[g.t]}));
+  return w.concat(u).concat(k).slice(0,n)}
+function startWords(){wl={cards:wordPool(8),i:0,flip:false,phase:'cards'};renderWords()}
+function renderWords(){window.scrollTo(0,0);var c=wl.cards[wl.i],h='<h2>Word Lab</h2>';
+  if(wl.phase==='cards'){h+='<p class="note">Step 1 of 2: flashcards. Say what the word means out loud, then flip the card. Card '+(wl.i+1)+' of '+wl.cards.length+'.</p>';
+    h+='<button class="flash'+(wl.flip?' back':'')+'" onclick="wl.flip=!wl.flip;renderWords()">'+(wl.flip?'<span class="fd">'+esc(c.d)+'</span>'+(c.p?'<span class="fp">Word parts: '+esc(c.p)+'</span>':''):'<span class="ft">'+esc(c.t)+'</span><span class="fh">'+esc(SK[c.sk].lt+' · '+SK[c.sk].name)+'</span><span class="fh">Tap to flip</span>')+'</button>';
+    if(wl.flip)h+='<div><button class="go" onclick="wordRate(true)">I knew it</button><button class="go alt" onclick="wordRate(false)">Not yet</button></div>';
+    app.innerHTML=h+back();return}
+  var q=wl.qs[wl.i];h+='<p class="note">Step 2 of 2: quiz yourself. Question '+(wl.i+1)+' of '+wl.qs.length+'.</p><div class="panel"><h3>'+esc(q.prompt)+'</h3><div id="wo">';
+  q.opts.forEach(function(o,j){h+='<button class="opt" data-j="'+j+'">'+esc(o)+'</button>'});h+='</div><div id="wf"></div></div>';app.innerHTML=h+back();
+  document.querySelectorAll('#wo .opt').forEach(function(b){b.onclick=function(){wordAns(+b.getAttribute('data-j'),b)}})}
+function wordRate(ok){var c=wl.cards[wl.i];if(ok){S.known[c.t]=1;delete S.miss[c.t]}else{S.miss[c.t]=1;delete S.known[c.t]}save();
+  wl.i++;wl.flip=false;if(wl.i>=wl.cards.length){wl.phase='quiz';wl.i=0;wl.qs=wl.cards.map(function(c,j){return wordQ(c,j%2===0)});wl.right=0}renderWords()}
+function wordQ(c,defToTerm){var others=shuf(GLOSS.filter(function(g){return g.t!==c.t&&(g.sk===c.sk||Math.random()<.3)})).slice(0,3);
+  if(others.length<3)others=others.concat(shuf(GLOSS.filter(function(g){return g.t!==c.t&&others.indexOf(g)<0})).slice(0,3-others.length));
+  if(defToTerm)return {c:c,prompt:'Which word means: "'+c.d+'"',opts:shuf([c.t].concat(others.map(function(g){return g.t}))),ans:c.t};
+  return {c:c,prompt:'What does "'+c.t+'" mean?',opts:shuf([c.d].concat(others.map(function(g){return g.d}))),ans:c.d}}
+function wordAns(j,btn){var q=wl.qs[wl.i];if(q.done)return;q.done=true;var ok=q.opts[j]===q.ans;tally(q.c.sk,ok,'words');S.w.words++;
+  if(ok){wl.right++;S.known[q.c.t]=1;delete S.miss[q.c.t]}else{S.miss[q.c.t]=1;delete S.known[q.c.t]}save();
+  document.querySelectorAll('#wo .opt').forEach(function(b){var o=q.opts[+b.getAttribute('data-j')];if(o===q.ans)b.classList.add('ok');else if(b===btn)b.classList.add('bad')});
+  document.getElementById('wf').innerHTML='<p class="fb '+(ok?'ok':'bad')+'">'+(ok?'Correct. ':'Not quite. ')+'<b>'+esc(q.c.t)+'</b>: '+esc(q.c.d)+(q.c.p?' <i>('+esc(q.c.p)+')</i>':'')+'</p>'+(ok?'':fixNote(q.c.sk))+'<button class="go" onclick="wordNext()">'+(wl.i+1<wl.qs.length?'Next':'Finish')+'</button>'}
+function wordNext(){wl.i++;if(wl.i<wl.qs.length){renderWords();return}
+  app.innerHTML='<h2>Word Lab done</h2><div class="sum"><p><b>'+wl.right+' of '+wl.qs.length+'</b> correct. You know <b>'+Object.keys(S.known).length+' of '+GLOSS.length+'</b> words.</p><p>Tip: words you missed come back first next time.</p></div><button class="go" onclick="startWords()">Another set of 8 words</button><button class="go alt" onclick="showGlossary()">See all the words</button>'+back()}
+function showGlossary(){var h='<h2>All the words</h2><p class="note">Green = you know it. Orange = keep practicing.</p>';
+  LTS.forEach(function(l){h+='<h3>'+l.id+': '+esc(l.name)+'</h3><table class="plan">';GLOSS.filter(function(g){return SK[g.sk].lt===l.id}).forEach(function(g){var st=S.known[g.t]?' class="kn"':S.miss[g.t]?' class="ms"':'';h+='<tr'+st+'><td><b>'+esc(g.t)+'</b>'+(g.p?'<br><small>'+esc(g.p)+'</small>':'')+'</td><td>'+esc(g.d)+'</td></tr>'});h+='</table>'});
+  app.innerHTML=h+back();window.scrollTo(0,0)}
+
+/* ---------- Write It Out ---------- */
+var wi;
+function startWrite(){wi={qs:choose(SA,4),i:0};renderWrite()}
+function renderWrite(){window.scrollTo(0,0);var q=wi.qs[wi.i];var prev=S.w.sa[q.q];
+  app.innerHTML='<h2>Write It Out</h2><p class="note">Question '+(wi.i+1)+' of '+wi.qs.length+' · '+esc(SK[q.sk].lt+' · '+SK[q.sk].name)+'</p><div class="panel"><h3>'+esc(q.q)+'</h3>'+fixNote(q.sk)+'<textarea id="saT" placeholder="Type your answer. Use the unit words.">'+(prev?esc(prev.a):'')+'</textarea><button class="go" id="saB">Check my answer</button><div id="saF"></div></div>'+back();
+  document.getElementById('saB').onclick=writeCheck}
+function writeCheck(){var q=wi.qs[wi.i],t=document.getElementById('saT').value.trim();if(t.length<10){document.getElementById('saF').innerHTML='<p class="fb part">Write at least one full sentence first.</p>';return}
+  var h='<div class="ans"><b>A strong answer includes:</b>';q.a.forEach(function(a,j){h+='<label class="chk"><input type="checkbox" data-j="'+j+'"> '+esc(a)+'</label>'});
+  h+='</div><p>Check each point that your answer includes. Be honest; this is for you.</p><button class="go" id="saD">Done checking</button>';var f=document.getElementById('saF');f.innerHTML=h;document.getElementById('saB').disabled=true;
+  document.getElementById('saD').onclick=function(){var n=document.querySelectorAll('#saF input:checked').length,ok=n>=q.a.length-0;var part=n>=Math.ceil(q.a.length/2);
+    tally(q.sk,ok,'write');S.w.sa[q.q]={a:t,ok:ok};save();
+    f.innerHTML='<p class="fb '+(ok?'ok':part?'part':'bad')+'">'+(ok?'You hit every point. That counts as correct.':'You hit '+n+' of '+q.a.length+' points. Add the missing ones to your notes. This counts as "not yet."')+'</p><button class="go" onclick="writeNext()">'+(wi.i+1<wi.qs.length?'Next question':'Finish')+'</button>'}}
+function writeNext(){wi.i++;if(wi.i<wi.qs.length)renderWrite();else{app.innerHTML='<h2>Write It Out done</h2><div class="sum"><p>Your answers are saved and go into <b>Copy my work</b>.</p></div><button class="go" onclick="startWrite()">Four more questions</button>'+back()}}
+
+/* ---------- Match-Up ---------- */
+var mu;
+function startMatch(){var pool=wordPool(15),rs=[];for(var i=0;i+3<=pool.length&&rs.length<3;i+=5)rs.push(pool.slice(i,i+5));mu={rounds:rs,r:0,sel:null,miss:0,ok:0};renderMatch()}
+function renderMatch(){window.scrollTo(0,0);var R=mu.rounds[mu.r];mu.left=shuf(R);mu.right=shuf(R);mu.got=0;
+  var h='<h2>Match-Up</h2><p class="note">Round '+(mu.r+1)+' of '+mu.rounds.length+'. Tap a word, then tap what it means.</p><div class="match"><div>';
+  mu.left.forEach(function(g,i){h+='<button class="m" id="L'+i+'" onclick="mPick(\'L\','+i+')"><b>'+esc(g.t)+'</b></button>'});h+='</div><div>';
+  mu.right.forEach(function(g,i){h+='<button class="m" id="R'+i+'" onclick="mPick(\'R\','+i+')">'+esc(g.d)+'</button>'});
+  app.innerHTML=h+'</div></div><div id="mF"></div>'+back()}
+function mPick(side,i){var b=document.getElementById(side+i);if(b.classList.contains('gone'))return;
+  if(!mu.sel||mu.sel[0]===side){document.querySelectorAll('.m.sel').forEach(function(x){x.classList.remove('sel')});mu.sel=[side,i];b.classList.add('sel');return}
+  var L=side==='L'?i:mu.sel[1],Rr=side==='R'?i:mu.sel[1],g=mu.left[L],ok=g.t===mu.right[Rr].t;
+  var bl=document.getElementById('L'+L),br=document.getElementById('R'+Rr);mu.sel=null;document.querySelectorAll('.m.sel').forEach(function(x){x.classList.remove('sel')});
+  tally(g.sk,ok,'match');S.w.match++;
+  if(ok){bl.classList.add('gone');br.classList.add('gone');mu.ok++;mu.got++;S.known[g.t]=1;delete S.miss[g.t];save();document.getElementById('mF').innerHTML='';
+    if(mu.got===mu.rounds[mu.r].length){mu.r++;document.getElementById('mF').innerHTML=mu.r<mu.rounds.length?'<p class="fb ok">Round cleared!</p><button class="go" onclick="renderMatch()">Next round</button>':'<div class="sum"><p><b>Board cleared!</b> '+mu.ok+' matches, '+mu.miss+' misses.</p></div><button class="go" onclick="startMatch()">Play again</button>'}}
+  else{mu.miss++;S.miss[g.t]=1;save();bl.classList.add('wrong');br.classList.add('wrong');setTimeout(function(){bl.classList.remove('wrong');br.classList.remove('wrong')},700);
+    document.getElementById('mF').innerHTML='<p class="fb bad"><b>'+esc(g.t)+'</b> means: '+esc(g.d)+'</p>'}}
+
+/* ---------- Prove It Case ---------- */
+var cs;
+function startCase(){var order=CASES.map(function(_,i){return i}).sort(function(a,b){return (isWeak(CASES[b].sk)?1:0)-(isWeak(CASES[a].sk)?1:0)||Math.random()-.5});
+  cs={order:order,k:0};caseOpen()}
+function caseOpen(){cs.c=CASES[cs.order[cs.k]];cs.step=0;cs.firstTry=true;renderCase()}
+function caseEv(){return '<div class="ev">'+cs.c.ev.map(function(e){return '<p><b>Evidence '+e[0]+'.</b> '+esc(e[1])+'</p>'}).join('')+'</div>'}
+function renderCase(){window.scrollTo(0,0);var c=cs.c,h='<h2>Prove It: '+esc(c.title)+'</h2><p class="note">Case '+(cs.k+1)+' of '+CASES.length+' · Step '+(cs.step+1)+' of 3</p>'+caseEv()+'<div class="panel">';
+  if(cs.step===0||cs.step===2){var part=cs.step===0?c.claim:c.reason;h+='<h3>'+(cs.step===0?'Claim: ':'Reasoning: ')+esc(part.q)+'</h3><div id="co">';
+    shuf(part.opts.map(function(_,i){return i})).forEach(function(i){h+='<button class="opt" data-i="'+i+'">'+esc(part.opts[i][0])+'</button>'});h+='</div><div id="cf"></div>'}
+  else{h+='<h3>Evidence: '+esc(c.evQ)+'</h3><div id="ce">';c.ev.forEach(function(e){h+='<label class="chk"><input type="checkbox" value="'+e[0]+'"> Evidence '+e[0]+'</label>'});h+='</div><button class="go" onclick="caseEvCheck()">Check</button><div id="cf"></div>'}
+  app.innerHTML=h+'</div>'+back();
+  document.querySelectorAll('#co .opt').forEach(function(b){b.onclick=function(){caseOpt(+b.getAttribute('data-i'),b)}})}
+function caseOpt(i,b){var part=cs.step===0?cs.c.claim:cs.c.reason,o=part.opts[i],ok=o[1]==='best';
+  if(cs.firstTry){tally(cs.c.sk,ok,'cases');cs.firstTry=false}
+  b.classList.add(ok?'ok':'bad');document.getElementById('cf').innerHTML='<p class="fb '+(ok?'ok':'bad')+'">'+esc(o[2])+'</p>'+(ok?'<button class="go" onclick="caseNext()">Next step</button>':'<p class="note">Try another answer.</p>')}
+function caseEvCheck(){var want=cs.c.evOk,got=[];document.querySelectorAll('#ce input:checked').forEach(function(x){got.push(x.value)});
+  var ok=want.length===got.length&&want.every(function(w){return got.indexOf(w)>=0});
+  if(cs.firstTry){tally(cs.c.sk,ok,'cases');cs.firstTry=false}
+  document.getElementById('cf').innerHTML=ok?'<p class="fb ok">Yes: Evidence '+want.join(', ')+'.</p><button class="go" onclick="caseNext()">Next step</button>':'<p class="fb bad">Not quite. Reread each piece. Does it point to this claim, or is it just background?</p>'+(cs.tries=(cs.tries||0)+1,cs.tries>=2?'<p class="fb part">The supporting evidence is '+want.join(', ')+'.</p><button class="go" onclick="caseNext()">Next step</button>':'')}
+function caseNext(){cs.step++;cs.firstTry=true;cs.tries=0;if(cs.step<3){renderCase();return}S.w.cases++;save();
+  cs.k++;app.innerHTML='<h2>Case closed</h2><div class="sum"><p>You built a full claim, evidence, and reasoning answer. On the test, write it in that same order.</p></div>'+(cs.k<CASES.length?'<button class="go" onclick="caseOpen()">Next case</button>':'<p>You finished every case!</p>')+back()}
+
+/* ---------- Model Builder ---------- */
+var mb;
+function startModel(r){mb={r:r||0,step:'cards',box:0,picked:[],firstTry:true,ai:0,bi:0};renderModel()}
+function modelStrip(){var M=MODELS[mb.r],h='<div class="chainrow">';MBOX.forEach(function(b,i){var c=mb.picked[i];h+='<div class="cbox'+(c?' done':'')+'"><b>Box '+(i+1)+': '+esc(b)+'</b>'+(c?esc(c):'')+'</div>'+(i<3?'<span class="carrow">→</span>':'')});return h+'</div>'}
+function renderModel(){window.scrollTo(0,0);var M=MODELS[mb.r],h='<h2>Model Builder: '+esc(M.title)+'</h2><p class="note">Model '+(mb.r+1)+' of '+MODELS.length+'. '+esc(M.move)+'</p>'+modelStrip()+'<div class="panel">';
+  if(mb.step==='cards'){h+='<h3>Which card belongs in Box '+(mb.box+1)+': '+esc(MBOX[mb.box])+'?</h3><p class="note">Some cards do not belong anywhere.</p><div id="mo">';
+    M.cards.forEach(function(c,i){if(mb.picked.indexOf(c[0])<0)h+='<button class="opt" data-i="'+i+'">'+esc(c[0])+'</button>'});h+='</div><div id="mf"></div>'}
+  else if(mb.step==='arrows'){var A=M.arrows[mb.ai];h+='<h3>'+esc(A.q)+'</h3><div id="mo">';mb.ao=shuf([0,1,2]);mb.ao.forEach(function(i){h+='<button class="opt" data-i="'+i+'">'+esc(A.o[i])+'</button>'});h+='</div><div id="mf"></div>'}
+  else if(mb.step==='final'){var F=M.final;h+='<h3>'+esc(F.q)+'</h3><div id="mo">';shuf([0,1,2,3]).forEach(function(i){h+='<button class="opt" data-i="'+i+'">'+esc(F.o[i][0])+'</button>'});h+='</div><div id="mf"></div>'}
+  else if(mb.step==='write'){var prev=S.w.model[M.title]||'';h+='<h3>Now write your model</h3><p>Write it the way the test asks: one line for each box, then explain each arrow. Use these starters:</p><div class="ev"><p>Box 1 (junction): ___. Arrow 1: ___ connects it to Box 2 because ___.</p><p>Box 2 (inside the fiber): ___. Arrow 2: ___.</p><p>Box 3 (sarcomeres): ___. Arrow 3: ___.</p><p>Box 4 (whole muscle and bone): ___.</p></div><textarea id="mwT" style="min-height:160px">'+esc(prev)+'</textarea><button class="go" onclick="modelSave()">Save my model</button><div id="mf"></div>'}
+  app.innerHTML=h+'</div>'+back();
+  document.querySelectorAll('#mo .opt').forEach(function(b){b.onclick=function(){modelPick(+b.getAttribute('data-i'),b)}})}
+function modelPick(i,b){var M=MODELS[mb.r],f=document.getElementById('mf'),ok,msg;
+  if(mb.step==='cards'){var c=M.cards[i];ok=c[1]===mb.box;
+    msg=ok?'Yes, that is Box '+(mb.box+1)+'.':(c[1]<0?'That card does not belong in the model. Check the facts: is that how it really works?':'That card belongs in a different box. What happens at the '+MBOX[mb.box].toLowerCase()+'?');
+    if(mb.firstTry){tally('model',ok,'model');mb.firstTry=false}
+    b.classList.add(ok?'ok':'bad');
+    if(ok){mb.picked[mb.box]=c[0];mb.box++;mb.firstTry=true;f.innerHTML='<p class="fb ok">'+msg+'</p><button class="go" onclick="modelAdv()">'+(mb.box<4?'Next box':'Explain the arrows')+'</button>';document.querySelectorAll('#mo .opt').forEach(function(x){x.disabled=true})}
+    else f.innerHTML='<p class="fb bad">'+msg+'</p>';return}
+  if(mb.step==='arrows'){var A=M.arrows[mb.ai];ok=i===0;if(mb.firstTry){tally(mb.ai===2?'sliding':'calcium',ok,'model');mb.firstTry=false}
+    b.classList.add(ok?'ok':'bad');f.innerHTML='<p class="fb '+(ok?'ok':'bad')+'">'+(ok?'Yes. ':'Not quite. ')+esc(A.w)+'</p>'+(ok?'<button class="go" onclick="modelAdv()">Next</button>':'');return}
+  if(mb.step==='final'){var F=M.final;ok=F.o[i][1]==='best';if(mb.firstTry){tally(mb.r===0?'aerobic':'mg',ok,'model');mb.firstTry=false}
+    b.classList.add(ok?'ok':'bad');f.innerHTML='<p class="fb '+(ok?'ok':'bad')+'">'+(ok?'Yes. ':'Not quite. ')+esc(F.w)+'</p>'+(ok?'<button class="go" onclick="modelAdv()">Write your model</button>':'')}}
+function modelAdv(){var M=MODELS[mb.r];mb.firstTry=true;
+  if(mb.step==='cards'){if(mb.box>=4){mb.step='arrows';mb.ai=0}}
+  else if(mb.step==='arrows'){mb.ai++;if(mb.ai>=M.arrows.length)mb.step='final'}
+  else if(mb.step==='final')mb.step='write';
+  renderModel()}
+function modelSave(){var t=document.getElementById('mwT').value.trim();var M=MODELS[mb.r];if(t.length<40){document.getElementById('mf').innerHTML='<p class="fb part">Write a line for each box and explain each arrow first.</p>';return}
+  S.w.model[M.title]=t;save();
+  app.innerHTML='<h2>Model saved</h2><div class="sum"><p>Your model goes into <b>Copy my work</b>.</p></div><h3>Bonus: break the model</h3><p class="note">For each problem, which box breaks first?</p><div id="brk"></div>'+back();breakQ(0)}
+function breakQ(k){var host=document.getElementById('brk');if(!host)return;if(k>=BREAK.length){host.insertAdjacentHTML('beforeend','<div class="sum"><p>Model done!</p></div>'+(mb.r+1<MODELS.length?'<button class="go" onclick="startModel('+(mb.r+1)+')">Build the next model</button>':'<button class="go" onclick="startModel(0)">Build model 1 again</button>'));return}
+  var B=BREAK[k],d=document.createElement('div');d.className='panel';d.innerHTML='<h3>'+esc(B.q)+'</h3>'+MBOX.map(function(b,i){return '<button class="opt" data-i="'+i+'">Box '+(i+1)+': '+esc(b)+'</button>'}).join('')+'<div class="bf"></div>';host.appendChild(d);var tried=false;
+  d.querySelectorAll('.opt').forEach(function(btn){btn.onclick=function(){var i=+btn.getAttribute('data-i'),ok=i===B.a;if(!tried){tally(['ach','sarcomere','calcium','muscles'][B.a],ok,'model');tried=true}
+    btn.classList.add(ok?'ok':'bad');d.querySelector('.bf').innerHTML='<p class="fb '+(ok?'ok':'bad')+'">'+(ok?'Yes. ':'Not quite. ')+esc(B.w)+'</p>';if(ok){d.querySelectorAll('.opt').forEach(function(x){x.disabled=true});breakQ(k+1)}}})}
+
+/* ---------- Muscle Quest (game) ---------- */
+var gm=null,gT=null;
+function gmStop(){if(gT){clearInterval(gT);gT=null}}
+function startGame(){gm={hearts:3,score:0,combo:1,best:1,i:0,rush:wordPool(10).map(function(c,j){return wordQ(c,j%2===0)}),boss:null};gameIntro()}
+function hud(){var h='';for(var i=0;i<3;i++)h+='<span class="'+(i<gm.hearts?'':'lost')+'">♥</span>';return '<div class="hud"><span class="hearts">'+h+'</span><span class="lvl">'+(gm.boss?'BOSS':'WORD RUSH '+(gm.i+1)+'/'+gm.rush.length)+'</span><span class="combo">x'+gm.combo+'</span><span>'+gm.score+' pts</span></div>'}
+function gshell(inner){app.innerHTML='<div class="game" id="game"><div class="stars"></div>'+hud()+inner+'</div>'+back()}
+function gameIntro(){gshell('<div class="gtitle">'+esc(CFG.gameName.toUpperCase())+'</div><p class="gsub">Level 1: Word Rush. Answer before the timer runs out. Fast answers build your combo.<br>Level 2: the Boss. Knock it out with what you know.</p><div class="center"><button class="gbtn" onclick="rushQ()">START</button></div>')}
+function rushQ(){gmStop();if(gm.hearts<=0)return gameOver();if(gm.i>=gm.rush.length)return bossStart();var q=gm.rush[gm.i],t=100;
+  gshell('<div class="timer"><i id="tb"></i></div><div class="gq"><h3>'+esc(q.prompt)+'</h3><div id="go">'+q.opts.map(function(o,j){return '<button class="opt" data-j="'+j+'">'+esc(o)+'</button>'}).join('')+'</div></div><div class="gmsg" id="gmsg"></div>');
+  document.querySelectorAll('#go .opt').forEach(function(b){b.onclick=function(){rushAns(+b.getAttribute('data-j'),b)}});
+  gT=setInterval(function(){t-=1;var tb=document.getElementById('tb');if(tb)tb.style.width=t+'%';if(t<=0){gmStop();rushAns(-1,null)}},150)}
+function rushAns(j,btn){gmStop();var q=gm.rush[gm.i];if(q.done)return;q.done=true;var ok=j>=0&&q.opts[j]===q.ans;tally(q.c.sk,ok,'game');S.w.game++;
+  document.querySelectorAll('#go .opt').forEach(function(b){b.disabled=true;var o=q.opts[+b.getAttribute('data-j')];if(o===q.ans)b.classList.add('ok');else if(b===btn)b.classList.add('bad')});
+  var m=document.getElementById('gmsg');
+  if(ok){gm.score+=10*gm.combo;gm.combo=Math.min(gm.combo+1,5);gm.best=Math.max(gm.best,gm.combo);S.known[q.c.t]=1;delete S.miss[q.c.t];m.className='gmsg goodm';m.textContent='+'+(10*(gm.combo-1||1))+'!'}
+  else{gm.hearts--;gm.combo=1;S.miss[q.c.t]=1;m.className='gmsg badm';m.textContent=(j<0?'Time! ':'')+q.c.t+': '+q.c.d;var g=document.getElementById('game');if(g)g.classList.add('shake')}
+  save();gm.i++;setTimeout(rushQ,ok?700:2600)}
+function bossStart(){gm.boss={hp:5,qs:choose(MC,7),k:0};bossQ()}
+function bossQ(){if(gm.hearts<=0)return gameOver();var B=gm.boss;if(B.hp<=0)return victory();if(B.k>=B.qs.length){B.qs=B.qs.concat(choose(MC,4))}var q=B.qs[B.k];var order=shuf([0,1,2,3]);
+  gshell('<div class="boss"><svg viewBox="0 0 130 110"><ellipse cx="65" cy="62" rx="46" ry="40" fill="#8a2be2"/><circle cx="48" cy="52" r="9" fill="#fff"/><circle cx="82" cy="52" r="9" fill="#fff"/><circle cx="50" cy="54" r="4"/><circle cx="80" cy="54" r="4"/><path d="M45 82 Q65 70 85 82" stroke="#fff" stroke-width="4" fill="none"/></svg><div class="hp"><i style="width:'+(B.hp*20)+'%"></i></div></div><div class="gq"><h3>'+esc(q.q)+'</h3><div id="go">'+order.map(function(i){return '<button class="opt" data-i="'+i+'">'+esc(q.o[i])+'</button>'}).join('')+'</div></div><div class="gmsg" id="gmsg"></div>');
+  document.querySelectorAll('#go .opt').forEach(function(b){b.onclick=function(){bossAns(+b.getAttribute('data-i'),b,q)}})}
+function bossAns(i,btn,q){var ok=i===0;tally(q.sk,ok,'game');S.w.boss++;save();
+  document.querySelectorAll('#go .opt').forEach(function(b){b.disabled=true;if(+b.getAttribute('data-i')===0)b.classList.add('ok');else if(b===btn)b.classList.add('bad')});
+  var m=document.getElementById('gmsg');if(ok){gm.boss.hp--;gm.score+=25*gm.combo;gm.combo=Math.min(gm.combo+1,5);m.className='gmsg goodm';m.textContent='Hit! '+q.w}
+  else{gm.hearts--;gm.combo=1;m.className='gmsg badm';m.innerHTML=esc('The boss hits back. '+q.w)+(isWeak(q.sk)&&P.weak[q.sk]!==true?'<br><small>'+esc(P.weak[q.sk])+'</small>':'')}
+  gm.boss.k++;var nb=document.createElement('div');nb.className='center';nb.innerHTML='<button class="gbtn">Next</button>';document.getElementById('game').appendChild(nb);nb.firstChild.onclick=bossQ}
+function victory(){gshell('<div class="gtitle">YOU WIN!</div><p class="gsub">Score: '+gm.score+' · Best combo: x'+gm.best+'</p><div class="center"><button class="gbtn" onclick="startGame()">Play again</button></div>')}
+function gameOver(){gmStop();gshell('<div class="gtitle">OUT OF HEARTS</div><p class="gsub">Score: '+gm.score+'. The words you missed come back first next time. Try Word Lab, then come back!</p><div class="center"><button class="gbtn" onclick="startGame()">Try again</button><button class="gbtn alt" onclick="startWords()">Go to Word Lab</button></div>')}
+
+start();
+
+/* ---------- Final retake prep add-on ---------- */
+function rtHash(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0}return h.toString(36).toUpperCase()}
+function rtStatus(){var R=CFG.retake,tot=0,ok=true,rows=[];
+  LTS.forEach(function(l){var r=S.r[l.id];tot+=r[1];var pct=r[1]?Math.round(100*r[0]/r[1]):0,good=r[1]>=4&&pct>=80;if(!good)ok=false;rows.push({id:l.id,c:r[0],n:r[1],pct:pct,good:good})});
+  if(tot<R.min)ok=false;
+  var key=[nm(P.name),R.unit].concat(rows.map(function(x){return x.id+':'+x.c+'/'+x.n})).join('|')+'|'+tot+'|'+(ok?'Y':'N');
+  return {ok:ok,tot:tot,rows:rows,code:rtHash(key+'|'+R.salt)}}
+var _rtPlan=planBox;
+planBox=function(){var st=rtStatus(),h='<div class="panel" style="border:3px solid '+(st.ok?'#1a7f37':'#b45309')+'"><h2 style="margin-top:0">'+(st.ok?'Retake earned for Unit '+CFG.retake.unit+'!':'Earn your Unit '+CFG.retake.unit+' final retake')+'</h2>';
+  h+='<p>To earn it: reach <b>Level 3 (80% or higher)</b> on every learning target, with at least 4 answers on each, and at least <b>'+CFG.retake.min+' answers</b> in all. Then copy your work into Canvas by <b>Thursday, Dec 17 at 11:59 PM</b>. The retake is on finals day, Friday, Dec 18.</p><ul>';
+  st.rows.forEach(function(x){h+='<li>'+(x.good?'✅':'⬜')+' <b>'+x.id+'</b>: '+(x.n?x.c+' of '+x.n+' right ('+x.pct+'%)':'not started')+(x.good?'':x.n<4?' · needs '+(4-x.n)+' more answers':' · needs 80%')+'</li>'});
+  h+='<li>'+(st.tot>=CFG.retake.min?'✅':'⬜')+' Answers in all: <b>'+st.tot+' of '+CFG.retake.min+'</b></li></ul>';
+  h+=st.ok?'<p><b>Next:</b> press <b>Copy my work</b> at the bottom and submit it in Canvas.</p>':'<p class="note">Every answer counts toward your percent, so slow down and read the feedback.</p>';
+  return h+'</div>'+_rtPlan()};
+var _rtWork=workText;
+workText=function(){var st=rtStatus(),t=_rtWork().split('\n');
+  var add=['FINAL RETAKE PREP, UNIT '+CFG.retake.unit+': '+(st.ok?'EARNED':'NOT YET'),'Answers in all: '+st.tot+' (need '+CFG.retake.min+')'];
+  st.rows.forEach(function(x){add.push(x.id+': '+x.c+'/'+x.n+(x.good?' level 3+':' not yet'))});
+  add.push('Check code: '+st.code);add.push('');
+  return t.slice(0,2).concat(add,t.slice(2)).join('\n')};
+
+</script>
+</body></html>
