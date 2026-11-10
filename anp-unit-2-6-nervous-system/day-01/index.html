@@ -382,5 +382,140 @@ fit(); show(0);
   else window.addEventListener('load',go);
 })();
 </script>
+<!-- name-picker v1: random "call on a student" tool for projected decks.
+     Paste this whole block just before </body>. No student names are stored in this file:
+     rosters and today's attendance are typed in on the teacher's computer and saved only
+     in that browser (localStorage). Picks the period from the KHSD 2026-27 bell schedule.
+     The button is hidden until the deck is opened once with ?picker at the end of the address. -->
+<style>
+#np-btn{position:fixed;left:50%;transform:translateX(-50%);bottom:10px;z-index:9998;font:800 14px/1 Archivo,Arial,sans-serif;
+ padding:9px 16px;border-radius:999px;border:2px solid #2b50c8;background:#fff;color:#2b50c8;cursor:pointer;
+ box-shadow:0 4px 14px rgba(0,0,0,.15)}
+#np-btn:hover{background:#2b50c8;color:#fff}
+#np{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;
+ background:rgba(22,24,33,.55);font-family:Archivo,Arial,sans-serif;color:#161821}
+#np.open{display:flex}
+#np .box{background:#faf9f6;border-radius:16px;width:min(900px,94vw);max-height:92vh;overflow:auto;
+ padding:22px 28px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+#np .top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+#np h3{margin:0;font-size:22px;font-weight:800}
+#np select,#np button{font:700 15px Archivo,Arial,sans-serif;padding:8px 12px;border-radius:8px;
+ border:1px solid #ccd5f1;background:#fff;color:#161821;cursor:pointer}
+#np button.main{background:#2b50c8;color:#fff;border-color:#2b50c8;font-size:20px;padding:12px 26px}
+#np .name{font-size:clamp(48px,9vw,110px);font-weight:800;text-align:center;color:#2b50c8;
+ min-height:1.3em;margin:18px 0 6px;line-height:1.15}
+#np .meta{text-align:center;color:#6b6f7b;font-size:15px;margin-bottom:14px}
+#np .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0}
+#np details{margin-top:14px;border-top:1px solid #e2e4ea;padding-top:10px}
+#np summary{cursor:pointer;font-weight:800;color:#2b50c8;font-size:16px}
+#np .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px;margin:10px 0}
+#np .grid label{display:flex;gap:8px;align-items:center;font-size:15px;padding:6px 8px;border-radius:6px;background:#fff;border:1px solid #e2e4ea;cursor:pointer}
+#np .grid label.off{opacity:.45;text-decoration:line-through}
+#np textarea{width:100%;min-height:160px;font:15px/1.4 Consolas,monospace;box-sizing:border-box;padding:8px;border-radius:8px;border:1px solid #ccd5f1}
+#np .hint{font-size:13px;color:#6b6f7b;margin:6px 0}
+</style>
+<button id="np-btn" type="button" title="Call on a random student">Call on someone</button>
+<div id="np" role="dialog" aria-modal="true" aria-label="Random name picker">
+ <div class="box">
+  <div class="top">
+   <h3>Who's up?</h3>
+   <div><label>Period <select id="np-per"></select></label>
+   <button type="button" id="np-close">Close</button></div>
+  </div>
+  <div class="name" id="np-name" aria-live="polite">&nbsp;</div>
+  <div class="meta" id="np-meta"></div>
+  <div class="row">
+   <button type="button" class="main" id="np-pick">Pick a name</button>
+   <button type="button" id="np-skip" title="Put this student back and pick again">Not here / skip</button>
+   <button type="button" id="np-reset" title="Everyone present becomes eligible again">Start over</button>
+  </div>
+  <details id="np-att"><summary>Today's attendance: uncheck anyone absent</summary>
+   <div class="grid" id="np-grid"></div>
+  </details>
+  <details id="np-rost"><summary>Edit roster for this period</summary>
+   <p class="hint">One student per line. Saved only in this browser on this computer. It is not in the slides file.</p>
+   <textarea id="np-text" spellcheck="false"></textarea>
+   <div class="row"><button type="button" id="np-save">Save roster</button></div>
+  </details>
+ </div>
+</div>
+<script>
+(function(){
+ var PERIODS=['1','2','5','6','7'];
+ var LABEL={'1':'P1 · GATE','2':'P2 · GATE','5':'P5 · AP Bio','6':'P6 · Anatomy','7':'P7 · Anatomy'};
+ // KHSD 2026-27 bell schedules (start-end in minutes after midnight)
+ function t(s){var p=s.split(':');var h=+p[0];if(h<7)h+=12;return h*60+(+p[1]);}
+ var SCHED={
+  reg:{'1':['8:59','9:56'],'2':['10:02','11:06'],'5':['12:50','1:47'],'6':['1:53','2:50'],'7':['2:56','3:53']},
+  mon:{'1':['8:59','9:46'],'2':['9:52','10:46'],'5':['12:20','1:07'],'6':['1:13','2:00'],'7':['2:06','2:53']},
+  min:{'1':['8:59','9:36'],'2':['9:42','10:26'],'5':['11:15','11:52'],'6':['11:58','12:35'],'7':['12:41','1:18']}
+ };
+ function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+ function schedFor(d){var k=iso(d);
+  if(['2026-11-20','2027-03-19','2027-05-21'].indexOf(k)>=0)return SCHED.min;
+  if(d.getDay()===1||k==='2026-10-16')return SCHED.mon;return SCHED.reg;}
+ function currentPeriod(){var d=new Date(),m=d.getHours()*60+d.getMinutes(),s=schedFor(d),best=null;
+  for(var i=0;i<PERIODS.length;i++){var p=PERIODS[i],r=s[p];if(m>=t(r[0])-5&&m<=t(r[1]))return p;}
+  return null;}
+ // storage (names never leave this browser)
+ function get(k,def){try{var v=localStorage.getItem('np:'+k);return v?JSON.parse(v):def;}catch(e){return def;}}
+ function put(k,v){try{localStorage.setItem('np:'+k,JSON.stringify(v));}catch(e){}}
+ var mem={};
+ function g(k,d){var v=get(k,undefined);return v===undefined?(k in mem?mem[k]:d):v;}
+ function p(k,v){mem[k]=v;put(k,v);}
+ var today=iso(new Date());
+ var $=function(id){return document.getElementById(id);};
+ var per;
+ function roster(){return g('roster:'+per,[]);}
+ function absent(){return g('absent:'+per+':'+today,[]);}
+ function called(){return g('called:'+per+':'+today,[]);}
+ function present(){var a=absent();return roster().filter(function(n){return a.indexOf(n)<0;});}
+ function pool(){var c=called();return present().filter(function(n){return c.indexOf(n)<0;});}
+ function meta(){var pr=present().length,left=pool().length;
+  if(!roster().length){$('np-meta').textContent='No roster yet for '+LABEL[per]+'. Open "Edit roster" below.';return;}
+  $('np-meta').textContent=pr+' present · '+left+' not called yet today';}
+ function drawGrid(){var a=absent(),h='';
+  roster().forEach(function(n,i){var on=a.indexOf(n)<0;
+   h+='<label class="'+(on?'':'off')+'"><input type="checkbox" data-i="'+i+'" '+(on?'checked':'')+'> '+
+     n.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];})+'</label>';});
+  $('np-grid').innerHTML=h||'<p class="hint">Add a roster first.</p>';}
+ function load(){$('np-text').value=roster().join('\n');drawGrid();meta();$('np-name').innerHTML='&nbsp;';
+  $('np-att').open=!!roster().length;$('np-rost').open=!roster().length;p('lastPer',per);}
+ var last=null;
+ function pick(){var list=pool();
+  if(!present().length){$('np-name').textContent='No one marked present';return;}
+  if(!list.length){p('called:'+per+':'+today,[]);list=present();
+   if(list.length>1&&last)list=list.filter(function(n){return n!==last;});}
+  var spins=10,i=0,el=$('np-name');
+  (function spin(){el.textContent=list[Math.floor(Math.random()*list.length)];
+   if(++i<spins){setTimeout(spin,45+i*12);}else{
+    var n=list[Math.floor(Math.random()*list.length)];el.textContent=n;last=n;
+    var c=called();c.push(n);p('called:'+per+':'+today,c);meta();}})();}
+ // Teacher-only button: hidden for students. Opening any deck once with ?picker (or #picker)
+ // in the address turns it on for this browser; ?picker=off turns it off.
+ var q=location.search+location.hash;
+ if(/picker=off/.test(q))p('teacher',false);else if(/picker/.test(q))p('teacher',true);
+ if(!g('teacher',false)){$('np-btn').style.display='none';}
+ // build period menu
+ var sel=$('np-per');PERIODS.forEach(function(x){var o=document.createElement('option');o.value=x;o.textContent=LABEL[x];sel.appendChild(o);});
+ function open(){per=currentPeriod()||g('lastPer','6');sel.value=per;load();$('np').classList.add('open');$('np-pick').focus();}
+ function close(){$('np').classList.remove('open');}
+ $('np-btn').addEventListener('click',open);
+ $('np-close').addEventListener('click',close);
+ $('np').addEventListener('click',function(e){if(e.target.id==='np')close();});
+ sel.addEventListener('change',function(){per=sel.value;load();});
+ $('np-pick').addEventListener('click',pick);
+ $('np-skip').addEventListener('click',function(){if(last){var c=called().filter(function(n){return n!==last;});p('called:'+per+':'+today,c);}pick();});
+ $('np-reset').addEventListener('click',function(){p('called:'+per+':'+today,[]);$('np-name').innerHTML='&nbsp;';meta();});
+ $('np-grid').addEventListener('change',function(e){var n=roster()[+e.target.dataset.i],a=absent().filter(function(x){return x!==n;});
+  if(!e.target.checked)a.push(n);p('absent:'+per+':'+today,a);drawGrid();meta();});
+ $('np-save').addEventListener('click',function(){var seen={},list=$('np-text').value.split('\n').map(function(s){return s.trim();})
+  .filter(function(s){if(!s||seen[s])return false;seen[s]=1;return true;});p('roster:'+per,list);load();$('np-att').open=true;});
+ // keep slide-deck arrow/space keys from firing while the picker is open
+ $('np').addEventListener('keydown',function(e){if(e.key==='Escape')close();e.stopPropagation();});
+ document.addEventListener('keydown',function(e){if($('np').classList.contains('open')){if(e.key==='Escape')close();if(e.target.tagName!=='TEXTAREA')e.stopPropagation();}},true);
+})();
+</script>
+<!-- /name-picker -->
 </body>
 </html>
