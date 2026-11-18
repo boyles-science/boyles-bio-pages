@@ -652,23 +652,5 @@ if(ROLE==='teacher'){
 })();
 </script>
 <!-- /name-picker -->
-<script id="endsq-js">
-/* End marker: the last text on each slide gets a small gray square, so you can see the next click goes to the next slide.
-   Slides with a click-to-reveal box already have the square at the end of that box. */
-(function(){
-  var SKIP='.foot,.nbtag,.topline,script,style,svg,button,#np,#np-btn,.tkey';
-  [].forEach.call(document.querySelectorAll('.slide'),function(sl){
-    if (sl.querySelector('.reveal') || sl.querySelector('.endsq')) return;
-    var w=document.createTreeWalker(sl,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
-      if(!n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-      if(n.parentElement && n.parentElement.closest(SKIP)) return NodeFilter.FILTER_REJECT;
-      return NodeFilter.FILTER_ACCEPT;}});
-    var last=null,n; while((n=w.nextNode())) last=n;
-    if(!last) return;
-    var sq=document.createElement('span'); sq.className='endsq';
-    last.parentNode.insertBefore(sq,last.nextSibling);
-  });
-})();
-</script>
 </body>
 </html>
