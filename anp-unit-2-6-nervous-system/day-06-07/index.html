@@ -86,7 +86,11 @@ html, body { height: 100%; background: #16181f; }
 .nbtag.nbno b{font-size:17px}
 .nbtag .lbl{font-weight:800;font-size:13px;color:#7a2e00;margin-top:2px}
 .slide .kicker{max-width:700px}
-.slide .demo{margin-top:58px}</style></head>
+.slide .demo{margin-top:58px}</style><style id="reveal-css">.sumbox{margin-top:22px;border:3px solid #2b50c8;background:#eef1fb;border-radius:14px;padding:16px 24px;font-size:26px;line-height:1.45}
+.sumbox .sumlabel{font:800 15px 'Archivo',Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#2b50c8;margin-bottom:4px}
+.sumbox p{margin:0}
+.reveal{visibility:hidden}.reveal.shown{visibility:visible}
+.endsq{display:inline-block;width:.42em;height:.42em;background:#8a8f9c;margin-left:.3em;vertical-align:baseline}</style></head>
 <body>
 <div class="stage"><div class="frame" id="frame">
 
@@ -203,10 +207,10 @@ html, body { height: 100%; background: #16181f; }
 <div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 11 of 26</span></div>
 </div>
 <div class="slide">
-<div class="topline"></div><div class="nbtag nbno"><b>Not in your notebook</b><span>listen and check your notes, no writing</span></div>
+<div class="topline"></div><div class="nbtag nbno"><b>Not in your notebook</b><span>think and share out loud, no writing</span></div>
 <div class="kicker">Summarize</div>
 <h2>How does each part of the brain contribute to what you do?</h2>
-<p class="bigp">The cerebrum has two hemispheres joined by the corpus callosum. Its outer layer is the cerebral cortex. Each hemisphere has four lobes: frontal, parietal, temporal, and occipital. Each lobe has its own jobs.</p>
+<p class="bigp">Think about how you would answer this question. Use your notes. Be ready to share out loud.</p>
 <div class="foot"><span>Unit 2.6 Nervous System &middot; Day 6 &middot; Mon, Nov 30</span><span>slide 12 of 26</span></div>
 </div>
 <div class="slide">
@@ -332,10 +336,10 @@ html, body { height: 100%; background: #16181f; }
 <div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 23 of 26</span></div>
 </div>
 <div class="slide">
-<div class="topline"></div><div class="nbtag nbno"><b>Not in your notebook</b><span>listen and check your notes, no writing</span></div>
+<div class="topline"></div><div class="nbtag nbno"><b>Not in your notebook</b><span>think and share out loud, no writing</span></div>
 <div class="kicker">Summarize</div>
 <h2>How does each part of the brain contribute to what you do?</h2>
-<p class="bigp">The thalamus relays sensory signals. The hypothalamus controls temperature, hunger, and thirst. The cerebellum coordinates balance. The brain stem controls breathing and heart rate. The skull, meninges, cerebrospinal fluid, and blood-brain barrier protect the brain.</p>
+<p class="bigp">Think about how you would answer this question. Use your notes. Be ready to share out loud.</p>
 <div class="foot"><span>Unit 2.6 Nervous System &middot; Day 7 &middot; Tue, Dec 1</span><span>slide 24 of 26</span></div>
 </div>
 <div class="slide">
@@ -640,5 +644,23 @@ if(ROLE==='teacher'){
 })();
 </script>
 <!-- /name-picker -->
+<script id="endsq-js">
+/* End marker: the last text on each slide gets a small gray square, so you can see the next click goes to the next slide.
+   Slides with a click-to-reveal box already have the square at the end of that box. */
+(function(){
+  var SKIP='.foot,.nbtag,.topline,script,style,svg,button,#np,#np-btn,.tkey';
+  [].forEach.call(document.querySelectorAll('.slide'),function(sl){
+    if (sl.querySelector('.reveal') || sl.querySelector('.endsq')) return;
+    var w=document.createTreeWalker(sl,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+      if(!n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+      if(n.parentElement && n.parentElement.closest(SKIP)) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;}});
+    var last=null,n; while((n=w.nextNode())) last=n;
+    if(!last) return;
+    var sq=document.createElement('span'); sq.className='endsq';
+    last.parentNode.insertBefore(sq,last.nextSibling);
+  });
+})();
+</script>
 </body>
 </html>

@@ -86,7 +86,11 @@ html, body { height: 100%; background: #16181f; }
 .nbtag.nbno b{font-size:17px}
 .nbtag .lbl{font-weight:800;font-size:13px;color:#7a2e00;margin-top:2px}
 .slide .kicker{max-width:700px}
-.slide .demo{margin-top:58px}</style></head>
+.slide .demo{margin-top:58px}</style><style id="reveal-css">.sumbox{margin-top:22px;border:3px solid #2b50c8;background:#eef1fb;border-radius:14px;padding:16px 24px;font-size:26px;line-height:1.45}
+.sumbox .sumlabel{font:800 15px 'Archivo',Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#2b50c8;margin-bottom:4px}
+.sumbox p{margin:0}
+.reveal{visibility:hidden}.reveal.shown{visibility:visible}
+.endsq{display:inline-block;width:.42em;height:.42em;background:#8a8f9c;margin-left:.3em;vertical-align:baseline}</style></head>
 <body>
 <div class="stage"><div class="frame" id="frame">
 
@@ -227,10 +231,10 @@ html, body { height: 100%; background: #16181f; }
 <div class="foot"><span>Unit 2.6 Nervous System &middot; Day 8 &middot; Wed, Dec 2</span><span>slide 14 of 17</span></div>
 </div>
 <div class="slide">
-<div class="topline"></div><div class="nbtag nbno"><b>Not in your notebook</b><span>listen and check your notes, no writing</span></div>
+<div class="topline"></div><div class="nbtag nbno"><b>Not in your notebook</b><span>think and share out loud, no writing</span></div>
 <div class="kicker">Summarize</div>
 <h2>Why can your body respond before you have time to think?</h2>
-<p class="bigp">The spinal cord carries signals between the brain and the body, and it can also act on its own. A reflex arc has five parts: receptor, sensory neuron, integration center, motor neuron, and effector. A reflex is faster than a choice because the signal does not have to reach the brain first.</p>
+<p class="bigp">Think about how you would answer this question. Use your notes. Be ready to share out loud.</p>
 <div class="foot"><span>Unit 2.6 Nervous System &middot; Day 8 &middot; Wed, Dec 2</span><span>slide 15 of 17</span></div>
 </div>
 <div class="slide">
@@ -535,5 +539,23 @@ if(ROLE==='teacher'){
 })();
 </script>
 <!-- /name-picker -->
+<script id="endsq-js">
+/* End marker: the last text on each slide gets a small gray square, so you can see the next click goes to the next slide.
+   Slides with a click-to-reveal box already have the square at the end of that box. */
+(function(){
+  var SKIP='.foot,.nbtag,.topline,script,style,svg,button,#np,#np-btn,.tkey';
+  [].forEach.call(document.querySelectorAll('.slide'),function(sl){
+    if (sl.querySelector('.reveal') || sl.querySelector('.endsq')) return;
+    var w=document.createTreeWalker(sl,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+      if(!n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+      if(n.parentElement && n.parentElement.closest(SKIP)) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;}});
+    var last=null,n; while((n=w.nextNode())) last=n;
+    if(!last) return;
+    var sq=document.createElement('span'); sq.className='endsq';
+    last.parentNode.insertBefore(sq,last.nextSibling);
+  });
+})();
+</script>
 </body>
 </html>
